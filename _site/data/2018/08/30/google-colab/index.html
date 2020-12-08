@@ -1,0 +1,2132 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
+-->
+
+
+
+
+
+
+
+
+
+<head>
+  <!-- =============== -->
+<!-- META            -->
+<!-- =============== -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="naver-site-verification" content="22c5b4ef3bfda7fc6100671413989219de7a4ac8"/>
+<meta property="og:title" content="Google Colab 사용하기">
+<meta property="og:type" content="article">
+
+
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/img/logo.png">
+
+
+<meta property="og:image:width" content="640" />
+<meta property="og:image:height" content="360" />
+
+
+
+  <title>Google Colab 사용하기 &middot; 어쩐지 오늘은</title>
+
+
+
+<meta name="description" content="Google의 Colab 사용법에 대해 정리한 글입니다 이 글은 계속 업데이트 될 예정입니다! 목차 UI 상단 설정 구글 드라이브와 Colab 연동 구글 드라이브와 로컬 연동 Tensorflow 2.0 설치하기 PyTorch 사용하기 KoNLPy 설치 Github 코드를 Colab에서 사용하기 BigQuery 사용하기 Matplotlib에서 한글 사용하기 TensorBoard 사용하기 JDK 설치하기 Google Storage에서 파일 읽기 MNIST on...">
+<meta property="og:description" content="Google의 Colab 사용법에 대해 정리한 글입니다 이 글은 계속 업데이트 될 예정입니다! 목차 UI 상단 설정 구글 드라이브와 Colab 연동 구글 드라이브와 로컬 연동 Tensorflow 2.0 설치하기 PyTorch 사용하기 KoNLPy 설치 Github 코드를 Colab에서 사용하기 BigQuery 사용하기 Matplotlib에서 한글 사용하기 TensorBoard 사용하기 JDK 설치하기 Google Storage에서 파일 읽기 MNIST on...">
+
+
+<!-- tipuesearch -->
+<link rel="stylesheet" href="/assets/tipuesearch/css/tipuesearch.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+<!-- =============== -->
+<!-- LINKS           -->
+<!-- =============== -->
+<link rel="canonical" href="http://localhost:4000/data/2018/08/30/google-colab/">
+<meta property="og:url" content="http://localhost:4000/data/2018/08/30/google-colab/">
+
+<link rel="alternate" type="application/atom+xml" title="어쩐지 오늘은 Feed" href="http://localhost:4000/feed.xml">
+
+
+  <link rel="prev" href="http://localhost:4000/data/2018/08/26/how-to-win-a-data-science-competition-week3/">
+
+
+
+  <link rel="next" href="http://localhost:4000/data/2018/09/03/how-to-win-a-data-science-competition-week4/">
+
+
+<link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+<!-- Place favicon.ico in the root directory -->
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+<script>
+  !function(n,e){function t(n,e){n.onload=function(){this.onerror=this.onload=null,e(null,n)},n.onerror=function(){this.onerror=this.onload=null,e(new Error("Failed to load "+this.src),n)}}function o(n,e){n.onreadystatechange=function(){"complete"!=this.readyState&&"loaded"!=this.readyState||(this.onreadystatechange=null,e(null,n))}}n._loaded=!1,n.loadJSDeferred=function(a,d){function r(){n._loaded=!0;var r=e.createElement("script");r.src=a,d&&(("onload"in r?t:o)(r,d),r.onload||t(r,d));var l=e.getElementsByTagName("script")[0];l.parentNode.insertBefore(r,l)}n._loaded?r():n.addEventListener?n.addEventListener("load",r,!1):n.attachEvent?n.attachEvent("onload",r):n.onload=r}}(window,document);
+
+  !function(e){"use strict";var n=function(n,t,o){function i(e){if(a.body)return e();setTimeout(function(){i(e)})}function r(){l.addEventListener&&l.removeEventListener("load",r),l.media=o||"all"}var d,a=e.document,l=a.createElement("link");if(t)d=t;else{var f=(a.body||a.getElementsByTagName("head")[0]).childNodes;d=f[f.length-1]}var s=a.styleSheets;l.rel="stylesheet",l.href=n,l.media="only x",i(function(){d.parentNode.insertBefore(l,t?d:d.nextSibling)});var u=function(e){for(var n=l.href,t=s.length;t--;)if(s[t].href===n)return e();setTimeout(function(){u(e)})};return l.addEventListener&&l.addEventListener("load",r),l.onloadcssdefined=u,u(r),l};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
+
+  !function(t){if(t.loadCSS){var e=loadCSS.relpreload={};if(e.support=function(){try{return t.document.createElement("link").relList.supports("preload")}catch(t){return!1}},e.poly=function(){for(var e=t.document.getElementsByTagName("link"),r=0;r<e.length;r++){var n=e[r];"preload"===n.rel&&"style"===n.getAttribute("as")&&(t.loadCSS(n.href,n,n.getAttribute("media")),n.rel=null)}},!e.support()){e.poly();var r=t.setInterval(e.poly,300);t.addEventListener&&t.addEventListener("load",function(){e.poly(),t.clearInterval(r)}),t.attachEvent&&t.attachEvent("onload",function(){t.clearInterval(r)})}}}(this);
+
+  window.disablePushState = false;
+  window.disableDrawer = false;
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5105555504153863",
+    enable_page_level_ads: true
+  });
+</script>
+
+<!--[if lt IE 9]>
+<script src="https://unpkg.com/html5shiv/dist/html5shiv.min.js"></script>
+<![endif]-->
+
+<!-- =============== -->
+<!-- STYLES          -->
+<!-- =============== -->
+<!--[if gt IE 8]><!---->
+<style>
+  
+  article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}*{box-sizing:border-box}html,body{margin:0;padding:0}html{font-size:16px;line-height:1.75}body{color:#333;background-color:#fff;overflow-y:scroll}a{text-decoration:none}.lead{margin-left:-1rem;margin-right:-1rem}img,.img{display:block;max-width:100%;margin-bottom:1rem;border:none}img.lead,.img.lead{max-width:calc(100% + 2rem);width:calc(100% + 2rem)}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-weight:bold;text-rendering:optimizeLegibility}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{margin:1.6rem 0 1rem;line-height:1.6}h1,.h1{font-size:2rem;line-height:1.25}h2,.h2{font-size:1.5rem}h3,.h3{font-size:1.17em}p{margin-top:0;margin-bottom:1rem}p.lead{font-size:1.25rem;font-weight:300;padding:0 1rem}ul,ol,dl{margin-top:0;margin-bottom:1rem}ul,ol{padding-left:1.25rem}hr{position:relative;margin:1.5rem 0;border:0;border-top:1px solid #eee}.hr{padding-bottom:.5rem;border-bottom:1px solid #eee;margin-bottom:1.5rem}h4,h5,h6,.h4,.h5,.h6{margin-bottom:0.5rem;font-size:1rem}table{margin-bottom:1rem;width:100%;width:calc(100% + 2rem);margin-left:-1rem;border:1px solid #e5e5e5;border-collapse:collapse;border-spacing:0}td,th{padding:.25rem .5rem;border:1px solid #e5e5e5}td:first-child,th:first-child{padding-left:1rem}td:last-child,th:last-child{padding-right:1rem}thead+tbody,tbody+tbody,tfoot{border-top:3px double #e5e5e5}tbody tr:nth-child(odd) td,tbody tr:nth-child(odd) th{background-color:#f9f9f9}footer{margin-bottom:2rem}.page,.post{margin-bottom:3em}.page li+li,.post li+li{margin-top:.25rem}.page>header,.post>header{margin-bottom:2rem}.page-title,.post-title{margin-top:0}.post-date{display:block;margin-top:-0.5rem;margin-bottom:1rem;color:#9a9a9a}.related-posts{padding-left:0;list-style:none}.related-posts>li,.related-posts>li+li{margin-top:1rem}.related-posts>li>small,.related-posts>li+li>small{font-size:75%;color:#9a9a9a}.message{margin-bottom:1rem;padding:1rem;color:#787878;background-color:#f9f9f9;margin-left:-1rem;margin-right:-1rem}body,main{position:relative;overflow-x:hidden}@media screen{body::before{content:'';background:#e5e5e5;position:absolute;left:0;top:0;bottom:0}}@media screen and (min-width: 40em){html{font-size:17px}}@media screen and (min-width: 54em){html{font-size:16px}}@media screen and (min-width: 88em){html{font-size:17px}}@media screen and (min-width: 125em){html{font-size:18px}}.sr-only{display:none}.clearfix,.sidebar-social::after,.clearafter::after{content:"";display:table;clear:both}a,.a{position:relative;padding-bottom:.15rem;border-style:hidden}.img{overflow:hidden;background-color:#f9f9f9}.img>img{margin:0;width:100%;height:100%}.sixteen-nine{position:relative}.sixteen-nine::before{display:block;content:"";width:100%;padding-top:56.25%}.sixteen-nine>*{position:absolute;top:0;left:0;right:0;bottom:0}h1+hr,h2+hr,h3+hr,h4+hr,h5+hr,h6+hr{margin-top:0}.fade-in{animation-duration:500ms;animation-name:fade-in;animation-fill-mode:forwards}@keyframes fade-in{from{transform:translateY(-2rem);opacity:0}50%{transform:translateY(-2rem);opacity:0}to{transform:translateY(0);opacity:1}}.mb6{margin-bottom:10rem}.sidebar{color:rgba(255,255,255,0.75);text-align:left}.sidebar::before{content:"";position:absolute;z-index:2;top:0;left:0;bottom:0;right:0;background:linear-gradient(to bottom, rgba(32,32,32,0) 0%, rgba(32,32,32,0.5) 100%)}.sidebar a{color:#fff;border-bottom-color:rgba(255,255,255,0.2)}.right-side{width:100%;margin-left:auto;margin-right:auto}.right-side .ad-first{text-align:center}.right-side .ad-second{text-align:center}@media screen{.right-side{max-width:38rem;min-height:100vh}}@media screen and (min-width: 54em){.right-side{margin-left:20rem;margin-right:1rem;padding:4rem 1rem 12rem}}@media screen and (min-width: 72em){.right-side{margin-left:22rem;max-width:42rem}}@media screen and (min-width: 88em){.right-side{width:162px;margin-left:0rem;margin-right:0rem;padding:0rem;margin-top:10rem;display:block;float:left}}@media screen and (min-width: 96em){.right-side{width:300px;margin-right:0rem}}#_yDrawer{position:relative}@media screen{#_yDrawer{min-height:640px;min-height:100vh}}@media screen and (min-width: 54em){#_yDrawer{width:18rem;margin-left:0}}.sidebar-bg{position:absolute;height:100%;overflow:hidden;top:0;right:0;bottom:0;left:0;background:#202020 center / cover}.sidebar-box{display:flex;justify-content:center}.sidebar-sticky{position:relative;z-index:3}@media screen{.sidebar-sticky{-ms-overflow-style:none;overflow:-moz-scrollbars-none;height:100%;overflow:auto;position:absolute;padding:3rem 0rem;right:2.5rem;left:2.5rem}}.sidebar-sticky::-webkit-scrollbar{display:none}.sidebar-about>h1{color:#fff;font-size:2rem}.sidebar-nav>ul{list-style:none;padding-left:0;margin-bottom:.5rem}a.sidebar-nav-item{width:100%;font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}a.sidebar-nav-subitem{font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}@media screen{.y-drawer-scrim{z-index:2}.y-drawer-content{width:18rem;left:-18rem;z-index:3}}.sidebar-social{margin-bottom:.5rem}.sidebar-social>ul{list-style:none;padding-left:0;margin:0 -.25rem}.sidebar-social>ul>li{float:left}.sidebar-social>ul>li>a{display:inline-block;text-align:center;font-size:1.6rem;line-height:3rem;width:3.1249rem;height:4rem;padding:.5rem 0}.sidebar-social>ul li+li{margin-top:0}.fixed-top{position:fixed;top:0;left:0;width:100%;z-index:1}.navbar>.content{padding-top:0;padding-bottom:0;min-height:0;height:0}.menu{display:inline-block;padding:1.75rem 1.5rem;border-bottom:none;margin-left:-1.5rem;color:#9a9a9a !important}.menu::after{content:"\2630"}@media screen and (min-width: 54em){.menu{padding:1.25rem 1.5rem;position:absolute;left:-9999px}.menu:focus{position:static}}.animation-main{pointer-events:none}.loading{display:none}@media print{.menu{display:none}}.animation-main{opacity:0;will-change:opacity}.loading{position:absolute;top:0;right:0;padding:5.25rem 4.5rem;transform-origin:top right;transform:scale(0.33)}.content{position:relative;margin-left:auto;margin-right:auto;padding:5rem 1rem 12rem}@media screen{.content{min-height:100vh}}@media screen and (min-width: 54em){.content{padding:4rem 1rem 12rem;margin-left:19rem;margin-right:3rem}}@media screen and (min-width: 72em){.content{max-width:42rem;margin-left:21rem}}@media screen and (min-width: 88em){.content{float:left;width:100%;margin-left:22rem;margin-right:5rem}}@media screen and (min-width: 96em){.content{max-width:44rem}}@media screen and (min-width: 102em){.content{margin-left:25rem;margin-right:8rem}}.me{width:6.5rem;height:6.5rem;align-self:center;margin-right:20px;border-radius:100%;position:relative}@media screen and (min-width: 40em){.me{width:7rem;height:7rem}}@media screen and (min-width: 54em){.me{width:6.5rem;height:6.5rem}}@media screen and (min-width: 72em){.me{width:7rem;height:7rem}}main>footer{width:100%;position:absolute;bottom:0;left:0;right:0;padding:0 1rem;color:#9a9a9a;font-size:smaller;text-align:center}main>footer>p{margin-bottom:0}html{font-family:'Sans-serif'}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-family:'Sans-serif'}
+
+</style>
+
+
+<link rel="preload" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0" as="style" onload="this.rel='stylesheet'">
+
+<style id="_pageStyle">
+
+.content a{color:#4f86aa;border-color:rgba(79,134,170,0.2)}.content a:hover{border-color:#4f86aa}:focus{outline-color:#4f86aa}::selection{color:#fff;background:#4f86aa}::-moz-selection{color:#fff;background:#4f86aa}
+
+</style>
+
+
+<noscript>
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0">
+  
+  
+  
+
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <style>
+      html { font-family: 'Lato', 'Sans-serif' }
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading { font-family: 'Lato', 'Sans-serif' }
+    </style>
+  
+
+  
+  <link rel="stylesheet" href="http://localhost:4000/assets/icomoon/style.css">
+</noscript>
+<!--<![endif]-->
+
+</head>
+
+<body>
+  <!-- =============== -->
+<!-- MENU            -->
+<!-- =============== -->
+<div class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <a id="_menu" class="menu no-hover" href="#_title">
+      <span class="sr-only">Menu</span>
+    </a>
+  </div>
+</div>
+
+<!-- =============== -->
+<!-- CONTENT         -->
+<!-- =============== -->
+<div id="_yPushState">
+  <div class="fade-in">
+    <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/nap.jpg">
+      
+
+<article id="post-data/2018/08/30/google-colab" class="post" role="article">
+  <header>
+    <h1 class="post-title">
+      
+        Google Colab 사용하기
+      
+    </h1>
+
+    <p class="post-date heading">
+      <time datetime="2018-08-30T00:00:00+09:00">30 Aug 2018</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/data/" data-flip="title">Data</a>
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/data-dl/" data-flip="title">Deep-Learning</a>
+
+    </p>
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+    <div class="markdown-body">
+
+
+<style>
+.myAd1190 { display:block; width:98%; height: 280px; }
+@media(min-width: 600px) { .myAd1190 { display: none; } }
+</style>
+<ins class="adsbygoogle myAd1190"
+    data-ad-client="ca-pub-5105555504153863"
+    data-ad-slot="6481487416"
+    ></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
+<br/>
+      <ul>
+  <li>Google의 Colab 사용법에 대해 정리한 글입니다</li>
+  <li>이 글은 계속 업데이트 될 예정입니다!</li>
+  <li>목차
+    <ul>
+      <li><a href="#ui">UI</a></li>
+      <li><a href="#상단-설정">상단 설정</a></li>
+      <li><a href="#구글-드라이브와-colab-연동">구글 드라이브와 Colab 연동</a></li>
+      <li><a href="#구글-드라이브와-로컬-연동">구글 드라이브와 로컬 연동</a></li>
+      <li><a href="#tensorflow-설치하기">Tensorflow 2.0 설치하기</a></li>
+      <li><a href="#pytorch-사용하기">PyTorch 사용하기</a></li>
+      <li><a href="#konlpy-설치">KoNLPy 설치</a></li>
+      <li><a href="#github-코드를-colab에서-사용하기">Github 코드를 Colab에서 사용하기</a></li>
+      <li><a href="#bigquery-사용하기">BigQuery 사용하기</a></li>
+      <li><a href="#matplotlib에서-한글-사용하기">Matplotlib에서 한글 사용하기</a></li>
+      <li><a href="#tensorboard-사용하기">TensorBoard 사용하기</a></li>
+      <li><a href="#jdk-설치하기">JDK 설치하기</a></li>
+      <li><a href="#google-storage에서-파일-읽기">Google Storage에서 파일 읽기</a></li>
+      <li><a href="https://colab.research.google.com/github/GoogleCloudPlatform/training-data-analyst/blob/master/courses/fast-and-lean-data-science/01_MNIST_TPU_Keras.ipynb">MNIST on TPU 소스</a></li>
+      <li><a href="#kaggle-연동하기">Kaggle 연동하기</a></li>
+      <li><a href="#코기-모드">코기 모드</a></li>
+      <li><a href="#런타임-연결">런타임 연결</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="google-colab">Google Colab</h2>
+<hr />
+
+<ul>
+  <li>풀 네임은 Google Colaboratory</li>
+  <li>Google Drive + Jupyter Notebook
+    <ul>
+      <li>Google Drive처럼 협업 가능(동시에 수정 가능)</li>
+    </ul>
+  </li>
+  <li><a href="https://colab.research.google.com/">https://colab.research.google.com/</a>로 접속시 사용 가능</li>
+  <li>컴퓨터 사양(19년 12월 기준)
+    <ul>
+      <li>Ubuntu 17.10</li>
+      <li>CPU 제논 2.3GHz</li>
+      <li>메모리 13G</li>
+      <li><strong>GPU : K80 또는 T4</strong> :</li>
+      <li>TPU도 사용 가능</li>
+    </ul>
+  </li>
+  <li>GPU 사용시 최대 12시간</li>
+  <li>Github의 소스 코드를 Colab에서 사용 가능</li>
+</ul>
+
+<h3 id="ui">UI</h3>
+<p><img src="https://www.dropbox.com/s/j9vwl4clnru0ulb/Screenshot%202018-08-29%2022.26.02.png?raw=1" /></p>
+
+<ul>
+  <li>붉은 부분
+    <ul>
+      <li>해당 노트북의 목차</li>
+      <li>코드 스니펫
+        <ul>
+          <li>재사용 가능한 소스 코드로 다양한 예제 코드가 있음</li>
+          <li>Uploading files from your local file system, Using BigQuery, Listing files in Google Drive, Install library, etc</li>
+        </ul>
+      </li>
+      <li>연결된 파일</li>
+    </ul>
+  </li>
+  <li>노란 부분
+    <ul>
+      <li>헤더 보이기 유무</li>
+    </ul>
+  </li>
+  <li>파란 부분
+    <ul>
+      <li>코드 부분</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="상단-설정">상단 설정</h3>
+<p><img src="https://www.dropbox.com/s/mf37f6c7em8t8zd/Screenshot%202018-08-29%2022.49.30.png?raw=1" /></p>
+
+<ul>
+  <li>새 Python2, 3 노트 : Notebook 파일 생성(GPU 없는 설정)</li>
+  <li>노트 업로드 : 로컬에 있는 노트북 업로드</li>
+  <li>Github Gist에 사본 저장 : Gist에 Secret으로 저장(처음에 연동 설정 필요)</li>
+  <li>Github에 사본 저장 : Github Repo의 특정 브랜치에 저장</li>
+</ul>
+
+<p><img src="https://www.dropbox.com/s/crnljdkvedu4huk/Screenshot%202018-08-29%2022.53.22.png?raw=1" /></p>
+
+<ul>
+  <li>런타임 유형 변경 클릭시 GPU 사용 가능</li>
+  <li><img src="https://www.dropbox.com/s/h9r2m8sabp2v8nt/Screenshot%202018-08-29%2022.55.22.png?raw=1" widht="200" height="200" /></li>
+</ul>
+
+<h2 id="colab-사용하기">Colab 사용하기</h2>
+<hr />
+
+<ul>
+  <li>
+    <p>OS 확인</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  !cat /etc/issue.net
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="하드웨어-사양">하드웨어 사양</h3>
+<ul>
+  <li>
+    <p>CPU</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  !cat /proc/cpuinfo
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Memory</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  !cat /proc/meminfo
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Disk</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  !df -h
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>GPU</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  !nvidia-smi
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="구글-드라이브와-colab-연동">구글 드라이브와 Colab 연동</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from google.colab import auth
+auth.authenticate_user()
+
+from google.colab import drive
+drive.mount('/content/gdrive')
+</code></pre></div></div>
+
+<ul>
+  <li>colab에서 구글 드라이브 권한 획득
+    <ul>
+      <li>위 명령어 복사 붙여넣기</li>
+      <li>그 후 나오는 URL로 접속한 후, verification code 입력</li>
+      <li>단, 매번 이 작업을 해줘야 함….(일정 시간 이후엔 끊김)</li>
+    </ul>
+  </li>
+  <li>colab에서 drive란 폴더를 만든 후, 우리 구글 드라이브의 root와 drive 폴더를 연결(mount)</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>!cd gdrive/data; ls-al;
+</code></pre></div></div>
+
+<ul>
+  <li>구글드라이브의 root에 data란 폴더가 있었음</li>
+  <li>train_activitiy.csv 데이터를 읽어오기</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import pandas as pd
+df = pd.read_csv("./gdrive/data/train_activity.csv")
+</code></pre></div></div>
+
+<ul>
+  <li>만약 apt-key output should not be parsed (stdout is not a terminal)란 Warning이 나오면 이미 인증이 완료되었다는 뜻이므로 바로 mount하면 됨</li>
+</ul>
+
+<h3 id="구글-드라이브와-로컬-연동">구글 드라이브와 로컬 연동</h3>
+<ul>
+  <li>파일을 하나씩 업로드하지 말고 대량의 파일을 한꺼번에 업로드하고 싶은 경우</li>
+  <li><a href="https://www.google.com/drive/download/">BackupAndSync</a>를 사용해 로컬과 구글 드라이브를 연동
+    <ul>
+      <li>Dropbox처럼 내 로컬의 특정 폴더를 연동</li>
+      <li>맥북 환경에서 진행</li>
+    </ul>
+  </li>
+  <li>위 링크를 클릭해 백업 및 동기화 다운로드</li>
+  <li><code class="highlighter-rouge">InstallBackupAndSync.dmg</code>라는 파일을 클릭한 후, (열리지 않으면 우클릭 후 열기) 프로그램 설치</li>
+  <li>맥북 환경이 한글이신 분은 <code class="highlighter-rouge">Google에서 백업 및 동기화</code>라는 응용 프로그램이 추가됨(이것도 실행이 안되면 우클릭 후 실행)</li>
+  <li>환경 설정에서 동기화할 폴더 선택</li>
+  <li><img src="https://www.dropbox.com/s/8jc0jlkhn08nekp/Screenshot%202018-08-30%2001.37.29.png?raw=1" /></li>
+  <li>“폴더 위치”라고 써있는 곳이 이제 Google Drive와 동일하게 연동</li>
+  <li><img src="https://www.dropbox.com/s/lg7ft4p1gbaj0l8/Screenshot%202018-08-30%2001.39.43.png?raw=1" /></li>
+  <li>이제 “폴더 위치”에 원하는 데이터를 저장해두면 Colab에서 사용 가능
+    <ul>
+      <li>단, 크기가 큰 파일은 동기화 시간이 오래 걸릴 수 있음</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="tensorflow-설치하기">Tensorflow 설치하기</h3>
+<ul>
+  <li>2019년 12월 기준 Colab에 설치된 Tensorflow는 1.15.0입니다
+    <ul>
+      <li>Tensorflow 2.0을 설치하고 싶으면 아래처럼 입력하시면 됩니다</li>
+    </ul>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  !pip install tensorflow==2.0.0-rc1
+</code></pre></div>    </div>
+
+    <ul>
+      <li>그 후, 런타임 - 런타임 다시 시작을 누르셔서 런타임을 다시 실행시키면 Tensorflow 2.0.0-beta1 설치된 것을 알 수 있습니다</li>
+    </ul>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  import tensorflow as tf
+  print(tf.__version__)
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="pytorch-사용하기">PyTorch 사용하기</h3>
+<ul>
+  <li>2019년 1월 26일부터 Colab에 기본적으로 PyTorch, torchvision, torchtext가 내장되었습니다</li>
+  <li>출처 : <a href="https://mobile.twitter.com/PyTorch/status/1088882504700968960">PyTorch 트위터</a></li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import torch
+import torchvision
+import torchtext
+print(torch.__version__)
+</code></pre></div></div>
+
+<h3 id="konlpy-설치">KoNLPy 설치</h3>
+<ul>
+  <li>공식 문서엔 openjdk-7-jdk로 작성되어 있으나, 우분투 17.04에선 ppa를 추가해야 설치 가능</li>
+  <li>ppa를 추가하지 않고 8 버전을 설치</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>!apt-get update
+!apt-get install g++ openjdk-8-jdk 
+!pip3 install konlpy
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>예제 코드</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  from konlpy.tag import Twitter
+
+  twitter = Twitter()
+  twitter.pos("질문이나 건의사항은 깃헙 이슈 트래커에 남겨주세요")
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="github-코드를-colab에서-사용하기">Github 코드를 Colab에서 사용하기</h3>
+<ul>
+  <li><code class="highlighter-rouge">nbviewer</code>나 <code class="highlighter-rouge">htmlpreview</code>처럼 사용 가능</li>
+  <li><code class="highlighter-rouge">https://github.com/~~~</code> 부분을 <code class="highlighter-rouge">https://colab.research.google.com/github/~~~</code>로 교체하면 됨</li>
+  <li>예시
+    <ul>
+      <li><a href="https://github.com/zzsza/TIL/blob/master/python/tensorflow-1.ipynb">https://github.com/zzsza/TIL/blob/master/python/tensorflow-1.ipynb</a> 를</li>
+      <li><a href="https://colab.research.google.com/github/zzsza/TIL/blob/master/python/tensorflow-1.ipynb">https://colab.research.google.com/github/zzsza/TIL/blob/master/python/tensorflow-1.ipynb</a>로 변경</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="bigquery-사용하기">BigQuery 사용하기</h3>
+<ul>
+  <li><code class="highlighter-rouge">google.colab</code>의 <code class="highlighter-rouge">auth</code>를 통해 클라우드 권한을 얻은 후, 다양한 라이브러리 사용</li>
+  <li>
+    <p><code class="highlighter-rouge">google.cloud.bigquery</code> 사용시</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  from google.cloud import bigquery
+  from google.colab import auth
+	
+  project_id = '[your project ID]'
+	
+  auth.authenticate_user()
+	
+  client = bigquery.Client(project=project_id)
+  for dataset in client.list_datasets():
+    print(dataset.dataset_id)
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">pandas_gbq</code> 사용시 (개인적으로 이 방법 추천)</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  import pandas as pd
+  from google.colab import auth
+  auth.authenticate_user()
+	
+  query = "SELECT * FROM &lt;YOUR TABLE&gt; LIMIT 10"
+  df = pd.read_gbq(query=query, project_id=&lt;your project id&gt;, dialect=‘standard’))
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="matplotlib에서-한글-사용하기">Matplotlib에서 한글 사용하기</h3>
+<ul>
+  <li>
+    <p>폰트 설치</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  !apt-get install fonts-nanum*
+  !apt-get install fontconfig
+  !fc-cache -fv
+  !cp /usr/share/fonts/truetype/nanum/Nanum* /usr/local/lib/python3.6/dist-packages/matplotlib/mpl-data/fonts/ttf/
+  !rm -rf /content/.cache/matplotlib/*
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>그래프 그리기</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  import matplotlib.pyplot as plt
+  import matplotlib as mpl
+  import matplotlib.font_manager as fm
+  import numpy as np
+	
+  %matplotlib inline
+  %config InlineBackend.figure_format = 'retina'
+	
+  mpl.rcParams['axes.unicode_minus'] = False
+  # 그래프에서 마이너스 폰트 깨질 경우 대비
+	
+  path = '/usr/share/fonts/truetype/nanum/NanumGothicBold.ttf'
+  font_name = fm.FontProperties(fname=path, size=18).get_name()
+  plt.rc('font', family=font_name)
+  fm._rebuild() # 이걸 해줘야 plt.rc가 작동
+
+  plt.plot(np.random.randn(4, 8), np.random.randn(4,8), 'bo--')
+  plt.title('타이틀')
+  plt.xlabel('X 라벨')
+  plt.ylabel('Y 라벨')
+  plt.show()
+	
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="tensorboard-사용하기">Tensorboard 사용하기</h3>
+<ul>
+  <li>Tensorboard 사용 준비
+    <ul>
+      <li>LOG_DIR를 ‘drive/tb_logs’로 설정하면 내 구글드라이브 root에 tb_logs 폴더가 생성</li>
+      <li>저는 ‘drive/data/tb_logs’로 지정</li>
+    </ul>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  LOG_DIR = 'drive/data/tb_logs'
+	
+  !wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+  !unzip ngrok-stable-linux-amd64.zip
+	
+  import os
+  if not os.path.exists(LOG_DIR):
+    os.makedirs(LOG_DIR)
+	  
+  get_ipython().system_raw(
+      'tensorboard --logdir {} --host 0.0.0.0 --port 6006 &amp;'
+      .format(LOG_DIR))
+	
+  get_ipython().system_raw('./ngrok http 6006 &amp;')
+	
+  !curl -s http://localhost:4040/api/tunnels | python3 -c \
+      "import sys, json; print(json.load(sys.stdin)['tunnels'][0]['public_url'])"
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>아래 예제 코드 실행 후, Epoch 지나고 위 코드에서 나온 URL 클릭하면 TensorBoard로 이동</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">from</span> <span class="n">__future__</span> <span class="n">import</span> <span class="n">print_function</span>
+  <span class="n">import</span> <span class="n">keras</span>
+  <span class="k">from</span> <span class="n">keras</span><span class="p">.</span><span class="n">datasets</span> <span class="n">import</span> <span class="n">mnist</span>
+  <span class="k">from</span> <span class="n">keras</span><span class="p">.</span><span class="n">models</span> <span class="n">import</span> <span class="n">Sequential</span>
+  <span class="k">from</span> <span class="n">keras</span><span class="p">.</span><span class="n">layers</span> <span class="n">import</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Dropout</span><span class="p">,</span> <span class="n">Flatten</span>
+  <span class="k">from</span> <span class="n">keras</span><span class="p">.</span><span class="n">layers</span> <span class="n">import</span> <span class="n">Conv2D</span><span class="p">,</span> <span class="n">MaxPooling2D</span>
+  <span class="k">from</span> <span class="n">keras</span> <span class="n">import</span> <span class="n">backend</span> <span class="k">as</span> <span class="n">K</span>
+  <span class="k">from</span> <span class="n">keras</span><span class="p">.</span><span class="n">callbacks</span> <span class="n">import</span> <span class="n">TensorBoard</span>
+
+  <span class="n">batch_size</span> <span class="p">=</span> <span class="m">128</span>
+  <span class="n">num_classes</span> <span class="p">=</span> <span class="m">10</span>
+  <span class="n">epochs</span> <span class="p">=</span> <span class="m">12</span>
+	
+  <span class="p">###</span> <span class="n">input</span> <span class="n">image</span> <span class="n">dimensions</span>
+  <span class="n">img_rows</span><span class="p">,</span> <span class="n">img_cols</span> <span class="p">=</span> <span class="m">28</span><span class="p">,</span> <span class="m">28</span>
+	
+  <span class="p">###</span> <span class="n">the</span> <span class="n">data</span><span class="p">,</span> <span class="n">shuffled</span> <span class="k">and</span> <span class="n">split</span> <span class="n">between</span> <span class="n">train</span> <span class="k">and</span> <span class="n">test</span> <span class="n">sets</span>
+  <span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">),</span> <span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span> <span class="p">=</span> <span class="n">mnist</span><span class="p">.</span><span class="n">load_data</span><span class="p">()</span>
+	
+  <span class="k">if</span> <span class="n">K</span><span class="p">.</span><span class="n">image_data_format</span><span class="p">()</span> <span class="p">==</span> <span class="s1">'channels_first'</span><span class="p">:</span>
+      <span class="n">x_train</span> <span class="p">=</span> <span class="n">x_train</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x_train</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="m">0</span><span class="p">],</span> <span class="m">1</span><span class="p">,</span> <span class="n">img_rows</span><span class="p">,</span> <span class="n">img_cols</span><span class="p">)</span>
+      <span class="n">x_test</span> <span class="p">=</span> <span class="n">x_test</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x_test</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="m">0</span><span class="p">],</span> <span class="m">1</span><span class="p">,</span> <span class="n">img_rows</span><span class="p">,</span> <span class="n">img_cols</span><span class="p">)</span>
+      <span class="n">input_shape</span> <span class="p">=</span> <span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="n">img_rows</span><span class="p">,</span> <span class="n">img_cols</span><span class="p">)</span>
+  <span class="k">else</span><span class="p">:</span>
+      <span class="n">x_train</span> <span class="p">=</span> <span class="n">x_train</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x_train</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="m">0</span><span class="p">],</span> <span class="n">img_rows</span><span class="p">,</span> <span class="n">img_cols</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span>
+      <span class="n">x_test</span> <span class="p">=</span> <span class="n">x_test</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x_test</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="m">0</span><span class="p">],</span> <span class="n">img_rows</span><span class="p">,</span> <span class="n">img_cols</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span>
+      <span class="n">input_shape</span> <span class="p">=</span> <span class="p">(</span><span class="n">img_rows</span><span class="p">,</span> <span class="n">img_cols</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span>
+	
+  <span class="n">x_train</span> <span class="p">=</span> <span class="n">x_train</span><span class="p">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">'float32'</span><span class="p">)</span>
+  <span class="n">x_test</span> <span class="p">=</span> <span class="n">x_test</span><span class="p">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">'float32'</span><span class="p">)</span>
+  <span class="n">x_train</span> <span class="p">/=</span> <span class="m">255</span>
+  <span class="n">x_test</span> <span class="p">/=</span> <span class="m">255</span>
+  <span class="n">print</span><span class="p">(</span><span class="s1">'x_train shape:'</span><span class="p">,</span> <span class="n">x_train</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+  <span class="n">print</span><span class="p">(</span><span class="n">x_train</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="m">0</span><span class="p">],</span> <span class="s1">'train samples'</span><span class="p">)</span>
+  <span class="n">print</span><span class="p">(</span><span class="n">x_test</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="m">0</span><span class="p">],</span> <span class="s1">'test samples'</span><span class="p">)</span>
+	
+  <span class="p">###</span> <span class="n">convert</span> <span class="n">class</span> <span class="n">vectors</span> <span class="k">to</span> <span class="n">binary</span> <span class="n">class</span> <span class="n">matrices</span>
+  <span class="n">y_train</span> <span class="p">=</span> <span class="n">keras</span><span class="p">.</span><span class="n">utils</span><span class="p">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">)</span>
+  <span class="n">y_test</span> <span class="p">=</span> <span class="n">keras</span><span class="p">.</span><span class="n">utils</span><span class="p">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">)</span>
+	
+  <span class="k">model</span> <span class="p">=</span> <span class="n">Sequential</span><span class="p">()</span>
+  <span class="k">model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Conv2D</span><span class="p">(</span><span class="m">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">=(</span><span class="m">3</span><span class="p">,</span> <span class="m">3</span><span class="p">),</span>
+                   <span class="n">activation</span><span class="p">=</span><span class="s1">'relu'</span><span class="p">,</span>
+                   <span class="n">input_shape</span><span class="p">=</span><span class="n">input_shape</span><span class="p">))</span>
+  <span class="k">model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Conv2D</span><span class="p">(</span><span class="m">64</span><span class="p">,</span> <span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">3</span><span class="p">),</span> <span class="n">activation</span><span class="p">=</span><span class="s1">'relu'</span><span class="p">))</span>
+  <span class="k">model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">MaxPooling2D</span><span class="p">(</span><span class="n">pool_size</span><span class="p">=(</span><span class="m">2</span><span class="p">,</span> <span class="m">2</span><span class="p">)))</span>
+  <span class="k">model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dropout</span><span class="p">(</span><span class="m">0.25</span><span class="p">))</span>
+  <span class="k">model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Flatten</span><span class="p">())</span>
+  <span class="k">model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="m">128</span><span class="p">,</span> <span class="n">activation</span><span class="p">=</span><span class="s1">'relu'</span><span class="p">))</span>
+  <span class="k">model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dropout</span><span class="p">(</span><span class="m">0.5</span><span class="p">))</span>
+  <span class="k">model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">num_classes</span><span class="p">,</span> <span class="n">activation</span><span class="p">=</span><span class="s1">'softmax'</span><span class="p">))</span>
+	
+  <span class="k">model</span><span class="p">.</span><span class="nf">compile</span><span class="p">(</span><span class="n">loss</span><span class="p">=</span><span class="n">keras</span><span class="p">.</span><span class="n">losses</span><span class="p">.</span><span class="n">categorical_crossentropy</span><span class="p">,</span>
+                <span class="n">optimizer</span><span class="p">=</span><span class="n">keras</span><span class="p">.</span><span class="n">optimizers</span><span class="p">.</span><span class="n">Adadelta</span><span class="p">(),</span>
+                <span class="n">metrics</span><span class="p">=[</span><span class="s1">'accuracy'</span><span class="p">])</span>
+	
+	
+  <span class="n">tbCallBack</span> <span class="p">=</span> <span class="n">TensorBoard</span><span class="p">(</span><span class="n">log_dir</span><span class="p">=</span><span class="n">LOG_DIR</span><span class="p">,</span> 
+                           <span class="n">histogram_freq</span><span class="p">=</span><span class="m">1</span><span class="p">,</span>
+                           <span class="n">write_graph</span><span class="p">=</span><span class="nb">True</span><span class="p">,</span>
+                           <span class="n">write_grads</span><span class="p">=</span><span class="nb">True</span><span class="p">,</span>
+                           <span class="n">batch_size</span><span class="p">=</span><span class="n">batch_size</span><span class="p">,</span>
+                           <span class="n">write_images</span><span class="p">=</span><span class="nb">True</span><span class="p">)</span>
+	
+  <span class="k">model</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span>
+            <span class="n">batch_size</span><span class="p">=</span><span class="n">batch_size</span><span class="p">,</span>
+            <span class="n">epochs</span><span class="p">=</span><span class="n">epochs</span><span class="p">,</span>
+            <span class="n">verbose</span><span class="p">=</span><span class="m">1</span><span class="p">,</span>
+            <span class="n">validation_data</span><span class="p">=(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">),</span>
+            <span class="n">callbacks</span><span class="p">=[</span><span class="n">tbCallBack</span><span class="p">])</span>
+  <span class="n">score</span> <span class="p">=</span> <span class="k">model</span><span class="p">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">verbose</span><span class="p">=</span><span class="m">0</span><span class="p">)</span>
+  <span class="n">print</span><span class="p">(</span><span class="s1">'Test loss:'</span><span class="p">,</span> <span class="n">score</span><span class="p">[</span><span class="m">0</span><span class="p">])</span>
+  <span class="n">print</span><span class="p">(</span><span class="s1">'Test accuracy:'</span><span class="p">,</span> <span class="n">score</span><span class="p">[</span><span class="m">1</span><span class="p">])</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="jdk-설치하기">JDK 설치하기</h3>
+<ul>
+  <li>Python을 사용해 JDK 설치하기</li>
+  <li>
+    <p>아래 코드 입력</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  import os      
+  def install_java():
+    !apt-get install -y openjdk-8-jdk-headless -qq &gt; /dev/null      #install openjdk
+    os.environ["JAVA_HOME"] = "/usr/lib/jvm/java-8-openjdk-amd64"     #set environment variable
+    !java -version       #check java version
+  install_java()
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="google-storage에서-파일-읽기">Google Storage에서 파일 읽기</h3>
+<ul>
+  <li>gcsfs를 활용한 방법
+    <ul>
+      <li>storage에서 땡겨오기 때문에 colab에 파일을 옮기지 않아도 됨. 그러나 약간 시간 소요됨. 빠른 방법은 아래 gsutil 참고</li>
+    </ul>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  !pip3 install gcsfs dask 
+	
+  import gcsfs
+	
+  from google.colab import auth
+  auth.authenticate_user()
+	
+  fs = gcsfs.GCSFileSystem(project='project_name')
+  with fs.open('주소') as f:
+      df = pd.read_csv(f)
+</code></pre></div>    </div>
+  </li>
+  <li>위 방법보다 빠른 방법(gsutil 사용)
+    <ul>
+      <li>단, 세션이 초기화되면 매번 gsutil로 파일을 땡겨와야 합니다</li>
+    </ul>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  from google.colab import auth
+  auth.authenticate_user()
+	
+  import pandas as pd
+	
+  file_path = 'data.csv'
+  !gsutil cp gs://&lt;your_bucket&gt;/{file_path} {file_path}
+  df = pd.read_csv(query_result_path)
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="kaggle-연동하기">Kaggle 연동하기</h3>
+<ul>
+  <li>1) Kaggle beta API Json Key 다운
+    <ul>
+      <li>Kaggle - My Account - Dataset 옆에 있는 …을 클릭한 후, Account로 이동</li>
+      <li>하단에 API 부분에 Create New API Token을 클릭하면 Json Key가 다운로드 됨</li>
+      <li>이 Json 키를 매번 Colab에서 올려서 할 수도 있지만, 더 편하게 사용하고 싶어서 Google Storage에 Json 파일을 올리고, 거기서 키를 복사해오는 방법으로 진행합니다</li>
+    </ul>
+  </li>
+  <li>2) Google Storage에 Json Key 저장
+    <ul>
+      <li><a href="https://console.cloud.google.com/storage/browser">Google Storage</a>로 이동한 후, Storage 버킷 선택 (버킷이 없다면 생성!)</li>
+      <li>Colab에서 아래 명령어 입력</li>
+    </ul>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  from google.colab import auth
+  auth.authenticate_user()
+	
+  !mkdir -p ~/.kaggle
+  !mv ./kaggle.json ~/.kaggle/
+  !chmod 600 ~/.kaggle/kaggle.json	
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>3) Kaggle 설치 및 데이터 다운로드</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  !pip install kaggle
+</code></pre></div>    </div>
+
+    <ul>
+      <li>Competition 확인하기</li>
+    </ul>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  !kaggle competitions list
+</code></pre></div>    </div>
+
+    <ul>
+      <li>데이터 다운로드는 각 대회 Data 부분에 나와있는 API 명령어를 입력하면 됨</li>
+    </ul>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  !kaggle competitions download -c elo-merchant-category-recommendation
+</code></pre></div>    </div>
+
+    <ul>
+      <li>아래 명령어로 압축을 풀면 data 폴더에 파일들이 저장됨</li>
+    </ul>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  !unzip '*.zip' -d ./data
+</code></pre></div>    </div>
+
+    <ul>
+      <li>복사하기 편하게 한번에 작성</li>
+    </ul>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  from google.colab import auth
+  auth.authenticate_user()
+	
+  !pip install kaggle
+  !mkdir -p ~/.kaggle
+  !mv ./kaggle.json ~/.kaggle/
+  !chmod 600 ~/.kaggle/kaggle.json	
+	
+  !kaggle competitions download -c elo-merchant-category-recommendation
+  !unzip '*.zip' -d ./data
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="코기-모드">코기 모드</h3>
+<ul>
+  <li>Colab을 조금 더 귀엽게 만드는 방법</li>
+  <li>도구 - 환경설정 - 기타에 코기 모드 / 아기고양이 모드 체크
+    <ul>
+      <li><img src="https://www.dropbox.com/s/vh6rk7x1jpstzk1/Screenshot%202019-07-25%2001.24.46.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>조금 기다리면 귀여운 친구들이 뿅!
+    <ul>
+      <li><img src="https://www.dropbox.com/s/x3ea6e7gig3locq/Screenshot%202019-07-25%2001.25.43.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>기타에 파워 레벨을 Many power로 설정하시면 코드를 칠 때마다 이팩트가 생깁니다 :)</li>
+</ul>
+
+<h3 id="런타임-연결">런타임 연결</h3>
+<ul>
+  <li>RAM, 디스크가 나오는 부분의 우측 삼각형을 클릭하면 아래와 같은 메뉴가 보입니다
+    <ul>
+      <li><img src="https://www.dropbox.com/s/5vkmp1psdmlnjom/Screenshot%202019-07-25%2001.28.31.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>호스트된 런타임에 연결(Connect to Hosted Runtime)
+    <ul>
+      <li>Google Cloud의 새로운 머신 인스턴스에 연결</li>
+      <li>라이브러리를 다시 설치해야할 수도 있음</li>
+      <li>Colab의 연결이 끊길 경우 해당 버튼을 클릭해서 다시 연결할 수 있습니다(같은 인스턴스인지는 아직 확인해보지 못했습니다)</li>
+    </ul>
+  </li>
+  <li>로컬 런타임에 연결(Connect to Local Runtime)
+    <ul>
+      <li>내 PC(로컬)을 사용</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://medium.com/deep-learning-turkey/google-colab-free-gpu-tutorial-e113627b9f5d">Google Colab Free GPU Tutorial</a></li>
+  <li><a href="http://yamalab.tistory.com/80">Google Colaboratory를 활용하여 Keras 개발환경 구축</a></li>
+  <li><a href="https://brunch.co.kr/@jayden-factory">유재흥님 블로그</a></li>
+  <li><a href="http://jusths.tistory.com/">정현석님 블로그</a></li>
+</ul>
+
+      <br/>
+      <p><a href="https://bit.ly/kyleschool_blog">카일스쿨 유튜브</a> 채널을 만들었습니다. 데이터 사이언스, 성장, 리더십, BigQuery 등을 이야기할 예정이니, 관심 있으시면 구독 부탁드립니다 :)</p>
+      <p>이 글이 도움이 되셨다면 추천 클릭을 부탁드립니다 :)</p>
+      <br/>
+      <br/>
+      <div style="text-align:center">
+        <style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFFFFF !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 0px 9px !important;font-size: 17px !important;letter-spacing:-0.08px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/zzsza"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
+      </div>
+      <br/>
+      <br/>
+       <!--블로그-하단-반응형 -->
+      <ins class="adsbygoogle"
+          style="display:block; width:100%; height:300px;"
+          data-ad-client="ca-pub-5105555504153863"
+          data-ad-slot="1037589043"
+          data-ad-format="auto"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+
+    </div>
+  
+
+</article>
+
+  <hr class="dingbat" />
+
+  <div class="share">
+      <h2>Share this post</h2>
+      <div class="share-body">
+        <a href="http://twitter.com/share?text=Google Colab 사용하기&amp;url=http://localhost:4000/data/2018/08/30/google-colab/"
+    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <span class="icon-twitter">
+            </span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/data/2018/08/30/google-colab/"
+    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <span class="icon-facebook">
+            </span>
+        </a>
+    </div>
+  </div>
+  <br/>
+
+
+
+
+
+
+  <aside class="author" role="complementary">
+    <div class="author">
+  <h2 class="page-title hr">
+    About
+  </h2>
+<div class="author-body">
+  
+    
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="seongyun byeon"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+  
+  <div class="author-body-description">
+    <p>Machine Learning Engineer</p>
+
+  </div>
+</div>
+</div>
+
+  </aside>
+
+
+
+
+
+<aside class="related" role="complementary">
+  <h2 class="hr">Related Posts</h2>
+
+  <ul class="related-posts">
+    
+      
+      
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/data/2019/12/15/rules-of-ml/" data-flip="title">
+    <span>Rules of Machine Learning: Best Practices for ML Engineering 정리</span>
+  </a>
+  <small><time datetime="2019-12-15T00:00:00+09:00">
+    15 Dec 2019
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/data/2019/12/03/cs224w-ml-with-graph/" data-flip="title">
+    <span>CS224W - Machine Learning with Graphs 1강 정리</span>
+  </a>
+  <small><time datetime="2019-12-03T00:00:00+09:00">
+    03 Dec 2019
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/data/2019/11/24/pydeck/" data-flip="title">
+    <span>지도 데이터 시각화 : Uber의 pydeck 사용하기</span>
+  </a>
+  <small><time datetime="2019-11-24T00:00:00+09:00">
+    24 Nov 2019
+  </time></small>
+</li>
+
+        
+      
+        
+        
+      
+    
+  </ul>
+</aside>
+
+
+
+      
+        <aside class="comments" role="complementary">
+  <h2>Comments</h2>
+  <hr/>
+
+  <div id="disqus_thread"></div>
+
+  <script>
+    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="Google Colab 사용하기",this.page.identifier="/data/2018/08/30/google-colab",this.page.url="http://localhost:4000/data/2018/08/30/google-colab/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//zzsza.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</aside>
+
+      
+
+      <footer>
+  <hr/>
+  
+    <p>© 2017. by Seongyun Byeon</p>
+
+  
+  <p>
+    <code>Powered by <a href="https://zzsza.github.io/">zzsza</a></code>
+  </p>
+</footer>
+
+    </main>
+    <div class="right-side">
+  <div class="ad-first">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- 블로그-상단-모바일 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:100%;"
+         data-ad-client="ca-pub-5105555504153863"
+         data-ad-slot="9090558636"
+         data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+<br/>
+<br/>
+  <div class="ad-second">
+    <!-- 블로그-스카이스크래퍼 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;max-width:320px;width:100%;height:600px"
+         data-ad-client="ca-pub-5105555504153863"
+         data-ad-slot="3646660262"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+</div>
+
+
+  </div>
+  <div id="_yDrawer">
+  <div id="_sidebar" class="sidebar">
+    <div class="sidebar-bg" style="background-color:#4f86aa;background-image:url(/assets/img/nap.jpg)"></div>
+    <header class="sidebar-sticky" role="banner">
+      <br/>
+      <div class="sidebar-about">
+        <h1><a id="_title" href="/">어쩐지 오늘은</a></h1>
+        <p>Machine Learning Engineer</p>
+
+      </div>
+
+      <br/>
+      <nav class="sidebar-nav heading" role="navigation">
+        <span class="sr-only">Navigation:</span>
+<ul>
+  
+
+  
+
+  
+  
+  
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-1"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/diary/">Diary</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/diary-diary/">diary</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-2"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/data/">Data</a>
+       <label class="folder" for="list-item-2">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-ml/">Machine-Learning</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-dl/">Deep-Learning</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-mobility/">Mobility</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-engineering/">Engineering</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-optimization/">Optimization</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-paper/">Paper</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-pytorch/">Pytorch</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-cs231/">CS231n</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-rl/">Reinforcement-Learning</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-time-series/">Time Series</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-analytics/">Analytics</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-kaggle/">Kaggle</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-vision/">Vision</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-interpretable-ml/">Interpretable ML</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-simulation/">Simulation</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-graph/">Graph</a>
+             </li>
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-3"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/mlops/">MLOps</a>
+       <label class="folder" for="list-item-3">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-basic/">Basic</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-airflow/">Airflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-mlflow/">MLflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-tfx/">Tensorflow Extended</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-serving/">Serving</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-feature/">Feature</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-version/">Model & Pipeline version</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-4"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/gcp/">Google Cloud Platform</a>
+       <label class="folder" for="list-item-4">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-basic/">Basic</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-bigquery/">BigQuery</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-aiplatform/">AI Platform</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-dataflow/">Dataflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-cloud-functions/">Cloud Functions</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-5"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/development/">Development</a>
+       <label class="folder" for="list-item-5">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-linux/">Linux</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-web/">Web</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-python/">Python</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-sql/">SQL</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-scala/">Scala</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-os/">OS</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-kubernetes/">Kubernetes</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-devops/">DevOps</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-kotlin/">Kotlin</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-julia/">Julia</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-tools/">Tools</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-6"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/etc/">ETC</a>
+       <label class="folder" for="list-item-6">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/etc-lecture/">Lecture</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/etc-book/">Book</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-7"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/about/">About</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+</ul>
+
+      </nav>
+    <!-- search box -->
+    <form action="/search">
+      <div class="tipue_search_box">
+        <input type="text" name="q" id="tipue_search_input" placeholder="&#xF002;  Search" pattern=".{2,}" title="최소 2글자 이상" required></div>
+      <div style="clear: both;"></div>
+    </form>
+    <br/>
+      <div class="sidebar-box">
+        
+          
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="seongyun byeon"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+        
+      </div>
+      <p>메모가 습관인 데이터쟁이입니다</p>
+
+      
+      
+        <div class="sidebar-social">
+          <span class="sr-only">Social:</span>
+<ul>
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://facebook.com/zzsza">
+    <span class="icon-facebook" title="Facebook"></span>
+    <span class="sr-only">Facebook</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.youtube.com/channel/UCYyAaezBGEVmXcnink6nY9Q">
+    <span class="icon-youtube" title="YouTube"></span>
+    <span class="sr-only">YouTube</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://instagram.com/data.scientist">
+    <span class="icon-instagram" title="Instagram"></span>
+    <span class="sr-only">Instagram</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://github.com/zzsza">
+    <span class="icon-github" title="GitHub"></span>
+    <span class="sr-only">GitHub</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.linkedin.com/in/seong-yun-byeon-8183a8113">
+    <span class="icon-linkedin2" title="LinkedIn"></span>
+    <span class="sr-only">LinkedIn</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="mailto:snugyun01@gmail.com">
+    <span class="icon-mail" title="Email"></span>
+    <span class="sr-only">Email</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://zzsza.github.io/feed.xml">
+    <span class="icon-rss2" title="RSS"></span>
+    <span class="sr-only">RSS</span>
+  </a>
+</li>
+
+  
+</ul>
+
+        </div>
+      
+    </header>
+  </div>
+</div>
+
+</div>
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+
+<script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-110573232-1', 'auto');
+  ga('send', 'pageview');
+  loadJSDeferred('https://www.google-analytics.com/analytics.js');
+</script>
+
+
+
+
+
+<!--[if gt IE 8]><!---->
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    
+    google: {
+      families: 'Lato'.split('|')
+    },
+    
+
+    custom: {
+      families: ['icomoon'],
+      urls: ['/assets/icomoon/style.css']
+    }
+  });
+</script>
+<!--<![endif]-->
+
+
+  <!--[if gt IE 9]><!---->
+  
+  <script>loadJSDeferred('/assets/js/hydejack.js?v=6.4.0');</script>
+
+  
+  <!--<![endif]-->
+
+
+
+</body>
+
+</html>

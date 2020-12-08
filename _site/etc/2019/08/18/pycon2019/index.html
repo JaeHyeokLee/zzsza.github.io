@@ -1,0 +1,3076 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
+-->
+
+
+
+
+
+
+
+
+
+<head>
+  <!-- =============== -->
+<!-- META            -->
+<!-- =============== -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="naver-site-verification" content="22c5b4ef3bfda7fc6100671413989219de7a4ac8"/>
+<meta property="og:title" content="파이콘(PyCon) 2019 세션 정리">
+<meta property="og:type" content="article">
+
+
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/img/logo.png">
+
+
+<meta property="og:image:width" content="640" />
+<meta property="og:image:height" content="360" />
+
+
+
+  <title>파이콘(PyCon) 2019 세션 정리 &middot; 어쩐지 오늘은</title>
+
+
+
+<meta name="description" content="
+  파이콘 2019에서 세션을 들으며 메모한 글입니다
+
+
+">
+<meta property="og:description" content="
+  파이콘 2019에서 세션을 들으며 메모한 글입니다
+
+
+">
+
+
+<!-- tipuesearch -->
+<link rel="stylesheet" href="/assets/tipuesearch/css/tipuesearch.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+<!-- =============== -->
+<!-- LINKS           -->
+<!-- =============== -->
+<link rel="canonical" href="http://localhost:4000/etc/2019/08/18/pycon2019/">
+<meta property="og:url" content="http://localhost:4000/etc/2019/08/18/pycon2019/">
+
+<link rel="alternate" type="application/atom+xml" title="어쩐지 오늘은 Feed" href="http://localhost:4000/feed.xml">
+
+
+  <link rel="prev" href="http://localhost:4000/data/2019/08/13/discrete-optimization-intro/">
+
+
+
+  <link rel="next" href="http://localhost:4000/data/2019/08/21/knapsack_problem/">
+
+
+<link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+<!-- Place favicon.ico in the root directory -->
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+<script>
+  !function(n,e){function t(n,e){n.onload=function(){this.onerror=this.onload=null,e(null,n)},n.onerror=function(){this.onerror=this.onload=null,e(new Error("Failed to load "+this.src),n)}}function o(n,e){n.onreadystatechange=function(){"complete"!=this.readyState&&"loaded"!=this.readyState||(this.onreadystatechange=null,e(null,n))}}n._loaded=!1,n.loadJSDeferred=function(a,d){function r(){n._loaded=!0;var r=e.createElement("script");r.src=a,d&&(("onload"in r?t:o)(r,d),r.onload||t(r,d));var l=e.getElementsByTagName("script")[0];l.parentNode.insertBefore(r,l)}n._loaded?r():n.addEventListener?n.addEventListener("load",r,!1):n.attachEvent?n.attachEvent("onload",r):n.onload=r}}(window,document);
+
+  !function(e){"use strict";var n=function(n,t,o){function i(e){if(a.body)return e();setTimeout(function(){i(e)})}function r(){l.addEventListener&&l.removeEventListener("load",r),l.media=o||"all"}var d,a=e.document,l=a.createElement("link");if(t)d=t;else{var f=(a.body||a.getElementsByTagName("head")[0]).childNodes;d=f[f.length-1]}var s=a.styleSheets;l.rel="stylesheet",l.href=n,l.media="only x",i(function(){d.parentNode.insertBefore(l,t?d:d.nextSibling)});var u=function(e){for(var n=l.href,t=s.length;t--;)if(s[t].href===n)return e();setTimeout(function(){u(e)})};return l.addEventListener&&l.addEventListener("load",r),l.onloadcssdefined=u,u(r),l};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
+
+  !function(t){if(t.loadCSS){var e=loadCSS.relpreload={};if(e.support=function(){try{return t.document.createElement("link").relList.supports("preload")}catch(t){return!1}},e.poly=function(){for(var e=t.document.getElementsByTagName("link"),r=0;r<e.length;r++){var n=e[r];"preload"===n.rel&&"style"===n.getAttribute("as")&&(t.loadCSS(n.href,n,n.getAttribute("media")),n.rel=null)}},!e.support()){e.poly();var r=t.setInterval(e.poly,300);t.addEventListener&&t.addEventListener("load",function(){e.poly(),t.clearInterval(r)}),t.attachEvent&&t.attachEvent("onload",function(){t.clearInterval(r)})}}}(this);
+
+  window.disablePushState = false;
+  window.disableDrawer = false;
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5105555504153863",
+    enable_page_level_ads: true
+  });
+</script>
+
+<!--[if lt IE 9]>
+<script src="https://unpkg.com/html5shiv/dist/html5shiv.min.js"></script>
+<![endif]-->
+
+<!-- =============== -->
+<!-- STYLES          -->
+<!-- =============== -->
+<!--[if gt IE 8]><!---->
+<style>
+  
+  article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}*{box-sizing:border-box}html,body{margin:0;padding:0}html{font-size:16px;line-height:1.75}body{color:#333;background-color:#fff;overflow-y:scroll}a{text-decoration:none}.lead{margin-left:-1rem;margin-right:-1rem}img,.img{display:block;max-width:100%;margin-bottom:1rem;border:none}img.lead,.img.lead{max-width:calc(100% + 2rem);width:calc(100% + 2rem)}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-weight:bold;text-rendering:optimizeLegibility}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{margin:1.6rem 0 1rem;line-height:1.6}h1,.h1{font-size:2rem;line-height:1.25}h2,.h2{font-size:1.5rem}h3,.h3{font-size:1.17em}p{margin-top:0;margin-bottom:1rem}p.lead{font-size:1.25rem;font-weight:300;padding:0 1rem}ul,ol,dl{margin-top:0;margin-bottom:1rem}ul,ol{padding-left:1.25rem}hr{position:relative;margin:1.5rem 0;border:0;border-top:1px solid #eee}.hr{padding-bottom:.5rem;border-bottom:1px solid #eee;margin-bottom:1.5rem}h4,h5,h6,.h4,.h5,.h6{margin-bottom:0.5rem;font-size:1rem}table{margin-bottom:1rem;width:100%;width:calc(100% + 2rem);margin-left:-1rem;border:1px solid #e5e5e5;border-collapse:collapse;border-spacing:0}td,th{padding:.25rem .5rem;border:1px solid #e5e5e5}td:first-child,th:first-child{padding-left:1rem}td:last-child,th:last-child{padding-right:1rem}thead+tbody,tbody+tbody,tfoot{border-top:3px double #e5e5e5}tbody tr:nth-child(odd) td,tbody tr:nth-child(odd) th{background-color:#f9f9f9}footer{margin-bottom:2rem}.page,.post{margin-bottom:3em}.page li+li,.post li+li{margin-top:.25rem}.page>header,.post>header{margin-bottom:2rem}.page-title,.post-title{margin-top:0}.post-date{display:block;margin-top:-0.5rem;margin-bottom:1rem;color:#9a9a9a}.related-posts{padding-left:0;list-style:none}.related-posts>li,.related-posts>li+li{margin-top:1rem}.related-posts>li>small,.related-posts>li+li>small{font-size:75%;color:#9a9a9a}.message{margin-bottom:1rem;padding:1rem;color:#787878;background-color:#f9f9f9;margin-left:-1rem;margin-right:-1rem}body,main{position:relative;overflow-x:hidden}@media screen{body::before{content:'';background:#e5e5e5;position:absolute;left:0;top:0;bottom:0}}@media screen and (min-width: 40em){html{font-size:17px}}@media screen and (min-width: 54em){html{font-size:16px}}@media screen and (min-width: 88em){html{font-size:17px}}@media screen and (min-width: 125em){html{font-size:18px}}.sr-only{display:none}.clearfix,.sidebar-social::after,.clearafter::after{content:"";display:table;clear:both}a,.a{position:relative;padding-bottom:.15rem;border-style:hidden}.img{overflow:hidden;background-color:#f9f9f9}.img>img{margin:0;width:100%;height:100%}.sixteen-nine{position:relative}.sixteen-nine::before{display:block;content:"";width:100%;padding-top:56.25%}.sixteen-nine>*{position:absolute;top:0;left:0;right:0;bottom:0}h1+hr,h2+hr,h3+hr,h4+hr,h5+hr,h6+hr{margin-top:0}.fade-in{animation-duration:500ms;animation-name:fade-in;animation-fill-mode:forwards}@keyframes fade-in{from{transform:translateY(-2rem);opacity:0}50%{transform:translateY(-2rem);opacity:0}to{transform:translateY(0);opacity:1}}.mb6{margin-bottom:10rem}.sidebar{color:rgba(255,255,255,0.75);text-align:left}.sidebar::before{content:"";position:absolute;z-index:2;top:0;left:0;bottom:0;right:0;background:linear-gradient(to bottom, rgba(32,32,32,0) 0%, rgba(32,32,32,0.5) 100%)}.sidebar a{color:#fff;border-bottom-color:rgba(255,255,255,0.2)}.right-side{width:100%;margin-left:auto;margin-right:auto}.right-side .ad-first{text-align:center}.right-side .ad-second{text-align:center}@media screen{.right-side{max-width:38rem;min-height:100vh}}@media screen and (min-width: 54em){.right-side{margin-left:20rem;margin-right:1rem;padding:4rem 1rem 12rem}}@media screen and (min-width: 72em){.right-side{margin-left:22rem;max-width:42rem}}@media screen and (min-width: 88em){.right-side{width:162px;margin-left:0rem;margin-right:0rem;padding:0rem;margin-top:10rem;display:block;float:left}}@media screen and (min-width: 96em){.right-side{width:300px;margin-right:0rem}}#_yDrawer{position:relative}@media screen{#_yDrawer{min-height:640px;min-height:100vh}}@media screen and (min-width: 54em){#_yDrawer{width:18rem;margin-left:0}}.sidebar-bg{position:absolute;height:100%;overflow:hidden;top:0;right:0;bottom:0;left:0;background:#202020 center / cover}.sidebar-box{display:flex;justify-content:center}.sidebar-sticky{position:relative;z-index:3}@media screen{.sidebar-sticky{-ms-overflow-style:none;overflow:-moz-scrollbars-none;height:100%;overflow:auto;position:absolute;padding:3rem 0rem;right:2.5rem;left:2.5rem}}.sidebar-sticky::-webkit-scrollbar{display:none}.sidebar-about>h1{color:#fff;font-size:2rem}.sidebar-nav>ul{list-style:none;padding-left:0;margin-bottom:.5rem}a.sidebar-nav-item{width:100%;font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}a.sidebar-nav-subitem{font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}@media screen{.y-drawer-scrim{z-index:2}.y-drawer-content{width:18rem;left:-18rem;z-index:3}}.sidebar-social{margin-bottom:.5rem}.sidebar-social>ul{list-style:none;padding-left:0;margin:0 -.25rem}.sidebar-social>ul>li{float:left}.sidebar-social>ul>li>a{display:inline-block;text-align:center;font-size:1.6rem;line-height:3rem;width:3.1249rem;height:4rem;padding:.5rem 0}.sidebar-social>ul li+li{margin-top:0}.fixed-top{position:fixed;top:0;left:0;width:100%;z-index:1}.navbar>.content{padding-top:0;padding-bottom:0;min-height:0;height:0}.menu{display:inline-block;padding:1.75rem 1.5rem;border-bottom:none;margin-left:-1.5rem;color:#9a9a9a !important}.menu::after{content:"\2630"}@media screen and (min-width: 54em){.menu{padding:1.25rem 1.5rem;position:absolute;left:-9999px}.menu:focus{position:static}}.animation-main{pointer-events:none}.loading{display:none}@media print{.menu{display:none}}.animation-main{opacity:0;will-change:opacity}.loading{position:absolute;top:0;right:0;padding:5.25rem 4.5rem;transform-origin:top right;transform:scale(0.33)}.content{position:relative;margin-left:auto;margin-right:auto;padding:5rem 1rem 12rem}@media screen{.content{min-height:100vh}}@media screen and (min-width: 54em){.content{padding:4rem 1rem 12rem;margin-left:19rem;margin-right:3rem}}@media screen and (min-width: 72em){.content{max-width:42rem;margin-left:21rem}}@media screen and (min-width: 88em){.content{float:left;width:100%;margin-left:22rem;margin-right:5rem}}@media screen and (min-width: 96em){.content{max-width:44rem}}@media screen and (min-width: 102em){.content{margin-left:25rem;margin-right:8rem}}.me{width:6.5rem;height:6.5rem;align-self:center;margin-right:20px;border-radius:100%;position:relative}@media screen and (min-width: 40em){.me{width:7rem;height:7rem}}@media screen and (min-width: 54em){.me{width:6.5rem;height:6.5rem}}@media screen and (min-width: 72em){.me{width:7rem;height:7rem}}main>footer{width:100%;position:absolute;bottom:0;left:0;right:0;padding:0 1rem;color:#9a9a9a;font-size:smaller;text-align:center}main>footer>p{margin-bottom:0}html{font-family:'Sans-serif'}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-family:'Sans-serif'}
+
+</style>
+
+
+<link rel="preload" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0" as="style" onload="this.rel='stylesheet'">
+
+<style id="_pageStyle">
+
+.content a{color:#4f86aa;border-color:rgba(79,134,170,0.2)}.content a:hover{border-color:#4f86aa}:focus{outline-color:#4f86aa}::selection{color:#fff;background:#4f86aa}::-moz-selection{color:#fff;background:#4f86aa}
+
+</style>
+
+
+<noscript>
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0">
+  
+  
+  
+
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <style>
+      html { font-family: 'Lato', 'Sans-serif' }
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading { font-family: 'Lato', 'Sans-serif' }
+    </style>
+  
+
+  
+  <link rel="stylesheet" href="http://localhost:4000/assets/icomoon/style.css">
+</noscript>
+<!--<![endif]-->
+
+</head>
+
+<body>
+  <!-- =============== -->
+<!-- MENU            -->
+<!-- =============== -->
+<div class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <a id="_menu" class="menu no-hover" href="#_title">
+      <span class="sr-only">Menu</span>
+    </a>
+  </div>
+</div>
+
+<!-- =============== -->
+<!-- CONTENT         -->
+<!-- =============== -->
+<div id="_yPushState">
+  <div class="fade-in">
+    <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/nap.jpg">
+      
+
+<article id="post-etc/2019/08/18/pycon2019" class="post" role="article">
+  <header>
+    <h1 class="post-title">
+      
+        파이콘(PyCon) 2019 세션 정리
+      
+    </h1>
+
+    <p class="post-date heading">
+      <time datetime="2019-08-18T00:00:00+09:00">18 Aug 2019</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/etc/" data-flip="title">ETC</a>
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/etc-lecture/" data-flip="title">Lecture</a>
+
+    </p>
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+    <div class="markdown-body">
+
+
+<style>
+.myAd1190 { display:block; width:98%; height: 280px; }
+@media(min-width: 600px) { .myAd1190 { display: none; } }
+</style>
+<ins class="adsbygoogle myAd1190"
+    data-ad-client="ca-pub-5105555504153863"
+    data-ad-slot="6481487416"
+    ></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
+<br/>
+      <ul>
+  <li>파이콘 2019에서 세션을 들으며 메모한 글입니다</li>
+</ul>
+
+<hr />
+
+<h3 id="파이썬과-커뮤니티와-한국어-오픈데이터">파이썬과 커뮤니티와 한국어 오픈데이터</h3>
+<ul>
+  <li>박은정님 키노트</li>
+  <li>프로그래밍은 왜 하는가?</li>
+  <li>취미</li>
+  <li>먹고사니즘</li>
+  <li>개인의 성장</li>
+  <li><strong>나의 커뮤니티에 기여하기 위해</strong></li>
+  <li>팀포퐁
+    <ul>
+      <li>2011년</li>
+      <li>문제 의식 : 누구를 뽑을 것인가?</li>
+      <li>발견한 문제점
+        <ul>
+          <li>1) 객관적 자료 부족</li>
+          <li>2) 뽑은 국회의원을 잊고 지냄</li>
+          <li>국회정보 시스템에 정보는 다 있지만.. 어렵고 재미없음</li>
+          <li>어떤 일을 하는지, 누가 누군지 모르겠고.. 접근성 떨어지는 문서</li>
+          <li>검색 엔진이 접근할 수 없는 정책</li>
+          <li>국민 모두가 접근할 수 있어야 하지 않을까?</li>
+        </ul>
+      </li>
+      <li>팀포퐁은 정치적 중립성, 자동화, 개방성의 가치를 가지고 결정이 됨
+        <ul>
+          <li>기술로 대한민국 정치를 뒤흔들자</li>
+          <li>직접 서비스를 만들며 성장하자</li>
+          <li>프로토타입, 의원 네트워크 분석 등</li>
+        </ul>
+      </li>
+      <li>대한민국 정치의 모든 것이란 웹서비스가 생김
+        <ul>
+          <li>타임라인을 위해 D3</li>
+          <li>NLP</li>
+          <li>PDF parsing</li>
+          <li>선거구 시각화를 위해 지도 데이터도 만듬
+            <ul>
+              <li>메르카토르 같은 투영법도 배움</li>
+            </ul>
+          </li>
+          <li>국회의원/의안 데이터 REST API =&gt; 데이터를 퍼블릭에 공개</li>
+        </ul>
+      </li>
+      <li>좋은 개발 문화
+        <ul>
+          <li>문서화 : 팀 내외와 소통하는 방ㅇ법</li>
+          <li>Git의 좋은 프랙티스 : 매너있게 소통</li>
+          <li>새 프로젝트에 새 도구 도입</li>
+          <li>탁상공론을 벗어나 working prototype으로 보여주기</li>
+        </ul>
+      </li>
+      <li>느낀점
+        <ul>
+          <li>나와 내 주변을 바꿈 =&gt; 결국 세상을 바꾸게 되지 않을까</li>
+          <li>시간이 좀 걸려도 괜찮다. 모르는 건 배우면 된다</li>
+          <li>데이터를 가공해 오픈 데이터로 내놓는 것도 의미가 있다</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>KoNLPy
+    <ul>
+      <li>한국어 분석을 편리하게 하기 위해 시작</li>
+      <li>오픈 소스는 있나? 성능은 어떻게 다르지?</li>
+      <li>처음부터 커뮤니티 기여하겠단 생각은 아니었음</li>
+      <li>파이콘이 한국에서 처음 열린대! =&gt; 잘 패키징해서 공개!</li>
+      <li>사람들은 왜 KoNLPy를 사용했을까?
+        <ul>
+          <li>초보자 : 사용법이 쉬워서?</li>
+          <li>학생 : 보고 따라할 예시가 있어서?</li>
+          <li>실무자 : 다양한 구현체 간 성능 비교가 편해서?</li>
+          <li>외국인 : 문서가 영어로 쓰여 있어서?</li>
+          <li>환경적 요인 : 이 당시 파이썬이 한창 인기몰이</li>
+        </ul>
+      </li>
+      <li>내가 필요한 도구는 내가 만들어 공유한다
+        <ul>
+          <li>생각지도 못한 도움을 주고 받을 수 있고, 가치있는 일이다</li>
+        </ul>
+      </li>
+      <li>두번째 PyCon KR
+        <ul>
+          <li>representation learning이 굉장히 핫해짐</li>
+          <li>word2vec, doc2vec을 파이썬 커뮤니티에 소개해볼까?</li>
+          <li>KoNLPy를 공개했지만 토이데이터가 별로 없다
+            <ul>
+              <li>nsmc라는 한국어 영화평 데이터</li>
+              <li>주어진 영화평을 긍정 또는 부정으로 분류하는 데이터셋</li>
+              <li>IMDB 데이터를 벤치마크</li>
+            </ul>
+          </li>
+          <li>내가 가진 기술이 대단하지 않아도 커뮤니티에 기여할 수 있다!</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>한국어 오픈 데이터
+    <ul>
+      <li>꼭 하고 싶었던 이야기
+        <ul>
+          <li>알파벳은 영어가 아니다</li>
+          <li>한글은 한국어가 아니다!</li>
+          <li>한글은 문자, 한국어가 언어</li>
+          <li>한국어 NLP, Korean NLP</li>
+          <li>용어 정의를 명확히</li>
+        </ul>
+      </li>
+      <li>한국어 오픈데이터
+        <ul>
+          <li>생각보다 굉장히 많음</li>
+        </ul>
+      </li>
+      <li>좋은 사례 1: KorQUAD
+        <ul>
+          <li>QnA 데이터셋</li>
+          <li>충분한 양의 데이터 공개</li>
+          <li>리더보드까지 공유</li>
+          <li>라이센스 부분은 공유되지 않음</li>
+        </ul>
+      </li>
+      <li>좋은 사례 2: KSS
+        <ul>
+          <li>Single Speark Speech Dataset</li>
+          <li>박규병님</li>
+          <li>국내 최초의 음성 오픈 데이터</li>
+          <li>제법 많은 분량</li>
+          <li>라이센스가 뚜렷하게 명시되어 있어서 무엇을 할 수 있고 없는지가 명확함</li>
+        </ul>
+      </li>
+      <li>왜 오픈 데이터가 중요한가요?
+        <ul>
+          <li>1) 벤치마크가 될 수 있음
+            <ul>
+              <li>머신러닝 모델들은 데이터와 지표가 같아야 모델간 서로 비교 가능</li>
+              <li>비교가 가능해지면 기술 발전이 옴</li>
+            </ul>
+          </li>
+          <li>2) 누구나 바로 분석이나 모델링을 시작할 수 있음
+            <ul>
+              <li>프로그래밍에서 reinventing the wheel이 경계의 대상이 되듯 모두가 데이터 취득과 정제를 할 필요는 없음</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>데이터를 공개할 때 확인하면 좋은 점
+        <ul>
+          <li>사용자가 바로 다운로드해서 사용할 수 있는가?</li>
+          <li>원문에 갱인정보/저작권 문제는 없는가?
+            <ul>
+              <li>오픈데이터는 기술 발전을 위해 매우 중요하지만 개인정보와 저작권도 존중받고 지켜져야 함</li>
+            </ul>
+          </li>
+          <li>가급적이면 라이센스를 꼭 명시</li>
+        </ul>
+      </li>
+      <li>오픈 데이터를 사용할 때 확인하면 좋은 점
+        <ul>
+          <li>데이터가 충분히 큰가?</li>
+          <li>라이센스가 무엇인가?
+            <ul>
+              <li>재배포가 가능한가?</li>
+              <li>상업용으로 이용해도 되는가?</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>한국어 같이! 공유 :)</li>
+</ul>
+
+<hr />
+
+<h3 id="파이썬으로-구현하는-최적화-알고리즘">파이썬으로 구현하는 최적화 알고리즘</h3>
+<ul>
+  <li>차지원님</li>
+  <li><a href="https://www.slideshare.net/JiwonCha3/pyconkr-2019-164422872">발표 자료</a></li>
+  <li><a href="https://github.com/ryuncha/python_lpqp_optimization_tutorial">Github</a></li>
+  <li>에너지 스타트업 개발자로 취업하며 적응할 때 어려움이 있었음</li>
+  <li>백그라운드
+    <ul>
+      <li>넓고 넓은 최적화의 세계
+        <ul>
+          <li>수학적 계획법/최적화 기법</li>
+          <li>최신/비전통 최적화 기법</li>
+          <li>확률론적 과정 기법</li>
+          <li>통계적 방법</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>최적화 문제 구성
+    <ul>
+      <li>목적 함수</li>
+      <li>제약 함수</li>
+      <li>변수</li>
+      <li>계수</li>
+      <li>상수</li>
+    </ul>
+  </li>
+  <li>변수, 목적 함수, 제약조건에 따라 문제 유형이 다름</li>
+  <li>최적화 유형의 난이도 랭킹
+    <ul>
+      <li>LP : 선형 계획법
+        <ul>
+          <li>목적함수, 제약함수가 모두 1차식이고 결정변수가 모두 실수</li>
+          <li>현실 문제는 비선형</li>
+        </ul>
+      </li>
+      <li>NLP : 비선형 계획법
+        <ul>
+          <li>목적함수, 제약함수 중 비선형 표현. n차</li>
+          <li>이건 오픈소스가 거의 없음</li>
+          <li>오래 걸림</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>모델링 라이브러리
+    <ul>
+      <li>유저 - 솔버의 통역사</li>
+    </ul>
+  </li>
+  <li>솔버
+    <ul>
+      <li>연산 엔진</li>
+      <li>솔버 성능에 따라 최적 결과값이 다름</li>
+    </ul>
+  </li>
+  <li>기술적 해결법으로 문제 유형을 변겅하는게 좋음</li>
+  <li>모델링 라이브러리의 역할
+    <ul>
+      <li>상황에 맞는 솔버 선택 가능</li>
+      <li>쿼드라틱을 잘 푸는 솔버는 이거 등</li>
+    </ul>
+  </li>
+  <li>모델링 구현 방법
+    <ul>
+      <li>Matrix form (CVXOPT, lv_solve, scipy.solve)
+        <ul>
+          <li>계수를 뽑아서 c로, x로</li>
+          <li>쿼드라틱은 더 복잡해짐</li>
+        </ul>
+      </li>
+      <li>Symbolic form
+        <ul>
+          <li>PuLP</li>
+          <li>좀 더 직관적으로 표현</li>
+          <li>에러가 나면 어떤 제약식에서 나왔는지 말해줌</li>
+          <li>하지만 대부분 오픈소스 라이브러리가 LP만 지원.. symbolic은 거의 없음</li>
+          <li>cvxpy</li>
+          <li>수식 표현방법이 다름</li>
+          <li>정리된 목적함수가 작으면 심볼릭, 크면 매트릭스</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Matrix
+    <ul>
+      <li>효율적 메모리 관리</li>
+      <li>다양한 개발환경</li>
+    </ul>
+  </li>
+  <li>Symbolic
+    <ul>
+      <li>유지보수의 편리성</li>
+      <li>낮은 개발 난이도</li>
+    </ul>
+  </li>
+  <li>상황 1) 상업용 솔버를 사용하면
+    <ul>
+      <li>해당 인터페이스 자체 모델링 라이브러리 사용</li>
+    </ul>
+  </li>
+  <li>상황 2) 오픈소스
+    <ul>
+      <li>잘 모르겠다면 CVXPY 추천</li>
+    </ul>
+  </li>
+  <li>솔버 선택 팁
+    <ul>
+      <li>사용 용도에 따른 SW 라이센스 문제</li>
+      <li>성능, 연산 신뢰성 문제</li>
+      <li>내 최적화 문제 유형을 지원하는지 : LP, MILP, QP, NLP 등</li>
+    </ul>
+  </li>
+  <li>SW 라이센스 종류
+    <ul>
+      <li>GNU GPL
+        <ul>
+          <li>사용하면 코드 공개해야함</li>
+        </ul>
+      </li>
+      <li>GNU LGPL
+        <ul>
+          <li>소스코드 공개 안해도 됨</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>실사용 리뷰
+    <ul>
+      <li>GLPK : GNU라 기업에서 쓰기엔 좀..</li>
+      <li>CLP/CBC</li>
+      <li>OSQP인 ADMM 기법을 쓴다면 이걸 사용하는게 좋음!</li>
+    </ul>
+  </li>
+  <li>예산의 제한이 없으면 CLPEX
+    <ul>
+      <li>Industry Standard로 압도적 속도 및 성능</li>
+    </ul>
+  </li>
+  <li>대학생이라면 Gurobi
+    <ul>
+      <li>아카데믹 지원이 됨</li>
+      <li>미래를 길게 보면 구로비가 안좋을수도..</li>
+    </ul>
+  </li>
+  <li>스타트업이라면
+    <ul>
+      <li>외부 배포할 일이 없고 LP만 풀면 GLPK</li>
+      <li>성능만 기똥찬 CLP/CBC</li>
+      <li>OSQP</li>
+    </ul>
+  </li>
+  <li>최적화 모델 구현
+    <ul>
+      <li>전력시장을 예시</li>
+      <li>전력은 발전과 소비가 늘 동시에</li>
+      <li>전체의 총 수요와 발전을 잘 매치해야함</li>
+      <li>언밸런스라면 주파수가 안맞아서 큰일날 수 있음</li>
+      <li>각 발전기 최적 발전량 결정
+        <ul>
+          <li>3개의 발전기의 발전량 스케쥴링</li>
+          <li>조건 1 : 발전기 설비 상황</li>
+          <li>조건 2 : 수급 균형(발전량=수요량)</li>
+        </ul>
+      </li>
+      <li>목적 함수 : 비용 최소화
+        <ul>
+          <li>발전단가 최소화</li>
+        </ul>
+      </li>
+      <li>제약 조건
+        <ul>
+          <li>최소 용량 &lt;= 발전량 &lt;= 최대 용량</li>
+          <li>총 발전량 = 전력수요</li>
+        </ul>
+      </li>
+      <li>변수가 너무 많아 일일히 하기 어렵</li>
+      <li>CVXPY와 numpy 호환이 좋음</li>
+      <li>문제가 더 복잡하고 커질수록 솔버마다 차이가 커짐</li>
+    </ul>
+  </li>
+  <li>심화 예제 : 하지만 현실은 QP
+    <ul>
+      <li>사실 발전비용은 2차곡선</li>
+      <li>목적함수 변경 (QP)
+        <ul>
+          <li>제곱식을 추가</li>
+        </ul>
+      </li>
+      <li>수십만개의 변수, 수많은 비선형 제약조건</li>
+      <li>발전기를 켤지/끌지도 결정해야 (IP)</li>
+      <li>선로제약, 전압안정도 고려해야함 (NLP)</li>
+    </ul>
+  </li>
+  <li>참고 자료
+    <ul>
+      <li><a href="https://prod-ng.sandia.gov/techlib-noauth/access-control.cgi/2013/138847.pdf">Comparison of Open-Source Linear
+Programming Solvers</a> : 62페이지</li>
+      <li><a href="https://www.mat.univie.ac.at/~neum/ms/comparison.pdf">A comparative analysis of optimization solvers</a></li>
+    </ul>
+  </li>
+  <li>최적화에 대해 이미 알고있어서 꽤 아는 내용이었음. 그래도 오픈소스를 한번 싹 정리해주셔서 매우 좋았음!</li>
+</ul>
+
+<hr />
+
+<h3 id="뚱뚱하고-굼뜬-판다pandas를-위한-효과적인-다이어트-전략">뚱뚱하고 굼뜬 판다(Pandas)를 위한 효과적인 다이어트 전략</h3>
+<ul>
+  <li>오성우님</li>
+  <li><a href="https://drive.google.com/file/d/12faqaslFIF-Sg_sU3jeGyauW5ClRqS8D/view">발표 자료</a></li>
+  <li>Pandas는 관계형 데이터를 빠르고 유연하게 개발됨</li>
+  <li>흔히 맞닥뜨리는 문제
+    <ul>
+      <li>데이터를 읽지도 못하고</li>
+      <li>시간도 오래 걸리고</li>
+      <li>작성하는 코드 방식도 제각각</li>
+    </ul>
+  </li>
+  <li>원인
+    <ul>
+      <li>Pandas Memory mapping issue</li>
+      <li>Python Auto Garvage Collectiong</li>
+      <li>Data processing in memory at once</li>
+      <li>using wrong syntax</li>
+      <li>using one CPU</li>
+    </ul>
+  </li>
+  <li>Pandas way!
+    <ul>
+      <li>다이어트 전략</li>
+      <li>전략 1 : 식사량 조절, Memory Optimization</li>
+      <li>전략 2: 식이요법, Enhancing Performance</li>
+      <li>전략 3 : 습관, Adopting convension</li>
+    </ul>
+  </li>
+  <li>국민건강보험공단(NHIS)에 제공하는 데이터 4억 중 일부를 전처리</li>
+  <li>1) 식사량 조절
+    <ul>
+      <li>큰 사이즈의 데이터 메모리 사용을 최적화
+        <ul>
+          <li>문자열로 된 데이터를 숫자/영어로 변환</li>
+        </ul>
+      </li>
+      <li>데이터 형식 변환
+        <ul>
+          <li>판다스는 고정된 바이트 유지</li>
+          <li>데이터 형식을 알면 dtype에 형식 지정</li>
+          <li>데이터를 불러왔지만 크기를 줄이고 싶으면 astype</li>
+          <li>check_dtypes()</li>
+          <li>메모리 사용량이 줄어듬</li>
+        </ul>
+      </li>
+      <li>Category 데이터 형식 사용
+        <ul>
+          <li>R에서 factor가 python category</li>
+          <li>Object를 Category로 변환하면 메모리 사용량 크게 감소</li>
+          <li>범주가 무수히 많은 경우엔 object보다 비효율적일 수 있음</li>
+          <li>Object는 2.3초, Category는 0.3초</li>
+        </ul>
+      </li>
+      <li>파일 저장 포맷 변경
+        <ul>
+          <li>CSV는 string 기반이라 IO 효율이 없음</li>
+          <li>Meta data가 없어 연속성 가지고 사용 불가</li>
+          <li>hdf5, parquet, pickle, feather 등을 사용함</li>
+          <li>parquet가 압축 형태로 제공되서 좋음</li>
+          <li>개인적으로 feather, pickle</li>
+          <li>프로젝트나 협업 목적은 parquet, hdf5</li>
+        </ul>
+      </li>
+      <li>요약
+        <ul>
+          <li>데이터 타입 형식 지정</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>2) 식이습관
+    <ul>
+      <li>2-1. Vectorization
+        <ul>
+          <li>벡터화 연산을 사용하면 반복문을 사용하지 않고도 모든 원소에 대해 반복연산이 가능</li>
+          <li>len(df)</li>
+          <li>.iterrows()</li>
+          <li>.apply</li>
+          <li>Pandas Series Vectorization</li>
+          <li>Numpy Array Vectorization</li>
+          <li>넘파이가 더 빠름</li>
+          <li><code class="highlighter-rouge">@np.vectorize</code>를 사용하면 Custom 함수를 vectorization해줌</li>
+        </ul>
+      </li>
+      <li>2-2. 효율적인 알고리즘
+        <ul>
+          <li>Pandas의 수백개 메소드를 어떻게 조합하냐에 따라 시간이 다름</li>
+          <li><code class="highlighter-rouge">.sort_values(ascending=False).head(5)</code> vs <code class="highlighter-rouge">.nlargest(5)</code> : 후자가 속도 10개 넘게 빠름</li>
+        </ul>
+      </li>
+      <li>2-3. df.apply()는 만능이 아님
+        <ul>
+          <li>Custom 함수를 만들어 apply를 사용해 데이터 처리, 분석. lambda와 사용</li>
+          <li>List Comprehension</li>
+          <li>pd.Series.apply()</li>
+          <li>pd.DataFrame.isin</li>
+          <li>pd.DataFrame.query</li>
+          <li>np.isin</li>
+          <li>pd.DataFrame.merge</li>
+          <li>아래로 갈수록 더 빠름</li>
+          <li>merge는 Database에 익숙</li>
+        </ul>
+      </li>
+      <li>요약
+        <ul>
+          <li>반복문 사용은 피하고 Vectorization 사용</li>
+          <li>수행 시간을 더 빠르게 하고 싶으면 좀 더 효율적 알고리즘을 고려</li>
+          <li>Custom 함수는 우선 apply, 오래 걸리면 Pandas built-in 함수를 찾아 조합해 사용</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>3) 생활 습관
+    <ul>
+      <li>Method Chaining
+        <ul>
+          <li>가독성이 좋고, 성능이 좋음</li>
+          <li>한계
+            <ul>
+              <li>DataFrame의 중간 체크가 어려움</li>
+              <li>진짜 성능이 좋아지는진 물음표</li>
+            </ul>
+          </li>
+          <li>데이터를 줄일 경우 사용</li>
+        </ul>
+      </li>
+      <li>inplace parameter
+        <ul>
+          <li>inplace 선호나느 사용자
+            <ul>
+              <li>속도가 더 빠르고, 메모리를 더 효율적으로 사용한다</li>
+            </ul>
+          </li>
+          <li>pandas Core 개발자는 inplace를 없앰. 실행 이후에 메모리에 데이터에 남음</li>
+          <li>데이터를 일부먼 수정할 경우 사용</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>기타 유의사항
+    <ul>
+      <li>Case by Case</li>
+      <li>Garbage collection
+        <ul>
+          <li>delete를 주기적으로 하고 gc.collect</li>
+        </ul>
+      </li>
+      <li>Not designed for Big Data?</li>
+    </ul>
+  </li>
+  <li>스케일링
+    <ul>
+      <li>cuDF</li>
+    </ul>
+  </li>
+  <li>실질적으로 바로 활용할 수 있는 꿀팁이 가능했던 세션, in보다 merge해서 보는게 더 빠르다는건 (SQL에서 자주 보던 방식이었지만) 신기했음</li>
+</ul>
+
+<hr />
+
+<h3 id="파이썬-37-어찌-그렇게-빨라졌나">파이썬 3.7 어찌 그렇게 빨라졌나</h3>
+<ul>
+  <li>정겨울님</li>
+  <li><a href="https://speakerdeck.com/jungwinter/why-is-python-3-dot-7-fastest">발표 자료</a></li>
+  <li>사실 과거 버전에도 계속 성능 개선은 있었음</li>
+  <li>3.7은 릴리즈 노트에 Optimization을 꼭 집어서 말함
+목표
+    <ul>
+      <li>성능 개선을 위한 아이디어</li>
+      <li>더 알고싶으면 어디를 볼지</li>
+      <li>그래도 완전 어렵지 않은 C 코드</li>
+    </ul>
+  </li>
+  <li>기본 메소드 호출
+    <ul>
+      <li>표준 라이브러리에 속한 클래스에 있는 여러 메서드들을 최적화함</li>
+      <li>METH_FASTCALL 컨벤션을 따르도록 바꿈
+        <ul>
+          <li>생긴건 obcode처럼 생겼지만 사실 C 함수 선언 컨벤션</li>
+          <li>파이썬 tuple이 PyObject의 C 배열로 들어옴</li>
+          <li>더 알고싶으면 bpo-27810</li>
+        </ul>
+      </li>
+      <li>python 3.8에 positional arguments 개념이 동입됨</li>
+    </ul>
+  </li>
+  <li>Argument Clinic
+    <ul>
+      <li>함수 변환과 생성을 도와주는 도구</li>
+      <li>CPython 내장 함수 인수 처리를 돕는 DSL</li>
+      <li>PEP-436 참고</li>
+    </ul>
+  </li>
+  <li>파이썬 시작 시간
+    <ul>
+      <li>인터프리터를 실행하는 시간이 감소함</li>
+      <li>맥 30%, Linux 10%</li>
+      <li>abc 모듈을 C로 다시 짬</li>
+      <li>site.py가 사용하는 sysconfig.py의 특정 함수를 import하지 않고 복사해서 사용하니 빨라짐
+        <ul>
+          <li>인터프리터를 실행할 때 자동으로 import, site-package 경로를 찾고 추가</li>
+          <li>sysconfig의 함수를 site.py로 가져오는데 이게 무거웠던 상황</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>인스턴스 메서드 호출
+    <ul>
+      <li>positional argumnets 함수 호출에 대한 새로운 opcode 2개 추가</li>
+    </ul>
+  </li>
+  <li>asyncio.sleep
+    <ul>
+      <li>asyncio.sleep()이 2배 빨라짐 =&gt; zero나 음수일 떄 빨라짐</li>
+      <li>기존엔 delay가 0이면 바로 리턴인데, delay가 음수면 future 만들고 루프에 스케쥴링 했는데 안하도록 바뀜</li>
+      <li>이 부분 생략하게 됨</li>
+      <li>sleep0은 그냥 yield만 있는 형태</li>
+    </ul>
+  </li>
+  <li>이벤트 루프 만들기
+    <ul>
+      <li>asyncio.get_event_loop, get_running_loop 함수를 C로 짜서 4배 빨라짐</li>
+      <li>캐싱 사용은 미미하고 os.getpid()대신 getpid()를 사용(C쪽) =&gt; 성능 향상 80%</li>
+    </ul>
+  </li>
+  <li>동시에 실행하기
+    <ul>
+      <li>asynci.gather()가 15% 빨라짐</li>
+      <li>마이크로서비스에서 하나를 받아 다른걸 처리 =&gt; 한번에 가져오도록 돌리게 해줌</li>
+      <li>코루틴 하나하나를 functools.partial을 제거</li>
+      <li>다 끝났을 때만 로직을 실행</li>
+    </ul>
+  </li>
+  <li>asyncio.ensure_future
+    <ul>
+      <li>1.17배 빨라짐</li>
+      <li>if문 순서를 바꿔서 성능이 개선됨</li>
+    </ul>
+  </li>
+  <li>typing 모듈 가져오기
+    <ul>
+      <li>제네릭 형식을 더 잘 지원하기 위해 특수 메서드 추가</li>
+      <li>던더메소드는 경고없이 깨질 수 있다고 함</li>
+    </ul>
+  </li>
+  <li>리스트 정렬
+    <ul>
+      <li>40~75% 개선</li>
+      <li>리스트를 정렬할 때 대부분 값들이 서로 동일한 타입이라 가정</li>
+      <li>매번 값을 비교할 때마다 타입 검사하지 말고 한번만 해두자가 아이디어</li>
+      <li>여러 가정을 세우고 pre-check stage를 만듬</li>
+      <li>아주 최악의 경우 pre-check 때문에 15% 느려짐(safe_object_compare로 넘어가기까지)</li>
+    </ul>
+  </li>
+  <li>딕셔너리 복사
+    <ul>
+      <li>dict.copy()가 5.5배 빨라짐</li>
+    </ul>
+  </li>
+  <li>정규표현식
+    <ul>
+      <li>case-insensitive matching이 20배 빨라짐</li>
+    </ul>
+  </li>
+  <li>파이썬 그 자체에 관심을 더 가지면 좋겠다고 생각하도록 만들어준 세션</li>
+</ul>
+
+<hr />
+
+<h3 id="머신러닝-및-데이터-과학-연구자를-위한-python-기반-컨테이너-분산처리-플랫폼-설계-및-개발">머신러닝 및 데이터 과학 연구자를 위한 python 기반 컨테이너 분산처리 플랫폼 설계 및 개발</h3>
+<ul>
+  <li>신정규님</li>
+  <li><a href="https://www.slideshare.net/inureyes/python-164418964">발표 자료</a></li>
+  <li>2015년 리뷰
+    <ul>
+      <li>연구자 및 교육자를 위한 계산 및 분석 플랫폼 설계</li>
+    </ul>
+  </li>
+  <li>현대 과학 연구와 개선
+    <ul>
+      <li>학계와 업계, 사회의 간극이 존재한다 생각</li>
+      <li>재현 가능한 데이터 연구 플랫폼 만듬</li>
+      <li>논문용 코드가 쉽게 스케일업되는 서비스!</li>
+    </ul>
+  </li>
+  <li>컨테이너 기반의 고밀도 분산처리 플랫폼 및 사용자 편의 기능 구현!!하자고 했음(프로토도 있으니..)</li>
+  <li>Backend AI
+    <ul>
+      <li><a href="https://github.com/lablup/backend.ai">Github</a></li>
+    </ul>
+  </li>
+  <li>용어 설명
+    <ul>
+      <li>Baremetal
+        <ul>
+          <li>가상 머신. 안에 있는 VM은 격리된 환경에서 삼</li>
+          <li>Shared : OS, Container Layer, Container</li>
+          <li>컨테이너 : 호스트 운영체제 커널을 공유</li>
+          <li>구현
+            <ul>
+              <li>Container layer : LXC, runC, Jail</li>
+              <li>컨트롤 그룹을 사용해 구현</li>
+            </ul>
+          </li>
+          <li>클라우드 매니저
+            <ul>
+              <li>클러스터에 VCM 또는 스토리지 생성</li>
+              <li>IaaS 구축을 위한 소프트웨어</li>
+            </ul>
+          </li>
+          <li>컨테이너 관리 솔루션
+            <ul>
+              <li>컨테이너를 생성, 삭제, 배치, 관리하는 역할 담당</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>권불 10주
+    <ul>
+      <li>이 바닥은 10주마다 바뀐다</li>
+      <li>Rootless 컨테이너 및 특화 컨테이너 솔루션의 등장</li>
+      <li>마이크로서비스의 대두
+        <ul>
+          <li>어플리케이션을 작은 단위로 쪼갬</li>
+          <li>서비스 모듈 + 통신</li>
+          <li>빠른 버전업 및 지속적 통합</li>
+          <li>기반 언어의 변화, 프로토콜도 확장</li>
+        </ul>
+      </li>
+      <li>비동기 시대
+        <ul>
+          <li>Asynchronous IO의 도래</li>
+          <li>마이크로서비스 : 지연 시간 예측 난도</li>
+          <li>많은 마이크로서비스들이 비동기로 동작</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>우공이산
+    <ul>
+      <li>기본 설계하기</li>
+      <li>오픈소스화 하다보니 다양한 사람들의 환경을 지원해야 함</li>
+      <li>머신러닝 모델 대비!
+        <ul>
+          <li>허나 Tensorflow 등장하고 난리남</li>
+          <li>하위호환성 안줘 ㅠ</li>
+        </ul>
+      </li>
+      <li>nvidia-docker도 바뀜</li>
+      <li>PyTorch의 등장
+        <ul>
+          <li>버전마다 구현체가 다름</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>설상가상
+    <ul>
+      <li>문제를 해결하면 새로운 것이 또 따라옴</li>
+      <li>병렬화
+        <ul>
+          <li>GPU가 계속 놀아요 ㅠ_ㅠ</li>
+          <li>데이터 병렬화나 모델 병렬화</li>
+          <li>데이터 파이프라인도 싱글 노드 - 멀티 GPU, 멀티 노드 - 멀티 GPU에 맞춰 처리</li>
+        </ul>
+      </li>
+      <li>연구분야
+        <ul>
+          <li>세상의 속도가 다르게 흐르는 곳</li>
+          <li>아직도 Python2… 2를 지원해야하네</li>
+          <li>TensorFlow Extended 이런거 최근까지 python2까지만 지원됨</li>
+        </ul>
+      </li>
+      <li>Python 2/3 징원
+        <ul>
+          <li>인터페이스를 어떻게 하지?</li>
+        </ul>
+      </li>
+      <li>ZeroMQ
+        <ul>
+          <li>거의 모든 언어로 구현체가 존재!</li>
+          <li>지원 언어가 15개 이상 되니 대환장</li>
+        </ul>
+      </li>
+      <li>Kernel Runner
+        <ul>
+          <li>컨테이너의 운영체제만 영향을 줌</li>
+          <li>장점 : 백엔드 AI 에이전트는 3.6으로 하고 안에는 다른거도 가도 됨</li>
+          <li>배포할 떄 계속 문제..</li>
+          <li>그래서 Embeded Kernel Runner로 씀</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>화룡정점
+    <ul>
+      <li>언어별 SDK 구현. 기존 구현체들은 너무 방대</li>
+      <li>오프라인 환경
+        <ul>
+          <li>pip는 항상 온라인이..</li>
+          <li>Builder 만듬</li>
+          <li>Ansible로 배포 자동화</li>
+        </ul>
+      </li>
+      <li>GUI</li>
+      <li>코어
+        <ul>
+          <li>Webcomponent 기술 기반</li>
+        </ul>
+      </li>
+      <li>메인 앱
+        <ul>
+          <li>장고 기반</li>
+        </ul>
+      </li>
+      <li>파이프라인 앱
+        <ul>
+          <li>별도 개발해서 통합 예정</li>
+        </ul>
+      </li>
+      <li>앱
+        <ul>
+          <li>Electron 기반</li>
+          <li>JavaScript ES6 코드 서빙</li>
+        </ul>
+      </li>
+      <li>웹 콘솔 모드
+        <ul>
+          <li>Consoel-server와 결합</li>
+          <li>Manager 프록시</li>
+          <li>웹소켓 프록시</li>
+        </ul>
+      </li>
+      <li>허브
+        <ul>
+          <li>전체 클러스터 관리용</li>
+        </ul>
+      </li>
+      <li>고가용성
+        <ul>
+          <li>매니저가 왜 3개씩 존재하지 않나?</li>
+          <li>로드 밸런서 구현</li>
+          <li>Fleet 운영시 Voting 알고리즘으로 대장 선정</li>
+          <li>웹소켓 프록시 터널링을 사용해서 ssh 터널링 쓰는데.. 자꾸 사용자 환경에 깔기 싫다! 해서 웹에서 아답터를 위해 프록시 터널링 설계해서 구현함</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>홍익인간
+    <ul>
+      <li>GPU 가상화</li>
+      <li>fGPU 구현 및 테스트
+        <ul>
+          <li>하나를 가상화해서 여러개처럼 사용해보니 이게 더 빠르네?</li>
+          <li>우리의 코드는.. GPU를 괴롭히지 못함 나눠서 멀티로 하는게 더 빠름</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>어마어마하다..ㅋㅋㅋㅋㅋㅋㅋ 고생하신게 엄청 보였고, 그 기간에 다 하셨다는 것도 대단..</li>
+</ul>
+
+<hr />
+
+<h3 id="추천시스템-이제는-돈이-되어야-한다">추천시스템, 이제는 돈이 되어야 한다</h3>
+<ul>
+  <li>최규민님</li>
+  <li><a href="https://www.slideshare.net/ssuser2fe594/ss-164511610">발표 자료</a></li>
+  <li>앞에 좀 못들음 ㅠ</li>
+  <li>어떤 MAB 알고리즘이 가장 좋은 성능을 내는가?
+    <ul>
+      <li>대부분 추천 시스템에서 TS-MAB가 가장 좋은 성ㅇ능을 발휘함</li>
+    </ul>
+  </li>
+  <li>엡실론 그리디 MAB
+    <ul>
+      <li>기본적 Bandit 알고리즘</li>
+      <li>작품별 CTR 예측</li>
+      <li>Best Arm 선택</li>
+      <li>탐색과 활용이 적절한가?</li>
+      <li>CTR이 낮은 작품의 impressions별 CTR 신뢰 구간을 보자</li>
+      <li>Impression이 많아질수록 CTR이 수렴함이 보임</li>
+      <li>10M Impressions</li>
+      <li>추천될 수 없는 작품, 즉 Optimal Arm이 아님에도 계속 Impressions을 소비함(regret:손실 증가)</li>
+    </ul>
+  </li>
+  <li>톰슨 샘플링
+    <ul>
+      <li>엡실론 방법은 작품별 impresson 양을 동일하게 부여했지만, 이건 작품별(Arm)별 베타 분포로 샘플링</li>
+      <li>a=click, b=unclick</li>
+      <li>1000개부터는 점점 CTR 수렴</li>
+      <li>추천될 수 있는 최소 CTR이 15%라 가정하면 작품 1번은 100 impressons까지만 trial되고 그 이후엔 서택되지 않음</li>
+      <li>적절히 신뢰할만한 impression이 모이면 탐색 -&gt; 활용으로 전환</li>
+      <li>CTR이 25%이상 작품은 계속 탐색하고 수렴
+        <ul>
+          <li>빠르게 수렴 및 빠르게 engage</li>
+        </ul>
+      </li>
+      <li>실제 웹툰 작품들의 베타 분포 변화
+        <ul>
+          <li>계속 탐색함</li>
+          <li>신뢰 구간이 점점 좁아지며 수렴하는 작품들이 생김</li>
+        </ul>
+      </li>
+      <li>해석
+        <ul>
+          <li>CTR이 낮은 작품(Arm)들은 적당히 탐색하다가 추천을 하지 않고, CTR이 좋을 것 같으면 계속 탐색</li>
+        </ul>
+      </li>
+      <li>TS MAB는 탐색&amp;활용 Trade-off에서 적절힌 Reget(손실)을 최소화</li>
+    </ul>
+  </li>
+  <li>User Clustering
+    <ul>
+      <li>작품의 CTR은 유저 성향별로 다름
+        <ul>
+          <li>유저 A : 25% (30대 액션물 좋아함)</li>
+          <li>유저 B : 2.1% (순정 만화를 좋아하는 여성)</li>
+          <li>유저 C : 7.1% (모든 만화를 좋아하는 남자)</li>
+          <li>유저별로 CTR이 높을 작품을 추천하면!</li>
+        </ul>
+      </li>
+      <li>모든 유저별 X 모든 작품에 대해 CTR 측정이 필요함</li>
+      <li>그런데 모든 경우에 대해 CTR 측정은 불가능</li>
+      <li>그래서 유저 클러스터링함</li>
+      <li>CTR이 비슷할 것 같은 유저끼리 모으고(8개)</li>
+      <li>그 내에서 CTR을 예측</li>
+      <li>어떻게 클러스터링하는가?
+        <ul>
+          <li>웹툰을 열람한 성향이 있다고 가정</li>
+          <li>유저가 최근 읽은 작품들</li>
+          <li>읽은 작품으로 CB(image, Text)를 Feature로 User Feature 생성 =&gt; 유사한 유저끼리 클러스터링</li>
+        </ul>
+      </li>
+      <li>이 8개의 클러스터가 유저의 성향을 적절히 반영하는가?
+        <ul>
+          <li>알려진 스코어가 잘 measure 안되서 정성적 탐색을 함</li>
+          <li>유저클러스터 결과
+            <ul>
+              <li>성별 분포
+                <ul>
+                  <li>각 클러스터별 성별 편향성이 뚜렷함</li>
+                  <li>여성 중심 / 남성 중심 / 여성 &amp; 남성 혼합</li>
+                  <li>각 클러스터별 어떤 장르가 많이 소비되는지 파악</li>
+                </ul>
+              </li>
+              <li>클러스터별 소비만화 Tag들 파악</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>개인화 홈 추천
+    <ul>
+      <li>클러스터 할당</li>
+      <li>추천할만한 작품 Targeter</li>
+      <li>MAB를 통해 후보 작품을 Ranking</li>
+      <li>광고 시스템과 비슷함</li>
+      <li>유저클러스터 + MAB 적용</li>
+    </ul>
+  </li>
+  <li>연관추천 - ViewerEnd 추천
+    <ul>
+      <li>목적 : 현재 읽고 있는 작품과 유사한 작품 중에서 열람수를 늘리기 위해 CTR(%)이 가장 높을 작품 추천</li>
+      <li>사용되는 추천 모델들
+        <ul>
+          <li>item feature</li>
+          <li>MAB</li>
+        </ul>
+      </li>
+      <li>비슷한 작품 Targeter =&gt; 작품 Ranker</li>
+      <li>현재 본 작품과 설명이 유사한, 썸네일이 유사한 것을 추천</li>
+      <li>item feature
+        <ul>
+          <li>대표 이미지, 작품 제목, 설명, 유저 Feedback으로 작품간 상관 특징 추출</li>
+          <li>Image로 Style 특징점을 추출해 스타일이 유사한 작품 추출</li>
+          <li>Image로 Object Detection Task를 통해 특징점을 추출해 Image Object가 유사한 작품을 뽑음</li>
+          <li>Word2Vec으로 작품의 제목, 설명으로 특징점을 추천</li>
+          <li>Matrix Factorization(ALS) with implicit feedback 사용</li>
+        </ul>
+      </li>
+      <li>유사 작품 + MAB</li>
+    </ul>
+  </li>
+  <li>구매 전환을 최대화하기 위한 실험들
+    <ul>
+      <li>열람 중심 =&gt; 구매 중심</li>
+      <li>이제는 돈을 벌고 싶어요!</li>
+      <li>열람 중심은 전체 열람(Clicks) 합이 최대화하도록 구현</li>
+      <li>구매 중심은 유료 열람(Use Coin)합이 최대화</li>
+      <li>실험 1. 매출 중심 MAB
+        <ul>
+          <li>Rewardd : Use Coin</li>
+          <li>열람 전환율</li>
+          <li>구매 전환율</li>
+          <li>결과
+            <ul>
+              <li>폭망 ㅠ</li>
+              <li>실험군(Beta)는 대조군(Alpha) 대비 -20% 떨어짐 =&gt; 실험 종료</li>
+            </ul>
+          </li>
+          <li>왜 그럴까?</li>
+        </ul>
+      </li>
+      <li>실험 2. Conditional Bandit 실험
+        <ul>
+          <li>사건의 종속성 반영</li>
+          <li>첫번째 MAB : Reward=Click(무료 열람)</li>
+          <li>두번째 MAB : Rewardd=Use Coin</li>
+          <li>결과
+            <ul>
+              <li>실험군의 대조군 대비 유료 열람수의 변화는 없음</li>
+              <li>두번째 MAB의 수렴성이 보장되지 않음</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>실험 3. Retention Model
+        <ul>
+          <li>리텐션이 높은 작품을 추천해보자</li>
+          <li>작품마다 열람지속 스코어 측정</li>
+          <li>열람지속 스코어가 높은 작품을 연관추천 추가해 MAB 수행</li>
+          <li>결과
+            <ul>
+              <li>열람 전환율(CTR)은 지표 상승</li>
+              <li>구매 전환율은 변화 없음</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>실험 4. Seen decay
+        <ul>
+          <li>유저에게 노출했는데 클릭하지 않는다면 해당 작품에 대한 Negative Feedback</li>
+          <li>안보면 패널티를 주자</li>
+          <li>실험 결과</li>
+          <li>대조군 대비 실험군의 CTR은 상승했지만 구매 전환율은 변화 없음</li>
+        </ul>
+      </li>
+      <li>그물외 다양한 실험들 많이 해봄</li>
+      <li>다시 고민
+        <ul>
+          <li>왜 실험의 구매 지표 개선이 없지?</li>
+          <li>컨텐츠 사용자의 구매 패턴부터 다시 분석</li>
+        </ul>
+      </li>
+      <li>독자들은 어떻게 유료 작품을 열람할까?
+        <ul>
+          <li>추천을 보고 - 클릭 - 무료 열람 - 지속 열람 - 유료 열람</li>
+          <li>엄청 긴 퍼널을 가지고 있음</li>
+          <li>노출 대비 유료 전환율은 0.1% 이하로 매우 낮음</li>
+          <li>무료에서 열람까지 걸리는 시간은 평균 4.56일.. 좀 길다</li>
+        </ul>
+      </li>
+      <li>구매 전환율은 매우 낮고 구매 Feedback은 매우 지연됨
+        <ul>
+          <li>구매 최적화를 위한 AB 실험의 지표</li>
+          <li>추적과 측정이 어려움</li>
+        </ul>
+      </li>
+      <li>지금 개인화/연관 추천은 읽지 않은 작품을 추천
+        <ul>
+          <li>최초 열람 유도가 지속열람, 유료 열람에 상관관계 또는 인과관계가 있는가?</li>
+          <li>또 해봄</li>
+          <li>연속적 열람 전환율이 어떻게 되나?</li>
+          <li>추천과 비추천 로직의 변화가 있을까?
+            <ul>
+              <li>베이스(에디터픽) 대비 CTR 242%</li>
+              <li>4회 전환율은 42%</li>
+            </ul>
+          </li>
+          <li>구매 전환율은 추천에 인과관계가 있지만 작품의 품질과 유료 결제 경험에 의존적임</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>목적
+    <ul>
+      <li>개인화/연관 추천은? 열람 작품 늘리기
+        <ul>
+          <li>초급</li>
+        </ul>
+      </li>
+      <li>타켓팅 푸시? 지속 열람장의 유료 전환
+        <ul>
+          <li>중급</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>현재 소프트 클러스터 방법 쓰고 있음
+    <ul>
+      <li>내가 드라마 좋아할 확률 30%, 액션 20% 여러 토픽을 가진 클러스터로 구성함</li>
+      <li>정성적으로 하고 AB Test용으로</li>
+    </ul>
+  </li>
+  <li>추천 안되는건 어떻게?
+    <ul>
+      <li>작품의 다이버시티를 이용하고, 여러 풀을 섞음</li>
+    </ul>
+  </li>
+  <li>implicit als</li>
+  <li>앞 극초반부는 못들었지만 이미 알던 내용들이라 다행, 전반적으로 매우 좋았음. 국내에서 추천, MAB를 잘하는 팀은 이 팀이 아닐까 생각된다..! 따로 시간내서 규민님이랑 오랜만에 담소했는데, 역시 즐거운 시간이었음</li>
+</ul>
+
+<hr />
+
+<h3 id="꼬마-모차르트가-되어보자">꼬마 모차르트가 되어보자</h3>
+<ul>
+  <li>김준우님, 한상곤님</li>
+  <li><a href="https://github.com/datakun/StudyMagenta">Github</a></li>
+  <li>인간과 기계가 차이가 없는 느낌</li>
+  <li>재미있는 프로젝트를 하고 싶었음
+    <ul>
+      <li>TensorFlow의 Magenta</li>
+      <li>이것도 알리고 예술적인 것들을 해봅시다!</li>
+    </ul>
+  </li>
+  <li>구글에서 바흐 탄생 기념일에 뭔가를 만듬
+    <ul>
+      <li>소프라노 악보를 만들면 코드를 배치해줌</li>
+      <li>미디 파일을 찾아보자!
+        <ul>
+          <li>www.vgmusic.ocm 8bit 음악이 많음. 학습용 이외엔 쓰면 안되요..!</li>
+          <li>8bit midi 파일을 만듬</li>
+          <li>상용 불가</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>미디파일을 합법적으로 구하는 방법을 시작하겠습니다
+    <ul>
+      <li>발표 톤 너무 웃겨욬ㅋㅋㅋㅋㅋ</li>
+      <li><a href="https://magenta.tensorflow.org/demos/colab/">magenta colab</a></li>
+      <li>latent loops
+        <ul>
+          <li>멜로디 4개를 학습, 새로운 패턴이 나옴</li>
+        </ul>
+      </li>
+      <li>피아노징
+        <ul>
+          <li>8개의 버튼으로 그럴듯한 연주를 하게 해줌</li>
+        </ul>
+      </li>
+      <li>Neural Drum
+        <ul>
+          <li>4박자만 패턴 입력하면 나머지 기계까 완성</li>
+        </ul>
+      </li>
+      <li>PIANO scribe
+        <ul>
+          <li>피아노 들려주면 midi로 바꿔줌</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>마젠타는 파이썬으로 해볼 수 있겠다!
+    <ul>
+      <li>윈도우에선 잘 안되서 WSL 선택</li>
+      <li>단점
+        <ul>
+          <li>토이 프로젝트엔 괜찮지만 WSL1은 커널이 위에 올라가서 느림. WSL2는 성능이 좋아질거라 보임</li>
+        </ul>
+      </li>
+      <li>Onsets and Frames 모델을 이용해 추론</li>
+    </ul>
+  </li>
+  <li>마주친 문제와 해결
+    <ul>
+      <li>파이썬 2.7 ㅋ</li>
+      <li>소리내기 위한 pyfluidsynth가 2점대만 지원</li>
+    </ul>
+  </li>
+  <li>Demo 보여줌</li>
+  <li>마젠타 라이브러리가 신기했고, 새로운 분야에 대해 알 수 있어서 좋았음</li>
+</ul>
+
+<hr />
+
+<h3 id="advanced-python-testing-techniques">Advanced Python testing techniques</h3>
+<ul>
+  <li>안재만님</li>
+  <li><a href="https://jaeman-static.s3.ap-northeast-2.amazonaws.com/pyconkr2019_AdvancedPythonTestingTechniques.pdf">발표 자료</a></li>
+  <li>테스트 코드
+    <ul>
+      <li>내가 쓴 코드가 잘 자동하는지 확인하는 코드</li>
+      <li>프로젝트의 규모가 커지고, 참여하는 사람이 늘어날수록 반드시 필요</li>
+      <li>마음의 안정감을 가지고 프로젝트 유지보수가 가능</li>
+    </ul>
+  </li>
+  <li>pytest
+    <ul>
+      <li>조금 더 powerful</li>
+      <li>assert문 사용 가능</li>
+      <li>더 자유로운 fixtur e사용 지원</li>
+      <li>테스트 실패할 때 uniitest보다 유용한 정보 제공</li>
+      <li>315+개의 플러그인 존재</li>
+    </ul>
+  </li>
+  <li>function 베이스로 테스트</li>
+  <li>Fixture 사용하기
+    <ul>
+      <li>다른 곳에서 정의하면 테스트 코드에서 사용할 수 있음</li>
+    </ul>
+  </li>
+  <li>기본적인 API 테스트 구현
+    <ul>
+      <li>유저가 가입하고 실제로 성공했는지 확인</li>
+    </ul>
+  </li>
+  <li>복잡한 API
+    <ul>
+      <li>response가 200이고 유저가 있고 아이디가 있고 등등… 테스트 코드가 읽기 어려워짐</li>
+      <li>어려워서 주석을 달았지만.. 도움은 안됨</li>
+      <li>관리자가 ban시키고 되는지 확인하는 테스트는?
+        <ul>
+          <li>아까보다 더 복잡함</li>
+        </ul>
+      </li>
+      <li>유저가 가입한 후 관리자가 승인하고 밴 시키고 로그인 안되는데 탈퇴 시도 성공하는데 재가입시 24시간동안 가입이 되지 않는것 테스트</li>
+    </ul>
+  </li>
+  <li>Sure를 이용해 더 직관적으로 테스트코드 구현
+    <ul>
+      <li>Assertion을 쓰기 쉽게 해주는 라이브러리</li>
+      <li>CPython에서만 사용 가능</li>
+      <li>Number, String, Collection, Callable 등에 대한 assertion 지원</li>
+      <li>가입한 후 관리자가 승인해야만 제대로 로그인되는지 테스트하는걸 더 직관적으로 가능</li>
+      <li>should.have.key</li>
+      <li>which.should</li>
+    </ul>
+  </li>
+  <li>BDD를 이용해 더 간단하고 재미있게 테스트 코드 구현하기
+    <ul>
+      <li>Behavior Driven Development</li>
+      <li>TDD와 유사</li>
+      <li>테스트 코드보다 비즈니스 요구사항에 집중하자</li>
+      <li>지원되는 Library
+        <ul>
+          <li>behave, lettuce, pytest-bdd</li>
+        </ul>
+      </li>
+      <li>먼저 자연어로 테스트 코드를 작성</li>
+      <li>Feature : 테스트할 대상 기능</li>
+      <li>시나리오 : 테스트 상황 설명</li>
+      <li>Given : 테스트에서 사용할 데이터 컨텍스트
+        <ul>
+          <li>Backgoround : 공통적으로 사용되는 데이터, 컨텍스트</li>
+        </ul>
+      </li>
+      <li>When : 수행할 조건</li>
+      <li>Then : 결과</li>
+      <li>login.feature를 정의하고 시나리오 작성</li>
+      <li>Parametrized testing in BDD
+        <ul>
+          <li>어떤 name의 약은 색이 뭐고, 어떤 결과엔 True, False 등</li>
+        </ul>
+      </li>
+      <li>BDD 사용시 유의점
+        <ul>
+          <li>지금 발표 보면 오 BDD 짱! 이지만 단점이 있음
+            <ul>
+              <li>자연어로 define된 시나리오와 python 테스트 코드가 분리되어 있어 찾기 어려움
+                <ul>
+                  <li>IDE 도움을 받자</li>
+                </ul>
+              </li>
+              <li>최대한 재사용 가능한 문장으로 테스트 구성
+                <ul>
+                  <li>예 : 가입에 성공하고 로그인을 한 유저가 있다 =&gt; 정상 가입을 한 유저가 있다. 유저가 로그인을 한다</li>
+                </ul>
+              </li>
+              <li>When에서 동작을 수행한 return 값은 Then에서 가져올 수 없음
+                <ul>
+                  <li>Given에서 context 만들어놓고, When에서 수행한 동작을 context에 저장하고 Then에서 확인</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>오늘부터 인증 서버를 분리해 새로 구현합니다
+    <ul>
+      <li>로직 변경
+        <ul>
+          <li>테스트 코드의 존재로 리팩토링을 안정감 가지고 진행할 수 있음</li>
+          <li>1) 테스트용 인증 서버를 올려야겠다</li>
+          <li>2) 항상 떠있는 개발 서버?</li>
+        </ul>
+      </li>
+      <li>HTTP Mocking
+        <ul>
+          <li>Mocking : 가장의</li>
+          <li>HTTP Mocking : 발생하는 HTTP Call을 interrupt하여 실제로 HTTP Call을 보내지 않고, 정해진 동작을 수행해 response를 반환하도록 함</li>
+          <li>Python : HTTPretty</li>
+        </ul>
+      </li>
+      <li>Monkey patching
+        <ul>
+          <li>런탕임에 정ㅇ의되어 있는 클래스나 모듈의 attribute를 바꿈</li>
+          <li>테스트 코드에서 많이 활용
+            <ul>
+              <li>A 모듈을 테스트, B 모듈에서 나온 결과는 항상 같은 값으로 고정</li>
+            </ul>
+          </li>
+          <li>HTTPretty도 Monkey patching을 이용해 구현되어 있음</li>
+          <li>B는 import하지 않고 고정된 값을 가져오고 싶은 경우 사용</li>
+        </ul>
+      </li>
+      <li>데이터를 받아 예측하는 코드 예시</li>
+    </ul>
+  </li>
+  <li>모든 경우
+    <ul>
+      <li>수동으로 모든 경우를 테스트할 수 없음</li>
+      <li>랜덤한 input에 대해 function이 리턴해야할 값이나 수행할 동작을 테스트
+        <ul>
+          <li>어떤 input이 들어와도 error가 나면 안됨</li>
+        </ul>
+      </li>
+      <li>QuickCheck : Randomized testing(하스켈)
+        <ul>
+          <li>python은 hypothesis library</li>
+        </ul>
+      </li>
+      <li>given으로 랜덤한 input을 받도록 만들어주는 데코레이터</li>
+      <li>strategies는 랜덤하게 주어질 input의 규칙</li>
+      <li>머신러닝 모델
+        <ul>
+          <li>나이 예측 ML 모델에서 나온 나이 값이 0에서 100 사이인지, contribution이 0에서 1사이인지</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>너무 오래 걸리는 것 같아요
+    <ul>
+      <li>Benchmark test
+        <ul>
+          <li>함수를 수행하는데 걸린 시간 측정</li>
+          <li>1초에 몇개의 요청을 처리할 수 있는지 근사</li>
+          <li>다수아 사용하는 실 서비스 환경에서 반드시 필요</li>
+          <li>많이 노출될 API</li>
+        </ul>
+      </li>
+      <li>Basic 패턴 : start.time 사용하곤 함</li>
+      <li>benchmark로 감싸주면 더 편하게 가능</li>
+    </ul>
+  </li>
+  <li>그 외 유용한 툴
+    <ul>
+      <li>벤치마크가 부족하면 Profiling 툴 사용(pytest-profiling)
+        <ul>
+          <li>함수별 execution graph와 실행시간 보여줌</li>
+        </ul>
+      </li>
+      <li>N대의 서버들이 부하를 얼마나 버티는지 알고싶어요
+        <ul>
+          <li>http://locust.io</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>간단한 pytest plugin 만들기
+    <ul>
+      <li>goconvey
+        <ul>
+          <li>로직을 바꾸면 실시간으로 테스트 성공 실패를 웹으로 알려주는 툴</li>
+          <li>python으로 구현하려고 하는데 아직 못만듬! 내년에 꼭 소개드리겠습니다</li>
+          <li>pytest-convey
+            <ul>
+              <li>pytest-watch로 감지, pytest-json-report로 포맷팅</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>정리
+    <ul>
+      <li>테스트 코드를 작성하기 쉽게 만들어 두는 것이 굉장히 중요</li>
+      <li>테스트코드 리팩토링
+        <ul>
+          <li>Top-down 방식으로 일단 코드 작성</li>
+        </ul>
+      </li>
+      <li>테스트에 유용한 라이브러리 상용
+        <ul>
+          <li>Sure - assertion 알아보기 쉽게 작성 가능</li>
+          <li>BDD</li>
+        </ul>
+      </li>
+      <li>기타 방법
+        <ul>
+          <li>HTTPPretty, Randomized, Monkey Patch</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>꿀팁을 많이 얻을 수 있어서 매우 좋았음!!</li>
+</ul>
+
+<hr />
+
+<h3 id="grpc와-python을-활용한-microservice-개발기">gRPC와 python을 활용한 Microservice 개발기</h3>
+<ul>
+  <li>송지형님</li>
+  <li>MSA, gRPC 등</li>
+  <li><a href="https://drive.google.com/file/d/14eYzUySeW5n1n0u7r0IYUqwsK75F_W2V/view">발표 자료</a></li>
+  <li>클라우드 엔지니어로 시작</li>
+  <li>메가존 클라우드의 고민
+    <ul>
+      <li>고객들에게 좀 더 가치를 전해줄 수 있는 것이 없을까?</li>
+    </ul>
+  </li>
+  <li>안정적이고 확장 가능한 플랫폼</li>
+  <li>MSA
+    <ul>
+      <li>새로운 Feature가 느슨하게 연결되어야 함</li>
+      <li>MSA : 하나의 어플리케이션을 작은 서비스로 나누고, 프로세스를 가지고 가벼운 메커니즘을 사용해 HTTP resource API</li>
+      <li>서비스간 독립적 형태로 존재</li>
+      <li>유연한 대처가 가능</li>
+      <li>서비스별 별도 기술 적용 가능</li>
+      <li>자바, 파이썬, 노드 모두 가능</li>
+      <li>대부분 RESTful API를 통한 서비스 통신</li>
+      <li>단, Service간 Network를 통한 통신
+        <ul>
+          <li>통신 Overhead 증가</li>
+          <li>서비스별 다른 언어 사용 가능이 진짜일까? 생각보다 쉽지 않음</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>gRPC
+    <ul>
+      <li>High performance, open-source universal RPC framework</li>
+      <li>통신 오버헤드를 최대한 줄이려는게 목적</li>
+      <li>pluggable support : 여러 플러그인을 사용 가능</li>
+      <li>구글이 개발한 RPC 기반 Framework</li>
+      <li>MSA와 같은 분산 구조에 적합한 효율적인 통신 프로토콜에 대한 고민</li>
+      <li>Remote Procedure Call
+        <ul>
+          <li>원격지의 프로그램을 로컬에서 실행하는 것처럼!</li>
+          <li>Code의 간결함</li>
+          <li>RESTful의 HTTP 규격 불필요</li>
+          <li>다시 돌아온</li>
+        </ul>
+      </li>
+      <li>특징
+        <ul>
+          <li>프로토콜 버퍼
+            <ul>
+              <li>구조화된 데이터를 시리얼라이즈하기 위한 flexible, efficient, automated 메커니즘</li>
+              <li>메세지 처리 기술인데 더 작고 빠르고 심플</li>
+            </ul>
+          </li>
+          <li>서버 클라이언트간 메시지를 정의하는 역할
+            <ul>
+              <li>실제 통신시 byte stream으로 데이터를 인코딩해 통신</li>
+              <li>XML보다 3~10배 작고 20~100배 빠름</li>
+            </ul>
+          </li>
+          <li>HTTP/2</li>
+          <li>커뮤니케이션, 양방향</li>
+          <li>response도 정의 가능</li>
+        </ul>
+      </li>
+      <li>Server Implementation</li>
+      <li>MSA에 특화된 Service간 Message 성능 향상에 집중한 RPC Framework</li>
+      <li>Protobuf 관리가 쉽지 않음</li>
+      <li>gRPC를 잘 좀 써보자
+        <ul>
+          <li>API</li>
+          <li>Pkg -&gt; proto -&gt; Build -&gt; Dist -&gt; Template</li>
+          <li>Protobuf 관리
+            <ul>
+              <li>API source 받아서</li>
+              <li>/proto 디렉토리에 작성</li>
+              <li>makefile 작성</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>비즈니스 로직에 맞도록 진행</li>
+  <li>마이크로서비스, gRPC에 대한 깔끔한 설명을 해주셔서 좋았음</li>
+</ul>
+
+<hr />
+
+<h3 id="온라인-뉴스-댓글은-정말-사람들의-목소리일까---part2">온라인 뉴스 댓글은 정말 사람들의 목소리일까? - PART2</h3>
+<ul>
+  <li>이준범님</li>
+  <li><a href="https://speakerdeck.com/beomi/pyconkr-2019-onrain-nyuseu-daesgeuleun-jeongmal-saramdeulyi-mogsoriilgga-part2">발표 자료</a></li>
+  <li>데이터 크롤링 : 10분 단위</li>
+  <li>AWS 클라우드 위에서 처리</li>
+  <li>직접 데이터 수집 - 처리 - 가설 - 라벨링 등에 대해 잘 나와있음</li>
+  <li>역시 준범님!</li>
+</ul>
+
+<hr />
+
+<h3 id="더-읽은-자료">더 읽은 자료</h3>
+<ul>
+  <li><a href="https://speakerdeck.com/codertimo/paikon-2019-100eoggeonyi-kakaotog-deiteoro-ddogddoghan-ilsangdaehwa-ingongjineung-mandeulgi">100억건의 카카오톡 데이터로 똑똑한 일상대화 인공지능 만들기</a> : 연구 시작 ~ 진행 과정을 잘 알려줌. NLP에 큰 흥미는 없지만 재미있게 읽을 수 있었음</li>
+  <li><a href="https://www.slideshare.net/YongseonLee1/pycon-korea-2019-rest-api-document-generation-164504789">파이썬 웹서버 REST API 문서 쉽고 빠르게 작성하기</a> : 언젠가 API 문서화를 고민할 때 다시 읽어보면 좋을 것 같은 문서</li>
+  <li><a href="https://speakerdeck.com/sunghyunzz/from-banksalad-import-python">from banksalad import python</a> : 뱅크샐러드가 파이썬을 활용해 어떻게 발전해왔는지 알 수 있는 문서</li>
+  <li><a href="https://www.slideshare.net/YoungSeokKim8/pycon-kr-2019-pickle-custom-binary-serializer">Pickle &amp; Custom Binary Serializer</a> : Serialize에 대해 알 수 있는 문서</li>
+</ul>
+
+<hr />
+
+<h3 id="튜토리얼-자료">튜토리얼 자료</h3>
+<ul>
+  <li>pytest로 파이썬 코드 테스트하기
+    <ul>
+      <li><a href="https://www.slideshare.net/ssuser80e030/pytest-164575856">슬라이드쉐어</a></li>
+      <li>Tutorial 자료, pytest를 사용한 기본에 대해 잘 나와있음</li>
+    </ul>
+  </li>
+  <li>Python으로 지리공간데이터 다루기
+    <ul>
+      <li>아직 발표자료 미공개인듯. 추후 확인해보기</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="행사-부스">행사 부스</h3>
+<ul>
+  <li>프로그래머스 구구단 구현 이벤트
+    <ul>
+      <li>올해는 프로그래머스 구구단 구현 이벤트에 참여함</li>
+      <li><a href="https://nbviewer.jupyter.org/github/zzsza/funny-pycon2019/blob/master/gugudan/gugudan.ipynb">코드</a></li>
+      <li>초반엔 1등했으나 마감일에 갑자기 다크호스분의 등장으로 2등
+        <ul>
+          <li>1등분은 파이썬 로고를 만드셔서 리스펙.. 저도 좋아요 눌렀음</li>
+        </ul>
+      </li>
+      <li>그리고 에어팟 받아서 만족 :)</li>
+      <li>오랜만에 본 광고동아리 선배님도 계셔서 반가웠음-!</li>
+    </ul>
+  </li>
+  <li>스캐터랩 연애 시뮬레이션
+    <ul>
+      <li>쿼리와 센텐스, 감정 결과가 주어지면 어떤 답을 해야하는지 문제가 있었음</li>
+      <li>사실 약간 시도하다가 막혔지만, 영상이 매우 고퀄이라 재미있게 시도해봄</li>
+      <li>확실히 자연어쪽을 세련되게 잘 한다는 느낌을 받았음</li>
+    </ul>
+  </li>
+</ul>
+
+
+      <br/>
+      <p><a href="https://bit.ly/kyleschool_blog">카일스쿨 유튜브</a> 채널을 만들었습니다. 데이터 사이언스, 성장, 리더십, BigQuery 등을 이야기할 예정이니, 관심 있으시면 구독 부탁드립니다 :)</p>
+      <p>이 글이 도움이 되셨다면 추천 클릭을 부탁드립니다 :)</p>
+      <br/>
+      <br/>
+      <div style="text-align:center">
+        <style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFFFFF !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 0px 9px !important;font-size: 17px !important;letter-spacing:-0.08px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/zzsza"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
+      </div>
+      <br/>
+      <br/>
+       <!--블로그-하단-반응형 -->
+      <ins class="adsbygoogle"
+          style="display:block; width:100%; height:300px;"
+          data-ad-client="ca-pub-5105555504153863"
+          data-ad-slot="1037589043"
+          data-ad-format="auto"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+
+    </div>
+  
+
+</article>
+
+  <hr class="dingbat" />
+
+  <div class="share">
+      <h2>Share this post</h2>
+      <div class="share-body">
+        <a href="http://twitter.com/share?text=파이콘(PyCon) 2019 세션 정리&amp;url=http://localhost:4000/etc/2019/08/18/pycon2019/"
+    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <span class="icon-twitter">
+            </span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/etc/2019/08/18/pycon2019/"
+    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <span class="icon-facebook">
+            </span>
+        </a>
+    </div>
+  </div>
+  <br/>
+
+
+
+
+
+
+  <aside class="author" role="complementary">
+    <div class="author">
+  <h2 class="page-title hr">
+    About
+  </h2>
+<div class="author-body">
+  
+    
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="seongyun byeon"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+  
+  <div class="author-body-description">
+    <p>Machine Learning Engineer</p>
+
+  </div>
+</div>
+</div>
+
+  </aside>
+
+
+
+
+
+<aside class="related" role="complementary">
+  <h2 class="hr">Related Posts</h2>
+
+  <ul class="related-posts">
+    
+      
+      
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/etc/2019/10/28/deview2019-review/" data-flip="title">
+    <span>DEVIEW 2019 1일차 후기</span>
+  </a>
+  <small><time datetime="2019-10-28T00:00:00+09:00">
+    28 Oct 2019
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/etc/2019/10/20/tensorflow-kr-3th-meeting/" data-flip="title">
+    <span>Tensorflow KR 3차 오프라인 모임 후기</span>
+  </a>
+  <small><time datetime="2019-10-20T00:00:00+09:00">
+    20 Oct 2019
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/etc/2019/08/30/ifkakao-2019-review/" data-flip="title">
+    <span>if kakao 2019 2일차 후기</span>
+  </a>
+  <small><time datetime="2019-08-30T00:00:00+09:00">
+    30 Aug 2019
+  </time></small>
+</li>
+
+        
+      
+        
+          
+          
+    
+  </ul>
+</aside>
+
+
+
+      
+        <aside class="comments" role="complementary">
+  <h2>Comments</h2>
+  <hr/>
+
+  <div id="disqus_thread"></div>
+
+  <script>
+    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="파이콘(PyCon) 2019 세션 정리",this.page.identifier="/etc/2019/08/18/pycon2019",this.page.url="http://localhost:4000/etc/2019/08/18/pycon2019/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//zzsza.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</aside>
+
+      
+
+      <footer>
+  <hr/>
+  
+    <p>© 2017. by Seongyun Byeon</p>
+
+  
+  <p>
+    <code>Powered by <a href="https://zzsza.github.io/">zzsza</a></code>
+  </p>
+</footer>
+
+    </main>
+    <div class="right-side">
+  <div class="ad-first">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- 블로그-상단-모바일 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:100%;"
+         data-ad-client="ca-pub-5105555504153863"
+         data-ad-slot="9090558636"
+         data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+<br/>
+<br/>
+  <div class="ad-second">
+    <!-- 블로그-스카이스크래퍼 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;max-width:320px;width:100%;height:600px"
+         data-ad-client="ca-pub-5105555504153863"
+         data-ad-slot="3646660262"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+</div>
+
+
+  </div>
+  <div id="_yDrawer">
+  <div id="_sidebar" class="sidebar">
+    <div class="sidebar-bg" style="background-color:#4f86aa;background-image:url(/assets/img/nap.jpg)"></div>
+    <header class="sidebar-sticky" role="banner">
+      <br/>
+      <div class="sidebar-about">
+        <h1><a id="_title" href="/">어쩐지 오늘은</a></h1>
+        <p>Machine Learning Engineer</p>
+
+      </div>
+
+      <br/>
+      <nav class="sidebar-nav heading" role="navigation">
+        <span class="sr-only">Navigation:</span>
+<ul>
+  
+
+  
+
+  
+  
+  
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-1"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/diary/">Diary</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/diary-diary/">diary</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-2"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/data/">Data</a>
+       <label class="folder" for="list-item-2">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-ml/">Machine-Learning</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-dl/">Deep-Learning</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-mobility/">Mobility</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-engineering/">Engineering</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-optimization/">Optimization</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-paper/">Paper</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-pytorch/">Pytorch</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-cs231/">CS231n</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-rl/">Reinforcement-Learning</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-time-series/">Time Series</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-analytics/">Analytics</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-kaggle/">Kaggle</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-vision/">Vision</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-interpretable-ml/">Interpretable ML</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-simulation/">Simulation</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-graph/">Graph</a>
+             </li>
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-3"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/mlops/">MLOps</a>
+       <label class="folder" for="list-item-3">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-basic/">Basic</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-airflow/">Airflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-mlflow/">MLflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-tfx/">Tensorflow Extended</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-serving/">Serving</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-feature/">Feature</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-version/">Model & Pipeline version</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-4"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/gcp/">Google Cloud Platform</a>
+       <label class="folder" for="list-item-4">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-basic/">Basic</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-bigquery/">BigQuery</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-aiplatform/">AI Platform</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-dataflow/">Dataflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-cloud-functions/">Cloud Functions</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-5"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/development/">Development</a>
+       <label class="folder" for="list-item-5">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-linux/">Linux</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-web/">Web</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-python/">Python</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-sql/">SQL</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-scala/">Scala</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-os/">OS</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-kubernetes/">Kubernetes</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-devops/">DevOps</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-kotlin/">Kotlin</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-julia/">Julia</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-tools/">Tools</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-6"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/etc/">ETC</a>
+       <label class="folder" for="list-item-6">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/etc-lecture/">Lecture</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/etc-book/">Book</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-7"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/about/">About</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+</ul>
+
+      </nav>
+    <!-- search box -->
+    <form action="/search">
+      <div class="tipue_search_box">
+        <input type="text" name="q" id="tipue_search_input" placeholder="&#xF002;  Search" pattern=".{2,}" title="최소 2글자 이상" required></div>
+      <div style="clear: both;"></div>
+    </form>
+    <br/>
+      <div class="sidebar-box">
+        
+          
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="seongyun byeon"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+        
+      </div>
+      <p>메모가 습관인 데이터쟁이입니다</p>
+
+      
+      
+        <div class="sidebar-social">
+          <span class="sr-only">Social:</span>
+<ul>
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://facebook.com/zzsza">
+    <span class="icon-facebook" title="Facebook"></span>
+    <span class="sr-only">Facebook</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.youtube.com/channel/UCYyAaezBGEVmXcnink6nY9Q">
+    <span class="icon-youtube" title="YouTube"></span>
+    <span class="sr-only">YouTube</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://instagram.com/data.scientist">
+    <span class="icon-instagram" title="Instagram"></span>
+    <span class="sr-only">Instagram</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://github.com/zzsza">
+    <span class="icon-github" title="GitHub"></span>
+    <span class="sr-only">GitHub</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.linkedin.com/in/seong-yun-byeon-8183a8113">
+    <span class="icon-linkedin2" title="LinkedIn"></span>
+    <span class="sr-only">LinkedIn</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="mailto:snugyun01@gmail.com">
+    <span class="icon-mail" title="Email"></span>
+    <span class="sr-only">Email</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://zzsza.github.io/feed.xml">
+    <span class="icon-rss2" title="RSS"></span>
+    <span class="sr-only">RSS</span>
+  </a>
+</li>
+
+  
+</ul>
+
+        </div>
+      
+    </header>
+  </div>
+</div>
+
+</div>
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+
+<script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-110573232-1', 'auto');
+  ga('send', 'pageview');
+  loadJSDeferred('https://www.google-analytics.com/analytics.js');
+</script>
+
+
+
+
+
+<!--[if gt IE 8]><!---->
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    
+    google: {
+      families: 'Lato'.split('|')
+    },
+    
+
+    custom: {
+      families: ['icomoon'],
+      urls: ['/assets/icomoon/style.css']
+    }
+  });
+</script>
+<!--<![endif]-->
+
+
+  <!--[if gt IE 9]><!---->
+  
+  <script>loadJSDeferred('/assets/js/hydejack.js?v=6.4.0');</script>
+
+  
+  <!--<![endif]-->
+
+
+
+</body>
+
+</html>

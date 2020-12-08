@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
+-->
+
+
+
+
+
+
+
+
+
+<head>
+  <!-- =============== -->
+<!-- META            -->
+<!-- =============== -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="naver-site-verification" content="22c5b4ef3bfda7fc6100671413989219de7a4ac8"/>
+<meta property="og:title" content="Advanced Feature Engineering with Kaggle">
+<meta property="og:type" content="article">
+
+
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/img/logo.png">
+
+
+<meta property="og:image:width" content="640" />
+<meta property="og:image:height" content="360" />
+
+
+
+  <title>Advanced Feature Engineering with Kaggle &middot; 어쩐지 오늘은</title>
+
+
+
+<meta name="description" content="Coursera 강의인 How to Win a Data Science Competition: Learn from Top Kaggler, Feature engineering part1, 2를 듣고 정리한 내용입니다
+
+">
+<meta property="og:description" content="Coursera 강의인 How to Win a Data Science Competition: Learn from Top Kaggler, Feature engineering part1, 2를 듣고 정리한 내용입니다
+
+">
+
+
+<!-- tipuesearch -->
+<link rel="stylesheet" href="/assets/tipuesearch/css/tipuesearch.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+<!-- =============== -->
+<!-- LINKS           -->
+<!-- =============== -->
+<link rel="canonical" href="http://localhost:4000/data/2018/09/08/feature-engineering/">
+<meta property="og:url" content="http://localhost:4000/data/2018/09/08/feature-engineering/">
+
+<link rel="alternate" type="application/atom+xml" title="어쩐지 오늘은 Feed" href="http://localhost:4000/feed.xml">
+
+
+  <link rel="prev" href="http://localhost:4000/data/2018/09/04/kaggle-tips-and-review/">
+
+
+
+  <link rel="next" href="http://localhost:4000/development/2018/09/09/oop/">
+
+
+<link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+<!-- Place favicon.ico in the root directory -->
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+<script>
+  !function(n,e){function t(n,e){n.onload=function(){this.onerror=this.onload=null,e(null,n)},n.onerror=function(){this.onerror=this.onload=null,e(new Error("Failed to load "+this.src),n)}}function o(n,e){n.onreadystatechange=function(){"complete"!=this.readyState&&"loaded"!=this.readyState||(this.onreadystatechange=null,e(null,n))}}n._loaded=!1,n.loadJSDeferred=function(a,d){function r(){n._loaded=!0;var r=e.createElement("script");r.src=a,d&&(("onload"in r?t:o)(r,d),r.onload||t(r,d));var l=e.getElementsByTagName("script")[0];l.parentNode.insertBefore(r,l)}n._loaded?r():n.addEventListener?n.addEventListener("load",r,!1):n.attachEvent?n.attachEvent("onload",r):n.onload=r}}(window,document);
+
+  !function(e){"use strict";var n=function(n,t,o){function i(e){if(a.body)return e();setTimeout(function(){i(e)})}function r(){l.addEventListener&&l.removeEventListener("load",r),l.media=o||"all"}var d,a=e.document,l=a.createElement("link");if(t)d=t;else{var f=(a.body||a.getElementsByTagName("head")[0]).childNodes;d=f[f.length-1]}var s=a.styleSheets;l.rel="stylesheet",l.href=n,l.media="only x",i(function(){d.parentNode.insertBefore(l,t?d:d.nextSibling)});var u=function(e){for(var n=l.href,t=s.length;t--;)if(s[t].href===n)return e();setTimeout(function(){u(e)})};return l.addEventListener&&l.addEventListener("load",r),l.onloadcssdefined=u,u(r),l};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
+
+  !function(t){if(t.loadCSS){var e=loadCSS.relpreload={};if(e.support=function(){try{return t.document.createElement("link").relList.supports("preload")}catch(t){return!1}},e.poly=function(){for(var e=t.document.getElementsByTagName("link"),r=0;r<e.length;r++){var n=e[r];"preload"===n.rel&&"style"===n.getAttribute("as")&&(t.loadCSS(n.href,n,n.getAttribute("media")),n.rel=null)}},!e.support()){e.poly();var r=t.setInterval(e.poly,300);t.addEventListener&&t.addEventListener("load",function(){e.poly(),t.clearInterval(r)}),t.attachEvent&&t.attachEvent("onload",function(){t.clearInterval(r)})}}}(this);
+
+  window.disablePushState = false;
+  window.disableDrawer = false;
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5105555504153863",
+    enable_page_level_ads: true
+  });
+</script>
+
+<!--[if lt IE 9]>
+<script src="https://unpkg.com/html5shiv/dist/html5shiv.min.js"></script>
+<![endif]-->
+
+<!-- =============== -->
+<!-- STYLES          -->
+<!-- =============== -->
+<!--[if gt IE 8]><!---->
+<style>
+  
+  article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}*{box-sizing:border-box}html,body{margin:0;padding:0}html{font-size:16px;line-height:1.75}body{color:#333;background-color:#fff;overflow-y:scroll}a{text-decoration:none}.lead{margin-left:-1rem;margin-right:-1rem}img,.img{display:block;max-width:100%;margin-bottom:1rem;border:none}img.lead,.img.lead{max-width:calc(100% + 2rem);width:calc(100% + 2rem)}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-weight:bold;text-rendering:optimizeLegibility}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{margin:1.6rem 0 1rem;line-height:1.6}h1,.h1{font-size:2rem;line-height:1.25}h2,.h2{font-size:1.5rem}h3,.h3{font-size:1.17em}p{margin-top:0;margin-bottom:1rem}p.lead{font-size:1.25rem;font-weight:300;padding:0 1rem}ul,ol,dl{margin-top:0;margin-bottom:1rem}ul,ol{padding-left:1.25rem}hr{position:relative;margin:1.5rem 0;border:0;border-top:1px solid #eee}.hr{padding-bottom:.5rem;border-bottom:1px solid #eee;margin-bottom:1.5rem}h4,h5,h6,.h4,.h5,.h6{margin-bottom:0.5rem;font-size:1rem}table{margin-bottom:1rem;width:100%;width:calc(100% + 2rem);margin-left:-1rem;border:1px solid #e5e5e5;border-collapse:collapse;border-spacing:0}td,th{padding:.25rem .5rem;border:1px solid #e5e5e5}td:first-child,th:first-child{padding-left:1rem}td:last-child,th:last-child{padding-right:1rem}thead+tbody,tbody+tbody,tfoot{border-top:3px double #e5e5e5}tbody tr:nth-child(odd) td,tbody tr:nth-child(odd) th{background-color:#f9f9f9}footer{margin-bottom:2rem}.page,.post{margin-bottom:3em}.page li+li,.post li+li{margin-top:.25rem}.page>header,.post>header{margin-bottom:2rem}.page-title,.post-title{margin-top:0}.post-date{display:block;margin-top:-0.5rem;margin-bottom:1rem;color:#9a9a9a}.related-posts{padding-left:0;list-style:none}.related-posts>li,.related-posts>li+li{margin-top:1rem}.related-posts>li>small,.related-posts>li+li>small{font-size:75%;color:#9a9a9a}.message{margin-bottom:1rem;padding:1rem;color:#787878;background-color:#f9f9f9;margin-left:-1rem;margin-right:-1rem}body,main{position:relative;overflow-x:hidden}@media screen{body::before{content:'';background:#e5e5e5;position:absolute;left:0;top:0;bottom:0}}@media screen and (min-width: 40em){html{font-size:17px}}@media screen and (min-width: 54em){html{font-size:16px}}@media screen and (min-width: 88em){html{font-size:17px}}@media screen and (min-width: 125em){html{font-size:18px}}.sr-only{display:none}.clearfix,.sidebar-social::after,.clearafter::after{content:"";display:table;clear:both}a,.a{position:relative;padding-bottom:.15rem;border-style:hidden}.img{overflow:hidden;background-color:#f9f9f9}.img>img{margin:0;width:100%;height:100%}.sixteen-nine{position:relative}.sixteen-nine::before{display:block;content:"";width:100%;padding-top:56.25%}.sixteen-nine>*{position:absolute;top:0;left:0;right:0;bottom:0}h1+hr,h2+hr,h3+hr,h4+hr,h5+hr,h6+hr{margin-top:0}.fade-in{animation-duration:500ms;animation-name:fade-in;animation-fill-mode:forwards}@keyframes fade-in{from{transform:translateY(-2rem);opacity:0}50%{transform:translateY(-2rem);opacity:0}to{transform:translateY(0);opacity:1}}.mb6{margin-bottom:10rem}.sidebar{color:rgba(255,255,255,0.75);text-align:left}.sidebar::before{content:"";position:absolute;z-index:2;top:0;left:0;bottom:0;right:0;background:linear-gradient(to bottom, rgba(32,32,32,0) 0%, rgba(32,32,32,0.5) 100%)}.sidebar a{color:#fff;border-bottom-color:rgba(255,255,255,0.2)}.right-side{width:100%;margin-left:auto;margin-right:auto}.right-side .ad-first{text-align:center}.right-side .ad-second{text-align:center}@media screen{.right-side{max-width:38rem;min-height:100vh}}@media screen and (min-width: 54em){.right-side{margin-left:20rem;margin-right:1rem;padding:4rem 1rem 12rem}}@media screen and (min-width: 72em){.right-side{margin-left:22rem;max-width:42rem}}@media screen and (min-width: 88em){.right-side{width:162px;margin-left:0rem;margin-right:0rem;padding:0rem;margin-top:10rem;display:block;float:left}}@media screen and (min-width: 96em){.right-side{width:300px;margin-right:0rem}}#_yDrawer{position:relative}@media screen{#_yDrawer{min-height:640px;min-height:100vh}}@media screen and (min-width: 54em){#_yDrawer{width:18rem;margin-left:0}}.sidebar-bg{position:absolute;height:100%;overflow:hidden;top:0;right:0;bottom:0;left:0;background:#202020 center / cover}.sidebar-box{display:flex;justify-content:center}.sidebar-sticky{position:relative;z-index:3}@media screen{.sidebar-sticky{-ms-overflow-style:none;overflow:-moz-scrollbars-none;height:100%;overflow:auto;position:absolute;padding:3rem 0rem;right:2.5rem;left:2.5rem}}.sidebar-sticky::-webkit-scrollbar{display:none}.sidebar-about>h1{color:#fff;font-size:2rem}.sidebar-nav>ul{list-style:none;padding-left:0;margin-bottom:.5rem}a.sidebar-nav-item{width:100%;font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}a.sidebar-nav-subitem{font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}@media screen{.y-drawer-scrim{z-index:2}.y-drawer-content{width:18rem;left:-18rem;z-index:3}}.sidebar-social{margin-bottom:.5rem}.sidebar-social>ul{list-style:none;padding-left:0;margin:0 -.25rem}.sidebar-social>ul>li{float:left}.sidebar-social>ul>li>a{display:inline-block;text-align:center;font-size:1.6rem;line-height:3rem;width:3.1249rem;height:4rem;padding:.5rem 0}.sidebar-social>ul li+li{margin-top:0}.fixed-top{position:fixed;top:0;left:0;width:100%;z-index:1}.navbar>.content{padding-top:0;padding-bottom:0;min-height:0;height:0}.menu{display:inline-block;padding:1.75rem 1.5rem;border-bottom:none;margin-left:-1.5rem;color:#9a9a9a !important}.menu::after{content:"\2630"}@media screen and (min-width: 54em){.menu{padding:1.25rem 1.5rem;position:absolute;left:-9999px}.menu:focus{position:static}}.animation-main{pointer-events:none}.loading{display:none}@media print{.menu{display:none}}.animation-main{opacity:0;will-change:opacity}.loading{position:absolute;top:0;right:0;padding:5.25rem 4.5rem;transform-origin:top right;transform:scale(0.33)}.content{position:relative;margin-left:auto;margin-right:auto;padding:5rem 1rem 12rem}@media screen{.content{min-height:100vh}}@media screen and (min-width: 54em){.content{padding:4rem 1rem 12rem;margin-left:19rem;margin-right:3rem}}@media screen and (min-width: 72em){.content{max-width:42rem;margin-left:21rem}}@media screen and (min-width: 88em){.content{float:left;width:100%;margin-left:22rem;margin-right:5rem}}@media screen and (min-width: 96em){.content{max-width:44rem}}@media screen and (min-width: 102em){.content{margin-left:25rem;margin-right:8rem}}.me{width:6.5rem;height:6.5rem;align-self:center;margin-right:20px;border-radius:100%;position:relative}@media screen and (min-width: 40em){.me{width:7rem;height:7rem}}@media screen and (min-width: 54em){.me{width:6.5rem;height:6.5rem}}@media screen and (min-width: 72em){.me{width:7rem;height:7rem}}main>footer{width:100%;position:absolute;bottom:0;left:0;right:0;padding:0 1rem;color:#9a9a9a;font-size:smaller;text-align:center}main>footer>p{margin-bottom:0}html{font-family:'Sans-serif'}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-family:'Sans-serif'}
+
+</style>
+
+
+<link rel="preload" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0" as="style" onload="this.rel='stylesheet'">
+
+<style id="_pageStyle">
+
+.content a{color:#4f86aa;border-color:rgba(79,134,170,0.2)}.content a:hover{border-color:#4f86aa}:focus{outline-color:#4f86aa}::selection{color:#fff;background:#4f86aa}::-moz-selection{color:#fff;background:#4f86aa}
+
+</style>
+
+
+<noscript>
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0">
+  
+  
+  
+
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <style>
+      html { font-family: 'Lato', 'Sans-serif' }
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading { font-family: 'Lato', 'Sans-serif' }
+    </style>
+  
+
+  
+  <link rel="stylesheet" href="http://localhost:4000/assets/icomoon/style.css">
+</noscript>
+<!--<![endif]-->
+
+</head>
+
+<body>
+  <!-- =============== -->
+<!-- MENU            -->
+<!-- =============== -->
+<div class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <a id="_menu" class="menu no-hover" href="#_title">
+      <span class="sr-only">Menu</span>
+    </a>
+  </div>
+</div>
+
+<!-- =============== -->
+<!-- CONTENT         -->
+<!-- =============== -->
+<div id="_yPushState">
+  <div class="fade-in">
+    <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/nap.jpg">
+      
+
+<article id="post-data/2018/09/08/feature-engineering" class="post" role="article">
+  <header>
+    <h1 class="post-title">
+      
+        Advanced Feature Engineering with Kaggle
+      
+    </h1>
+
+    <p class="post-date heading">
+      <time datetime="2018-09-08T00:00:00+09:00">08 Sep 2018</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/data/" data-flip="title">Data</a>
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/data-kaggle/" data-flip="title">Kaggle</a>
+
+    </p>
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+    <div class="markdown-body">
+
+
+<style>
+.myAd1190 { display:block; width:98%; height: 280px; }
+@media(min-width: 600px) { .myAd1190 { display: none; } }
+</style>
+<ins class="adsbygoogle myAd1190"
+    data-ad-client="ca-pub-5105555504153863"
+    data-ad-slot="6481487416"
+    ></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
+<br/>
+      <p>Coursera 강의인 How to Win a Data Science Competition: Learn from Top Kaggler, Feature engineering part1, 2를 듣고 정리한 내용입니다</p>
+
+<ul>
+  <li>추천 글 : <a href="http://hero4earth.com/blog/learning/2018/01/29/Feature_Engineering_Basic/">Feature Engineering 기본 정리</a></li>
+  <li>변수 타입별 처리, missing value 처리 관련 내용은 <a href="https://zzsza.github.io/data/2018/08/16/how-to-win-a-data-science-competition-week1/">Coursera Kaggle 강의(How to win a data science competition) 1주차</a> 참고</li>
+</ul>
+
+<h2 id="feautre-engineering">Feautre Engineering</h2>
+<ul>
+  <li>Mean encodings</li>
+  <li>Statistics and distance based features</li>
+  <li>Matrix factorizations</li>
+  <li>Feature Interactions</li>
+  <li>t-SNE</li>
+</ul>
+
+<hr />
+
+<h2 id="mean-encodings">Mean encodings</h2>
+<hr />
+
+<ul>
+  <li>Powerful technique!</li>
+  <li>동의어 : likelihood encoding, target encoding</li>
+</ul>
+
+<h3 id="concept-of-mean-encoding">Concept of mean encoding</h3>
+<ul>
+  <li>Mean Encoding
+    <ul>
+      <li>Categorical Feature를 기준으로 하여 Target값과 통계적인 연산을 하는 것</li>
+      <li>Median, Mean, Std, Min, Max 등의 Feature 추가</li>
+    </ul>
+  </li>
+  <li>Using target to generate features</li>
+  <li><img src="https://www.dropbox.com/s/9yd335yu9qg4ovu/Screenshot%202018-08-23%2019.35.51.png?raw=1" />
+    <ul>
+      <li>Moscow는 총 5개가 있고, target에 1인 값이 2개라서 0.4</li>
+      <li>Tver는 총 5개 있고, target에 1인 값이 4개라서 0.8</li>
+    </ul>
+  </li>
+  <li>왜 이게 작동하는가?
+    <ul>
+      <li>1) Label encoding은 순서없이 random. target에 대한 correlation이 없음</li>
+      <li>2) mean encoding은 0부터 1까지로 나뉘어 Target값과 직접적 연관성이 생김</li>
+      <li><img src="https://www.dropbox.com/s/2tukemvxhwndp5t/Screenshot%202018-08-23%2019.45.13.png?raw=1" /></li>
+      <li><img src="https://www.dropbox.com/s/qe49sypg7lr2p27/Screenshot%202018-08-23%2019.54.45.png?raw=1" /></li>
+      <li>짧은 tree여도 더 나은 loss를 얻음</li>
+    </ul>
+  </li>
+  <li>사용 예시
+    <ul>
+      <li><img src="https://www.dropbox.com/s/gohmxkm3tdzjifd/Screenshot%202018-08-23%2019.58.28.png?raw=1" /></li>
+      <li>Tree depth를 증가시킬 때, 계속해서 점수가 증가하고 validation score도 같이 증가하면(오버피팅이 아니라는 뜻) Tree model이 분할에 대한 정보가 더 필요한 상황! 이럴 때 Mean Encoding이 사용</li>
+      <li><img src="https://www.dropbox.com/s/b6suevtecrn0qcb/Screenshot%202018-08-23%2019.58.55.png?raw=1" /></li>
+      <li><img src="https://www.dropbox.com/s/8r4vxebq7fm0azg/Screenshot%202018-08-23%2020.00.47.png?raw=1" />
+        <ul>
+          <li>오버피팅!</li>
+          <li>우선 오버피팅을 잘 커버해야 함(정규화 필요)</li>
+          <li>아래와 같은 데이터여서 오버피팅</li>
+          <li><img src="https://www.dropbox.com/s/pm0lkdgfxjktjxj/Screenshot%202018-08-23%2020.02.48.png?raw=1" /></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="regularization">Regularization</h3>
+<ul>
+  <li>Mean encoding 자체는 유용하지 않을 수 있음. 데이터 정규화 필요</li>
+  <li>Regularization
+    <ul>
+      <li>Training data에서 CV loop 돌리기</li>
+      <li>Smoothing(카테고리 수를)</li>
+      <li>Random noise 추가</li>
+      <li>Sorting and calculating expanding mean</li>
+    </ul>
+  </li>
+  <li>CV loop
+    <ul>
+      <li>Robust하고 직관적</li>
+      <li>보통 4-5fold를 진행하면 괜찮은 결과</li>
+      <li>LOO같은 극단적 상황을 조심할 필요가 있음
+        <ul>
+          <li>카테고리 수가 너무 작은 경우엔 오버피팅</li>
+        </ul>
+      </li>
+      <li><img src="https://www.dropbox.com/s/rvfcwp9ozw9bozv/Screenshot%202018-08-23%2020.13.11.png?raw=1" /></li>
+      <li><img src="https://www.dropbox.com/s/gkfsxt3sgxbjflh/Screenshot%202018-08-23%2020.13.29.png?raw=1" /></li>
+      <li><img src="https://www.dropbox.com/s/6iv50gvhi8r70bf/Screenshot%202018-08-23%2020.15.29.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Smoothing
+    <ul>
+      <li>하이퍼 파라미터 : 알파
+        <ul>
+          <li>보통 알파는 카테고리 사이즈와 동일할 때, 신뢰할 수 있음</li>
+        </ul>
+      </li>
+      <li><img src="https://www.dropbox.com/s/xjuj2kah7evaipn/Screenshot%202018-08-23%2020.32.42.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Noise
+    <ul>
+      <li>노이즈가 encoidng의 quality를 저하시킴</li>
+      <li>얼마나 noise를 추가해야 할까? 고민해야 해서 불안정하고 잘 사용하기 어려움</li>
+      <li>보통 LOO와 함께 사용됨</li>
+    </ul>
+  </li>
+  <li>Expanding mean
+    <ul>
+      <li>보통의 Mean ecnoding은 각 category 변수에 하나의 값으로 나오지만, expanding mean은 uniform하지 않음</li>
+      <li>leak이 적고 catboost에서 많은 성능 향상을 가져옴</li>
+      <li><img src="https://www.dropbox.com/s/rfjc4c1dzegwfzu/Screenshot%202018-08-23%2020.35.36.png?raw=1" /></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="extensions-and-generalizations">Extensions and generalizations</h3>
+<ul>
+  <li>Regression and multiclass
+    <ul>
+      <li>Regession엔 median, percentiles, std, distribution bins 등을 추가 (통계적 정보)</li>
+      <li>multiclass엔 클래스만큼 다른 encoding. 각 클래스 encoding마다 다른 정보를 제공해 좋은 결과를 예상</li>
+    </ul>
+  </li>
+  <li>Many-tomany relations
+    <ul>
+      <li>cross product</li>
+      <li>아래의 예는 APP_id로 나눔</li>
+      <li><img src="https://www.dropbox.com/s/qd6ofdyjpxn5v1w/Screenshot%202018-08-23%2020.58.52.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Time series
+    <ul>
+      <li>Limitation</li>
+      <li>Complicated features</li>
+      <li>Rolling</li>
+      <li><img src="https://www.dropbox.com/s/pb1sg8feqjgyod7/Screenshot%202018-08-23%2021.01.01.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Interactions and numerical features
+    <ul>
+      <li>Tree의 상호 작용을 분석</li>
+      <li>Tree Model이 Split할 때 feature1과 feature2 처럼되면 서로 상호작용하! 이런 분할이 많을수록 Mean Encoding시 좋음</li>
+      <li>Feature끼리 합하여 Target Mean Encoding 수행</li>
+      <li><img src="https://www.dropbox.com/s/agvi4ftz973t01l/Screenshot%202018-08-23%2021.03.03.png?raw=1" /></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="statistics-and-distance-based-features">Statistics and distance based features</h2>
+<ul>
+  <li>1개의 feature를 group by 해서 다양한 통계값을 계산</li>
+  <li><img src="https://www.dropbox.com/s/u8witrnuiou8v7d/Screenshot%202018-09-04%2019.36.47.png?raw=1" /></li>
+  <li><img src="https://www.dropbox.com/s/gpaa7q0lly179au/Screenshot%202018-09-04%2020.41.06.png?raw=1" /></li>
+  <li>More features
+    <ul>
+      <li>How many pages user visited</li>
+      <li>Standard deviation of prices</li>
+      <li>Most visited page</li>
+      <li>Many more..</li>
+    </ul>
+  </li>
+  <li>Neighbors
+    <ul>
+      <li>Explicit group is not needed</li>
+      <li>More flexible</li>
+      <li>구현하기 힘듬</li>
+      <li>집의 개수, 평당 평균 가격, 학교/슈퍼/주차장의 개수, 가까운 지하철 역과 거리</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="knn-features-in-springleaf">KNN features in Springleaf</h3>
+<ul>
+  <li>모든 변수에 대해 mean encoding</li>
+  <li>모든 포인트에 2000개의 이웃을 찾음(Bray-Curtis metric 사용)</li>
+  <li>그 2000개 이웃으로부터 다양한 feature 계산</li>
+  <li>5, 10, 15, 500, 2000의 Mean target</li>
+  <li>10개의 가까운 이웃과의 Mean distance</li>
+  <li>Target 1에 대한 10개의 가까운 이웃과 mean distance</li>
+  <li>Target 0에 대한 10개의 가까운 이웃과 mean distance</li>
+</ul>
+
+<h2 id="matrix-factorizations-for-feature-extraction">Matrix factorizations for Feature Extraction</h2>
+<p><img src="https://www.dropbox.com/s/p5e51dovb3yiung/Screenshot%202018-09-04%2020.52.28.png?raw=1" /></p>
+
+<ul>
+  <li>추천 시스템에서 자주 사용하는 matrix factorization으로 feature 생성 가능</li>
+  <li><img src="https://www.dropbox.com/s/hqy9i7y3bdksb4m/Screenshot%202018-09-04%2020.56.26.png?raw=1" /></li>
+  <li><img src="https://www.dropbox.com/s/g86ee844frm64d1/Screenshot%202018-09-04%2021.01.00.png?raw=1" /></li>
+  <li>위 방법처럼 feature를 혼합해 사용하기도 함</li>
+  <li><img src="https://www.dropbox.com/s/bq0lnkz96s3jxe1/Screenshot%202018-09-04%2021.02.33.png?raw=1" /></li>
+  <li><img src="https://www.dropbox.com/s/v8jcixw518mui79/Screenshot%202018-09-04%2021.02.43.png?raw=1" /></li>
+  <li>PCA 할 때, 전체 데이터를 concat한 후 진행하기!</li>
+  <li>차원 축소와 feature extraction할 때 유용한 방법</li>
+  <li>현실의 카테고리컬 feature들을 변경하는 방법</li>
+</ul>
+
+<h2 id="feature-interactions">Feature Interactions</h2>
+<ul>
+  <li><img src="https://www.dropbox.com/s/ov2kpqr71n301xx/Screenshot%202018-09-04%2021.21.43.png?raw=1" /></li>
+  <li>One Hot 인코딩 후, 각 컬럼별로 곱함</li>
+  <li><img src="https://www.dropbox.com/s/t6i7hxedaffr9yo/Screenshot%202018-09-04%2021.27.54.png?raw=1" /></li>
+  <li>곱, 합, 차, 나누기 등을 사용해 상호작용!</li>
+  <li><img src="https://www.dropbox.com/s/2ivy7v4wu40ou58/Screenshot%202018-09-04%2021.29.51.png?raw=1" /></li>
+  <li><img src="https://www.dropbox.com/s/17uf095gw4pdtx2/Screenshot%202018-09-04%2021.30.41.png?raw=1" /></li>
+  <li><img src="https://www.dropbox.com/s/yvzgb9gjo9udjn7/Screenshot%202018-09-04%2021.30.50.png?raw=1" /></li>
+</ul>
+
+<h2 id="t-sne">t-SNE</h2>
+<h3 id="manifold-learning-methods">Manifold learning methods</h3>
+<p><img src="https://www.dropbox.com/s/3sen5xbj8eyj8tb/Screenshot%202018-09-04%2023.24.57.png?raw=1" /></p>
+
+<ul>
+  <li>데이터가 갖고 있는 변하지 않는 고유 특성(invariant properties)을 찾는데 사용</li>
+  <li>데이터 본연의 geometric 특성을 유지하며 고차원의 데이터를 저차원의 공간으로 projection</li>
+  <li>관련 내용은 ratsgo님의 <a href="https://ratsgo.github.io/machine%20learning/2017/04/28/tSNE/">t-SNE</a> 참고</li>
+  <li><img src="https://www.dropbox.com/s/18h6v9e4cgyo4a7/Screenshot%202018-09-04%2023.34.58.png?raw=1" /></li>
+</ul>
+
+<h2 id="knn-features-implementation">KNN features implementation</h2>
+<ul>
+  <li><a href="https://hub.coursera-notebooks.org/user/ynvomuepahfsgzmplvnxhw/notebooks/Programming%20assignment%2C%20week%204%3A%20KNN%20features/compute_KNN_features.ipynb">코드</a> 참고</li>
+</ul>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://www.coursera.org/learn/competitive-data-science">Coursera How to win a data science competition</a></li>
+  <li><a href="https://github.com/hse-aml/competitive-data-science">Competitive-data-science Github</a></li>
+  <li><a href="http://hero4earth.com/blog/learning/2018/01/29/Feature_Engineering_Basic/">Feature Engineering 기본 정리</a></li>
+</ul>
+
+      <br/>
+      <p><a href="https://bit.ly/kyleschool_blog">카일스쿨 유튜브</a> 채널을 만들었습니다. 데이터 사이언스, 성장, 리더십, BigQuery 등을 이야기할 예정이니, 관심 있으시면 구독 부탁드립니다 :)</p>
+      <p>이 글이 도움이 되셨다면 추천 클릭을 부탁드립니다 :)</p>
+      <br/>
+      <br/>
+      <div style="text-align:center">
+        <style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFFFFF !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 0px 9px !important;font-size: 17px !important;letter-spacing:-0.08px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/zzsza"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
+      </div>
+      <br/>
+      <br/>
+       <!--블로그-하단-반응형 -->
+      <ins class="adsbygoogle"
+          style="display:block; width:100%; height:300px;"
+          data-ad-client="ca-pub-5105555504153863"
+          data-ad-slot="1037589043"
+          data-ad-format="auto"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+
+    </div>
+  
+
+</article>
+
+  <hr class="dingbat" />
+
+  <div class="share">
+      <h2>Share this post</h2>
+      <div class="share-body">
+        <a href="http://twitter.com/share?text=Advanced Feature Engineering with Kaggle&amp;url=http://localhost:4000/data/2018/09/08/feature-engineering/"
+    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <span class="icon-twitter">
+            </span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/data/2018/09/08/feature-engineering/"
+    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <span class="icon-facebook">
+            </span>
+        </a>
+    </div>
+  </div>
+  <br/>
+
+
+
+
+
+
+  <aside class="author" role="complementary">
+    <div class="author">
+  <h2 class="page-title hr">
+    About
+  </h2>
+<div class="author-body">
+  
+    
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="seongyun byeon"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+  
+  <div class="author-body-description">
+    <p>Machine Learning Engineer</p>
+
+  </div>
+</div>
+</div>
+
+  </aside>
+
+
+
+
+
+<aside class="related" role="complementary">
+  <h2 class="hr">Related Posts</h2>
+
+  <ul class="related-posts">
+    
+      
+      
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/data/2019/12/15/rules-of-ml/" data-flip="title">
+    <span>Rules of Machine Learning: Best Practices for ML Engineering 정리</span>
+  </a>
+  <small><time datetime="2019-12-15T00:00:00+09:00">
+    15 Dec 2019
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/data/2019/12/03/cs224w-ml-with-graph/" data-flip="title">
+    <span>CS224W - Machine Learning with Graphs 1강 정리</span>
+  </a>
+  <small><time datetime="2019-12-03T00:00:00+09:00">
+    03 Dec 2019
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/data/2019/11/24/pydeck/" data-flip="title">
+    <span>지도 데이터 시각화 : Uber의 pydeck 사용하기</span>
+  </a>
+  <small><time datetime="2019-11-24T00:00:00+09:00">
+    24 Nov 2019
+  </time></small>
+</li>
+
+        
+      
+        
+        
+      
+    
+  </ul>
+</aside>
+
+
+
+      
+        <aside class="comments" role="complementary">
+  <h2>Comments</h2>
+  <hr/>
+
+  <div id="disqus_thread"></div>
+
+  <script>
+    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="Advanced Feature Engineering with Kaggle",this.page.identifier="/data/2018/09/08/feature-engineering",this.page.url="http://localhost:4000/data/2018/09/08/feature-engineering/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//zzsza.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</aside>
+
+      
+
+      <footer>
+  <hr/>
+  
+    <p>© 2017. by Seongyun Byeon</p>
+
+  
+  <p>
+    <code>Powered by <a href="https://zzsza.github.io/">zzsza</a></code>
+  </p>
+</footer>
+
+    </main>
+    <div class="right-side">
+  <div class="ad-first">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- 블로그-상단-모바일 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:100%;"
+         data-ad-client="ca-pub-5105555504153863"
+         data-ad-slot="9090558636"
+         data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+<br/>
+<br/>
+  <div class="ad-second">
+    <!-- 블로그-스카이스크래퍼 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;max-width:320px;width:100%;height:600px"
+         data-ad-client="ca-pub-5105555504153863"
+         data-ad-slot="3646660262"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+</div>
+
+
+  </div>
+  <div id="_yDrawer">
+  <div id="_sidebar" class="sidebar">
+    <div class="sidebar-bg" style="background-color:#4f86aa;background-image:url(/assets/img/nap.jpg)"></div>
+    <header class="sidebar-sticky" role="banner">
+      <br/>
+      <div class="sidebar-about">
+        <h1><a id="_title" href="/">어쩐지 오늘은</a></h1>
+        <p>Machine Learning Engineer</p>
+
+      </div>
+
+      <br/>
+      <nav class="sidebar-nav heading" role="navigation">
+        <span class="sr-only">Navigation:</span>
+<ul>
+  
+
+  
+
+  
+  
+  
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-1"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/diary/">Diary</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/diary-diary/">diary</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-2"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/data/">Data</a>
+       <label class="folder" for="list-item-2">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-ml/">Machine-Learning</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-dl/">Deep-Learning</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-mobility/">Mobility</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-engineering/">Engineering</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-optimization/">Optimization</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-paper/">Paper</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-pytorch/">Pytorch</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-cs231/">CS231n</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-rl/">Reinforcement-Learning</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-time-series/">Time Series</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-analytics/">Analytics</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-kaggle/">Kaggle</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-vision/">Vision</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-interpretable-ml/">Interpretable ML</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-simulation/">Simulation</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-graph/">Graph</a>
+             </li>
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-3"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/mlops/">MLOps</a>
+       <label class="folder" for="list-item-3">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-basic/">Basic</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-airflow/">Airflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-mlflow/">MLflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-tfx/">Tensorflow Extended</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-serving/">Serving</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-feature/">Feature</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-version/">Model & Pipeline version</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-4"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/gcp/">Google Cloud Platform</a>
+       <label class="folder" for="list-item-4">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-basic/">Basic</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-bigquery/">BigQuery</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-aiplatform/">AI Platform</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-dataflow/">Dataflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-cloud-functions/">Cloud Functions</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-5"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/development/">Development</a>
+       <label class="folder" for="list-item-5">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-linux/">Linux</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-web/">Web</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-python/">Python</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-sql/">SQL</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-scala/">Scala</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-os/">OS</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-kubernetes/">Kubernetes</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-devops/">DevOps</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-kotlin/">Kotlin</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-julia/">Julia</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-tools/">Tools</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-6"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/etc/">ETC</a>
+       <label class="folder" for="list-item-6">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/etc-lecture/">Lecture</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/etc-book/">Book</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-7"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/about/">About</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+</ul>
+
+      </nav>
+    <!-- search box -->
+    <form action="/search">
+      <div class="tipue_search_box">
+        <input type="text" name="q" id="tipue_search_input" placeholder="&#xF002;  Search" pattern=".{2,}" title="최소 2글자 이상" required></div>
+      <div style="clear: both;"></div>
+    </form>
+    <br/>
+      <div class="sidebar-box">
+        
+          
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="seongyun byeon"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+        
+      </div>
+      <p>메모가 습관인 데이터쟁이입니다</p>
+
+      
+      
+        <div class="sidebar-social">
+          <span class="sr-only">Social:</span>
+<ul>
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://facebook.com/zzsza">
+    <span class="icon-facebook" title="Facebook"></span>
+    <span class="sr-only">Facebook</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.youtube.com/channel/UCYyAaezBGEVmXcnink6nY9Q">
+    <span class="icon-youtube" title="YouTube"></span>
+    <span class="sr-only">YouTube</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://instagram.com/data.scientist">
+    <span class="icon-instagram" title="Instagram"></span>
+    <span class="sr-only">Instagram</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://github.com/zzsza">
+    <span class="icon-github" title="GitHub"></span>
+    <span class="sr-only">GitHub</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.linkedin.com/in/seong-yun-byeon-8183a8113">
+    <span class="icon-linkedin2" title="LinkedIn"></span>
+    <span class="sr-only">LinkedIn</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="mailto:snugyun01@gmail.com">
+    <span class="icon-mail" title="Email"></span>
+    <span class="sr-only">Email</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://zzsza.github.io/feed.xml">
+    <span class="icon-rss2" title="RSS"></span>
+    <span class="sr-only">RSS</span>
+  </a>
+</li>
+
+  
+</ul>
+
+        </div>
+      
+    </header>
+  </div>
+</div>
+
+</div>
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+
+<script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-110573232-1', 'auto');
+  ga('send', 'pageview');
+  loadJSDeferred('https://www.google-analytics.com/analytics.js');
+</script>
+
+
+
+
+
+<!--[if gt IE 8]><!---->
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    
+    google: {
+      families: 'Lato'.split('|')
+    },
+    
+
+    custom: {
+      families: ['icomoon'],
+      urls: ['/assets/icomoon/style.css']
+    }
+  });
+</script>
+<!--<![endif]-->
+
+
+  <!--[if gt IE 9]><!---->
+  
+  <script>loadJSDeferred('/assets/js/hydejack.js?v=6.4.0');</script>
+
+  
+  <!--<![endif]-->
+
+
+
+</body>
+
+</html>

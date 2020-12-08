@@ -1,0 +1,2661 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
+-->
+
+
+
+
+
+
+
+
+
+<head>
+  <!-- =============== -->
+<!-- META            -->
+<!-- =============== -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="naver-site-verification" content="22c5b4ef3bfda7fc6100671413989219de7a4ac8"/>
+<meta property="og:title" content="Tensorflow KR 3차 오프라인 모임 후기">
+<meta property="og:type" content="article">
+
+
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/img/logo.png">
+
+
+<meta property="og:image:width" content="640" />
+<meta property="og:image:height" content="360" />
+
+
+
+  <title>Tensorflow KR 3차 오프라인 모임 후기 &middot; 어쩐지 오늘은</title>
+
+
+
+<meta name="description" content="
+  Tensorflow 3차 오프라인 모임 후기입니다
+
+
+">
+<meta property="og:description" content="
+  Tensorflow 3차 오프라인 모임 후기입니다
+
+
+">
+
+
+<!-- tipuesearch -->
+<link rel="stylesheet" href="/assets/tipuesearch/css/tipuesearch.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+<!-- =============== -->
+<!-- LINKS           -->
+<!-- =============== -->
+<link rel="canonical" href="http://localhost:4000/etc/2019/10/20/tensorflow-kr-3th-meeting/">
+<meta property="og:url" content="http://localhost:4000/etc/2019/10/20/tensorflow-kr-3th-meeting/">
+
+<link rel="alternate" type="application/atom+xml" title="어쩐지 오늘은 Feed" href="http://localhost:4000/feed.xml">
+
+
+  <link rel="prev" href="http://localhost:4000/diary/2019/10/20/helping-presentation/">
+
+
+
+  <link rel="next" href="http://localhost:4000/mlops/2019/10/27/mlops-nyc19-review/">
+
+
+<link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+<!-- Place favicon.ico in the root directory -->
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+<script>
+  !function(n,e){function t(n,e){n.onload=function(){this.onerror=this.onload=null,e(null,n)},n.onerror=function(){this.onerror=this.onload=null,e(new Error("Failed to load "+this.src),n)}}function o(n,e){n.onreadystatechange=function(){"complete"!=this.readyState&&"loaded"!=this.readyState||(this.onreadystatechange=null,e(null,n))}}n._loaded=!1,n.loadJSDeferred=function(a,d){function r(){n._loaded=!0;var r=e.createElement("script");r.src=a,d&&(("onload"in r?t:o)(r,d),r.onload||t(r,d));var l=e.getElementsByTagName("script")[0];l.parentNode.insertBefore(r,l)}n._loaded?r():n.addEventListener?n.addEventListener("load",r,!1):n.attachEvent?n.attachEvent("onload",r):n.onload=r}}(window,document);
+
+  !function(e){"use strict";var n=function(n,t,o){function i(e){if(a.body)return e();setTimeout(function(){i(e)})}function r(){l.addEventListener&&l.removeEventListener("load",r),l.media=o||"all"}var d,a=e.document,l=a.createElement("link");if(t)d=t;else{var f=(a.body||a.getElementsByTagName("head")[0]).childNodes;d=f[f.length-1]}var s=a.styleSheets;l.rel="stylesheet",l.href=n,l.media="only x",i(function(){d.parentNode.insertBefore(l,t?d:d.nextSibling)});var u=function(e){for(var n=l.href,t=s.length;t--;)if(s[t].href===n)return e();setTimeout(function(){u(e)})};return l.addEventListener&&l.addEventListener("load",r),l.onloadcssdefined=u,u(r),l};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
+
+  !function(t){if(t.loadCSS){var e=loadCSS.relpreload={};if(e.support=function(){try{return t.document.createElement("link").relList.supports("preload")}catch(t){return!1}},e.poly=function(){for(var e=t.document.getElementsByTagName("link"),r=0;r<e.length;r++){var n=e[r];"preload"===n.rel&&"style"===n.getAttribute("as")&&(t.loadCSS(n.href,n,n.getAttribute("media")),n.rel=null)}},!e.support()){e.poly();var r=t.setInterval(e.poly,300);t.addEventListener&&t.addEventListener("load",function(){e.poly(),t.clearInterval(r)}),t.attachEvent&&t.attachEvent("onload",function(){t.clearInterval(r)})}}}(this);
+
+  window.disablePushState = false;
+  window.disableDrawer = false;
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5105555504153863",
+    enable_page_level_ads: true
+  });
+</script>
+
+<!--[if lt IE 9]>
+<script src="https://unpkg.com/html5shiv/dist/html5shiv.min.js"></script>
+<![endif]-->
+
+<!-- =============== -->
+<!-- STYLES          -->
+<!-- =============== -->
+<!--[if gt IE 8]><!---->
+<style>
+  
+  article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}*{box-sizing:border-box}html,body{margin:0;padding:0}html{font-size:16px;line-height:1.75}body{color:#333;background-color:#fff;overflow-y:scroll}a{text-decoration:none}.lead{margin-left:-1rem;margin-right:-1rem}img,.img{display:block;max-width:100%;margin-bottom:1rem;border:none}img.lead,.img.lead{max-width:calc(100% + 2rem);width:calc(100% + 2rem)}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-weight:bold;text-rendering:optimizeLegibility}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{margin:1.6rem 0 1rem;line-height:1.6}h1,.h1{font-size:2rem;line-height:1.25}h2,.h2{font-size:1.5rem}h3,.h3{font-size:1.17em}p{margin-top:0;margin-bottom:1rem}p.lead{font-size:1.25rem;font-weight:300;padding:0 1rem}ul,ol,dl{margin-top:0;margin-bottom:1rem}ul,ol{padding-left:1.25rem}hr{position:relative;margin:1.5rem 0;border:0;border-top:1px solid #eee}.hr{padding-bottom:.5rem;border-bottom:1px solid #eee;margin-bottom:1.5rem}h4,h5,h6,.h4,.h5,.h6{margin-bottom:0.5rem;font-size:1rem}table{margin-bottom:1rem;width:100%;width:calc(100% + 2rem);margin-left:-1rem;border:1px solid #e5e5e5;border-collapse:collapse;border-spacing:0}td,th{padding:.25rem .5rem;border:1px solid #e5e5e5}td:first-child,th:first-child{padding-left:1rem}td:last-child,th:last-child{padding-right:1rem}thead+tbody,tbody+tbody,tfoot{border-top:3px double #e5e5e5}tbody tr:nth-child(odd) td,tbody tr:nth-child(odd) th{background-color:#f9f9f9}footer{margin-bottom:2rem}.page,.post{margin-bottom:3em}.page li+li,.post li+li{margin-top:.25rem}.page>header,.post>header{margin-bottom:2rem}.page-title,.post-title{margin-top:0}.post-date{display:block;margin-top:-0.5rem;margin-bottom:1rem;color:#9a9a9a}.related-posts{padding-left:0;list-style:none}.related-posts>li,.related-posts>li+li{margin-top:1rem}.related-posts>li>small,.related-posts>li+li>small{font-size:75%;color:#9a9a9a}.message{margin-bottom:1rem;padding:1rem;color:#787878;background-color:#f9f9f9;margin-left:-1rem;margin-right:-1rem}body,main{position:relative;overflow-x:hidden}@media screen{body::before{content:'';background:#e5e5e5;position:absolute;left:0;top:0;bottom:0}}@media screen and (min-width: 40em){html{font-size:17px}}@media screen and (min-width: 54em){html{font-size:16px}}@media screen and (min-width: 88em){html{font-size:17px}}@media screen and (min-width: 125em){html{font-size:18px}}.sr-only{display:none}.clearfix,.sidebar-social::after,.clearafter::after{content:"";display:table;clear:both}a,.a{position:relative;padding-bottom:.15rem;border-style:hidden}.img{overflow:hidden;background-color:#f9f9f9}.img>img{margin:0;width:100%;height:100%}.sixteen-nine{position:relative}.sixteen-nine::before{display:block;content:"";width:100%;padding-top:56.25%}.sixteen-nine>*{position:absolute;top:0;left:0;right:0;bottom:0}h1+hr,h2+hr,h3+hr,h4+hr,h5+hr,h6+hr{margin-top:0}.fade-in{animation-duration:500ms;animation-name:fade-in;animation-fill-mode:forwards}@keyframes fade-in{from{transform:translateY(-2rem);opacity:0}50%{transform:translateY(-2rem);opacity:0}to{transform:translateY(0);opacity:1}}.mb6{margin-bottom:10rem}.sidebar{color:rgba(255,255,255,0.75);text-align:left}.sidebar::before{content:"";position:absolute;z-index:2;top:0;left:0;bottom:0;right:0;background:linear-gradient(to bottom, rgba(32,32,32,0) 0%, rgba(32,32,32,0.5) 100%)}.sidebar a{color:#fff;border-bottom-color:rgba(255,255,255,0.2)}.right-side{width:100%;margin-left:auto;margin-right:auto}.right-side .ad-first{text-align:center}.right-side .ad-second{text-align:center}@media screen{.right-side{max-width:38rem;min-height:100vh}}@media screen and (min-width: 54em){.right-side{margin-left:20rem;margin-right:1rem;padding:4rem 1rem 12rem}}@media screen and (min-width: 72em){.right-side{margin-left:22rem;max-width:42rem}}@media screen and (min-width: 88em){.right-side{width:162px;margin-left:0rem;margin-right:0rem;padding:0rem;margin-top:10rem;display:block;float:left}}@media screen and (min-width: 96em){.right-side{width:300px;margin-right:0rem}}#_yDrawer{position:relative}@media screen{#_yDrawer{min-height:640px;min-height:100vh}}@media screen and (min-width: 54em){#_yDrawer{width:18rem;margin-left:0}}.sidebar-bg{position:absolute;height:100%;overflow:hidden;top:0;right:0;bottom:0;left:0;background:#202020 center / cover}.sidebar-box{display:flex;justify-content:center}.sidebar-sticky{position:relative;z-index:3}@media screen{.sidebar-sticky{-ms-overflow-style:none;overflow:-moz-scrollbars-none;height:100%;overflow:auto;position:absolute;padding:3rem 0rem;right:2.5rem;left:2.5rem}}.sidebar-sticky::-webkit-scrollbar{display:none}.sidebar-about>h1{color:#fff;font-size:2rem}.sidebar-nav>ul{list-style:none;padding-left:0;margin-bottom:.5rem}a.sidebar-nav-item{width:100%;font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}a.sidebar-nav-subitem{font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}@media screen{.y-drawer-scrim{z-index:2}.y-drawer-content{width:18rem;left:-18rem;z-index:3}}.sidebar-social{margin-bottom:.5rem}.sidebar-social>ul{list-style:none;padding-left:0;margin:0 -.25rem}.sidebar-social>ul>li{float:left}.sidebar-social>ul>li>a{display:inline-block;text-align:center;font-size:1.6rem;line-height:3rem;width:3.1249rem;height:4rem;padding:.5rem 0}.sidebar-social>ul li+li{margin-top:0}.fixed-top{position:fixed;top:0;left:0;width:100%;z-index:1}.navbar>.content{padding-top:0;padding-bottom:0;min-height:0;height:0}.menu{display:inline-block;padding:1.75rem 1.5rem;border-bottom:none;margin-left:-1.5rem;color:#9a9a9a !important}.menu::after{content:"\2630"}@media screen and (min-width: 54em){.menu{padding:1.25rem 1.5rem;position:absolute;left:-9999px}.menu:focus{position:static}}.animation-main{pointer-events:none}.loading{display:none}@media print{.menu{display:none}}.animation-main{opacity:0;will-change:opacity}.loading{position:absolute;top:0;right:0;padding:5.25rem 4.5rem;transform-origin:top right;transform:scale(0.33)}.content{position:relative;margin-left:auto;margin-right:auto;padding:5rem 1rem 12rem}@media screen{.content{min-height:100vh}}@media screen and (min-width: 54em){.content{padding:4rem 1rem 12rem;margin-left:19rem;margin-right:3rem}}@media screen and (min-width: 72em){.content{max-width:42rem;margin-left:21rem}}@media screen and (min-width: 88em){.content{float:left;width:100%;margin-left:22rem;margin-right:5rem}}@media screen and (min-width: 96em){.content{max-width:44rem}}@media screen and (min-width: 102em){.content{margin-left:25rem;margin-right:8rem}}.me{width:6.5rem;height:6.5rem;align-self:center;margin-right:20px;border-radius:100%;position:relative}@media screen and (min-width: 40em){.me{width:7rem;height:7rem}}@media screen and (min-width: 54em){.me{width:6.5rem;height:6.5rem}}@media screen and (min-width: 72em){.me{width:7rem;height:7rem}}main>footer{width:100%;position:absolute;bottom:0;left:0;right:0;padding:0 1rem;color:#9a9a9a;font-size:smaller;text-align:center}main>footer>p{margin-bottom:0}html{font-family:'Sans-serif'}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-family:'Sans-serif'}
+
+</style>
+
+
+<link rel="preload" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0" as="style" onload="this.rel='stylesheet'">
+
+<style id="_pageStyle">
+
+.content a{color:#4f86aa;border-color:rgba(79,134,170,0.2)}.content a:hover{border-color:#4f86aa}:focus{outline-color:#4f86aa}::selection{color:#fff;background:#4f86aa}::-moz-selection{color:#fff;background:#4f86aa}
+
+</style>
+
+
+<noscript>
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0">
+  
+  
+  
+
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <style>
+      html { font-family: 'Lato', 'Sans-serif' }
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading { font-family: 'Lato', 'Sans-serif' }
+    </style>
+  
+
+  
+  <link rel="stylesheet" href="http://localhost:4000/assets/icomoon/style.css">
+</noscript>
+<!--<![endif]-->
+
+</head>
+
+<body>
+  <!-- =============== -->
+<!-- MENU            -->
+<!-- =============== -->
+<div class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <a id="_menu" class="menu no-hover" href="#_title">
+      <span class="sr-only">Menu</span>
+    </a>
+  </div>
+</div>
+
+<!-- =============== -->
+<!-- CONTENT         -->
+<!-- =============== -->
+<div id="_yPushState">
+  <div class="fade-in">
+    <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/nap.jpg">
+      
+
+<article id="post-etc/2019/10/20/tensorflow-kr-3th-meeting" class="post" role="article">
+  <header>
+    <h1 class="post-title">
+      
+        Tensorflow KR 3차 오프라인 모임 후기
+      
+    </h1>
+
+    <p class="post-date heading">
+      <time datetime="2019-10-20T00:00:00+09:00">20 Oct 2019</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/etc/" data-flip="title">ETC</a>
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/etc-lecture/" data-flip="title">Lecture</a>
+
+    </p>
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+    <div class="markdown-body">
+
+
+<style>
+.myAd1190 { display:block; width:98%; height: 280px; }
+@media(min-width: 600px) { .myAd1190 { display: none; } }
+</style>
+<ins class="adsbygoogle myAd1190"
+    data-ad-client="ca-pub-5105555504153863"
+    data-ad-slot="6481487416"
+    ></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
+<br/>
+      <ul>
+  <li>Tensorflow 3차 오프라인 모임 후기입니다</li>
+</ul>
+
+<h3 id="on-device-ml-with-tensorflow-lite">On-device ML with Tensorflow Lite</h3>
+<ul>
+  <li>Jason Zaman
+    <ul>
+      <li>twitter.com/perfinion</li>
+      <li>GDE Machine Learning</li>
+    </ul>
+  </li>
+  <li>On-device ML
+    <ul>
+      <li>Constrained environment</li>
+      <li>Small battery</li>
+      <li>Limited memory</li>
+      <li>Bad connectivity</li>
+    </ul>
+  </li>
+  <li>Why do on-device ML?
+    <ul>
+      <li>더 많은 데이터에 접근하기 위해</li>
+      <li>interaction을 더 빠르게 하기 위해</li>
+      <li>Privacy preserving(클라우드에 올라가면 이슈)</li>
+    </ul>
+  </li>
+  <li>Model Conversion
+    <ul>
+      <li>모델을 실행시키는 방법들
+        <ul>
+          <li>Demo App</li>
+          <li>Pretrained models</li>
+          <li>Retrained models</li>
+          <li>Build from scratch</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>TF Lite까지 가는 Conversion flow
+    <ul>
+      <li>TensorFlow -&gt; Saved Model -&gt; TF Lite Converter -&gt; TF Lite Model</li>
+    </ul>
+  </li>
+  <li>Model optimization
+    <ul>
+      <li><a href="https://www.tensorflow.org/model_optimization/guide/roadmap">loadmap link</a></li>
+    </ul>
+  </li>
+  <li>TFLite conversion flow</li>
+  <li>Sample Code</li>
+  <li>Inference with TFLite Interpreter
+    <ul>
+      <li>생각보다 간단</li>
+    </ul>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  import numpy as np
+  import tensorflow as tf
+	
+  # Load TFLite model and allocate tensors.
+  interpreter = tf.lite.Interpreter(model_path="converted_model.tflite")
+  interpreter.allocate_tensors()
+	
+  # Get input and output tensors.
+  input_details = interpreter.get_input_details()
+  output_details = interpreter.get_output_details()
+	
+  # Test model on random input data.
+  input_shape = input_details[0]['shape']
+  input_data = np.array(np.random.ran
+  dom_sample(input_shape), dtype=np.float32)
+  interpreter.set_tensor(input_details[0]['index'], input_data)
+	
+  interpreter.invoke()
+	
+  # The function `get_tensor()` returns a copy of the tensor data.
+  # Use `tensor()` in order to get a pointer to the tensor.
+  output_data = interpreter.get_tensor(output_details[0]['index'])
+  print(output_data)
+</code></pre></div>    </div>
+  </li>
+  <li>C++에서도 쉽게 가능</li>
+  <li>Incredible inference performancee를 보임</li>
+  <li>Interpreter Core는 Operation Kernels와 Accelerator Delegate, Operation Kernels로 이루어져 있음
+    <ul>
+      <li><a href="https://www.tensorflow.org/lite/performance/delegates">Document</a></li>
+    </ul>
+  </li>
+  <li>Android Neural Network API delegate도 있음. 안드로이드에서도 딥러닝?</li>
+  <li>Optimization
+    <ul>
+      <li>Quantization
+        <ul>
+          <li>Fixed point vs Floating point</li>
+          <li>Post training quantization vs Quantization-aware training</li>
+          <li>진행하면 모델 사이즈가 4배 작아지고, 속도 개선됨</li>
+          <li>TensorFlow =&gt; Saved Model + Calibration Data =&gt; TF Lite Converter =&gt; TF Lite Model</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>EdgeTPU
+    <ul>
+      <li>4 Trillion Operations per Second(TOPS)</li>
+      <li>어마어마한 친구 ㄷㄷ</li>
+      <li>Fixed point only</li>
+      <li>Must fully quantize</li>
+      <li>Compile .tflite file for the EdgeTPU</li>
+    </ul>
+  </li>
+  <li>Quantize 해야하는 이유
+    <ul>
+      <li>에너지 절약</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="auto-scalable한-deep-learning-production을-위한-ai-service-infra-구성-및-ai-devops-cycle">Auto Scalable한 Deep Learning Production을 위한 AI Service Infra 구성 및 AI DevOps Cycle</h3>
+<ul>
+  <li>Feat. Docker로 1만 TPS inference 구축해보기</li>
+  <li>SKT AI Center, 김훈동님 박찬엽님</li>
+  <li>Production AI Serving Infra 구성 및 방법론
+    <ul>
+      <li>Pain Point 1
+        <ul>
+          <li><img src="https://www.dropbox.com/s/7gmjlnk5hwtdfxa/2019-10-20%2013.44.41.jpg?raw=1" /></li>
+          <li>Tensorflow Serving : 멀티 딥러닝 프레임워크 환경이라 커버리지가 높은 방법을 찾음</li>
+          <li>PaaS : 매우 비쌈</li>
+          <li>Flask : Python이 느리고, 험난한 Engineering Art가 필요</li>
+          <li>TensorRT</li>
+          <li>Cloud serverless + NoSQL : 커버리지는 낮을 수 있음. 케바케</li>
+        </ul>
+      </li>
+      <li>다양한 프레임워크 지원을 위해 다른 방법으로 접근</li>
+      <li>머신러닝 모델들 =&gt; PMML 파일로 컨버전해서 상대적으로 성능이 좋은 자바를 통해 inference 진행
+        <ul>
+          <li><img src="https://www.dropbox.com/s/6u3hl3iydoiw3ef/2019-10-20%2013.47.31.jpg?raw=1" /></li>
+        </ul>
+      </li>
+      <li>진행한 방법
+        <ul>
+          <li>Flask, TensorRT</li>
+          <li>무거운 모델이면 TensorRT</li>
+        </ul>
+      </li>
+      <li>3번 Flask
+        <ul>
+          <li>초 저렴 vCPU Docker 많은 인스턴스(월 4만원) vs 어벤져스급 GPU Docker(월 1000만원)</li>
+          <li>저글링 vs 시즈탱크 =&gt; 일반인과 프로게이머의 차이</li>
+        </ul>
+      </li>
+      <li>DL Serving에 대한 고려 사항
+        <ul>
+          <li><img src="https://www.dropbox.com/s/7nwwq35mm8823tq/2019-10-20%2013.50.47.jpg?raw=1" /></li>
+          <li>배치사이즈 큰 경우, 작은 사이즈</li>
+          <li>Python Thread 처리는 최악</li>
+          <li>처리량과 정확도의 Trade Off</li>
+          <li>모델 압축</li>
+        </ul>
+      </li>
+      <li>GPU의 오해
+        <ul>
+          <li>항상 왜 성능 그래프를 ResNet가지고 비교하지?</li>
+          <li>Real World에서 많이 쓰는 모델들 중 MLP, LSTM은 GPU가 안좋은 경우도 있음</li>
+          <li>실제로 실험해본 결과 다 다름</li>
+          <li>CPU로 할 경우 250 TPS =&gt; 데이터 다 전역에 올리고 로그 못찍고 하면 가능했음(BiLSTM)</li>
+          <li>GPU로 할 경우 16TPS</li>
+        </ul>
+      </li>
+      <li>TensorRT 사용하는 방법
+        <ul>
+          <li>TensorRT를 이용하는 Restful API 사용하기</li>
+          <li>Flask로 TensorRT Engine 호출하기 =&gt; 여전히 싱글 프로세스라 여전히 병목이 생길 수 있음(플라스크 앞단에서)</li>
+        </ul>
+      </li>
+      <li>Pain Point 2 - Poor Python Performance
+        <ul>
+          <li>Python -&gt; node로 바꿔도 성능이 개선됨</li>
+          <li>자바 버텍스 쓰니 성능 80배 올랐음</li>
+        </ul>
+      </li>
+      <li>Pain Point 2 - 해결 팁
+        <ul>
+          <li><img src="https://www.dropbox.com/s/stglx1hpuafrycw/2019-10-20%2013.56.43.jpg?raw=1" /></li>
+          <li><img src="https://www.dropbox.com/s/j1i56sajafgn3wl/2019-10-20%2013.59.15.jpg?raw=1" /></li>
+          <li>Pandas를 빼고 순수 파이썬으로 쓴다</li>
+          <li>함수형 언어처럼 가상 함수를 사용(Data copy 병목 줄이기) =&gt; Python에서 Map, Lambda 사용! functionstools.partial</li>
+          <li>Python Thread를 쓰지 않음 =&gt; 고루틴처럼 쓸거면 멀티프로세스가 낫고.. Go의 Goroutin 쓰듯 하려면 cotyledon</li>
+          <li>MemoryView 활용
+            <ul>
+              <li>Data 핸들시 pointer 접근하듯</li>
+              <li>대용량 Data Memory 복사 방지</li>
+              <li>C언어로 데이터 핸들링할 때 병목이 생기는 부분은 메모리카피 =&gt; 줄이기 위한 포인터</li>
+            </ul>
+          </li>
+          <li>Microservice로 잘게 쪼개고</li>
+          <li>모든 것은 비동기로</li>
+          <li>PMML + Java 컨버전</li>
+        </ul>
+      </li>
+      <li>훈동님이 마소에서 발표한 사례를 실제 프러덕션에 적용하진 못함. gunicorn을 사용해 안정성을 잡음</li>
+      <li><img src="https://www.dropbox.com/s/90cccgn9smznivi/2019-10-20%2014.00.17.jpg?raw=1" /></li>
+      <li>WSGI -&gt; ASGI로 큰 도움이 됨</li>
+      <li>Pooling, streaming, web hook 등의 비동기 방법이 있는데 어떤 라이브러리 쓸지 정의해서 컨버전함</li>
+      <li>싱글톤을 데코레이터로 감싸기</li>
+      <li>CPU는 메모리가 더 많아서 멀티프로세스에 강함</li>
+      <li>어디서 병목이 생기는지 잘 봐야하고, Low Level Debug 필요 : CProfile, kCacheGrind 등을 사용함</li>
+    </ul>
+  </li>
+  <li>Production AI Open Source Eco System
+    <ul>
+      <li>Pandas UDF
+        <ul>
+          <li>스파크를 깔고 pandas로</li>
+          <li>배치에 최적화</li>
+        </ul>
+      </li>
+      <li>Horovod
+        <ul>
+          <li>분산, 스파크로 메모리 처리 가능</li>
+        </ul>
+      </li>
+      <li>Petastorm
+        <ul>
+          <li>엄청 큰 데이터로 할 경우 장비에 로딩이 안되면 하둡에 수백기가 접근할 경우 사용</li>
+        </ul>
+      </li>
+      <li>Horizon
+        <ul>
+          <li>강화학습시</li>
+          <li>파이토치로 하고 onnx</li>
+        </ul>
+      </li>
+      <li>ML WorkFlow
+        <ul>
+          <li>Airflow, Kubeflow</li>
+        </ul>
+      </li>
+      <li>TFX
+        <ul>
+          <li>TensorFlow 모델을 쓰면 좋음</li>
+        </ul>
+      </li>
+      <li>mlflow
+        <ul>
+          <li>MLOps 솔루션으로 스파크쪽으로 만드는 것</li>
+        </ul>
+      </li>
+      <li>Serving at SCale : Seldon</li>
+      <li>Rapids.ai : GPU를 cuda 사용</li>
+      <li>Clipper.ai 딥러닝 쿼리 캐싱</li>
+      <li>ONNX : 압축 관련쪽에서 사용</li>
+    </ul>
+  </li>
+  <li>Production AI DevOps
+    <ul>
+      <li>지속적 통합과 배포
+        <ul>
+          <li>도커</li>
+          <li>개발환경 깔끔하게 하기 / 다른 곳에서 재현 가능</li>
+        </ul>
+      </li>
+      <li>마이크로서비스
+        <ul>
+          <li>Stateless하게 사용</li>
+          <li>딥러닝은 state가 없음</li>
+          <li>멀티톤 고려하면 지옥이..</li>
+        </ul>
+      </li>
+      <li>커뮤니케이션
+        <ul>
+          <li>많은 팀의 사람들이 각자 모델 만듬</li>
+        </ul>
+      </li>
+      <li>코드형 인프라스트럭쳐
+        <ul>
+          <li>테라폼 =&gt; 클라우드 서비스를 코드 레벨로 관리</li>
+          <li>인프라 생성이 아닌 쿠버네티스로 한번에 다 처리함</li>
+        </ul>
+      </li>
+      <li>쿠버네티스
+        <ul>
+          <li>Pod을 관리하는 상위 개념들
+            <ul>
+              <li>컨테이너일수도 있고, 여러 개를 관리하기 위한 개념 단위</li>
+              <li>Replicaset, Deployment 정도 집중</li>
+            </ul>
+          </li>
+          <li>TargetCPUUtilizationPercentage를 지정하면 그 기준으로 처리함</li>
+        </ul>
+      </li>
+      <li>배포는 Azure Devops의 pipelines의 기능을 활용
+        <ul>
+          <li>Audit log : 누가 뭘 했다</li>
+          <li>새로운 이미지 배포를 위해 latest 태그 만드는 것을 지양..! 환경/설정이 변경된 것이 아니라 배포가 되지 않음</li>
+          <li>Kubectl 명령을 devops 내에서만 실행</li>
+        </ul>
+      </li>
+      <li>Rollback
+        <ul>
+          <li>배포 기록 관리해주고, 기록 기반 롤백이 됨</li>
+          <li>Azure에서다 해준다</li>
+        </ul>
+      </li>
+      <li>코드 내에서 env 호출로 사용하지만 왠만하면 환경 변수 안쓰는게 좋음
+        <ul>
+          <li>db에 접근하는 서비스를 만들고 진행해야 함</li>
+        </ul>
+      </li>
+      <li>모델 서빙을 위한 패턴
+        <ul>
+          <li>One fat image
+            <ul>
+              <li>600k면 도커 이미지 올리는게 좋을숟도</li>
+              <li>10기가면… 이미지에 먼저 올린다? 빌드하는데 30분 넘음. 불가능한 이야기~</li>
+              <li>빌드할 떄 모델을 넣음</li>
+            </ul>
+          </li>
+          <li>Model puller sidecar
+            <ul>
+              <li>Pod에 sidecar 개념이 있음. 다른 컨테이너를 붙여줌</li>
+              <li>볼륨을 공유하고 있는 웹 서버 + 스토리지 체크하는 친구만들어서 나눔</li>
+              <li>자연어는 전처리 후처리 코드를 만들까 사이드카를 넣을까? 고민 중</li>
+            </ul>
+          </li>
+          <li>Attached volumn
+            <ul>
+              <li>클라우드 기능 사용</li>
+              <li>자신 컴퓨터의 하드디스크처럼 mount</li>
+              <li>모델 경로 여기에 넣어주세요~ 이런 느낌</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="프러덕션-환경에서-연구하기">프러덕션 환경에서 연구하기</h3>
+<ul>
+  <li>하이퍼커넥트 AI lab 하성주님</li>
+  <li>프러덕션(서비스 중인/될 제품)과 연구(불확실한 기술 개발)의 이야기</li>
+  <li>AI Lab
+    <ul>
+      <li>모바일 환경에서 실시간으로 이미지 다루는 것에 고민함</li>
+      <li>기존 팀의 포커스는 모바일 환경에서 실시간으로 이미지 다루기였음(MMNet)</li>
+      <li>이제 뭐할까? 워크샵
+        <ul>
+          <li>10개 학회 =&gt; 3700편 논문</li>
+          <li>유저 니즈/비즈니스 트렌드 기반 아이디어 브레인스토밍</li>
+          <li>300가지 정도의 잠재적인 활용처 고민</li>
+          <li>1년간 로드맵 구성</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>프로젝트 선정
+    <ul>
+      <li>실현 가능성</li>
+      <li>임팩트</li>
+      <li>기술적 중요도</li>
+      <li>트렌드</li>
+    </ul>
+  </li>
+  <li>Keyword Spotting
+    <ul>
+      <li>특정 핵심어가 발성되었는지 검출하는 문제</li>
+      <li>고려 사항
+        <ul>
+          <li>도메인 확장
+            <ul>
+              <li>CV 외 도메인으로 확장</li>
+            </ul>
+          </li>
+          <li>난이도
+            <ul>
+              <li>분류 문제라 상대적으로 쉬움</li>
+            </ul>
+          </li>
+          <li>기존 전문성
+            <ul>
+              <li>경량 모델에서 모바일 배포를 많이 해서 좋은 성과를 금방 거둘 수 있다 판단</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Literature Survey
+    <ul>
+      <li>수백편을 목록으로 뽑고, 관력있을 것 같은 것들을 뽑음</li>
+      <li>데이터 오픈, 코드 정리 유무 등</li>
+      <li>스프레드시트 진행</li>
+    </ul>
+  </li>
+  <li>Baseline
+    <ul>
+      <li>비교 대상이 되는 모델이 있어야 개선이 의미 있음</li>
+      <li>점진적으로 비교할 수 있는 모델을 늘려가며 다양한 컴포넌트를 확보</li>
+      <li>프로덕션에는 이미 연구된 모델을 구현하는 것이 충분할 수도 있음</li>
+    </ul>
+  </li>
+  <li>Baseline Selection
+    <ul>
+      <li>합리적 성능이 나오는지? (SotA와 비교)</li>
+      <li>구현 난이도 및 공식 코드 공개 여부
+        <ul>
+          <li>재현이 까다로운 경우가 자주 있음</li>
+        </ul>
+      </li>
+      <li>프러덕션에서 적용될 제약 조건을 얼마나 만족하는지?
+        <ul>
+          <li>모바일 CPU에서 실시간 수행 가능한가?</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Data
+    <ul>
+      <li>공개 데이터셋
+        <ul>
+          <li>오픈된 데이터를 바탕으로 리포팅</li>
+          <li>학계에 없으면 줄 수 없다고 많이 말함</li>
+        </ul>
+      </li>
+      <li>비공개 데이터셋
+        <ul>
+          <li>내가 관심있는 도메인의 모델 성능은 다를 수 있음</li>
+          <li>데이터 수집에 대한 고민
+            <ul>
+              <li>어노테이션, 정합성 확인</li>
+            </ul>
+          </li>
+          <li>데이터 탐색이 필수</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>PoC
+    <ul>
+      <li><img src="https://www.dropbox.com/s/n2yp7gw858a1lun/2019-10-20%2014.30.11.jpg?raw=1" /></li>
+      <li>일단 처음엔 큰 모델을 만들어서 우리가 원하는 정확도가 나오는지 파악함</li>
+      <li>중간 산출물이 프러덕션 활용될 수 있도록 고민함</li>
+    </ul>
+  </li>
+  <li>Process
+    <ul>
+      <li><img src="https://www.dropbox.com/s/08ndrguwa2fghrk/2019-10-20%2014.31.16.jpg?raw=1" /></li>
+      <li>일단 한바퀴 돌면 어디가 문제인지 알 수 있어서 어느정도 휴리스틱도 괜찮음</li>
+      <li>오디오 처음이라 컴포넌트 만듬</li>
+    </ul>
+  </li>
+  <li>Evaluation
+    <ul>
+      <li><img src="https://www.dropbox.com/s/xwijd2is6gv9352/2019-10-20%2014.32.19.jpg?raw=1" /></li>
+      <li>모델 리포팅 결과가 재현 안되는 경우가 있음</li>
+      <li>모델 최적화하는 사람의 역량에 따라 다를 수 있음</li>
+      <li>Flops 연산량을 뽑아줌 =&gt; 모바일에선 약한 상관관계가 있음</li>
+      <li>제품을 어떻게 사용할지에 대해 고민</li>
+    </ul>
+  </li>
+  <li>Research
+    <ul>
+      <li><img src="https://www.dropbox.com/s/g86a36pc02jsyl0/2019-10-20%2014.35.08.jpg?raw=1" /></li>
+      <li>유망한 모델을 재현하며 아이디어 얻기</li>
+      <li>다른 도메인의 아이디어 훔쳐오기</li>
+      <li>팀원과 토론</li>
+    </ul>
+  </li>
+  <li>KWS Research Progress
+    <ul>
+      <li>오리지널 REsNet과 다른 구조</li>
+      <li>최대한 맞추니 결과가 좀 좋아짐. 하지만 속도가 빠르지 않아 가속할 방법 고민
+        <ul>
+          <li>기존 모바일 컴퓨터 비전 전문성을 지렛대로 활용</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Audio Processing
+    <ul>
+      <li><img src="https://www.dropbox.com/s/xnsyueqon98dwgr/2019-10-20%2014.37.19.jpg?raw=1" /></li>
+    </ul>
+  </li>
+  <li>CNN Based KWS
+    <ul>
+      <li>네트워크가 깊어져야 함</li>
+    </ul>
+  </li>
+  <li>Temporal Convolution
+    <ul>
+      <li><img src="https://www.dropbox.com/s/hd1c20jbtv1owga/2019-10-20%2014.38.08.jpg?raw=1" /></li>
+      <li>모바일에서 만들면 1d가 매우 빠름(캐시 친화적인 이슈)</li>
+    </ul>
+  </li>
+  <li>TC-ResNet
+    <ul>
+      <li><img src="https://www.dropbox.com/s/zi8owl743sm8y6b/2019-10-20%2014.39.12.jpg?raw=1" /></li>
+      <li>2D -&gt; 1D로 변환</li>
+    </ul>
+  </li>
+  <li>Result
+    <ul>
+      <li><img src="https://www.dropbox.com/s/4ofjigqbmtrbism/2019-10-20%2014.39.50.jpg?raw=1" /></li>
+      <li>정확도 11% 개선, 모델 대비 385배 빠름</li>
+    </ul>
+  </li>
+  <li>Publishing
+    <ul>
+      <li><img src="https://www.dropbox.com/s/cb1k9zze7lhdfvm/2019-10-20%2014.40.21.jpg?raw=1" /></li>
+      <li>Ablation 테스트를 통해 불필요한 컴포넌트를 이해</li>
+    </ul>
+  </li>
+  <li>Ablation Test
+    <ul>
+      <li><img src="https://www.dropbox.com/s/qgnrqeqx6lykofb/2019-10-20%2014.41.16.jpg?raw=1" /></li>
+      <li>프러덕션땐 잘되면 그냥 냅두지만 논문 쓰다보면 제거할 수 있음 =&gt; 결국 다시 프러덕션때도 제거</li>
+    </ul>
+  </li>
+  <li>Retrospection
+    <ul>
+      <li>3개월만에 진행</li>
+      <li>기계학습 전문성 &gt; 도메인 전문성이었떤 예</li>
+      <li>기존 전문성을 잘 활용함</li>
+    </ul>
+  </li>
+  <li>Production + Research
+    <ul>
+      <li>제작을 중심으로 하는 회사에서 성공적인 기계학습 조직 운영하려면
+        <ul>
+          <li>서로 기대를 맞추고</li>
+          <li>서로 윈윈할 수 있어야 함</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Expectation Management
+    <ul>
+      <li><img src="https://www.dropbox.com/s/65m6efryci5lajj/2019-10-20%2014.42.49.jpg?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Positive Sum Game
+    <ul>
+      <li><img src="https://www.dropbox.com/s/txind7rfmc65n9r/2019-10-20%2014.44.14.jpg?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Ownership
+    <ul>
+      <li><img src="https://www.dropbox.com/s/kbinhnk24zolg2e/2019-10-20%2014.45.03.jpg?raw=1" /></li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="당근마켓-추천-시스템">당근마켓 추천 시스템</h3>
+<ul>
+  <li>당근마켓, 전무익님</li>
+  <li>초기 타겟은 여성 육아 맘이였는데 요샌 10대~60대 다양한 사람들이 생김</li>
+  <li>첫 화면, 홈 피드에서 추천을 제공하고 있음</li>
+  <li>큰 목적이 없어도 피드를 사용함
+    <ul>
+      <li>동네 사람들의 제품 구경, 득템하는 재미</li>
+    </ul>
+  </li>
+  <li>첫 단계
+    <ul>
+      <li><img src="https://www.dropbox.com/s/3f0bao2qbtc1ir2/2019-10-20%2014.51.21.jpg?raw=1" /></li>
+      <li>처음부터 완전한 피드 개인화 불가
+        <ul>
+          <li>소규모 스타트업</li>
+          <li>최신 글의 중요성 고려</li>
+        </ul>
+      </li>
+      <li>추천 글을 피드 사이에 노출</li>
+    </ul>
+  </li>
+  <li>유튜브 추천 시스템 논문을 활용</li>
+  <li>추천 시스템 구조
+    <ul>
+      <li>사용자 정보(봤던 글, 검색 키워드) =&gt; 추천 모델 =&gt; 다음 볼 글 예측</li>
+      <li>실시간 추천
+        <ul>
+          <li><img src="https://www.dropbox.com/s/oh89g3akxkk7kmv/2019-10-20%2014.52.31.jpg?raw=1" /></li>
+        </ul>
+      </li>
+      <li>Two Stage
+        <ul>
+          <li>후보 모델 + 랭킹 모델</li>
+          <li>후보 모델만 구현함</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>학습 데이터
+    <ul>
+      <li><img src="https://www.dropbox.com/s/1o8tigg8409u8po/2019-10-20%2014.53.33.jpg?raw=1" /></li>
+    </ul>
+  </li>
+  <li>학습 네트워크
+    <ul>
+      <li><img src="https://www.dropbox.com/s/1ppevq60ckehrkg/2019-10-20%2014.54.00.jpg?raw=1" /></li>
+    </ul>
+  </li>
+  <li>후보 모델의 역할
+    <ul>
+      <li>전체 글 중 사용자가 좋아할만한 200개 찾기</li>
+      <li>추천 후보 pool을 빠르게 준비</li>
+      <li>단일 모델론 수많은 글 중 단 하나를 맞추는건 쉽지 않아 이런 구조로 진행</li>
+    </ul>
+  </li>
+  <li>측정 결과
+    <ul>
+      <li><img src="https://www.dropbox.com/s/dod5jkmuqhq98tn/2019-10-20%2014.55.24.jpg?raw=1" /></li>
+    </ul>
+  </li>
+  <li>실시간 처리
+    <ul>
+      <li>Articel vectors를 학습해 인덱스 구축</li>
+      <li>user vector와 모든 article vectors에 대한 dot product 연산 대체</li>
+      <li>매우 빠른 유사 벡터 검색이 가능하고, faiss 라이브러리 활용함</li>
+    </ul>
+  </li>
+  <li>Nearest neighbor index 준비
+    <ul>
+      <li><img src="https://www.dropbox.com/s/6pzzxkgsvi5gj08/2019-10-20%2014.56.29.jpg?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Inference
+    <ul>
+      <li><img src="https://www.dropbox.com/s/9m20wjz03ufnehz/2019-10-20%2014.57.03.jpg?raw=1" /></li>
+      <li>CPU 0.01s 이하</li>
+    </ul>
+  </li>
+  <li>추천 시스템 구축
+    <ul>
+      <li>데이터 수집
+        <ul>
+          <li><img src="https://www.dropbox.com/s/8fgriwxcrads011/2019-10-20%2014.57.57.jpg?raw=1" /></li>
+        </ul>
+      </li>
+      <li>학습 Examples
+        <ul>
+          <li><img src="https://www.dropbox.com/s/znafdjf66riqsoq/2019-10-20%2014.58.32.jpg?raw=1" /></li>
+          <li>이전에 본 글을 BigQuery ARRAY_AGG 사용함</li>
+        </ul>
+      </li>
+      <li>CSV 추출
+        <ul>
+          <li><img src="https://www.dropbox.com/s/h1fivpuliojo7u4/2019-10-20%2014.59.19.jpg?raw=1" /></li>
+        </ul>
+      </li>
+      <li>데이터 전처리
+        <ul>
+          <li><img src="https://www.dropbox.com/s/rvv3usqm93u1u0g/2019-10-20%2015.00.19.jpg?raw=1" /></li>
+        </ul>
+      </li>
+      <li>병렬 분산 처리
+        <ul>
+          <li>데이터가 많을수록 데이터가 선형적으로 시간 소요</li>
+          <li>Tensorflow Transform 활용</li>
+        </ul>
+      </li>
+      <li>TF Transform
+        <ul>
+          <li><img src="https://www.dropbox.com/s/cdylbaxf51vrcx8/2019-10-20%2015.01.19.jpg?raw=1" /></li>
+        </ul>
+      </li>
+      <li>Training-serving skew
+        <ul>
+          <li><img src="https://www.dropbox.com/s/gwdx12lhrt47emg/2019-10-20%2015.01.45.jpg?raw=1" /></li>
+        </ul>
+      </li>
+      <li>Cloud Dataflow 사용
+        <ul>
+          <li><img src="https://www.dropbox.com/s/9yq242bwrmall0x/2019-10-20%2015.02.34.jpg?raw=1" /></li>
+        </ul>
+      </li>
+      <li>모델 학습
+        <ul>
+          <li>지속적으로 안정적 학습이 중요</li>
+          <li>인프라 관리가 부담, 클라우드 관리형 서비스 사용</li>
+        </ul>
+      </li>
+      <li>Cloud AI Platform
+        <ul>
+          <li>Tensorflow Estimator로 모델 작성</li>
+        </ul>
+      </li>
+      <li>모델 서빙
+        <ul>
+          <li><img src="https://www.dropbox.com/s/a5xyo3ypkmliwqq/2019-10-20%2015.04.19.jpg?raw=1" /></li>
+        </ul>
+      </li>
+      <li>시간이 지나며 새로운 글을 추천하기 위해 지속적 학습, 업데이트</li>
+      <li>파이프라인 시스템
+        <ul>
+          <li>워크플로우 작업 실행</li>
+          <li>실행 로그/결과 확인</li>
+          <li>정해진 일정에 맞춰 실행</li>
+          <li>직접 구현하기보다 오픈소스 활용</li>
+          <li>Kubeflow pipelines
+            <ul>
+              <li>컨테이너 기반
+                <ul>
+                  <li>워브플로우 작업 정의 편리</li>
+                  <li>개발과 실행 환경을 동일하게 유지할 수 있음</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>파이프라인 작성
+            <ul>
+              <li><img src="https://www.dropbox.com/s/b9ytw24wqzcdxlv/2019-10-20%2015.06.25.jpg?raw=1" /></li>
+            </ul>
+          </li>
+          <li>파이프라인 배포
+            <ul>
+              <li><img src="https://www.dropbox.com/s/njf6q0lxwf66k1z/2019-10-20%2015.07.05.jpg?raw=1" /></li>
+            </ul>
+          </li>
+          <li>파이프라인 배포 코드
+            <ul>
+              <li><img src="https://www.dropbox.com/s/lmec44r71j30qzn/2019-10-20%2015.07.34.jpg?raw=1" /></li>
+            </ul>
+          </li>
+          <li>Output Viewer
+            <ul>
+              <li>예측 결과를 쉽게 볼 수 있음</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>홈 피드 목록 중간에 넣고 있음</li>
+  <li>피드 개인화 추천 효과
+    <ul>
+      <li>글 보기 +6%</li>
+      <li>방문 시간 +5%</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="라이트닝-토크">라이트닝 토크</h3>
+<ul>
+  <li>Machina Black
+    <ul>
+      <li>기술로 법률 시장을 혁신</li>
+      <li>NLP + Legal</li>
+      <li>인공지능 변호사 : 계약서 자동 검토, 계약서 데이터 활용</li>
+      <li>인공지능 판사 : 판결 예측, 송무 데이터 활용</li>
+      <li>Legal Translation</li>
+      <li>법률 번역 =&gt; 영어도 잘하고 법도 잘 알아야 함</li>
+      <li>연말에 베타 서비스</li>
+    </ul>
+  </li>
+  <li>Art LAB
+    <ul>
+      <li>AI &amp; Robotics + Technology</li>
+      <li>Transformation : ART, 변혁으로 삶에 뿌리내림</li>
+      <li>Team : 친구이자 동료가 됨</li>
+      <li>Beauty AI
+        <ul>
+          <li>아름다움, 관리, 힐링 =&gt; 나를 아끼고 존중하며 소중히 여김</li>
+          <li>기획 AI : 소비자 니즈 센싱, 맞춤형 추천, 신제품 기획</li>
+          <li>개발 AI : 원료-제품 관계, 재고 관리, 업무 효율화</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Lomin
+    <ul>
+      <li>컴퓨터 비전 집중</li>
+      <li>DeepFake 검출</li>
+      <li>무상에서 개인 정보 비식별화</li>
+      <li>문자 인식 솔루션 개발 중</li>
+      <li>Visual Identity Protector : 개인 정보</li>
+    </ul>
+  </li>
+  <li>Nota
+    <ul>
+      <li>경량화 기술 연구</li>
+      <li>클라우드를 없애고 다른 Edge device에 모델이 돌아가도록 진행</li>
+      <li>Medical Device 회사와 의료 영상, 생채 진행</li>
+      <li>Security Company와 같이 CCTV 모델 연구</li>
+    </ul>
+  </li>
+  <li>에스아이에이
+    <ul>
+      <li>RNN을 이용한 전력 가격 예측 Github</li>
+      <li>위성 데이터로 판별</li>
+      <li>위성 영상으로 지구에 뭐가 있는지 판단</li>
+      <li>다양한 논문 연구하고 제출함</li>
+      <li>경진대회 장려 중ㅋㅋㅋ</li>
+      <li>Object Detection, Ship Detection, Explainable AI, Vehicle Detection 등 집중</li>
+    </ul>
+  </li>
+  <li>Hutom
+    <ul>
+      <li>수술 중 발생하는 문제를 데이터 기반으로 해결</li>
+      <li>암 수술은 기구를 통해서 진행하고 있음</li>
+      <li>로봇 팔이 들어감</li>
+      <li>데이터
+        <ul>
+          <li>SEE : Stereo Camera</li>
+          <li>DO : Controller</li>
+          <li>키네마틱 데이터</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>DACON
+    <ul>
+      <li>경진 대회</li>
+      <li>교육에 활용</li>
+      <li>국방 + 쎄트렉아이와 함께해서 곧 대회 열림</li>
+      <li>위성 이미지 객체 추출</li>
+      <li>비즈니스 데이터 Fit, 비즈니스 대회 Fit, 운영 자동화(치팅, 자동 리포팅 등), 고도화 및 적용</li>
+    </ul>
+  </li>
+  <li>PR12
+    <ul>
+      <li>매주 일요일 밤 10시에 매주 2편씩 논문 읽고 발표 영상 녹화해 공유</li>
+      <li>여태 누적 200편</li>
+      <li>컴퓨터 비전 위주로 진행</li>
+      <li>ㅋㅋㅋㅋㅋㅋㅋㅋ 아침에 영상 보는 모임 나옴</li>
+      <li>총 View : 431,766</li>
+      <li>Like : 3,863</li>
+      <li>Unlike : 238</li>
+      <li>최다 조회수 3만회 =&gt; Faster RCNN</li>
+      <li>외국인들이 영어 번역해달라고 하기도 함</li>
+      <li>진원님 최초 기수부터 마지막까지 계속 하고 계심! 파이팅!!</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="kafka-스트림을-위한-멀티프로세스-딥러닝-추론">Kafka 스트림을 위한 멀티프로세스 딥러닝 추론</h3>
+<ul>
+  <li>네이버 쇼핑플랫폼</li>
+  <li>이성철님</li>
+  <li>쇼핑 카테고리 분류
+    <ul>
+      <li><img src="https://www.dropbox.com/s/0zzdd7eacmp6zwq/2019-10-20%2016.50.54.jpg?raw=1" /></li>
+    </ul>
+  </li>
+  <li>과거엔 관리자가 쇼핑몰 카테고리를 직접 매핑했으나, 요새는 딥러닝 기반 카테고리 분류를 하고 있음</li>
+  <li>Kafka 스트림을 위한 추론 시스템 개발
+    <ul>
+      <li><img src="https://www.dropbox.com/s/o5fjuh4h6dyf1fu/2019-10-20%2016.52.49.jpg?raw=1" /></li>
+      <li>메세지 기반, 썸네일 만들고 카테고리 분류 절차 등을 카프카에 태움</li>
+    </ul>
+  </li>
+  <li>Raw Data
+    <ul>
+      <li><img src="https://www.dropbox.com/s/yh8ra6l6u0ahqcu/2019-10-20%2016.53.48.jpg?raw=1" /></li>
+    </ul>
+  </li>
+  <li>텍스트 전처리 =&gt; Numpy Array 만듬</li>
+  <li>이미지 전처리
+    <ul>
+      <li><img src="https://www.dropbox.com/s/q3phju2uzyi0wf2/2019-10-20%2016.55.59.jpg?raw=1" /></li>
+      <li>디스크 IO가 없어야 함(메모리에서 올림)</li>
+      <li>나누기는 GPU에서 처리
+        <ul>
+          <li>나누기는 CPU consuming한 연산</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Multi-process inference
+    <ul>
+      <li><img src="https://www.dropbox.com/s/x534ktohfvtwu54/2019-10-20%2016.57.14.jpg?raw=1" /></li>
+      <li>Consumer : 토픽에서 메세지를 받아오는 역할</li>
+      <li>Preprocessor : 받아온 메세지를 모델에 입력할 수 있도록 데이터 변환</li>
+      <li>Classifier : GPU 모델을 로딩해서 들어오는 데이터를 계속 inference</li>
+      <li>GPU를 최대로 쓰기 위해 Classifier보다 더 많은 Preprocessor가 필요(이렇게 하면 분류기 앞에 배치 큐에 많은 것들이 담김)</li>
+    </ul>
+  </li>
+  <li>Inference performance
+    <ul>
+      <li><img src="https://www.dropbox.com/s/1mgehwg5bhgtg26/2019-10-20%2016.59.20.jpg?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Multi process Class(Consumer의 예)
+    <ul>
+      <li><img src="https://www.dropbox.com/s/owrhafy0ezu4ny6/2019-10-20%2017.00.29.jpg?raw=1" /></li>
+      <li>Multiprocessing.Process 상속하고 잘 종료하기 위해 stop() 함수 작성하고</li>
+      <li>run() 함수 필수 작성
+        <ul>
+          <li>결과 quere가 full이면 대기</li>
+        </ul>
+      </li>
+      <li>Multiprocessing의 Array가 있구나</li>
+    </ul>
+  </li>
+  <li>main.py
+    <ul>
+      <li>Process Start / Stop</li>
+      <li><img src="https://www.dropbox.com/s/h5v9reitc6jcdn6/2019-10-20%2017.01.25.jpg?raw=1" /></li>
+    </ul>
+  </li>
+  <li>이미지와 텍스트 학습 데이터 준비
+    <ul>
+      <li>Training 데이터셋 만들기
+        <ul>
+          <li>이미지와 텍스트를 같이 담을 수 있어야 하고</li>
+          <li>Spark Tensorflow 사이에서 자유롭게 사용 가능해야 함</li>
+          <li>TFRecords가 가장 적합</li>
+        </ul>
+      </li>
+      <li>이미지 URL만 아닌 바이너리 파일
+        <ul>
+          <li><img src="https://www.dropbox.com/s/cxjnoc5lxcjy8iw/2019-10-20%2017.03.51.jpg?raw=1" /></li>
+          <li>100 ~ 200 MB가 적절</li>
+          <li>파티션 개수 조절!!</li>
+        </ul>
+      </li>
+      <li>Load data using tf.data
+        <ul>
+          <li><img src="https://www.dropbox.com/s/06zl67tqaj70pcq/2019-10-20%2017.05.32.jpg?raw=1" /></li>
+          <li>런타임 shuffle은 미리 하고 저장</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="graph-neural-networks">Graph Neural Networks</h3>
+<ul>
+  <li>류성옥님</li>
+  <li>분자가 그래프로 표현됨</li>
+  <li>Inductive Biases in Neural networks
+    <ul>
+      <li>파라미터라이즈를 할 수 있음</li>
+      <li>뉴럴넷은 연속함수를 근사할 수 있단 사실 때문에 사용</li>
+      <li>MLP에서 더 나아가서 도메인에 맞게 학습
+        <ul>
+          <li>이미지 : CNN</li>
+          <li>Autoregressive : RNN</li>
+        </ul>
+      </li>
+      <li>의도적으로 bias를 걸어주는 것을 inductive bias라 표현함</li>
+      <li>Social Graph, 3D Mesh, Molecular Graph는 illegular함. 물분자와 에탄올의 그래프가 모두 다름</li>
+      <li>주어진 그래프에 다르게 inductive bias를 걸 수 있을까?에 적합한 Graph neural network</li>
+    </ul>
+  </li>
+  <li>Node feature updates in GNNs
+    <ul>
+      <li>Graph Convolution networks
+        <ul>
+          <li><img src="https://www.dropbox.com/s/ja9m0hc051c367q/2019-10-20%2017.13.21.jpg?raw=1" /></li>
+          <li>Feature들이 벡터로 표현</li>
+          <li>노드가 어떻게 업데이트가 되는지를 표현하는 기본적인 식</li>
+          <li><img src="https://www.dropbox.com/s/tvllcles7vgbbzz/2019-10-20%2017.14.45.jpg?raw=1" /></li>
+          <li>주변 사람과 connection을 의미하는 adjacency matrix</li>
+        </ul>
+      </li>
+      <li>Graph Attention Networks
+        <ul>
+          <li><img src="https://www.dropbox.com/s/irsjjmzfglugiee/2019-10-20%2017.15.54.jpg?raw=1" /></li>
+          <li>관계를 더 고려해 feature update</li>
+        </ul>
+      </li>
+      <li>self-attention, positonal encoding을 주로 사용함 =&gt; 그래프 어텐션은 주변의 관계를 묘사할 때 어텐션을 사용</li>
+    </ul>
+  </li>
+  <li>Message Passing Neural Networks
+    <ul>
+      <li><img src="https://www.dropbox.com/s/tvx6musidnxyakm/2019-10-20%2017.18.53.jpg?raw=1" /></li>
+      <li>GRU</li>
+      <li>Edge passing이 있을 때 사용 가능</li>
+    </ul>
+  </li>
+  <li>Learning tasks with GNN
+    <ul>
+      <li>Node-level prediction
+        <ul>
+          <li><img src="https://www.dropbox.com/s/lxna3k8cfzkypzt/2019-10-20%2017.20.32.jpg?raw=1" /></li>
+          <li>노드 단위 예측</li>
+        </ul>
+      </li>
+      <li>Edge-level predictions
+        <ul>
+          <li><img src="https://www.dropbox.com/s/bhad5dzmpt508w9/2019-10-20%2017.20.46.jpg?raw=1" /></li>
+          <li>유저, 아이템 노드가 있을 경우</li>
+          <li>주로 본 사람은 누구인가? =&gt; 누가 뭘 봤다라는 connection 레이어를 예측하면 아이템의 관계를 inference 할 수 있음</li>
+          <li>Relational inference</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Graph-level prediction
+    <ul>
+      <li><img src="https://www.dropbox.com/s/6lhouzaecquotco/2019-10-20%2017.22.24.jpg?raw=1" /></li>
+      <li>이 그래프 구조가 이 병을 해결할 수 있는가?</li>
+    </ul>
+  </li>
+  <li>Graph generations
+    <ul>
+      <li><img src="https://www.dropbox.com/s/tbefh98741nip15/2019-10-20%2017.24.16.jpg?raw=1" /></li>
+      <li>노드를 추가할 것인지?</li>
+      <li>엣지를 추가할 것인지?</li>
+    </ul>
+  </li>
+  <li>Learning physical dynamics
+    <ul>
+      <li><img src="https://www.dropbox.com/s/2ztf1zwlzmk62vp/2019-10-20%2017.25.45.jpg?raw=1" /></li>
+      <li>각자 다른 공들이 파티클이고 움직임(무슨 법칙이 있음)</li>
+      <li>움직임을 예측</li>
+      <li><img src="https://www.dropbox.com/s/552fokopox9t94b/2019-10-20%2017.26.38.jpg?raw=1" /></li>
+    </ul>
+  </li>
+  <li>더 궁금하시면 <a href="https://github.com/SeongokRyu/Graph-neural-networks">Graph Neural Networks Github</a></li>
+</ul>
+
+<hr />
+
+<h3 id="나만의-코퍼스는-없다-자연어처리-연구-데이터의-구축-검증-및-정제에-관하여">나만의 코퍼스는 없다? 자연어처리 연구 데이터의 구축, 검증 및 정제에 관하여</h3>
+<ul>
+  <li>조원익님</li>
+  <li>무엇을 위해 데이터를 만드는가?
+    <ul>
+      <li><img src="https://www.dropbox.com/s/yj1nagwclth75zm/2019-10-20%2017.39.15.jpg?raw=1" /></li>
+    </ul>
+  </li>
+  <li>코퍼스의 종류
+    <ul>
+      <li><img src="https://www.dropbox.com/s/lk5ztlu255pdmhj/2019-10-20%2017.41.34.jpg?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Annotation의 종류
+    <ul>
+      <li>통사(syntax)에서 의미(semantics)를 넘어 화용(pragmatics)가지!</li>
+      <li>이모션 태그, 다른 문장을 표현할 수 있는지? 말장난인지 아닌지 등</li>
+      <li>사실 영역의 경계가 점점 흐려지고 있음</li>
+    </ul>
+  </li>
+  <li>MATTER cycle
+    <ul>
+      <li><img src="https://www.dropbox.com/s/abxlgo40iyjd730/2019-10-20%2017.45.25.jpg?raw=1" /></li>
+    </ul>
+  </li>
+  <li>MAMA portion
+    <ul>
+      <li><img src="https://www.dropbox.com/s/qylwub4d3qdws6k/2019-10-20%2017.46.43.jpg?raw=1" /></li>
+    </ul>
+  </li>
+  <li>어노테이션은 2명 이상, 많을수록 좋음
+    <ul>
+      <li>주석자간 의견 일치도도 고려
+        <ul>
+          <li>Cohen’s Kappa</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>주석자
+    <ul>
+      <li><img src="https://www.dropbox.com/s/xm2kt61068nyeds/2019-10-20%2017.51.27.jpg?raw=1" /></li>
+      <li>주석자들이 얼마나 언어학적 훈련을 받았는지 가늠을 해서 배정해야 함</li>
+      <li>언어 배경, L2 이상</li>
+    </ul>
+  </li>
+  <li>케이스 스터디 1
+    <ul>
+      <li><img src="https://www.dropbox.com/s/pybno0sci1tz592/2019-10-20%2017.55.09.jpg?raw=1" /></li>
+      <li>호출어 없이 알아서 반응하는 음성 대화 서비스</li>
+      <li><img src="https://www.dropbox.com/s/sr1poncg162v5oy/2019-10-20%2017.55.46.jpg?raw=1" /></li>
+      <li><img src="https://www.dropbox.com/s/axx4ttgz17qd5xa/2019-10-20%2017.57.00.jpg?raw=1" /></li>
+      <li>가이드라인 작성
+        <ul>
+          <li><img src="https://www.dropbox.com/s/d804msdgmp985hc/2019-10-20%2017.57.50.jpg?raw=1" /></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>케이스 스터디 2
+    <ul>
+      <li>Keyphrase extraction</li>
+      <li><img src="https://www.dropbox.com/s/98drw07xyffbusq/2019-10-20%2017.59.45.jpg?raw=1" /></li>
+      <li><img src="https://www.dropbox.com/s/c9i1nw4jkentuon/2019-10-20%2017.59.54.jpg?raw=1" /></li>
+    </ul>
+  </li>
+  <li>데이터
+    <ul>
+      <li><img src="https://www.dropbox.com/s/ifn2x6fvppdkbhi/2019-10-20%2018.04.22.jpg?raw=1" /></li>
+    </ul>
+  </li>
+  <li>정리
+    <ul>
+      <li><img src="https://www.dropbox.com/s/fxip05ihrpsaszt/2019-10-20%2018.05.52.jpg?raw=1" /></li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="행사-후기">행사 후기</h3>
+<ul>
+  <li>기술적으로 깊은 이야기를 많이 진행해서 만족스러웠습니다
+    <ul>
+      <li>회사에서 사용할 수 있는 키워드도 꽤 얻었습니다!</li>
+    </ul>
+  </li>
+  <li>오랜만에 만났던 분들도 모두 반가웠습니다 :)</li>
+  <li>100분 넘는 분들이 일요일까지 오셔서 열정을 보여주셔서 자극받고 갑니다..!</li>
+  <li>그리고 Art Lab에서 이벤트하셨는데 제가 당첨되서 엄태웅님의 책을 받았습니다!!
+    <ul>
+      <li><a href="http://www.yes24.com/Product/Goods/72231788">대학원생 때 알았더라면 좋았을 것들</a> 책 너무 좋으니 관심있으시면 꼭 보셔요 :)</li>
+    </ul>
+  </li>
+  <li>다음엔 타임 테이블을 미리 공지해주셔도 좋을 것 같아요 /ㅁ/</li>
+</ul>
+
+
+      <br/>
+      <p><a href="https://bit.ly/kyleschool_blog">카일스쿨 유튜브</a> 채널을 만들었습니다. 데이터 사이언스, 성장, 리더십, BigQuery 등을 이야기할 예정이니, 관심 있으시면 구독 부탁드립니다 :)</p>
+      <p>이 글이 도움이 되셨다면 추천 클릭을 부탁드립니다 :)</p>
+      <br/>
+      <br/>
+      <div style="text-align:center">
+        <style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFFFFF !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 0px 9px !important;font-size: 17px !important;letter-spacing:-0.08px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/zzsza"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
+      </div>
+      <br/>
+      <br/>
+       <!--블로그-하단-반응형 -->
+      <ins class="adsbygoogle"
+          style="display:block; width:100%; height:300px;"
+          data-ad-client="ca-pub-5105555504153863"
+          data-ad-slot="1037589043"
+          data-ad-format="auto"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+
+    </div>
+  
+
+</article>
+
+  <hr class="dingbat" />
+
+  <div class="share">
+      <h2>Share this post</h2>
+      <div class="share-body">
+        <a href="http://twitter.com/share?text=Tensorflow KR 3차 오프라인 모임 후기&amp;url=http://localhost:4000/etc/2019/10/20/tensorflow-kr-3th-meeting/"
+    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <span class="icon-twitter">
+            </span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/etc/2019/10/20/tensorflow-kr-3th-meeting/"
+    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <span class="icon-facebook">
+            </span>
+        </a>
+    </div>
+  </div>
+  <br/>
+
+
+
+
+
+
+  <aside class="author" role="complementary">
+    <div class="author">
+  <h2 class="page-title hr">
+    About
+  </h2>
+<div class="author-body">
+  
+    
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="seongyun byeon"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+  
+  <div class="author-body-description">
+    <p>Machine Learning Engineer</p>
+
+  </div>
+</div>
+</div>
+
+  </aside>
+
+
+
+
+
+<aside class="related" role="complementary">
+  <h2 class="hr">Related Posts</h2>
+
+  <ul class="related-posts">
+    
+      
+      
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/etc/2019/10/28/deview2019-review/" data-flip="title">
+    <span>DEVIEW 2019 1일차 후기</span>
+  </a>
+  <small><time datetime="2019-10-28T00:00:00+09:00">
+    28 Oct 2019
+  </time></small>
+</li>
+
+        
+      
+        
+          
+          
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/etc/2019/08/30/ifkakao-2019-review/" data-flip="title">
+    <span>if kakao 2019 2일차 후기</span>
+  </a>
+  <small><time datetime="2019-08-30T00:00:00+09:00">
+    30 Aug 2019
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/etc/2019/08/18/pycon2019/" data-flip="title">
+    <span>파이콘(PyCon) 2019 세션 정리</span>
+  </a>
+  <small><time datetime="2019-08-18T00:00:00+09:00">
+    18 Aug 2019
+  </time></small>
+</li>
+
+        
+      
+    
+  </ul>
+</aside>
+
+
+
+      
+        <aside class="comments" role="complementary">
+  <h2>Comments</h2>
+  <hr/>
+
+  <div id="disqus_thread"></div>
+
+  <script>
+    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="Tensorflow KR 3차 오프라인 모임 후기",this.page.identifier="/etc/2019/10/20/tensorflow-kr-3th-meeting",this.page.url="http://localhost:4000/etc/2019/10/20/tensorflow-kr-3th-meeting/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//zzsza.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</aside>
+
+      
+
+      <footer>
+  <hr/>
+  
+    <p>© 2017. by Seongyun Byeon</p>
+
+  
+  <p>
+    <code>Powered by <a href="https://zzsza.github.io/">zzsza</a></code>
+  </p>
+</footer>
+
+    </main>
+    <div class="right-side">
+  <div class="ad-first">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- 블로그-상단-모바일 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:100%;"
+         data-ad-client="ca-pub-5105555504153863"
+         data-ad-slot="9090558636"
+         data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+<br/>
+<br/>
+  <div class="ad-second">
+    <!-- 블로그-스카이스크래퍼 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;max-width:320px;width:100%;height:600px"
+         data-ad-client="ca-pub-5105555504153863"
+         data-ad-slot="3646660262"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+</div>
+
+
+  </div>
+  <div id="_yDrawer">
+  <div id="_sidebar" class="sidebar">
+    <div class="sidebar-bg" style="background-color:#4f86aa;background-image:url(/assets/img/nap.jpg)"></div>
+    <header class="sidebar-sticky" role="banner">
+      <br/>
+      <div class="sidebar-about">
+        <h1><a id="_title" href="/">어쩐지 오늘은</a></h1>
+        <p>Machine Learning Engineer</p>
+
+      </div>
+
+      <br/>
+      <nav class="sidebar-nav heading" role="navigation">
+        <span class="sr-only">Navigation:</span>
+<ul>
+  
+
+  
+
+  
+  
+  
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-1"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/diary/">Diary</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/diary-diary/">diary</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-2"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/data/">Data</a>
+       <label class="folder" for="list-item-2">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-ml/">Machine-Learning</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-dl/">Deep-Learning</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-mobility/">Mobility</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-engineering/">Engineering</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-optimization/">Optimization</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-paper/">Paper</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-pytorch/">Pytorch</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-cs231/">CS231n</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-rl/">Reinforcement-Learning</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-time-series/">Time Series</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-analytics/">Analytics</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-kaggle/">Kaggle</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-vision/">Vision</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-interpretable-ml/">Interpretable ML</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-simulation/">Simulation</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-graph/">Graph</a>
+             </li>
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-3"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/mlops/">MLOps</a>
+       <label class="folder" for="list-item-3">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-basic/">Basic</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-airflow/">Airflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-mlflow/">MLflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-tfx/">Tensorflow Extended</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-serving/">Serving</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-feature/">Feature</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-version/">Model & Pipeline version</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-4"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/gcp/">Google Cloud Platform</a>
+       <label class="folder" for="list-item-4">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-basic/">Basic</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-bigquery/">BigQuery</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-aiplatform/">AI Platform</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-dataflow/">Dataflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-cloud-functions/">Cloud Functions</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-5"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/development/">Development</a>
+       <label class="folder" for="list-item-5">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-linux/">Linux</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-web/">Web</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-python/">Python</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-sql/">SQL</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-scala/">Scala</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-os/">OS</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-kubernetes/">Kubernetes</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-devops/">DevOps</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-kotlin/">Kotlin</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-julia/">Julia</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-tools/">Tools</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-6"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/etc/">ETC</a>
+       <label class="folder" for="list-item-6">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/etc-lecture/">Lecture</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/etc-book/">Book</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-7"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/about/">About</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+</ul>
+
+      </nav>
+    <!-- search box -->
+    <form action="/search">
+      <div class="tipue_search_box">
+        <input type="text" name="q" id="tipue_search_input" placeholder="&#xF002;  Search" pattern=".{2,}" title="최소 2글자 이상" required></div>
+      <div style="clear: both;"></div>
+    </form>
+    <br/>
+      <div class="sidebar-box">
+        
+          
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="seongyun byeon"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+        
+      </div>
+      <p>메모가 습관인 데이터쟁이입니다</p>
+
+      
+      
+        <div class="sidebar-social">
+          <span class="sr-only">Social:</span>
+<ul>
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://facebook.com/zzsza">
+    <span class="icon-facebook" title="Facebook"></span>
+    <span class="sr-only">Facebook</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.youtube.com/channel/UCYyAaezBGEVmXcnink6nY9Q">
+    <span class="icon-youtube" title="YouTube"></span>
+    <span class="sr-only">YouTube</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://instagram.com/data.scientist">
+    <span class="icon-instagram" title="Instagram"></span>
+    <span class="sr-only">Instagram</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://github.com/zzsza">
+    <span class="icon-github" title="GitHub"></span>
+    <span class="sr-only">GitHub</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.linkedin.com/in/seong-yun-byeon-8183a8113">
+    <span class="icon-linkedin2" title="LinkedIn"></span>
+    <span class="sr-only">LinkedIn</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="mailto:snugyun01@gmail.com">
+    <span class="icon-mail" title="Email"></span>
+    <span class="sr-only">Email</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://zzsza.github.io/feed.xml">
+    <span class="icon-rss2" title="RSS"></span>
+    <span class="sr-only">RSS</span>
+  </a>
+</li>
+
+  
+</ul>
+
+        </div>
+      
+    </header>
+  </div>
+</div>
+
+</div>
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+
+<script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-110573232-1', 'auto');
+  ga('send', 'pageview');
+  loadJSDeferred('https://www.google-analytics.com/analytics.js');
+</script>
+
+
+
+
+
+<!--[if gt IE 8]><!---->
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    
+    google: {
+      families: 'Lato'.split('|')
+    },
+    
+
+    custom: {
+      families: ['icomoon'],
+      urls: ['/assets/icomoon/style.css']
+    }
+  });
+</script>
+<!--<![endif]-->
+
+
+  <!--[if gt IE 9]><!---->
+  
+  <script>loadJSDeferred('/assets/js/hydejack.js?v=6.4.0');</script>
+
+  
+  <!--<![endif]-->
+
+
+
+</body>
+
+</html>

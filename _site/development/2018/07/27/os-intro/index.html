@@ -1,0 +1,2075 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
+-->
+
+
+
+
+
+
+
+
+
+<head>
+  <!-- =============== -->
+<!-- META            -->
+<!-- =============== -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="naver-site-verification" content="22c5b4ef3bfda7fc6100671413989219de7a4ac8"/>
+<meta property="og:title" content="운영체제 이해하기">
+<meta property="og:type" content="article">
+
+
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/img/logo.png">
+
+
+<meta property="og:image:width" content="640" />
+<meta property="og:image:height" content="360" />
+
+
+
+  <title>운영체제 이해하기 &middot; 어쩐지 오늘은</title>
+
+
+
+<meta name="description" content="운영체제(Operation System)의 개론 공부를 하고 작성한 글입니다
+
+">
+<meta property="og:description" content="운영체제(Operation System)의 개론 공부를 하고 작성한 글입니다
+
+">
+
+
+<!-- tipuesearch -->
+<link rel="stylesheet" href="/assets/tipuesearch/css/tipuesearch.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+<!-- =============== -->
+<!-- LINKS           -->
+<!-- =============== -->
+<link rel="canonical" href="http://localhost:4000/development/2018/07/27/os-intro/">
+<meta property="og:url" content="http://localhost:4000/development/2018/07/27/os-intro/">
+
+<link rel="alternate" type="application/atom+xml" title="어쩐지 오늘은 Feed" href="http://localhost:4000/feed.xml">
+
+
+  <link rel="prev" href="http://localhost:4000/data/2018/07/25/apache-kafka-guide/">
+
+
+
+  <link rel="next" href="http://localhost:4000/data/2018/07/28/data-engineer-video/">
+
+
+<link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+<!-- Place favicon.ico in the root directory -->
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+<script>
+  !function(n,e){function t(n,e){n.onload=function(){this.onerror=this.onload=null,e(null,n)},n.onerror=function(){this.onerror=this.onload=null,e(new Error("Failed to load "+this.src),n)}}function o(n,e){n.onreadystatechange=function(){"complete"!=this.readyState&&"loaded"!=this.readyState||(this.onreadystatechange=null,e(null,n))}}n._loaded=!1,n.loadJSDeferred=function(a,d){function r(){n._loaded=!0;var r=e.createElement("script");r.src=a,d&&(("onload"in r?t:o)(r,d),r.onload||t(r,d));var l=e.getElementsByTagName("script")[0];l.parentNode.insertBefore(r,l)}n._loaded?r():n.addEventListener?n.addEventListener("load",r,!1):n.attachEvent?n.attachEvent("onload",r):n.onload=r}}(window,document);
+
+  !function(e){"use strict";var n=function(n,t,o){function i(e){if(a.body)return e();setTimeout(function(){i(e)})}function r(){l.addEventListener&&l.removeEventListener("load",r),l.media=o||"all"}var d,a=e.document,l=a.createElement("link");if(t)d=t;else{var f=(a.body||a.getElementsByTagName("head")[0]).childNodes;d=f[f.length-1]}var s=a.styleSheets;l.rel="stylesheet",l.href=n,l.media="only x",i(function(){d.parentNode.insertBefore(l,t?d:d.nextSibling)});var u=function(e){for(var n=l.href,t=s.length;t--;)if(s[t].href===n)return e();setTimeout(function(){u(e)})};return l.addEventListener&&l.addEventListener("load",r),l.onloadcssdefined=u,u(r),l};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
+
+  !function(t){if(t.loadCSS){var e=loadCSS.relpreload={};if(e.support=function(){try{return t.document.createElement("link").relList.supports("preload")}catch(t){return!1}},e.poly=function(){for(var e=t.document.getElementsByTagName("link"),r=0;r<e.length;r++){var n=e[r];"preload"===n.rel&&"style"===n.getAttribute("as")&&(t.loadCSS(n.href,n,n.getAttribute("media")),n.rel=null)}},!e.support()){e.poly();var r=t.setInterval(e.poly,300);t.addEventListener&&t.addEventListener("load",function(){e.poly(),t.clearInterval(r)}),t.attachEvent&&t.attachEvent("onload",function(){t.clearInterval(r)})}}}(this);
+
+  window.disablePushState = false;
+  window.disableDrawer = false;
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5105555504153863",
+    enable_page_level_ads: true
+  });
+</script>
+
+<!--[if lt IE 9]>
+<script src="https://unpkg.com/html5shiv/dist/html5shiv.min.js"></script>
+<![endif]-->
+
+<!-- =============== -->
+<!-- STYLES          -->
+<!-- =============== -->
+<!--[if gt IE 8]><!---->
+<style>
+  
+  article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}*{box-sizing:border-box}html,body{margin:0;padding:0}html{font-size:16px;line-height:1.75}body{color:#333;background-color:#fff;overflow-y:scroll}a{text-decoration:none}.lead{margin-left:-1rem;margin-right:-1rem}img,.img{display:block;max-width:100%;margin-bottom:1rem;border:none}img.lead,.img.lead{max-width:calc(100% + 2rem);width:calc(100% + 2rem)}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-weight:bold;text-rendering:optimizeLegibility}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{margin:1.6rem 0 1rem;line-height:1.6}h1,.h1{font-size:2rem;line-height:1.25}h2,.h2{font-size:1.5rem}h3,.h3{font-size:1.17em}p{margin-top:0;margin-bottom:1rem}p.lead{font-size:1.25rem;font-weight:300;padding:0 1rem}ul,ol,dl{margin-top:0;margin-bottom:1rem}ul,ol{padding-left:1.25rem}hr{position:relative;margin:1.5rem 0;border:0;border-top:1px solid #eee}.hr{padding-bottom:.5rem;border-bottom:1px solid #eee;margin-bottom:1.5rem}h4,h5,h6,.h4,.h5,.h6{margin-bottom:0.5rem;font-size:1rem}table{margin-bottom:1rem;width:100%;width:calc(100% + 2rem);margin-left:-1rem;border:1px solid #e5e5e5;border-collapse:collapse;border-spacing:0}td,th{padding:.25rem .5rem;border:1px solid #e5e5e5}td:first-child,th:first-child{padding-left:1rem}td:last-child,th:last-child{padding-right:1rem}thead+tbody,tbody+tbody,tfoot{border-top:3px double #e5e5e5}tbody tr:nth-child(odd) td,tbody tr:nth-child(odd) th{background-color:#f9f9f9}footer{margin-bottom:2rem}.page,.post{margin-bottom:3em}.page li+li,.post li+li{margin-top:.25rem}.page>header,.post>header{margin-bottom:2rem}.page-title,.post-title{margin-top:0}.post-date{display:block;margin-top:-0.5rem;margin-bottom:1rem;color:#9a9a9a}.related-posts{padding-left:0;list-style:none}.related-posts>li,.related-posts>li+li{margin-top:1rem}.related-posts>li>small,.related-posts>li+li>small{font-size:75%;color:#9a9a9a}.message{margin-bottom:1rem;padding:1rem;color:#787878;background-color:#f9f9f9;margin-left:-1rem;margin-right:-1rem}body,main{position:relative;overflow-x:hidden}@media screen{body::before{content:'';background:#e5e5e5;position:absolute;left:0;top:0;bottom:0}}@media screen and (min-width: 40em){html{font-size:17px}}@media screen and (min-width: 54em){html{font-size:16px}}@media screen and (min-width: 88em){html{font-size:17px}}@media screen and (min-width: 125em){html{font-size:18px}}.sr-only{display:none}.clearfix,.sidebar-social::after,.clearafter::after{content:"";display:table;clear:both}a,.a{position:relative;padding-bottom:.15rem;border-style:hidden}.img{overflow:hidden;background-color:#f9f9f9}.img>img{margin:0;width:100%;height:100%}.sixteen-nine{position:relative}.sixteen-nine::before{display:block;content:"";width:100%;padding-top:56.25%}.sixteen-nine>*{position:absolute;top:0;left:0;right:0;bottom:0}h1+hr,h2+hr,h3+hr,h4+hr,h5+hr,h6+hr{margin-top:0}.fade-in{animation-duration:500ms;animation-name:fade-in;animation-fill-mode:forwards}@keyframes fade-in{from{transform:translateY(-2rem);opacity:0}50%{transform:translateY(-2rem);opacity:0}to{transform:translateY(0);opacity:1}}.mb6{margin-bottom:10rem}.sidebar{color:rgba(255,255,255,0.75);text-align:left}.sidebar::before{content:"";position:absolute;z-index:2;top:0;left:0;bottom:0;right:0;background:linear-gradient(to bottom, rgba(32,32,32,0) 0%, rgba(32,32,32,0.5) 100%)}.sidebar a{color:#fff;border-bottom-color:rgba(255,255,255,0.2)}.right-side{width:100%;margin-left:auto;margin-right:auto}.right-side .ad-first{text-align:center}.right-side .ad-second{text-align:center}@media screen{.right-side{max-width:38rem;min-height:100vh}}@media screen and (min-width: 54em){.right-side{margin-left:20rem;margin-right:1rem;padding:4rem 1rem 12rem}}@media screen and (min-width: 72em){.right-side{margin-left:22rem;max-width:42rem}}@media screen and (min-width: 88em){.right-side{width:162px;margin-left:0rem;margin-right:0rem;padding:0rem;margin-top:10rem;display:block;float:left}}@media screen and (min-width: 96em){.right-side{width:300px;margin-right:0rem}}#_yDrawer{position:relative}@media screen{#_yDrawer{min-height:640px;min-height:100vh}}@media screen and (min-width: 54em){#_yDrawer{width:18rem;margin-left:0}}.sidebar-bg{position:absolute;height:100%;overflow:hidden;top:0;right:0;bottom:0;left:0;background:#202020 center / cover}.sidebar-box{display:flex;justify-content:center}.sidebar-sticky{position:relative;z-index:3}@media screen{.sidebar-sticky{-ms-overflow-style:none;overflow:-moz-scrollbars-none;height:100%;overflow:auto;position:absolute;padding:3rem 0rem;right:2.5rem;left:2.5rem}}.sidebar-sticky::-webkit-scrollbar{display:none}.sidebar-about>h1{color:#fff;font-size:2rem}.sidebar-nav>ul{list-style:none;padding-left:0;margin-bottom:.5rem}a.sidebar-nav-item{width:100%;font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}a.sidebar-nav-subitem{font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}@media screen{.y-drawer-scrim{z-index:2}.y-drawer-content{width:18rem;left:-18rem;z-index:3}}.sidebar-social{margin-bottom:.5rem}.sidebar-social>ul{list-style:none;padding-left:0;margin:0 -.25rem}.sidebar-social>ul>li{float:left}.sidebar-social>ul>li>a{display:inline-block;text-align:center;font-size:1.6rem;line-height:3rem;width:3.1249rem;height:4rem;padding:.5rem 0}.sidebar-social>ul li+li{margin-top:0}.fixed-top{position:fixed;top:0;left:0;width:100%;z-index:1}.navbar>.content{padding-top:0;padding-bottom:0;min-height:0;height:0}.menu{display:inline-block;padding:1.75rem 1.5rem;border-bottom:none;margin-left:-1.5rem;color:#9a9a9a !important}.menu::after{content:"\2630"}@media screen and (min-width: 54em){.menu{padding:1.25rem 1.5rem;position:absolute;left:-9999px}.menu:focus{position:static}}.animation-main{pointer-events:none}.loading{display:none}@media print{.menu{display:none}}.animation-main{opacity:0;will-change:opacity}.loading{position:absolute;top:0;right:0;padding:5.25rem 4.5rem;transform-origin:top right;transform:scale(0.33)}.content{position:relative;margin-left:auto;margin-right:auto;padding:5rem 1rem 12rem}@media screen{.content{min-height:100vh}}@media screen and (min-width: 54em){.content{padding:4rem 1rem 12rem;margin-left:19rem;margin-right:3rem}}@media screen and (min-width: 72em){.content{max-width:42rem;margin-left:21rem}}@media screen and (min-width: 88em){.content{float:left;width:100%;margin-left:22rem;margin-right:5rem}}@media screen and (min-width: 96em){.content{max-width:44rem}}@media screen and (min-width: 102em){.content{margin-left:25rem;margin-right:8rem}}.me{width:6.5rem;height:6.5rem;align-self:center;margin-right:20px;border-radius:100%;position:relative}@media screen and (min-width: 40em){.me{width:7rem;height:7rem}}@media screen and (min-width: 54em){.me{width:6.5rem;height:6.5rem}}@media screen and (min-width: 72em){.me{width:7rem;height:7rem}}main>footer{width:100%;position:absolute;bottom:0;left:0;right:0;padding:0 1rem;color:#9a9a9a;font-size:smaller;text-align:center}main>footer>p{margin-bottom:0}html{font-family:'Sans-serif'}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-family:'Sans-serif'}
+
+</style>
+
+
+<link rel="preload" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0" as="style" onload="this.rel='stylesheet'">
+
+<style id="_pageStyle">
+
+.content a{color:#4f86aa;border-color:rgba(79,134,170,0.2)}.content a:hover{border-color:#4f86aa}:focus{outline-color:#4f86aa}::selection{color:#fff;background:#4f86aa}::-moz-selection{color:#fff;background:#4f86aa}
+
+</style>
+
+
+<noscript>
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0">
+  
+  
+  
+
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <style>
+      html { font-family: 'Lato', 'Sans-serif' }
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading { font-family: 'Lato', 'Sans-serif' }
+    </style>
+  
+
+  
+  <link rel="stylesheet" href="http://localhost:4000/assets/icomoon/style.css">
+</noscript>
+<!--<![endif]-->
+
+</head>
+
+<body>
+  <!-- =============== -->
+<!-- MENU            -->
+<!-- =============== -->
+<div class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <a id="_menu" class="menu no-hover" href="#_title">
+      <span class="sr-only">Menu</span>
+    </a>
+  </div>
+</div>
+
+<!-- =============== -->
+<!-- CONTENT         -->
+<!-- =============== -->
+<div id="_yPushState">
+  <div class="fade-in">
+    <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/nap.jpg">
+      
+
+<article id="post-development/2018/07/27/os-intro" class="post" role="article">
+  <header>
+    <h1 class="post-title">
+      
+        운영체제 이해하기
+      
+    </h1>
+
+    <p class="post-date heading">
+      <time datetime="2018-07-27T00:00:00+09:00">27 Jul 2018</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/development/" data-flip="title">Development</a>
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/development-os/" data-flip="title">OS</a>
+
+    </p>
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+    <div class="markdown-body">
+
+
+<style>
+.myAd1190 { display:block; width:98%; height: 280px; }
+@media(min-width: 600px) { .myAd1190 { display: none; } }
+</style>
+<ins class="adsbygoogle myAd1190"
+    data-ad-client="ca-pub-5105555504153863"
+    data-ad-slot="6481487416"
+    ></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
+<br/>
+      <p>운영체제(Operation System)의 개론 공부를 하고 작성한 글입니다</p>
+
+<ul>
+  <li>PC를 구입하면 Windows XP, Linux, MS-DOS, Mac OSX 등등의 운영 체제(Operating System)가 설치되어 있음</li>
+  <li>운영체제가 없는 컴퓨터는 어떤 상황일까?
+    <ul>
+      <li>컴퓨터는 프로세서와 메모리로 구성되어 있음</li>
+      <li>메모리에 임의의 값이 들어가있어 process가 아무것도 할 수 없음. 야생마!</li>
+      <li>프로그램을 실행하려면?
+        <ul>
+          <li>하드디스크 안에 실행 파일이 존재 =&gt; 메모리에 올려야 함 =&gt; 올리는 역할을 OS가 함. OS가 없는 컴퓨터라면 올릴 수 없음</li>
+        </ul>
+      </li>
+      <li>여러 개의 프로그램을 동시에 실행시키려면?
+        <ul>
+          <li>프로세스는 1개인데 동시에 여러개를 실행하는 것도 OS가 해줌</li>
+        </ul>
+      </li>
+      <li>프린터에 인쇄 명령을 내리려면?</li>
+      <li>하드 디스크에 저장하려면?</li>
+    </ul>
+  </li>
+  <li>운영체제
+    <ul>
+      <li>컴퓨터 하드웨어를 잘 관리해 : 프로세서, 메모리, 디스크, 키보드, 마우스, …</li>
+      <li>성능을 높이고 : Performance</li>
+      <li>사용자에게 편의성 제공 : Convenience</li>
+      <li>컴퓨터 하드웨어를 관리하는 프로그램
+        <ul>
+          <li>Control program for computer</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>부팅(Booting)
+    <ul>
+      <li>컴퓨터 구조
+        <ul>
+          <li>프로세서, 메모리(ROM, RAM), 하드디스크</li>
+          <li>POST(Power-On Self Test) : 전기를 키면 환경 설정이 잘 되어 있는지 Test. ROM에 있음</li>
+          <li>부트로더(Boot Loader) : 하드디스크에 있는 OS 정보를 찾아 메인 메모리의 램 영역으로 올림. 이 작업을 부팅이라 함</li>
+          <li>OS는 전기를 끄면 사라짐</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>운영체제
+    <ul>
+      <li>관리(Management) 프로그램</li>
+      <li>프로세서, 메모리, 디스크, 입출력장치 드라이브</li>
+      <li>메모리에 Resident(상주)</li>
+      <li><img src="https://www.dropbox.com/s/667llmih1t3472y/Screenshot%202018-07-27%2000.41.15.png?raw=1" height="200" weight="300" /></li>
+      <li>커널(kernel) vs 명령 해석기(shell, command interpreter)</li>
+      <li>커널 : 하드웨어를 제어하고 관리하는 부분</li>
+      <li>쉘 : OS의 껍질. 명령어를 실행하는 부분</li>
+    </ul>
+  </li>
+  <li>운영체제는 정부와 비슷
+    <ul>
+      <li>자원 관리자 (resource manager)</li>
+      <li>자원 할당자 (resource allocator)</li>
+      <li>주어진 자원을 어떻게 잘 활용할까? (국토, 인력, 예산)</li>
+      <li>정부가 직접 일하진 않고 민간 기업이 일함</li>
+      <li>정부 부서가 존재 : 행정자치부, 교육부, 국방부 …</li>
+      <li>운영 체제 부서 : 프로세스 관리, 메모리 관리, 파일 관리, 입출력장치 관리 …</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="운영체제-역사">운영체제 역사</h2>
+<hr />
+
+<ul>
+  <li>컴퓨터의 역사 : 1940년대 말에 만들어짐
+    <ul>
+      <li>하드웨어 발전 vs 운영체제 기술 발전</li>
+      <li>Batch Processing : 일괄 처리, 묶어서 처리. resident monitor. 최초의 OS</li>
+      <li>Multiprogramming system : 다중프로그래밍
+        <ul>
+          <li>40년대, 50년대 컴퓨터는 매우 비싼 자원</li>
+          <li>빠른 CPU(계산), 느린 IO =&gt; 메모리에 여러 개의 job</li>
+          <li>CPU scheduling, 메모리 관리, 보호</li>
+        </ul>
+      </li>
+      <li>Time Sharing system : 시공유 시스템
+        <ul>
+          <li>강제 절환, interactive system (대화형)</li>
+          <li>빠른 스위칭</li>
+          <li>기술발전: 가상 메모리, 프로세스간 통신, 동기화</li>
+          <li>하드디스크를 메모리처럼 사용하는 기술</li>
+          <li>동시에 여러가지 일을 진행, 요즘 나오는 OS 대부분은 이 시스템</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>컴퓨터 규모별 분류
+    <ul>
+      <li>Supercomputer &gt; Mainframe &gt; Mini &gt; Micro</li>
+      <li>Supercomputer &gt; Server &gt; Workstation &gt; PC &gt; Handheld &gt; Embedded</li>
+    </ul>
+  </li>
+  <li>고성능컴퓨터의 OS 기술이 Handheld/Embedded 까지
+    <ul>
+      <li>Batch processing</li>
+      <li>Multiprogramming</li>
+      <li>Timesharing</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="고등-운영체제">고등 운영체제</h2>
+<hr />
+
+<ul>
+  <li>1) 다중 프로세서 시스템 (Multiprocessor system)
+    <ul>
+      <li>메모리는 1개인데 CPU(프로세스)가 여러 개</li>
+      <li>병렬 시스템 (parallel system)</li>
+      <li>강결합 시스템 (tightly-coupled system) : 하나의 메모리에 CPU가 결합</li>
+      <li>3가지 장점: performance, cost, reliability</li>
+      <li>☞ 다중 프로세서 운영체제 (Multiprocessor OS)</li>
+    </ul>
+  </li>
+  <li>2) 분산 시스템 (Distributed system)
+    <ul>
+      <li>CPU-Memory 쌍이 LAN으로 구성</li>
+      <li>하둡</li>
+      <li>다중 컴퓨터 시스템 (multi-computer system)</li>
+      <li>3가지 장점: performance, cost, reliability</li>
+      <li>소결합 시스템 (loosely-coupled system)</li>
+      <li>☞ 분산 운영체제 (Distributed OS)</li>
+    </ul>
+  </li>
+  <li>3) 실시간 시스템 (Real-time system)
+    <ul>
+      <li>시간 제약: Deadline</li>
+      <li>공장 자동화 (FA), 군사, 항공, 우주</li>
+      <li>☞ 실시간 운영체제 (Real-time OS = RTOS)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="인터럽트-기반-시스템">인터럽트 기반 시스템</h2>
+<hr />
+
+<ul>
+  <li>Interrupt-Based System</li>
+  <li>현대 운영체제는 인터럽트 기반 시스템!</li>
+  <li>부팅시
+    <ul>
+      <li>ROM에 있는 부트로더 실행</li>
+      <li>OS 정보를 메인 메모리로 가져옴</li>
+    </ul>
+  </li>
+  <li>부팅이 끝나면?
+    <ul>
+      <li>운영체제는 메모리에 상주 (resident)</li>
+      <li>사건(event)을 기다리며 대기: 키보드, 마우스, …</li>
+    </ul>
+  </li>
+  <li>하드웨어 인터럽트 (Hardware interrupt)
+    <ul>
+      <li>인터럽트 결과 운영체제 내의 특정 코드 (ISR) 실행</li>
+      <li>Interrupt Service Routine 종료 후 다시 대기</li>
+    </ul>
+  </li>
+  <li>소프트웨어 인터럽트 (Software interrupt)
+    <ul>
+      <li>사용자 프로그램이 실행되면서 소프트웨어 인터럽트 (운영체제 서비스 이용 위해)</li>
+      <li>인터럽트 결과 운영체제 내의 특정 코드 실행 (ISR)</li>
+      <li>ISR 종료 후 다시 사용자 프로그램으로</li>
+    </ul>
+  </li>
+  <li>인터럽트 기반 운영체제
+    <ul>
+      <li>운영체제는 평소엔 대기 상태를 유지</li>
+      <li>하드웨어 인터럽트에 의해 운영체제 코드 (ISR) 실행</li>
+      <li>소프트웨어 인터럽트에 의해 운영체제 코드 실행</li>
+      <li>내부 인터럽트(Interrnal interrupt)에 의해 운영체제 코드 실행 : 코드에서 0으로 나누는 것이 있으면? 계산할 수 없으니 강제 종료시켜야 함. 이런 경우 내부 인터럽트</li>
+      <li>ISR 종료되면 원래의 대기상태 또는 사용자 프로그램으로 복귀</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="이중모드">이중모드</h2>
+<hr />
+
+<ul>
+  <li>한 컴퓨터를 여러 사람이 동시에 사용하는 환경
+    <ul>
+      <li>또는 한 사람이 여러 개의 프로그램을 동시에 사용</li>
+      <li>한 사람의 고의/실수 프로그램이 전체 영향
+        <ul>
+          <li>STOP, HALT, RESET 등</li>
+          <li>이런 명령어들은 관리자만 내릴 수 있도록 해야겠다 =&gt; 이중 모드</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>사용자 프로그램은 STOP 등 치명적 명령 사용 불가하게!
+    <ul>
+      <li>사용자 (user) 모드 vs 관리자 (supervisor) 모드</li>
+      <li>이중 모드 (dual mode)</li>
+      <li>관리자 모드 = 시스템 모드 = 모니터 모드 = 특권 모드</li>
+      <li>Supervisor, system, monitor, priviliged mode</li>
+    </ul>
+  </li>
+  <li>특권 명령 (privileged instructions)
+    <ul>
+      <li>STOP, HALT, RESET, SET_TIMER, SET_HW, …</li>
+    </ul>
+  </li>
+  <li>이중 모드 (dual mode)
+    <ul>
+      <li>레지스터에 모드를 나타내는 플래그(flag)
+        <ul>
+          <li>flag : overflow, carry, negative, zero, 모니터 비트로 모드 확인</li>
+        </ul>
+      </li>
+      <li>운영체제 서비스 실행될 때는 관리자 모드</li>
+      <li>사용자 프로그램 실행될 때는 사용자 모드</li>
+      <li>하드웨어/소프트웨어 인터럽트 발생하면 관리자 모드</li>
+      <li>운영체제 서비스가 끝나면 다시 사용자 모드</li>
+      <li>일반 유저가 특권 명령을 실행하려고 하면 CPU가 모니터 비트를 확인하고, 관리자 모드가 아님을 인지. 내부 인터럽트 발생해서 서비스 루틴으로 점프해 강제 종료</li>
+    </ul>
+  </li>
+  <li>일반적 프로그램의 실행
+    <ul>
+      <li>프로그램 적재 (on memory)</li>
+      <li>프로그램이 하드디스크에 있는 저장하고 싶은 경우 os에게 인터럽트 발생해 요청 (python에서 import os를 생각해보면..!)</li>
+      <li>user mode → (키보드, 마우스) → system mode (ISR) → user mode → (모니터, 디스크, 프린터) → system mode (ISR) → user mode → ……</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="하드웨어-보호">하드웨어 보호</h2>
+<ul>
+  <li>입출력장치 보호 (Input/output device protection)</li>
+  <li>메모리 보호 (Memory protection)</li>
+  <li>CPU 보호 (CPU protectiopn)</li>
+</ul>
+
+<hr />
+
+<h3 id="입출력장치-보호">입출력장치 보호</h3>
+<ul>
+  <li>사용자의 잘못된 입출력 명령
+    <ul>
+      <li>다른 사용자의 입출력, 정보 등에 방해</li>
+      <li>예: 프린트 혼선, 리셋, 다른 사람의 파일 읽고 쓰기 (하드디스크)</li>
+      <li>IN, OUT 명령을 아무나 못 하도록</li>
+    </ul>
+  </li>
+  <li>해결법
+    <ul>
+      <li>입출력 명령을 특권명령으로: IN, OUT</li>
+      <li>입출력을 하려면 운영체제에게 요청하고 (system mode 전환),</li>
+      <li>운영체제가 입출력 대행; 마친 후 다시 user mode 복귀</li>
+      <li>올바른 요청이 아니면 운영체제가 거부</li>
+    </ul>
+  </li>
+  <li>사용자가 입출력 명령을 직접 내린 경우?
+    <ul>
+      <li>Privileged instruction violation : 특권 명령을 침범</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="메모리-보호">메모리 보호</h3>
+<ul>
+  <li>다른 사용자 메모리 또는 운영체제 영역 메모리 접근
+    <ul>
+      <li>우연히 또는 고의로</li>
+      <li>다른 사용자 정보/프로그램에 대한 해킹</li>
+      <li>운영체제 해킹</li>
+    </ul>
+  </li>
+  <li>해결법
+    <ul>
+      <li>문지기(MMU)를 두어 다른 메모리 영역 침범 감시하도록 (Memory Management Unit)</li>
+      <li>MMU 설정은 특권명령: 운영체제만 바꿀 수 있다</li>
+    </ul>
+  </li>
+  <li>다른 사용자 또는 운영체제 영역 메모리 접근 시도?
+    <ul>
+      <li>Segment violation : 영역 침범</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="cpu-보호">CPU 보호</h3>
+<ul>
+  <li>한 사용자가 실수 또는 고의로 CPU 시간 독점
+    <ul>
+      <li>예: while (n = 1) …</li>
+      <li>다른 사용자의 프로그램 실행 불가</li>
+    </ul>
+  </li>
+  <li>해결법
+    <ul>
+      <li>CPU Protection</li>
+      <li>Timer를 두어 일정 시간 경과 시 타이머 인터럽트</li>
+      <li>인터럽트 → 운영체제 → 다른 프로그램으로 강제 전환</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="운영체제-서비스">운영체제 서비스</h2>
+<ul>
+  <li>프로세스 관리</li>
+  <li>주기억장치 관리</li>
+  <li>파일 관리</li>
+  <li>보조기억장치 관리</li>
+  <li>입출력 장치 관리</li>
+  <li>네트워킹</li>
+  <li>보호</li>
+  <li>그외</li>
+</ul>
+
+<hr />
+
+<h3 id="프로세스-관리">프로세스 관리</h3>
+<ul>
+  <li>Process management</li>
+  <li>프로세스 (process)
+    <ul>
+      <li>메모리에서 실행 중인 프로그램 (program in execution)</li>
+    </ul>
+  </li>
+  <li>주요기능
+    <ul>
+      <li>프로세스의 생성, 소멸 (creation, deletion)</li>
+      <li>프로세스 활동 일시 중지, 활동 재개 (suspend, resume)</li>
+      <li>프로세스간 통신 (interprocess communication: IPC)</li>
+      <li>프로세스간 동기화 (synchronization)</li>
+      <li>교착상태 처리 (deadlock handling)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="주기억장치-관리">주기억장치 관리</h3>
+<ul>
+  <li>Main memory management</li>
+  <li>주요기능
+    <ul>
+      <li>프로세스에게 메모리 공간 할당 (allocation)</li>
+      <li>메모리의 어느 부분이 어느 프로세스에게 할당되었는가 추적 및 감시</li>
+      <li>프로세스 종료 시 메모리 회수 (deallocation)</li>
+      <li>메모리의 효과적 사용</li>
+      <li>가상 메모리: 물리적 실제 메모리보다 큰 용량 갖도록</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="파일-관리">파일 관리</h3>
+<ul>
+  <li>File management</li>
+  <li>Track/sector 로 구성된 디스크를 파일이라는 논리적 관점으로 보게</li>
+  <li>주요기능
+    <ul>
+      <li>파일의 생성과 삭제 (file creation &amp; deletion)</li>
+      <li>디렉토리(directory)의 생성과 삭제 (또는 폴더 folder)</li>
+      <li>기본동작지원: open, close, read, write, create, delete</li>
+      <li>Track/sector 와 file 간의 매핑(mapping)</li>
+      <li>백업(backup)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="보조기억장치-관리">보조기억장치 관리</h3>
+<ul>
+  <li>Secondary storage management
+    <ul>
+      <li>하드 디스크, 플래시 메모리 등</li>
+    </ul>
+  </li>
+  <li>주요기능
+    <ul>
+      <li>빈 공간 관리 (free space management)
+        <ul>
+          <li>블락이 점점 사용된 공간, 비어있는 공간으로 나뉘는데 이런 공간 관리</li>
+        </ul>
+      </li>
+      <li>저장공간 할당 (storage allocation)</li>
+      <li>디스크 스케쥴링 (disk scheduling)
+        <ul>
+          <li>헤드를 적게 움직이며 원하는 트랙을 읽을 수 있을까</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="입출력-장치-관리">입출력 장치 관리</h3>
+<ul>
+  <li>I/O device management</li>
+  <li>주요기능
+    <ul>
+      <li>장치 드라이브 (Device drivers)</li>
+      <li>입출력 장치의 성능향상: buffering, caching, spooling</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="시스템-콜">시스템 콜</h2>
+<hr />
+
+<ul>
+  <li>System calls
+    <ul>
+      <li>프로세서가 운영체제 서비스를 받기 위해 호출(요청)</li>
+    </ul>
+  </li>
+  <li>주요 시스템 콜
+    <ul>
+      <li>Process: end, abort, load, execute, create, terminate, get/set attributes, wait event, signal event</li>
+      <li>Memory: allocate, free</li>
+      <li>File: create, delete, open, close, read, write, get/set attributes</li>
+      <li>Device: request, release, read, write, get/set attributes, attach/detache devices</li>
+      <li>Information: get/set time, get/set system data</li>
+      <li>Communication: socket, send, receive</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="프로세스-관리-1">프로세스 관리</h2>
+<hr />
+
+<ul>
+  <li>CPU 자원을 효율적으로 관리</li>
+  <li>프로그램 vs 프로세스 (program vs process)
+    <ul>
+      <li>process, task, job …</li>
+      <li>프로세스 : 실행중인 프로그램(program in execution): text + data + stack, pc, sp, registers, …
+        <ul>
+          <li>메모리 상에서 실행되는 작업 단위</li>
+          <li>일반적으로 CPU는 한번에 하나의 프로세스만 관리할 수 있음</li>
+        </ul>
+      </li>
+      <li>프로그램 : 실행 되기 전의 명령어와 데이터의 묶음</li>
+      <li>무덤 속 프로그램, 살아 움직이는 프로세스</li>
+    </ul>
+  </li>
+  <li>프로세스 상태
+    <ul>
+      <li><img src="https://www.dropbox.com/s/7gdvnhnk2t0cl6n/Screenshot%202018-07-27%2013.43.57.png?raw=1" /></li>
+      <li>new, ready, running, waiting, terminated
+        <ul>
+          <li>new : 메인 메모리에 올라온 상태</li>
+          <li>ready : 실행할 준비가 되어있는 상태</li>
+          <li>running : CPU가 실제 실행한 상태</li>
+          <li>waiting : CPU가 다른 작업을 진행하면 기존 작업은 waiting</li>
+          <li>terminated : 종료</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>PCB: Process Control Block
+    <ul>
+      <li>Task Control Block (TCB)</li>
+      <li>프로세서 제어 블록, 프로세스에 대한 모든 정보 보유</li>
+      <li>process state (running, ready, waiting, …), PC, registers, MMU info (base, limit), CPU time, process id, list of open files, …</li>
+      <li>사람과 비유? : 정부는 내 정보를 모두 기록하고 있음. PCB와 주민등록 등본과 유사</li>
+    </ul>
+  </li>
+  <li>프로세스 대기열 (queue)
+    <ul>
+      <li>Job Queue
+        <ul>
+          <li>Job scheduler</li>
+          <li>Long-term scheduler</li>
+        </ul>
+      </li>
+      <li>Ready Queue
+        <ul>
+          <li>CPU scheduler</li>
+          <li>Short-term scheduler</li>
+        </ul>
+      </li>
+      <li>Device Queue
+        <ul>
+          <li>Device scheduler</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Multiprogramming
+    <ul>
+      <li>Degree of multiprogramming</li>
+      <li>i/o-bound vs CPU-bound process</li>
+    </ul>
+  </li>
+  <li>Medium-term scheduler
+    <ul>
+      <li>Swapping
+        <ul>
+          <li>메모리에 올라와 있지만 아무 작업도 안하는 경우 디스크에 해당 메모리를 저장한 후(swap out), 사용하던 메모리를 다른 프로세서에게 분배</li>
+          <li>다시 작업이 진행될 경우 다시 메모리를 가지고 옴(swap in)</li>
+          <li>이런 작업들을 통칭 swapping이라고 함</li>
+        </ul>
+      </li>
+      <li>컴퓨터의 성능 향상을 위해 진행</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="용어">용어</h2>
+<hr />
+
+<ul>
+  <li>Context switching (문맥전환)
+    <ul>
+      <li>프로세스가 메모리에 여러개 있어도 어느 순간엔 1개만 진행할 수 있음</li>
+      <li>p1-&gt;p2, p2-&gt;p3</li>
+    </ul>
+  </li>
+  <li>Scheduler
+    <ul>
+      <li>지금 프로세스가 끝나고 어떤 프로세스를 실행할 것인가를 결정</li>
+    </ul>
+  </li>
+  <li>Dispatcher
+    <ul>
+      <li>실제로 스케쥴러가 선택한 프로세스를 실행하도록 상태, 레지스터의 값을 바꿔줌</li>
+      <li>어셈블리 같은 로우 레벨 코드로 짜야됨</li>
+      <li>준비상태의 프로세스들 중에서 우선순위가 가장 높은 프로세스에게 CPU를 할당</li>
+    </ul>
+  </li>
+  <li>Context switching overhead
+    <ul>
+      <li>하나의 프로세스가 CPU를 사용 중인 상태에서 다른 프로세스가 CPU를 사용하도록 하기 위해, 이전의 프로세스의 상태(문맥)를 보관하고 새로운 프로세스의 상태를 적재하는 작업</li>
+      <li>Running 상태의 Task가 사용하던 Context를 메모리 특정 영역에 저장한 후 새로이 수행 될 Task의 Context를 TCB또는 Stack에서 CPU의 레지스터 영역으로 복사하여 새로운 Task가 수행되도록 하는 일련의 작업</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="http://kocw.net/home/search/kemView.do?kemId=978503">양희재 교수님 운영체제 강의</a></li>
+  <li><a href="https://www.slideshare.net/LukaXavi/introduction-to-operating-system-10938506">introduction to Operating System</a></li>
+  <li><a href="http://doorbw.tistory.com/26">스레드와 프로세스, 멀티프로그래밍,멀티태스킹,멀티스레딩,멀티프로세싱 </a></li>
+</ul>
+
+
+      <br/>
+      <p><a href="https://bit.ly/kyleschool_blog">카일스쿨 유튜브</a> 채널을 만들었습니다. 데이터 사이언스, 성장, 리더십, BigQuery 등을 이야기할 예정이니, 관심 있으시면 구독 부탁드립니다 :)</p>
+      <p>이 글이 도움이 되셨다면 추천 클릭을 부탁드립니다 :)</p>
+      <br/>
+      <br/>
+      <div style="text-align:center">
+        <style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFFFFF !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 0px 9px !important;font-size: 17px !important;letter-spacing:-0.08px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/zzsza"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
+      </div>
+      <br/>
+      <br/>
+       <!--블로그-하단-반응형 -->
+      <ins class="adsbygoogle"
+          style="display:block; width:100%; height:300px;"
+          data-ad-client="ca-pub-5105555504153863"
+          data-ad-slot="1037589043"
+          data-ad-format="auto"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+
+    </div>
+  
+
+</article>
+
+  <hr class="dingbat" />
+
+  <div class="share">
+      <h2>Share this post</h2>
+      <div class="share-body">
+        <a href="http://twitter.com/share?text=운영체제 이해하기&amp;url=http://localhost:4000/development/2018/07/27/os-intro/"
+    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <span class="icon-twitter">
+            </span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/development/2018/07/27/os-intro/"
+    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <span class="icon-facebook">
+            </span>
+        </a>
+    </div>
+  </div>
+  <br/>
+
+
+
+
+
+
+  <aside class="author" role="complementary">
+    <div class="author">
+  <h2 class="page-title hr">
+    About
+  </h2>
+<div class="author-body">
+  
+    
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="seongyun byeon"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+  
+  <div class="author-body-description">
+    <p>Machine Learning Engineer</p>
+
+  </div>
+</div>
+</div>
+
+  </aside>
+
+
+
+
+
+<aside class="related" role="complementary">
+  <h2 class="hr">Related Posts</h2>
+
+  <ul class="related-posts">
+    
+      
+      
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/development/2020/01/06/jupyter_notebook_voila_dashboard/" data-flip="title">
+    <span>Voila를 사용해 Jupyter Notebook Dashboard 만들기</span>
+  </a>
+  <small><time datetime="2020-01-06T00:00:00+09:00">
+    06 Jan 2020
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/development/2019/12/27/julia_basic/" data-flip="title">
+    <span>Julia Language 프로그래밍 언어 기본 문법 정리</span>
+  </a>
+  <small><time datetime="2019-12-27T00:00:00+09:00">
+    27 Dec 2019
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/development/2019/08/09/spreadsheet-with-auth/" data-flip="title">
+    <span>Python에서 Auth를 사용해 Google Spreadsheets 연동하기</span>
+  </a>
+  <small><time datetime="2019-08-09T00:00:00+09:00">
+    09 Aug 2019
+  </time></small>
+</li>
+
+        
+      
+        
+        
+      
+    
+  </ul>
+</aside>
+
+
+
+      
+        <aside class="comments" role="complementary">
+  <h2>Comments</h2>
+  <hr/>
+
+  <div id="disqus_thread"></div>
+
+  <script>
+    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="운영체제 이해하기",this.page.identifier="/development/2018/07/27/os-intro",this.page.url="http://localhost:4000/development/2018/07/27/os-intro/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//zzsza.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</aside>
+
+      
+
+      <footer>
+  <hr/>
+  
+    <p>© 2017. by Seongyun Byeon</p>
+
+  
+  <p>
+    <code>Powered by <a href="https://zzsza.github.io/">zzsza</a></code>
+  </p>
+</footer>
+
+    </main>
+    <div class="right-side">
+  <div class="ad-first">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- 블로그-상단-모바일 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:100%;"
+         data-ad-client="ca-pub-5105555504153863"
+         data-ad-slot="9090558636"
+         data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+<br/>
+<br/>
+  <div class="ad-second">
+    <!-- 블로그-스카이스크래퍼 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;max-width:320px;width:100%;height:600px"
+         data-ad-client="ca-pub-5105555504153863"
+         data-ad-slot="3646660262"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+</div>
+
+
+  </div>
+  <div id="_yDrawer">
+  <div id="_sidebar" class="sidebar">
+    <div class="sidebar-bg" style="background-color:#4f86aa;background-image:url(/assets/img/nap.jpg)"></div>
+    <header class="sidebar-sticky" role="banner">
+      <br/>
+      <div class="sidebar-about">
+        <h1><a id="_title" href="/">어쩐지 오늘은</a></h1>
+        <p>Machine Learning Engineer</p>
+
+      </div>
+
+      <br/>
+      <nav class="sidebar-nav heading" role="navigation">
+        <span class="sr-only">Navigation:</span>
+<ul>
+  
+
+  
+
+  
+  
+  
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-1"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/diary/">Diary</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/diary-diary/">diary</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-2"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/data/">Data</a>
+       <label class="folder" for="list-item-2">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-ml/">Machine-Learning</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-dl/">Deep-Learning</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-mobility/">Mobility</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-engineering/">Engineering</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-optimization/">Optimization</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-paper/">Paper</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-pytorch/">Pytorch</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-cs231/">CS231n</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-rl/">Reinforcement-Learning</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-time-series/">Time Series</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-analytics/">Analytics</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-kaggle/">Kaggle</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-vision/">Vision</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-interpretable-ml/">Interpretable ML</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-simulation/">Simulation</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-graph/">Graph</a>
+             </li>
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-3"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/mlops/">MLOps</a>
+       <label class="folder" for="list-item-3">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-basic/">Basic</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-airflow/">Airflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-mlflow/">MLflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-tfx/">Tensorflow Extended</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-serving/">Serving</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-feature/">Feature</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-version/">Model & Pipeline version</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-4"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/gcp/">Google Cloud Platform</a>
+       <label class="folder" for="list-item-4">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-basic/">Basic</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-bigquery/">BigQuery</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-aiplatform/">AI Platform</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-dataflow/">Dataflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-cloud-functions/">Cloud Functions</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-5"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/development/">Development</a>
+       <label class="folder" for="list-item-5">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-linux/">Linux</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-web/">Web</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-python/">Python</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-sql/">SQL</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-scala/">Scala</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-os/">OS</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-kubernetes/">Kubernetes</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-devops/">DevOps</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-kotlin/">Kotlin</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-julia/">Julia</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-tools/">Tools</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-6"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/etc/">ETC</a>
+       <label class="folder" for="list-item-6">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/etc-lecture/">Lecture</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/etc-book/">Book</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-7"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/about/">About</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+</ul>
+
+      </nav>
+    <!-- search box -->
+    <form action="/search">
+      <div class="tipue_search_box">
+        <input type="text" name="q" id="tipue_search_input" placeholder="&#xF002;  Search" pattern=".{2,}" title="최소 2글자 이상" required></div>
+      <div style="clear: both;"></div>
+    </form>
+    <br/>
+      <div class="sidebar-box">
+        
+          
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="seongyun byeon"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+        
+      </div>
+      <p>메모가 습관인 데이터쟁이입니다</p>
+
+      
+      
+        <div class="sidebar-social">
+          <span class="sr-only">Social:</span>
+<ul>
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://facebook.com/zzsza">
+    <span class="icon-facebook" title="Facebook"></span>
+    <span class="sr-only">Facebook</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.youtube.com/channel/UCYyAaezBGEVmXcnink6nY9Q">
+    <span class="icon-youtube" title="YouTube"></span>
+    <span class="sr-only">YouTube</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://instagram.com/data.scientist">
+    <span class="icon-instagram" title="Instagram"></span>
+    <span class="sr-only">Instagram</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://github.com/zzsza">
+    <span class="icon-github" title="GitHub"></span>
+    <span class="sr-only">GitHub</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.linkedin.com/in/seong-yun-byeon-8183a8113">
+    <span class="icon-linkedin2" title="LinkedIn"></span>
+    <span class="sr-only">LinkedIn</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="mailto:snugyun01@gmail.com">
+    <span class="icon-mail" title="Email"></span>
+    <span class="sr-only">Email</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://zzsza.github.io/feed.xml">
+    <span class="icon-rss2" title="RSS"></span>
+    <span class="sr-only">RSS</span>
+  </a>
+</li>
+
+  
+</ul>
+
+        </div>
+      
+    </header>
+  </div>
+</div>
+
+</div>
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+
+<script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-110573232-1', 'auto');
+  ga('send', 'pageview');
+  loadJSDeferred('https://www.google-analytics.com/analytics.js');
+</script>
+
+
+
+
+
+<!--[if gt IE 8]><!---->
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    
+    google: {
+      families: 'Lato'.split('|')
+    },
+    
+
+    custom: {
+      families: ['icomoon'],
+      urls: ['/assets/icomoon/style.css']
+    }
+  });
+</script>
+<!--<![endif]-->
+
+
+  <!--[if gt IE 9]><!---->
+  
+  <script>loadJSDeferred('/assets/js/hydejack.js?v=6.4.0');</script>
+
+  
+  <!--<![endif]-->
+
+
+
+</body>
+
+</html>

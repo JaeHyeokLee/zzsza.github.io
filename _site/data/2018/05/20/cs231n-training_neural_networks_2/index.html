@@ -1,0 +1,1879 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
+-->
+
+
+
+
+
+
+
+
+
+<head>
+  <!-- =============== -->
+<!-- META            -->
+<!-- =============== -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="naver-site-verification" content="22c5b4ef3bfda7fc6100671413989219de7a4ac8"/>
+<meta property="og:title" content="Stanford CS231n 7강. Training Neural Networks 2">
+<meta property="og:type" content="article">
+
+
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/img/logo.png">
+
+
+<meta property="og:image:width" content="640" />
+<meta property="og:image:height" content="360" />
+
+
+
+  <title>Stanford CS231n 7강. Training Neural Networks 2 &middot; 어쩐지 오늘은</title>
+
+
+
+<meta name="description" content="Stanfoard CS231n 2017를 요약한 포스팅입니다. 정보 전달보다 자신을 위한 정리 목적이 강한 글입니다! :)
+
+">
+<meta property="og:description" content="Stanfoard CS231n 2017를 요약한 포스팅입니다. 정보 전달보다 자신을 위한 정리 목적이 강한 글입니다! :)
+
+">
+
+
+<!-- tipuesearch -->
+<link rel="stylesheet" href="/assets/tipuesearch/css/tipuesearch.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+<!-- =============== -->
+<!-- LINKS           -->
+<!-- =============== -->
+<link rel="canonical" href="http://localhost:4000/data/2018/05/20/cs231n-training_neural_networks_2/">
+<meta property="og:url" content="http://localhost:4000/data/2018/05/20/cs231n-training_neural_networks_2/">
+
+<link rel="alternate" type="application/atom+xml" title="어쩐지 오늘은 Feed" href="http://localhost:4000/feed.xml">
+
+
+  <link rel="prev" href="http://localhost:4000/data/2018/05/18/cs231n-training_neural_networks/">
+
+
+
+  <link rel="next" href="http://localhost:4000/data/2018/05/25/cs231n-cnn-architectures/">
+
+
+<link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+<!-- Place favicon.ico in the root directory -->
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+<script>
+  !function(n,e){function t(n,e){n.onload=function(){this.onerror=this.onload=null,e(null,n)},n.onerror=function(){this.onerror=this.onload=null,e(new Error("Failed to load "+this.src),n)}}function o(n,e){n.onreadystatechange=function(){"complete"!=this.readyState&&"loaded"!=this.readyState||(this.onreadystatechange=null,e(null,n))}}n._loaded=!1,n.loadJSDeferred=function(a,d){function r(){n._loaded=!0;var r=e.createElement("script");r.src=a,d&&(("onload"in r?t:o)(r,d),r.onload||t(r,d));var l=e.getElementsByTagName("script")[0];l.parentNode.insertBefore(r,l)}n._loaded?r():n.addEventListener?n.addEventListener("load",r,!1):n.attachEvent?n.attachEvent("onload",r):n.onload=r}}(window,document);
+
+  !function(e){"use strict";var n=function(n,t,o){function i(e){if(a.body)return e();setTimeout(function(){i(e)})}function r(){l.addEventListener&&l.removeEventListener("load",r),l.media=o||"all"}var d,a=e.document,l=a.createElement("link");if(t)d=t;else{var f=(a.body||a.getElementsByTagName("head")[0]).childNodes;d=f[f.length-1]}var s=a.styleSheets;l.rel="stylesheet",l.href=n,l.media="only x",i(function(){d.parentNode.insertBefore(l,t?d:d.nextSibling)});var u=function(e){for(var n=l.href,t=s.length;t--;)if(s[t].href===n)return e();setTimeout(function(){u(e)})};return l.addEventListener&&l.addEventListener("load",r),l.onloadcssdefined=u,u(r),l};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
+
+  !function(t){if(t.loadCSS){var e=loadCSS.relpreload={};if(e.support=function(){try{return t.document.createElement("link").relList.supports("preload")}catch(t){return!1}},e.poly=function(){for(var e=t.document.getElementsByTagName("link"),r=0;r<e.length;r++){var n=e[r];"preload"===n.rel&&"style"===n.getAttribute("as")&&(t.loadCSS(n.href,n,n.getAttribute("media")),n.rel=null)}},!e.support()){e.poly();var r=t.setInterval(e.poly,300);t.addEventListener&&t.addEventListener("load",function(){e.poly(),t.clearInterval(r)}),t.attachEvent&&t.attachEvent("onload",function(){t.clearInterval(r)})}}}(this);
+
+  window.disablePushState = false;
+  window.disableDrawer = false;
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5105555504153863",
+    enable_page_level_ads: true
+  });
+</script>
+
+<!--[if lt IE 9]>
+<script src="https://unpkg.com/html5shiv/dist/html5shiv.min.js"></script>
+<![endif]-->
+
+<!-- =============== -->
+<!-- STYLES          -->
+<!-- =============== -->
+<!--[if gt IE 8]><!---->
+<style>
+  
+  article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}*{box-sizing:border-box}html,body{margin:0;padding:0}html{font-size:16px;line-height:1.75}body{color:#333;background-color:#fff;overflow-y:scroll}a{text-decoration:none}.lead{margin-left:-1rem;margin-right:-1rem}img,.img{display:block;max-width:100%;margin-bottom:1rem;border:none}img.lead,.img.lead{max-width:calc(100% + 2rem);width:calc(100% + 2rem)}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-weight:bold;text-rendering:optimizeLegibility}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{margin:1.6rem 0 1rem;line-height:1.6}h1,.h1{font-size:2rem;line-height:1.25}h2,.h2{font-size:1.5rem}h3,.h3{font-size:1.17em}p{margin-top:0;margin-bottom:1rem}p.lead{font-size:1.25rem;font-weight:300;padding:0 1rem}ul,ol,dl{margin-top:0;margin-bottom:1rem}ul,ol{padding-left:1.25rem}hr{position:relative;margin:1.5rem 0;border:0;border-top:1px solid #eee}.hr{padding-bottom:.5rem;border-bottom:1px solid #eee;margin-bottom:1.5rem}h4,h5,h6,.h4,.h5,.h6{margin-bottom:0.5rem;font-size:1rem}table{margin-bottom:1rem;width:100%;width:calc(100% + 2rem);margin-left:-1rem;border:1px solid #e5e5e5;border-collapse:collapse;border-spacing:0}td,th{padding:.25rem .5rem;border:1px solid #e5e5e5}td:first-child,th:first-child{padding-left:1rem}td:last-child,th:last-child{padding-right:1rem}thead+tbody,tbody+tbody,tfoot{border-top:3px double #e5e5e5}tbody tr:nth-child(odd) td,tbody tr:nth-child(odd) th{background-color:#f9f9f9}footer{margin-bottom:2rem}.page,.post{margin-bottom:3em}.page li+li,.post li+li{margin-top:.25rem}.page>header,.post>header{margin-bottom:2rem}.page-title,.post-title{margin-top:0}.post-date{display:block;margin-top:-0.5rem;margin-bottom:1rem;color:#9a9a9a}.related-posts{padding-left:0;list-style:none}.related-posts>li,.related-posts>li+li{margin-top:1rem}.related-posts>li>small,.related-posts>li+li>small{font-size:75%;color:#9a9a9a}.message{margin-bottom:1rem;padding:1rem;color:#787878;background-color:#f9f9f9;margin-left:-1rem;margin-right:-1rem}body,main{position:relative;overflow-x:hidden}@media screen{body::before{content:'';background:#e5e5e5;position:absolute;left:0;top:0;bottom:0}}@media screen and (min-width: 40em){html{font-size:17px}}@media screen and (min-width: 54em){html{font-size:16px}}@media screen and (min-width: 88em){html{font-size:17px}}@media screen and (min-width: 125em){html{font-size:18px}}.sr-only{display:none}.clearfix,.sidebar-social::after,.clearafter::after{content:"";display:table;clear:both}a,.a{position:relative;padding-bottom:.15rem;border-style:hidden}.img{overflow:hidden;background-color:#f9f9f9}.img>img{margin:0;width:100%;height:100%}.sixteen-nine{position:relative}.sixteen-nine::before{display:block;content:"";width:100%;padding-top:56.25%}.sixteen-nine>*{position:absolute;top:0;left:0;right:0;bottom:0}h1+hr,h2+hr,h3+hr,h4+hr,h5+hr,h6+hr{margin-top:0}.fade-in{animation-duration:500ms;animation-name:fade-in;animation-fill-mode:forwards}@keyframes fade-in{from{transform:translateY(-2rem);opacity:0}50%{transform:translateY(-2rem);opacity:0}to{transform:translateY(0);opacity:1}}.mb6{margin-bottom:10rem}.sidebar{color:rgba(255,255,255,0.75);text-align:left}.sidebar::before{content:"";position:absolute;z-index:2;top:0;left:0;bottom:0;right:0;background:linear-gradient(to bottom, rgba(32,32,32,0) 0%, rgba(32,32,32,0.5) 100%)}.sidebar a{color:#fff;border-bottom-color:rgba(255,255,255,0.2)}.right-side{width:100%;margin-left:auto;margin-right:auto}.right-side .ad-first{text-align:center}.right-side .ad-second{text-align:center}@media screen{.right-side{max-width:38rem;min-height:100vh}}@media screen and (min-width: 54em){.right-side{margin-left:20rem;margin-right:1rem;padding:4rem 1rem 12rem}}@media screen and (min-width: 72em){.right-side{margin-left:22rem;max-width:42rem}}@media screen and (min-width: 88em){.right-side{width:162px;margin-left:0rem;margin-right:0rem;padding:0rem;margin-top:10rem;display:block;float:left}}@media screen and (min-width: 96em){.right-side{width:300px;margin-right:0rem}}#_yDrawer{position:relative}@media screen{#_yDrawer{min-height:640px;min-height:100vh}}@media screen and (min-width: 54em){#_yDrawer{width:18rem;margin-left:0}}.sidebar-bg{position:absolute;height:100%;overflow:hidden;top:0;right:0;bottom:0;left:0;background:#202020 center / cover}.sidebar-box{display:flex;justify-content:center}.sidebar-sticky{position:relative;z-index:3}@media screen{.sidebar-sticky{-ms-overflow-style:none;overflow:-moz-scrollbars-none;height:100%;overflow:auto;position:absolute;padding:3rem 0rem;right:2.5rem;left:2.5rem}}.sidebar-sticky::-webkit-scrollbar{display:none}.sidebar-about>h1{color:#fff;font-size:2rem}.sidebar-nav>ul{list-style:none;padding-left:0;margin-bottom:.5rem}a.sidebar-nav-item{width:100%;font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}a.sidebar-nav-subitem{font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}@media screen{.y-drawer-scrim{z-index:2}.y-drawer-content{width:18rem;left:-18rem;z-index:3}}.sidebar-social{margin-bottom:.5rem}.sidebar-social>ul{list-style:none;padding-left:0;margin:0 -.25rem}.sidebar-social>ul>li{float:left}.sidebar-social>ul>li>a{display:inline-block;text-align:center;font-size:1.6rem;line-height:3rem;width:3.1249rem;height:4rem;padding:.5rem 0}.sidebar-social>ul li+li{margin-top:0}.fixed-top{position:fixed;top:0;left:0;width:100%;z-index:1}.navbar>.content{padding-top:0;padding-bottom:0;min-height:0;height:0}.menu{display:inline-block;padding:1.75rem 1.5rem;border-bottom:none;margin-left:-1.5rem;color:#9a9a9a !important}.menu::after{content:"\2630"}@media screen and (min-width: 54em){.menu{padding:1.25rem 1.5rem;position:absolute;left:-9999px}.menu:focus{position:static}}.animation-main{pointer-events:none}.loading{display:none}@media print{.menu{display:none}}.animation-main{opacity:0;will-change:opacity}.loading{position:absolute;top:0;right:0;padding:5.25rem 4.5rem;transform-origin:top right;transform:scale(0.33)}.content{position:relative;margin-left:auto;margin-right:auto;padding:5rem 1rem 12rem}@media screen{.content{min-height:100vh}}@media screen and (min-width: 54em){.content{padding:4rem 1rem 12rem;margin-left:19rem;margin-right:3rem}}@media screen and (min-width: 72em){.content{max-width:42rem;margin-left:21rem}}@media screen and (min-width: 88em){.content{float:left;width:100%;margin-left:22rem;margin-right:5rem}}@media screen and (min-width: 96em){.content{max-width:44rem}}@media screen and (min-width: 102em){.content{margin-left:25rem;margin-right:8rem}}.me{width:6.5rem;height:6.5rem;align-self:center;margin-right:20px;border-radius:100%;position:relative}@media screen and (min-width: 40em){.me{width:7rem;height:7rem}}@media screen and (min-width: 54em){.me{width:6.5rem;height:6.5rem}}@media screen and (min-width: 72em){.me{width:7rem;height:7rem}}main>footer{width:100%;position:absolute;bottom:0;left:0;right:0;padding:0 1rem;color:#9a9a9a;font-size:smaller;text-align:center}main>footer>p{margin-bottom:0}html{font-family:'Sans-serif'}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-family:'Sans-serif'}
+
+</style>
+
+
+<link rel="preload" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0" as="style" onload="this.rel='stylesheet'">
+
+<style id="_pageStyle">
+
+.content a{color:#4f86aa;border-color:rgba(79,134,170,0.2)}.content a:hover{border-color:#4f86aa}:focus{outline-color:#4f86aa}::selection{color:#fff;background:#4f86aa}::-moz-selection{color:#fff;background:#4f86aa}
+
+</style>
+
+
+<noscript>
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0">
+  
+  
+  
+
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <style>
+      html { font-family: 'Lato', 'Sans-serif' }
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading { font-family: 'Lato', 'Sans-serif' }
+    </style>
+  
+
+  
+  <link rel="stylesheet" href="http://localhost:4000/assets/icomoon/style.css">
+</noscript>
+<!--<![endif]-->
+
+</head>
+
+<body>
+  <!-- =============== -->
+<!-- MENU            -->
+<!-- =============== -->
+<div class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <a id="_menu" class="menu no-hover" href="#_title">
+      <span class="sr-only">Menu</span>
+    </a>
+  </div>
+</div>
+
+<!-- =============== -->
+<!-- CONTENT         -->
+<!-- =============== -->
+<div id="_yPushState">
+  <div class="fade-in">
+    <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/nap.jpg">
+      
+
+<article id="post-data/2018/05/20/cs231n-training_neural_networks_2" class="post" role="article">
+  <header>
+    <h1 class="post-title">
+      
+        Stanford CS231n 7강. Training Neural Networks 2
+      
+    </h1>
+
+    <p class="post-date heading">
+      <time datetime="2018-05-20T00:00:00+09:00">20 May 2018</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/data/" data-flip="title">Data</a>
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/data-cs231/" data-flip="title">CS231n</a>
+
+    </p>
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+    <div class="markdown-body">
+
+
+<style>
+.myAd1190 { display:block; width:98%; height: 280px; }
+@media(min-width: 600px) { .myAd1190 { display: none; } }
+</style>
+<ins class="adsbygoogle myAd1190"
+    data-ad-client="ca-pub-5105555504153863"
+    data-ad-slot="6481487416"
+    ></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
+<br/>
+      <p>Stanfoard <a href="https://www.youtube.com/watch?v=vT1JzLTH4G4&amp;list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv&amp;index=0">CS231n 2017</a>를 요약한 포스팅입니다. 정보 전달보다 자신을 위한 정리 목적이 강한 글입니다! :)</p>
+
+<h2 id="today">Today</h2>
+<ul>
+  <li>Fancier optimization</li>
+  <li>Regularization</li>
+  <li>Transfer Learning
+    <ul>
+      <li>less data일 때 사용할 수 있는 방법</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="sgd">SGD</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>while True:
+  dx = compute_gradient(x)
+  x -= learning_rate * dx
+</code></pre></div></div>
+
+<h2 id="optimization">Optimization</h2>
+<ul>
+  <li>loss function
+    <ul>
+      <li>tell us how good or bad is that value of the weights doing on our problem</li>
+      <li>gives us some nice landscape over the weights</li>
+    </ul>
+  </li>
+  <li>Problems with SGD
+    <ul>
+      <li><img src="https://www.dropbox.com/s/z9af26uh1ukeqpq/Screenshot%202018-05-20%2023.28.45.png?raw=1" />
+        <ul>
+          <li>Q) loss가 한 방향으론 빠르게, 다른 방향으로 천천히 변화하면 어떻게 될까? Gradient Descent의 역할은?</li>
+          <li>A) shallow dimension에서 매우 느리고 jitter 모양</li>
+          <li>step마다 지그재그로 왔다갔다 해서 매우 느린 속도로 학습이 진행됨</li>
+          <li>고차원에선 이런 문제가 많이 발생 (위 그림은 2차원!)</li>
+        </ul>
+      </li>
+      <li><img src="https://www.dropbox.com/s/6dpkfxkdmvdgsm4/Screenshot%202018-05-20%2023.37.26.png?raw=1" /></li>
+      <li>x : value of parameter, y : loss</li>
+      <li>local minima
+        <ul>
+          <li>SGD get will stuck == local minima, gradient is zero, 빠져나오지 못함</li>
+          <li>100 million dimension일 경우 모든 방향에서 loss가 증가함. 실제로 local minima는 매우 드물게 나타납니다</li>
+        </ul>
+      </li>
+      <li>Saddle(안장) points엔 더 내려가야하는데 gradient 엄청 작은 값이라 정말 느리게 진행됨
+        <ul>
+          <li>Saddle points much more common in high dimension</li>
+          <li>100 million dimension에선 한 방향으론 loss가 증가하고, 다른 방향으론 loss가 내려감. 이런 경우는 정말 흔하게 나타납니다</li>
+          <li>near the saddle point도 slope가 평평해 gradient가 0에 가까워집니다</li>
+          <li>local minima보다 saddle point가 더 문제가 됩니다</li>
+          <li>local minima는 non-convex에서 gradient 음수(극대점), convex에선 gradient가 양수(극소점) vs saddle point는 방향에 따라 gradient가 다름</li>
+          <li><a href="http://darkpgmr.tistory.com/148">다크 프로그래머님 글</a> 참고</li>
+        </ul>
+      </li>
+      <li>mini batch를 이용해 gradient에 대한 true information이 아닌 noisy estimate를 얻음. noise가 mess up gradient</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="sgd의-대안책">SGD의 대안책</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vx = 0
+while True:
+  dx = compute_gradient(x)
+  vx = rho * vx + dx
+  x -= learning_rate * vx
+</code></pre></div></div>
+
+<ul>
+  <li>1) SGD + Momentum
+    <ul>
+      <li><img src="https://www.dropbox.com/s/h4yahgx7msev9xg/Screenshot%202018-05-21%2000.14.25.png?raw=1" /></li>
+      <li>위 코드에서는 x +=로 되어있는데 x -=가 맞지 않을까 생각됨</li>
+      <li>maintain velocity</li>
+      <li>add our gradient estimates to the velocity</li>
+      <li>원래 가던 방향으로 가고자하는 관성을 이용하는 방법</li>
+      <li>saddle point에서 gradient가 0이어도 velocity가 유지되서 saddle point를 지나갈 수 있음</li>
+      <li>minima로 가는데 필요한 step이 줄어듬</li>
+      <li>friction을 보통 0.9 또는 0.99로 줌</li>
+      <li>velocity = running mean of gradients</li>
+      <li><img src="https://www.dropbox.com/s/3odzqhxa68nfwvg/Screenshot%202018-05-21%2000.43.33.png?raw=1" /></li>
+      <li>(1) Momentum update
+        <ul>
+          <li>overcome some noise in our gradient estimate</li>
+          <li>현재 위치에서 gradient를 구한 후, 그 값에서 Velocity만큼 옮김</li>
+        </ul>
+      </li>
+      <li>(2) Nesterov Momentum (NAG, Nesterov Accelerated Gradient)
+        <ul>
+          <li><img src="https://www.dropbox.com/s/0o47eejp2rpfxs5/Screenshot%202018-05-21%2014.13.24.png?raw=1" /></li>
+          <li>Velocity로 옮긴 후 gradient를 구함</li>
+          <li>convex optimization 관점에서 유용</li>
+          <li><a href="http://aikorea.org/cs231n/neural-networks-3/#sgd">cs231 정리</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="adagrad">AdaGrad</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>grad_sqaured = 0
+while True:
+  dx = compute_gradient(x)
+  grad_squared += dx * dx
+  x -= learning_rate * dx/(np.sqart(grad_squared) + 1e-7)
+</code></pre></div></div>
+
+<ul>
+  <li>velocity 대신 gradient의 제곱(sqaured_term)을 사용</li>
+  <li>1e-7 : 0으로 나누지 않기 위해 추가한 상수</li>
+  <li><img src="https://www.dropbox.com/s/7z9k1lit4mde0me/Screenshot%202018-05-21%2014.30.35.png?raw=1" /></li>
+  <li>high condition number 문제는 많이 바뀌는 gradient는 큰 수로 나누고, 잘 변하지 않는 gradient는 작은 수로 나누어 속도를 더 빠르게함</li>
+  <li><img src="https://www.dropbox.com/s/84584eew0uzd1x0/Screenshot%202018-05-21%2014.32.19.png?raw=1" /></li>
+  <li>Adagrad, the steps actually smaller and smaller because we just continue updating this estimate of the squared gradients over time, so this estimate just grows and grows monotonically over the course of training. Now this causes our step size to get smaller and smaller over time</li>
+  <li>saddle point : non-convex에선 stuck</li>
+  <li>not so common</li>
+</ul>
+
+<h3 id="rmsprop">RMSProp</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>grad_squared = 0
+while True:
+  dx = compute_Gradient(x)
+  grad_sqaured = decay_rate * grad_sqaured + (1-decay_rate) * dx * dx
+  x -= learning_rate * dx / (np.sqrt(grad_squared) + 1e-7)
+</code></pre></div></div>
+
+<ul>
+  <li>sqaured gradient를 축적만 하지 않고 decay rate를 도입</li>
+  <li>decay rate = 0.9 or 0.99</li>
+  <li>강화학습에선 RMSProp을 많이 사용</li>
+</ul>
+
+<h3 id="adam">Adam</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># almost
+first_moment = 0
+second_moment = 0
+while True:
+  dx = compute_gradient(x)
+  first_moment = beta1 * first_moment + (1-beta1)*dx
+  second_moment = beta2 * second_moment + (1-beta2) * dx * dx
+  x -= learning_rate * first_moment / (np.sqrt(second_moment) + 1e-7))
+</code></pre></div></div>
+
+<ul>
+  <li>almost use</li>
+  <li>velocity와 squared_gradient를 모두 사용</li>
+  <li>first moment : Momentum</li>
+  <li>second moment : AdaGrad/RMSProp(RMSProp에 더 근접한 듯! decay rate가 있음)</li>
+  <li><img src="https://www.dropbox.com/s/feiwe1pugbttyt3/Screenshot%202018-05-21%2014.47.47.png?raw=1" /></li>
+  <li>첫 second_moment는 0!(beta2는 0.9 또는 0.99)</li>
+  <li>첫 timestep은 very very large step</li>
+  <li>위 문제를 해결하기 위해 Bias correction을 추가</li>
+  <li>(면접 질문) Adam이 왜 잘될까요? 2가지 이유는?</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># full from
+first_moment = 0
+second_moment = 0
+while True:
+  dx = compute_gradient(x)
+  first_moment = beta1 * first_moment + (1-beta1)*dx
+  second_moment = beta2 * second_moment + (1-beta2) * dx * dx
+  first_unbias = first_moment / (1-beta1**t)
+  second_unbias = second_moment / (1-beta2**t)
+  x -= learning_rate * first_unbias / (np.sqrt(second_unbias) + 1e-7))
+</code></pre></div></div>
+
+<ul>
+  <li>bias correction이 first, second_moment를 0으로 시작할 수 있도록 만들어줌</li>
+  <li>beta1 = 0.9, beta2 = 0.999, learning_rate = 1e-3 or 5e-4</li>
+</ul>
+
+<h3 id="learning-rate">Learning rate</h3>
+<ul>
+  <li><img src="https://www.dropbox.com/s/546ltzbd2o445gk/Screenshot%202018-05-21%2014.56.58.png?raw=1" /></li>
+  <li><img src="https://www.dropbox.com/s/ixt07xgzh3pu2ic/Screenshot%202018-05-21%2015.02.26.png?raw=1" /></li>
+  <li><img src="https://www.dropbox.com/s/nvnkhmi2962j65w/Screenshot%202018-05-21%2015.02.48.png?raw=1" /></li>
+  <li>lr을 천천히 decay시켜 minima에 도달할 수 있도록 설정</li>
+  <li>처음엔 no decay로 시도해보고 직접 눈으로 보길!</li>
+  <li>decay 방법은 exponential decay, 1/t decay 등이 있음</li>
+</ul>
+
+<h3 id="비교">비교</h3>
+<p><img src="http://2.bp.blogspot.com/-q6l20Vs4P_w/VPmIC7sEhnI/AAAAAAAACC4/g3UOUX2r_yA/s400/s25RsOr%2B-%2BImgur.gif" /></p>
+
+<ul>
+  <li>밑 그림을 보면 SGD가 Converge가 가장 느림</li>
+  <li>왜 Adam은 없지..</li>
+</ul>
+
+<p><img src="https://i.imgur.com/2dKCQHh.gif?1" /></p>
+
+<ul>
+  <li>Adadelta가 제일 좋아보이지만 문제 상황에 따라 다름. 문제 상황에 맞게 선택</li>
+</ul>
+
+<p><img src="https://i.imgur.com/2dKCQHh.gif?1" /></p>
+
+<ul>
+  <li>Rmsprop과 Adagrad가 좋아 보임. saddle point 문제를 극복할 수 있기에 이 옵티마이저들이 좋음</li>
+</ul>
+
+<h2 id="first-order1차-optimization">First-Order(1차) optimization</h2>
+<ul>
+  <li>위에서 말한 것들이 모두 First-Order optimization</li>
+  <li><img src="https://www.dropbox.com/s/pb0znetxelgbtgb/Screenshot%202018-05-21%2015.05.52.png?raw=1" /></li>
+  <li>(1) Use gradient form linear approximation</li>
+  <li>(2) Step to minimize the approximation</li>
+</ul>
+
+<h2 id="second-order2차-optimization">Second-Order(2차) optimization</h2>
+<ul>
+  <li><img src="https://www.dropbox.com/s/4vlmjhigdkhspsx/Screenshot%202018-05-21%2015.07.01.png?raw=1" /></li>
+  <li>함수로 근사</li>
+  <li>(1) Use gradient and <strong>Hessian</strong> to form <strong>quadratic</strong> approximation</li>
+  <li>(2) Step to the <strong>minima</strong> of the approximation</li>
+  <li><img src="https://www.dropbox.com/s/5f5pt0z8wuordik/Screenshot%202018-05-21%2015.10.51.png?raw=1" /></li>
+  <li>뉴턴 = 내츄럴</li>
+  <li>learning rate가 없음</li>
+  <li><img src="https://www.dropbox.com/s/h6wk89vvu5uke40/Screenshot%202018-05-21%2015.30.36.png?raw=1" /></li>
+  <li>딥러닝에 사용하기엔 계산량이 너무 많음(Hessian은 <code class="MathJax_Preview">O(N^2)</code><script type="math/tex">O(N^2)</script>, inverting은 <code class="MathJax_Preview">O(N^3)</code><script type="math/tex">O(N^3)</script>)</li>
+  <li><a href="http://www.irealism.org/xe/quantfinance/1628">최적화(Optimization) 기초와 포트폴리오 선택</a> 참고</li>
+</ul>
+
+<h3 id="l-bfgs">L-BFGS</h3>
+<ul>
+  <li><img src="https://www.dropbox.com/s/js4kfd3lduh66pi/Screenshot%202018-05-21%2015.35.33.png?raw=1" /></li>
+  <li>less stochastic, less parameter</li>
+</ul>
+
+<h2 id="in-practice">In practice</h2>
+<ul>
+  <li>Adam is a good default choice in most cases</li>
+  <li>full batch update를 해야하면 L-BFGS</li>
+</ul>
+
+<p><img src="https://www.dropbox.com/s/4x7gfkl2zmv8dar/Screenshot%202018-05-21%2015.47.41.png?raw=1" /></p>
+
+<ul>
+  <li>train / val error의 gap을 줄이기 위해 어떻게 해야할까?</li>
+</ul>
+
+<h2 id="model-ensembles">Model Ensembles</h2>
+<ul>
+  <li>1) Train multiple independent models</li>
+  <li>2) At test time average their results</li>
+  <li>Enjoy 2% extra performance</li>
+  <li>Tips and Tricks
+    <ul>
+      <li>Instead of training independent models, use multiple snapshots of a single model during training!</li>
+      <li>Cyclic learning rate schedules can
+make this work even better</li>
+      <li>Instead of using actual parameter vector, keep a moving average of the parameter vector and use that at test time (Polyak averaging) (but not common)</li>
+    </ul>
+  </li>
+  <li>How to improve <strong>single-model</strong> performance?</li>
+</ul>
+
+<h2 id="regularization">Regularization</h2>
+<ul>
+  <li>1) Add term to loss
+    <ul>
+      <li><img src="https://www.dropbox.com/s/r1h6hsvpc6jdscr/Screenshot%202018-05-21%2015.54.02.png?raw=1" /></li>
+      <li>L2는 neural network에서 사용하지 않음(?)</li>
+    </ul>
+  </li>
+  <li>2) Dropout
+    <ul>
+      <li><img src="https://www.dropbox.com/s/nmggg3544x5eq3k/Screenshot%202018-05-21%2015.55.53.png?raw=1" /></li>
+      <li>randomly하게 뉴런을 activation 확률을 0으로 바꿔서 끊음</li>
+      <li>왜 좋은건가?
+        <ul>
+          <li>(1) Prevent co-adaptation(상호 작용) of features</li>
+          <li>(2) kind of like large ensemble models(that share parameters)</li>
+        </ul>
+      </li>
+      <li>Test time
+        <ul>
+          <li><img src="https://www.dropbox.com/s/srj8085z8laksa7/Screenshot%202018-05-21%2016.03.06.png?raw=1" /></li>
+        </ul>
+      </li>
+      <li>Common pattern
+        <ul>
+          <li><img src="https://www.dropbox.com/s/upb3p5dz4ssx2e4/Screenshot%202018-05-21%2016.06.07.png?raw=1" /></li>
+          <li>Batch normalization(during training) one data point might appear in difference mini batches with difference other data points.</li>
+          <li>BN을 사용할 때는 Dropout을 사용하지 않음</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>3) Data Augmentation
+    <ul>
+      <li><img src="https://www.dropbox.com/s/olhjhh9kdgcelb2/Screenshot%202018-05-21%2016.09.38.png?raw=1" /></li>
+      <li>데이터 뿔리기</li>
+      <li>Horizontal Flips</li>
+      <li>Random crops and scales</li>
+      <li>Training : sample ranom crops / scales</li>
+      <li>Testing : average a fixed set of crops</li>
+      <li>Color Jitter
+        <ul>
+          <li><img src="https://www.dropbox.com/s/ac7hxsx4ntun6bm/Screenshot%202018-05-21%2016.10.55.png?raw=1" /></li>
+          <li>Apply PCA to all RGB</li>
+        </ul>
+      </li>
+      <li><img src="https://www.dropbox.com/s/mllau8qwul6syg4/Screenshot%202018-05-21%2016.11.48.png?raw=1" /></li>
+      <li>Common pattern
+        <ul>
+          <li><img src="https://www.dropbox.com/s/lii7bptu3zjzpq4/Screenshot%202018-05-21%2016.12.39.png?raw=1" /></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="transfer-learning">Transfer Learning</h2>
+<ul>
+  <li>이미 많은 양의 data로 train된 모델을 사용</li>
+  <li><img src="https://www.dropbox.com/s/rbw0sns8gwlryuy/Screenshot%202018-05-21%2016.16.45.png?raw=1" /></li>
+  <li>1) 적은 양의 data
+    <ul>
+      <li>마지막 layer를 reinitialize하고 train</li>
+      <li>Use Linear Classifier on top layer</li>
+    </ul>
+  </li>
+  <li>2) 많은 양의 data
+    <ul>
+      <li>마지막 Max Pooling layer 이후 모든 FC를 train(fine tuning, lr=0.1쯤?)</li>
+      <li>finetune a few layer</li>
+    </ul>
+  </li>
+  <li>dataset이 많이 다른데 많은 양의 data를 보유하면 finetune a large number of layers</li>
+  <li>Transfer learning을 하면 FC 이전의 layer들은 generic하고 FC layer들은 specific!</li>
+  <li><img src="https://www.dropbox.com/s/k0ikiq7yfattzka/Screenshot%202018-05-21%2016.18.22.png?raw=1" /></li>
+  <li><img src="https://www.dropbox.com/s/qho0jwqosljyi2l/Screenshot%202018-05-21%2016.19.06.png?raw=1" /></li>
+</ul>
+
+<h2 id="summary">Summary</h2>
+<p><img src="https://www.dropbox.com/s/riotb4grdopgako/Screenshot%202018-05-21%2016.19.29.png?raw=1" /></p>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=vT1JzLTH4G4&amp;list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv&amp;index=0">Stanfoard CS231n 2017</a></li>
+  <li><a href="http://darkpgmr.tistory.com/148">다크 프로그래머님 글(local minima, saddle point)</a></li>
+  <li><a href="http://aikorea.org/cs231n/neural-networks-3/#sgd">cs231 정리</a></li>
+  <li><a href="http://www.irealism.org/xe/quantfinance/1628">최적화(Optimization) 기초와 포트폴리오 선택</a></li>
+</ul>
+
+
+      <br/>
+      <p><a href="https://bit.ly/kyleschool_blog">카일스쿨 유튜브</a> 채널을 만들었습니다. 데이터 사이언스, 성장, 리더십, BigQuery 등을 이야기할 예정이니, 관심 있으시면 구독 부탁드립니다 :)</p>
+      <p>이 글이 도움이 되셨다면 추천 클릭을 부탁드립니다 :)</p>
+      <br/>
+      <br/>
+      <div style="text-align:center">
+        <style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFFFFF !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 0px 9px !important;font-size: 17px !important;letter-spacing:-0.08px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/zzsza"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
+      </div>
+      <br/>
+      <br/>
+       <!--블로그-하단-반응형 -->
+      <ins class="adsbygoogle"
+          style="display:block; width:100%; height:300px;"
+          data-ad-client="ca-pub-5105555504153863"
+          data-ad-slot="1037589043"
+          data-ad-format="auto"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+
+    </div>
+  
+
+</article>
+
+  <hr class="dingbat" />
+
+  <div class="share">
+      <h2>Share this post</h2>
+      <div class="share-body">
+        <a href="http://twitter.com/share?text=Stanford CS231n 7강. Training Neural Networks 2&amp;url=http://localhost:4000/data/2018/05/20/cs231n-training_neural_networks_2/"
+    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <span class="icon-twitter">
+            </span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/data/2018/05/20/cs231n-training_neural_networks_2/"
+    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <span class="icon-facebook">
+            </span>
+        </a>
+    </div>
+  </div>
+  <br/>
+
+
+
+
+
+
+  <aside class="author" role="complementary">
+    <div class="author">
+  <h2 class="page-title hr">
+    About
+  </h2>
+<div class="author-body">
+  
+    
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="seongyun byeon"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+  
+  <div class="author-body-description">
+    <p>Machine Learning Engineer</p>
+
+  </div>
+</div>
+</div>
+
+  </aside>
+
+
+
+
+
+<aside class="related" role="complementary">
+  <h2 class="hr">Related Posts</h2>
+
+  <ul class="related-posts">
+    
+      
+      
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/data/2019/12/15/rules-of-ml/" data-flip="title">
+    <span>Rules of Machine Learning: Best Practices for ML Engineering 정리</span>
+  </a>
+  <small><time datetime="2019-12-15T00:00:00+09:00">
+    15 Dec 2019
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/data/2019/12/03/cs224w-ml-with-graph/" data-flip="title">
+    <span>CS224W - Machine Learning with Graphs 1강 정리</span>
+  </a>
+  <small><time datetime="2019-12-03T00:00:00+09:00">
+    03 Dec 2019
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/data/2019/11/24/pydeck/" data-flip="title">
+    <span>지도 데이터 시각화 : Uber의 pydeck 사용하기</span>
+  </a>
+  <small><time datetime="2019-11-24T00:00:00+09:00">
+    24 Nov 2019
+  </time></small>
+</li>
+
+        
+      
+        
+        
+      
+    
+  </ul>
+</aside>
+
+
+
+      
+        <aside class="comments" role="complementary">
+  <h2>Comments</h2>
+  <hr/>
+
+  <div id="disqus_thread"></div>
+
+  <script>
+    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="Stanford CS231n 7강. Training Neural Networks 2",this.page.identifier="/data/2018/05/20/cs231n-training_neural_networks_2",this.page.url="http://localhost:4000/data/2018/05/20/cs231n-training_neural_networks_2/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//zzsza.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</aside>
+
+      
+
+      <footer>
+  <hr/>
+  
+    <p>© 2017. by Seongyun Byeon</p>
+
+  
+  <p>
+    <code>Powered by <a href="https://zzsza.github.io/">zzsza</a></code>
+  </p>
+</footer>
+
+    </main>
+    <div class="right-side">
+  <div class="ad-first">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- 블로그-상단-모바일 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:100%;"
+         data-ad-client="ca-pub-5105555504153863"
+         data-ad-slot="9090558636"
+         data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+<br/>
+<br/>
+  <div class="ad-second">
+    <!-- 블로그-스카이스크래퍼 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;max-width:320px;width:100%;height:600px"
+         data-ad-client="ca-pub-5105555504153863"
+         data-ad-slot="3646660262"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+</div>
+
+
+  </div>
+  <div id="_yDrawer">
+  <div id="_sidebar" class="sidebar">
+    <div class="sidebar-bg" style="background-color:#4f86aa;background-image:url(/assets/img/nap.jpg)"></div>
+    <header class="sidebar-sticky" role="banner">
+      <br/>
+      <div class="sidebar-about">
+        <h1><a id="_title" href="/">어쩐지 오늘은</a></h1>
+        <p>Machine Learning Engineer</p>
+
+      </div>
+
+      <br/>
+      <nav class="sidebar-nav heading" role="navigation">
+        <span class="sr-only">Navigation:</span>
+<ul>
+  
+
+  
+
+  
+  
+  
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-1"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/diary/">Diary</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/diary-diary/">diary</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-2"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/data/">Data</a>
+       <label class="folder" for="list-item-2">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-ml/">Machine-Learning</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-dl/">Deep-Learning</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-mobility/">Mobility</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-engineering/">Engineering</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-optimization/">Optimization</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-paper/">Paper</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-pytorch/">Pytorch</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-cs231/">CS231n</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-rl/">Reinforcement-Learning</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-time-series/">Time Series</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-analytics/">Analytics</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-kaggle/">Kaggle</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-vision/">Vision</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-interpretable-ml/">Interpretable ML</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-simulation/">Simulation</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-graph/">Graph</a>
+             </li>
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-3"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/mlops/">MLOps</a>
+       <label class="folder" for="list-item-3">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-basic/">Basic</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-airflow/">Airflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-mlflow/">MLflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-tfx/">Tensorflow Extended</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-serving/">Serving</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-feature/">Feature</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-version/">Model & Pipeline version</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-4"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/gcp/">Google Cloud Platform</a>
+       <label class="folder" for="list-item-4">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-basic/">Basic</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-bigquery/">BigQuery</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-aiplatform/">AI Platform</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-dataflow/">Dataflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-cloud-functions/">Cloud Functions</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-5"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/development/">Development</a>
+       <label class="folder" for="list-item-5">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-linux/">Linux</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-web/">Web</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-python/">Python</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-sql/">SQL</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-scala/">Scala</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-os/">OS</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-kubernetes/">Kubernetes</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-devops/">DevOps</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-kotlin/">Kotlin</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-julia/">Julia</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-tools/">Tools</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-6"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/etc/">ETC</a>
+       <label class="folder" for="list-item-6">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/etc-lecture/">Lecture</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/etc-book/">Book</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-7"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/about/">About</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+</ul>
+
+      </nav>
+    <!-- search box -->
+    <form action="/search">
+      <div class="tipue_search_box">
+        <input type="text" name="q" id="tipue_search_input" placeholder="&#xF002;  Search" pattern=".{2,}" title="최소 2글자 이상" required></div>
+      <div style="clear: both;"></div>
+    </form>
+    <br/>
+      <div class="sidebar-box">
+        
+          
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="seongyun byeon"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+        
+      </div>
+      <p>메모가 습관인 데이터쟁이입니다</p>
+
+      
+      
+        <div class="sidebar-social">
+          <span class="sr-only">Social:</span>
+<ul>
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://facebook.com/zzsza">
+    <span class="icon-facebook" title="Facebook"></span>
+    <span class="sr-only">Facebook</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.youtube.com/channel/UCYyAaezBGEVmXcnink6nY9Q">
+    <span class="icon-youtube" title="YouTube"></span>
+    <span class="sr-only">YouTube</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://instagram.com/data.scientist">
+    <span class="icon-instagram" title="Instagram"></span>
+    <span class="sr-only">Instagram</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://github.com/zzsza">
+    <span class="icon-github" title="GitHub"></span>
+    <span class="sr-only">GitHub</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.linkedin.com/in/seong-yun-byeon-8183a8113">
+    <span class="icon-linkedin2" title="LinkedIn"></span>
+    <span class="sr-only">LinkedIn</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="mailto:snugyun01@gmail.com">
+    <span class="icon-mail" title="Email"></span>
+    <span class="sr-only">Email</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://zzsza.github.io/feed.xml">
+    <span class="icon-rss2" title="RSS"></span>
+    <span class="sr-only">RSS</span>
+  </a>
+</li>
+
+  
+</ul>
+
+        </div>
+      
+    </header>
+  </div>
+</div>
+
+</div>
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+
+<script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-110573232-1', 'auto');
+  ga('send', 'pageview');
+  loadJSDeferred('https://www.google-analytics.com/analytics.js');
+</script>
+
+
+
+
+
+<!--[if gt IE 8]><!---->
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    
+    google: {
+      families: 'Lato'.split('|')
+    },
+    
+
+    custom: {
+      families: ['icomoon'],
+      urls: ['/assets/icomoon/style.css']
+    }
+  });
+</script>
+<!--<![endif]-->
+
+
+  <!--[if gt IE 9]><!---->
+  
+  <script>loadJSDeferred('/assets/js/hydejack.js?v=6.4.0');</script>
+
+  
+  <!--<![endif]-->
+
+
+
+</body>
+
+</html>

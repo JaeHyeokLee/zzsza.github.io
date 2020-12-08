@@ -1,0 +1,2110 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
+-->
+
+
+
+
+
+
+
+
+
+<head>
+  <!-- =============== -->
+<!-- META            -->
+<!-- =============== -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="naver-site-verification" content="22c5b4ef3bfda7fc6100671413989219de7a4ac8"/>
+<meta property="og:title" content="Apache Airflow - Workflow 관리 도구(1)">
+<meta property="og:type" content="article">
+
+
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/img/logo.png">
+
+
+<meta property="og:image:width" content="640" />
+<meta property="og:image:height" content="360" />
+
+
+
+  <title>Apache Airflow - Workflow 관리 도구(1) &middot; 어쩐지 오늘은</title>
+
+
+
+<meta name="description" content="
+  오늘은 Workflow Management Tool인 Apache Airflow 관련 포스팅을 하려고 합니다.
+  이 글은 1.10.3 버전에서 작성되었습니다
+    
+      최초 작성은 2018년 1월 4일이지만, 2020년 2월 9일에 글을 리뉴얼했습니다
+      슬라이드 형태의 자료를 원하시면 카일스쿨 6주차를 참고하시면 좋을 것 같습니다 :)
+    
+  
+
+
+">
+<meta property="og:description" content="
+  오늘은 Workflow Management Tool인 Apache Airflow 관련 포스팅을 하려고 합니다.
+  이 글은 1.10.3 버전에서 작성되었습니다
+    
+      최초 작성은 2018년 1월 4일이지만, 2020년 2월 9일에 글을 리뉴얼했습니다
+      슬라이드 형태의 자료를 원하시면 카일스쿨 6주차를 참고하시면 좋을 것 같습니다 :)
+    
+  
+
+
+">
+
+
+<!-- tipuesearch -->
+<link rel="stylesheet" href="/assets/tipuesearch/css/tipuesearch.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+<!-- =============== -->
+<!-- LINKS           -->
+<!-- =============== -->
+<link rel="canonical" href="http://localhost:4000/data/2018/01/04/airflow-1/">
+<meta property="og:url" content="http://localhost:4000/data/2018/01/04/airflow-1/">
+
+<link rel="alternate" type="application/atom+xml" title="어쩐지 오늘은 Feed" href="http://localhost:4000/feed.xml">
+
+
+  <link rel="prev" href="http://localhost:4000/gcp/2018/01/01/gcp-intro/">
+
+
+
+  <link rel="next" href="http://localhost:4000/gcp/2018/01/11/config-gcloud-account/">
+
+
+<link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+<!-- Place favicon.ico in the root directory -->
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+<script>
+  !function(n,e){function t(n,e){n.onload=function(){this.onerror=this.onload=null,e(null,n)},n.onerror=function(){this.onerror=this.onload=null,e(new Error("Failed to load "+this.src),n)}}function o(n,e){n.onreadystatechange=function(){"complete"!=this.readyState&&"loaded"!=this.readyState||(this.onreadystatechange=null,e(null,n))}}n._loaded=!1,n.loadJSDeferred=function(a,d){function r(){n._loaded=!0;var r=e.createElement("script");r.src=a,d&&(("onload"in r?t:o)(r,d),r.onload||t(r,d));var l=e.getElementsByTagName("script")[0];l.parentNode.insertBefore(r,l)}n._loaded?r():n.addEventListener?n.addEventListener("load",r,!1):n.attachEvent?n.attachEvent("onload",r):n.onload=r}}(window,document);
+
+  !function(e){"use strict";var n=function(n,t,o){function i(e){if(a.body)return e();setTimeout(function(){i(e)})}function r(){l.addEventListener&&l.removeEventListener("load",r),l.media=o||"all"}var d,a=e.document,l=a.createElement("link");if(t)d=t;else{var f=(a.body||a.getElementsByTagName("head")[0]).childNodes;d=f[f.length-1]}var s=a.styleSheets;l.rel="stylesheet",l.href=n,l.media="only x",i(function(){d.parentNode.insertBefore(l,t?d:d.nextSibling)});var u=function(e){for(var n=l.href,t=s.length;t--;)if(s[t].href===n)return e();setTimeout(function(){u(e)})};return l.addEventListener&&l.addEventListener("load",r),l.onloadcssdefined=u,u(r),l};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
+
+  !function(t){if(t.loadCSS){var e=loadCSS.relpreload={};if(e.support=function(){try{return t.document.createElement("link").relList.supports("preload")}catch(t){return!1}},e.poly=function(){for(var e=t.document.getElementsByTagName("link"),r=0;r<e.length;r++){var n=e[r];"preload"===n.rel&&"style"===n.getAttribute("as")&&(t.loadCSS(n.href,n,n.getAttribute("media")),n.rel=null)}},!e.support()){e.poly();var r=t.setInterval(e.poly,300);t.addEventListener&&t.addEventListener("load",function(){e.poly(),t.clearInterval(r)}),t.attachEvent&&t.attachEvent("onload",function(){t.clearInterval(r)})}}}(this);
+
+  window.disablePushState = false;
+  window.disableDrawer = false;
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5105555504153863",
+    enable_page_level_ads: true
+  });
+</script>
+
+<!--[if lt IE 9]>
+<script src="https://unpkg.com/html5shiv/dist/html5shiv.min.js"></script>
+<![endif]-->
+
+<!-- =============== -->
+<!-- STYLES          -->
+<!-- =============== -->
+<!--[if gt IE 8]><!---->
+<style>
+  
+  article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}*{box-sizing:border-box}html,body{margin:0;padding:0}html{font-size:16px;line-height:1.75}body{color:#333;background-color:#fff;overflow-y:scroll}a{text-decoration:none}.lead{margin-left:-1rem;margin-right:-1rem}img,.img{display:block;max-width:100%;margin-bottom:1rem;border:none}img.lead,.img.lead{max-width:calc(100% + 2rem);width:calc(100% + 2rem)}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-weight:bold;text-rendering:optimizeLegibility}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{margin:1.6rem 0 1rem;line-height:1.6}h1,.h1{font-size:2rem;line-height:1.25}h2,.h2{font-size:1.5rem}h3,.h3{font-size:1.17em}p{margin-top:0;margin-bottom:1rem}p.lead{font-size:1.25rem;font-weight:300;padding:0 1rem}ul,ol,dl{margin-top:0;margin-bottom:1rem}ul,ol{padding-left:1.25rem}hr{position:relative;margin:1.5rem 0;border:0;border-top:1px solid #eee}.hr{padding-bottom:.5rem;border-bottom:1px solid #eee;margin-bottom:1.5rem}h4,h5,h6,.h4,.h5,.h6{margin-bottom:0.5rem;font-size:1rem}table{margin-bottom:1rem;width:100%;width:calc(100% + 2rem);margin-left:-1rem;border:1px solid #e5e5e5;border-collapse:collapse;border-spacing:0}td,th{padding:.25rem .5rem;border:1px solid #e5e5e5}td:first-child,th:first-child{padding-left:1rem}td:last-child,th:last-child{padding-right:1rem}thead+tbody,tbody+tbody,tfoot{border-top:3px double #e5e5e5}tbody tr:nth-child(odd) td,tbody tr:nth-child(odd) th{background-color:#f9f9f9}footer{margin-bottom:2rem}.page,.post{margin-bottom:3em}.page li+li,.post li+li{margin-top:.25rem}.page>header,.post>header{margin-bottom:2rem}.page-title,.post-title{margin-top:0}.post-date{display:block;margin-top:-0.5rem;margin-bottom:1rem;color:#9a9a9a}.related-posts{padding-left:0;list-style:none}.related-posts>li,.related-posts>li+li{margin-top:1rem}.related-posts>li>small,.related-posts>li+li>small{font-size:75%;color:#9a9a9a}.message{margin-bottom:1rem;padding:1rem;color:#787878;background-color:#f9f9f9;margin-left:-1rem;margin-right:-1rem}body,main{position:relative;overflow-x:hidden}@media screen{body::before{content:'';background:#e5e5e5;position:absolute;left:0;top:0;bottom:0}}@media screen and (min-width: 40em){html{font-size:17px}}@media screen and (min-width: 54em){html{font-size:16px}}@media screen and (min-width: 88em){html{font-size:17px}}@media screen and (min-width: 125em){html{font-size:18px}}.sr-only{display:none}.clearfix,.sidebar-social::after,.clearafter::after{content:"";display:table;clear:both}a,.a{position:relative;padding-bottom:.15rem;border-style:hidden}.img{overflow:hidden;background-color:#f9f9f9}.img>img{margin:0;width:100%;height:100%}.sixteen-nine{position:relative}.sixteen-nine::before{display:block;content:"";width:100%;padding-top:56.25%}.sixteen-nine>*{position:absolute;top:0;left:0;right:0;bottom:0}h1+hr,h2+hr,h3+hr,h4+hr,h5+hr,h6+hr{margin-top:0}.fade-in{animation-duration:500ms;animation-name:fade-in;animation-fill-mode:forwards}@keyframes fade-in{from{transform:translateY(-2rem);opacity:0}50%{transform:translateY(-2rem);opacity:0}to{transform:translateY(0);opacity:1}}.mb6{margin-bottom:10rem}.sidebar{color:rgba(255,255,255,0.75);text-align:left}.sidebar::before{content:"";position:absolute;z-index:2;top:0;left:0;bottom:0;right:0;background:linear-gradient(to bottom, rgba(32,32,32,0) 0%, rgba(32,32,32,0.5) 100%)}.sidebar a{color:#fff;border-bottom-color:rgba(255,255,255,0.2)}.right-side{width:100%;margin-left:auto;margin-right:auto}.right-side .ad-first{text-align:center}.right-side .ad-second{text-align:center}@media screen{.right-side{max-width:38rem;min-height:100vh}}@media screen and (min-width: 54em){.right-side{margin-left:20rem;margin-right:1rem;padding:4rem 1rem 12rem}}@media screen and (min-width: 72em){.right-side{margin-left:22rem;max-width:42rem}}@media screen and (min-width: 88em){.right-side{width:162px;margin-left:0rem;margin-right:0rem;padding:0rem;margin-top:10rem;display:block;float:left}}@media screen and (min-width: 96em){.right-side{width:300px;margin-right:0rem}}#_yDrawer{position:relative}@media screen{#_yDrawer{min-height:640px;min-height:100vh}}@media screen and (min-width: 54em){#_yDrawer{width:18rem;margin-left:0}}.sidebar-bg{position:absolute;height:100%;overflow:hidden;top:0;right:0;bottom:0;left:0;background:#202020 center / cover}.sidebar-box{display:flex;justify-content:center}.sidebar-sticky{position:relative;z-index:3}@media screen{.sidebar-sticky{-ms-overflow-style:none;overflow:-moz-scrollbars-none;height:100%;overflow:auto;position:absolute;padding:3rem 0rem;right:2.5rem;left:2.5rem}}.sidebar-sticky::-webkit-scrollbar{display:none}.sidebar-about>h1{color:#fff;font-size:2rem}.sidebar-nav>ul{list-style:none;padding-left:0;margin-bottom:.5rem}a.sidebar-nav-item{width:100%;font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}a.sidebar-nav-subitem{font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}@media screen{.y-drawer-scrim{z-index:2}.y-drawer-content{width:18rem;left:-18rem;z-index:3}}.sidebar-social{margin-bottom:.5rem}.sidebar-social>ul{list-style:none;padding-left:0;margin:0 -.25rem}.sidebar-social>ul>li{float:left}.sidebar-social>ul>li>a{display:inline-block;text-align:center;font-size:1.6rem;line-height:3rem;width:3.1249rem;height:4rem;padding:.5rem 0}.sidebar-social>ul li+li{margin-top:0}.fixed-top{position:fixed;top:0;left:0;width:100%;z-index:1}.navbar>.content{padding-top:0;padding-bottom:0;min-height:0;height:0}.menu{display:inline-block;padding:1.75rem 1.5rem;border-bottom:none;margin-left:-1.5rem;color:#9a9a9a !important}.menu::after{content:"\2630"}@media screen and (min-width: 54em){.menu{padding:1.25rem 1.5rem;position:absolute;left:-9999px}.menu:focus{position:static}}.animation-main{pointer-events:none}.loading{display:none}@media print{.menu{display:none}}.animation-main{opacity:0;will-change:opacity}.loading{position:absolute;top:0;right:0;padding:5.25rem 4.5rem;transform-origin:top right;transform:scale(0.33)}.content{position:relative;margin-left:auto;margin-right:auto;padding:5rem 1rem 12rem}@media screen{.content{min-height:100vh}}@media screen and (min-width: 54em){.content{padding:4rem 1rem 12rem;margin-left:19rem;margin-right:3rem}}@media screen and (min-width: 72em){.content{max-width:42rem;margin-left:21rem}}@media screen and (min-width: 88em){.content{float:left;width:100%;margin-left:22rem;margin-right:5rem}}@media screen and (min-width: 96em){.content{max-width:44rem}}@media screen and (min-width: 102em){.content{margin-left:25rem;margin-right:8rem}}.me{width:6.5rem;height:6.5rem;align-self:center;margin-right:20px;border-radius:100%;position:relative}@media screen and (min-width: 40em){.me{width:7rem;height:7rem}}@media screen and (min-width: 54em){.me{width:6.5rem;height:6.5rem}}@media screen and (min-width: 72em){.me{width:7rem;height:7rem}}main>footer{width:100%;position:absolute;bottom:0;left:0;right:0;padding:0 1rem;color:#9a9a9a;font-size:smaller;text-align:center}main>footer>p{margin-bottom:0}html{font-family:'Sans-serif'}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-family:'Sans-serif'}
+
+</style>
+
+
+<link rel="preload" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0" as="style" onload="this.rel='stylesheet'">
+
+<style id="_pageStyle">
+
+.content a{color:#4f86aa;border-color:rgba(79,134,170,0.2)}.content a:hover{border-color:#4f86aa}:focus{outline-color:#4f86aa}::selection{color:#fff;background:#4f86aa}::-moz-selection{color:#fff;background:#4f86aa}
+
+</style>
+
+
+<noscript>
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0">
+  
+  
+  
+
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <style>
+      html { font-family: 'Lato', 'Sans-serif' }
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading { font-family: 'Lato', 'Sans-serif' }
+    </style>
+  
+
+  
+  <link rel="stylesheet" href="http://localhost:4000/assets/icomoon/style.css">
+</noscript>
+<!--<![endif]-->
+
+</head>
+
+<body>
+  <!-- =============== -->
+<!-- MENU            -->
+<!-- =============== -->
+<div class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <a id="_menu" class="menu no-hover" href="#_title">
+      <span class="sr-only">Menu</span>
+    </a>
+  </div>
+</div>
+
+<!-- =============== -->
+<!-- CONTENT         -->
+<!-- =============== -->
+<div id="_yPushState">
+  <div class="fade-in">
+    <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/nap.jpg">
+      
+
+<article id="post-data/2018/01/04/airflow-1" class="post" role="article">
+  <header>
+    <h1 class="post-title">
+      
+        Apache Airflow - Workflow 관리 도구(1)
+      
+    </h1>
+
+    <p class="post-date heading">
+      <time datetime="2018-01-04T00:00:00+09:00">04 Jan 2018</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/data/" data-flip="title">Data</a>
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/data-engineering/" data-flip="title">Engineering</a>
+
+    </p>
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+    <div class="markdown-body">
+
+
+<style>
+.myAd1190 { display:block; width:98%; height: 280px; }
+@media(min-width: 600px) { .myAd1190 { display: none; } }
+</style>
+<ins class="adsbygoogle myAd1190"
+    data-ad-client="ca-pub-5105555504153863"
+    data-ad-slot="6481487416"
+    ></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
+<br/>
+      <ul>
+  <li>오늘은 Workflow Management Tool인 <code class="highlighter-rouge">Apache Airflow</code> 관련 포스팅을 하려고 합니다.</li>
+  <li>이 글은 1.10.3 버전에서 작성되었습니다
+    <ul>
+      <li>최초 작성은 2018년 1월 4일이지만, 2020년 2월 9일에 글을 리뉴얼했습니다</li>
+      <li>슬라이드 형태의 자료를 원하시면 <a href="https://zzsza.github.io/kyle-school/week6/#/">카일스쿨 6주차</a>를 참고하시면 좋을 것 같습니다 :)</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="apache-airflow를-사용하는-이유">Apache Airflow를 사용하는 이유</h3>
+<ul>
+  <li>데이터 엔지니어링에선 데이터 ETL(Extract, Transform, Load) 과정을 통해 데이터를 가공하며 적재함
+    <ul>
+      <li>머신러닝 분야에서도 모델 학습용 데이터 전처리, Train, Prediction시 사용 가능</li>
+    </ul>
+  </li>
+  <li>위와 같은 경우 여러개의 Sequential한 로직(앞의 output이 뒤의 input이 되는)이 존재하는데 이런 로직들을 한번에 관리해야 함</li>
+  <li>관리할 로직이 적다면 CRON + 서버에 직접 접속해 디버깅 하는 방식으로 사용할 수 있지만, 점점 관리할 태스크들이 많아지면 헷갈리는 경우가 생김
+    <ul>
+      <li>이런 Workflow Management 도구는 airflow 외에도 하둡 에코시스템에 우지(oozie), luigi 같은 솔루션이 있음</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<hr />
+
+<h3 id="apache-airflow의-장점">Apache Airflow의 장점</h3>
+<ul>
+  <li>Apache Airflow는 Python 기반으로 만들어졌기 때문에, 데이터 분석을 하는 분들도 쉽게 코드를 작성할 수 있음</li>
+  <li>Airflow 콘솔이 따로 존재해 Task 관리를 서버에서 들어가 관리하지 않아도 되고, 각 작업별 시간이 나오기 때문에 bottleneck을 찾을 때에도 유용함</li>
+  <li>또한 구글 클라우드 플랫폼(BigQuery, Dataflow)을 쉽게 사용할 수 있도록 제공되기 때문에 GCP를 사용하시면 반드시 사용할 것을 추천함
+    <ul>
+      <li>Google Cloud Platform에는 Managed Airflow인 <a href="https://cloud.google.com/composer/?hl=ko">Google Cloud Composer</a>가 있음</li>
+      <li>직접 환경을 구축할 여건이 되지 않는다면 이런 서비스를 사용하는 것을 추천 :)</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<hr />
+
+<h3 id="airflow-architecture">Airflow Architecture</h3>
+<ul>
+  <li><img src="https://www.dropbox.com/s/ofbftr7xz9az4jc/Screenshot%202020-02-12%2022.12.42.png?raw=1" /></li>
+  <li>Airflow Webserver
+      - 웹 UI를 표현하고, workflow 상태 표시하고 실행, 재시작, 수동 조작, 로그 확인 등 가능</li>
+  <li>Airflow Scheduler
+    <ul>
+      <li>작업 기준이 충족되는지 여부를 확인</li>
+      <li>종속 작업이 성공적으로 완료되었고, 예약 간격이 주어지면 실행할 수 있는 작업인지, 실행 조건이 충족되는지 등</li>
+      <li>위 충족 여부가 DB에 기록되면, task들이 worker에게 선택되서 작업을 실행함</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<hr />
+
+<h3 id="1-airflow-설치">1) Airflow 설치</h3>
+<ul>
+  <li>
+    <p>Airflow는 pip로 설치 가능</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  pip install apache-airflow==1.10.3
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Extra Packages가 필요하다면 아래 명령어로 설치 가능</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  pip install apache-airflow[gcp]==1.10.3
+  # zsh이라면
+  # pip install 'apache-airflow[gcp]'==1.10.3
+</code></pre></div>    </div>
+  </li>
+  <li>Airflow initdb
+    <ul>
+      <li>airflow initdb는 처음 db를 생성하는 작업을 함</li>
+    </ul>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  airflow initdb
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>werkzeug 관련 오류가 발생한다면 아래 명령어로 라이브러리 설치</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  pip install werkzeug==0.15.4
+</code></pre></div>    </div>
+  </li>
+  <li>Airflow 실행
+    <ul>
+      <li>airflow는 webserver와 scheduler를 실행시킴</li>
+      <li>webserver는 웹 서버를 담당하고, scheduler가 DAG들을 스케줄링(실행)함</li>
+    </ul>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  airflow webserver -p 8080
+  # 터미널 새 창을 열어서 아래 커맨드 입력
+  airflow scheduler
+</code></pre></div>    </div>
+  </li>
+  <li>기본적으로 설치할 경우 <code class="highlighter-rouge">~/airflow</code>에 폴더가 생김
+    <ul>
+      <li>폴더 내부에 있는 파일 간단 설명
+        <ul>
+          <li><code class="highlighter-rouge">airflow.cfg</code> : Airflow 관련 설정</li>
+          <li><code class="highlighter-rouge">airflow.db</code> : sqlite 데이터베이스</li>
+          <li><code class="highlighter-rouge">dags</code> 폴더(없다면 <code class="highlighter-rouge">mkdir dags</code>로 생성!) : DAG 파일이 저장되는 장소</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>만약 1.10.0 이상 버전을 설치할 때, RuntimeError가 발생할 경우(RuntimeError: By default one of Airflow’s dependencies installs a GPL dependency)
+    <ul>
+      <li>
+        <p>환경 변수를 정의한 후 설치</p>
+
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  export AIRFLOW_GPL_UNIDECODE=yes
+  pip install apache-airflow
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>webserver를 실행했으니 <code class="highlighter-rouge">localhost:8080</code>에서 UI를 확인할 수 있음</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/zzsza/bigquery-tutorial/f80caf45a9f835ddc20442a56654baf8be927e52/tutorials/images/012_airflow_02.png" /></p>
+
+<ul>
+  <li>DAG는 Directed Acyclic Graph의 약자로 Airflow에선 workflow라고 설명함
+    <ul>
+      <li>Task의 집합체</li>
+    </ul>
+  </li>
+  <li>메인 화면엔 정의되어 있는 DAG들을 확인할 수 있음
+    <ul>
+      <li>현재는 많은 example이 존재</li>
+      <li>example을 보고싶지 않다면 <code class="highlighter-rouge">airflow.cfg</code>에서 <code class="highlighter-rouge">load_examples = False</code>로 설정하면 됨</li>
+    </ul>
+  </li>
+  <li>Schedule은 예정된 스케쥴로 cron 스케쥴의 형태와 동일하게 사용</li>
+  <li>Owner는 소유자를 뜻하는 것으로 생성한 유저를 뜻함</li>
+  <li>Recent Tasks/DAG Runs에 최근 실행된 Task들이 나타나며, 실행 완료된 것은 초록색, 재시도는 노란색, 실패는 빨간색으로 표시됨</li>
+</ul>
+
+<p><br /></p>
+
+<hr />
+
+<h3 id="2-dag-생성">2) DAG 생성</h3>
+<ul>
+  <li>DAG 생성하는 흐름
+    <ul>
+      <li>(1) default_args 정의
+        <ul>
+          <li>누가 만들었는지, start_date는 언제부턴지 등)</li>
+        </ul>
+      </li>
+      <li>(2) DAG 객체 생성
+        <ul>
+          <li>dag id, schedule interval 정의</li>
+        </ul>
+      </li>
+      <li>(3) DAG 안에 Operator를 활용해 Task 생성</li>
+      <li>(4) Task들을 연결함( <code class="highlighter-rouge">&gt;&gt;</code>, <code class="highlighter-rouge">&lt;&lt;</code> 활용)</li>
+    </ul>
+  </li>
+  <li>Airflow는 $AIRFLOW_HOME(default는 ~/airflow)의 dags 폴더에 있는 dag file을 지속적으로 체크함</li>
+  <li>Operator를 사용해 Task를 정의함
+    <ul>
+      <li>Operator가 인스턴스화가 될 경우 Task라고 함</li>
+      <li>Python Operator, Bash Operator, BigQuery Operator, Dataflow Operator 등</li>
+      <li>Operator 관련 자료는 <a href="https://airflow.apache.org/docs/stable/howto/operator/index.html">공식 문서</a> 참고</li>
+      <li>Operator는 unique한 task_id를 가져야 하고, 오퍼레이터별 다른 파라미터를 가지고 있음</li>
+    </ul>
+  </li>
+  <li>아래 코드를 dags 폴더 아래에 test.py로 저장하고 웹서버에서 test DAG 옆에 있는 toggle 버튼을 ON으로 변경
+    <ul>
+      <li>templated_command에서 % 앞뒤의 # 제거해주세요!</li>
+    </ul>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  from airflow import models
+  from airflow.operators.bash_operator import BashOperator
+  from datetime import datetime, timedelta
+	    
+	
+  # start_date를 현재날자보다 과거로 설정하면, 
+  # backfill(과거 데이터를 채워넣는 액션)이 진행됨
+	
+  default_args = {
+      'owner': 'airflow',
+      'depends_on_past': False,
+      'start_date': datetime(2020, 2, 9),
+      'email': ['airflow@airflow.com'],
+      'email_on_failure': False,
+      'email_on_retry': False,
+      'retries': 1,
+      'retry_delay': timedelta(minutes=5)}
+	
+  # dag 객체 생성
+  with models.DAG(
+          dag_id='test', description='First DAG', 
+        schedule_interval = '55 14 * * *', 
+        default_args=default_args) as dag:
+	
+		
+      t1 = BashOperator(
+          task_id='print_date',
+          bash_command='date',
+          dag=dag)
+		
+      # BashOperator를 사용
+      # task_id는 unique한 이름이어야 함
+      # bash_command는 bash에서 date를 입력한다는 뜻
+		
+      t2 = BashOperator(
+          task_id='sleep',
+          bash_command='sleep 5',
+          retries=3,
+          dag=dag)
+		
+      templated_command="""
+           # #을 삭제해주세요
+          {#% for i in range(5) %#}
+              echo "{#{ ds }#}"
+              echo "{#{ macros.ds_add(ds, 7)}#}"
+              echo "{#{ params.my_param }#}"
+          {#% endfor %#}
+      """
+		
+      t3 = BashOperator(
+          task_id='templated',
+          bash_command=templated_command,
+          params={'my_param': 'Parameter I passed in'},
+          dag=dag)
+		
+      # set_upstream은 t1 작업이 끝나야 t2가 진행된다는 뜻
+      t2.set_upstream(t1)
+      # t1.set_downstream(t2)와 동일한 표현입니다
+      # t1 &gt;&gt; t2 와 동일 표현
+      t3.set_upstream(t1)
+</code></pre></div>    </div>
+  </li>
+  <li>다시 정리하면 DAG 객체 생성 -&gt; Operator를 활용해 Task 작성 -&gt; Task를 연결하는 방식</li>
+  <li>{#{ ds }#}, {#{ macros }#}는 jinja template을 의미함
+    <ul>
+      <li>실제 사용시엔 #를 제외해주세요. 블로그 테마 때문에 추가함</li>
+      <li><a href="https://airflow.apache.org/docs/stable/macros.html">Macros reference</a>, <a href="https://airflow.apache.org/docs/stable/concepts.html#jinja-templating">Jinja Template</a> 참고하면 자세한 내용이 있음</li>
+    </ul>
+  </li>
+  <li>scheduler를 실행시켜 둔 상태라면 DAG들이 실행됨</li>
+</ul>
+
+<p><br /></p>
+
+<hr />
+
+<h3 id="3-airflow-명령어">3) Airflow 명령어</h3>
+<ul>
+  <li>DAG 파일을 추가하고, 웹서버에 보이기까지 시간이 좀 걸릴 수 있음</li>
+  <li>DAG 파일들을 확인하고 싶은 경우
+    <ul>
+      <li>
+        <p>airflow의 dags 폴더 아래에 있는 dag들을 출력함</p>
+
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  airflow list_dags
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>특정 DAG의 task를 출력하고 싶은 경우
+    <ul>
+      <li>
+        <p>test라는 DAG의 task 출력</p>
+
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  airflow list_tasks test
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>Tree 형태로 출력</p>
+
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  airflow list_tasks test --tree
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>특정 Task를 test하고 싶은 경우
+    <ul>
+      <li>
+        <p>date 날짜로 실행함</p>
+
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  airflow test [DAG id] [Task id] [date]
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>예시 : airflow test test print_date 2020-02-09</p>
+      </li>
+    </ul>
+  </li>
+  <li>Airflow scheduler 실행
+    <ul>
+      <li>
+        <p>DAG들이 실행됨</p>
+
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  airflow scheduler
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Airflow 관련 help 명령어</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  airflow -h
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<hr />
+
+<h3 id="airflow-webserver-ui">Airflow Webserver UI</h3>
+<ul>
+  <li>특정 DAG을 클릭하고 Graph View를 클릭하면 아래와 같은 화면이 보임</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/zzsza/bigquery-tutorial/f80caf45a9f835ddc20442a56654baf8be927e52/tutorials/images/012_airflow_03.png" /></p>
+
+<ul>
+  <li>print_date Task를 수행한 후, sleep Task와 templated Task를 실행함</li>
+  <li>Tree View를 누르면 아래 화면이 나타남</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/zzsza/bigquery-tutorial/f80caf45a9f835ddc20442a56654baf8be927e52/tutorials/images/012_airflow_04.png" /></p>
+
+<ul>
+  <li>빨간색 네모 안에 있는 초록색 칸을 클릭하면 아래와 같은 설정이 나옴</li>
+</ul>
+
+<p><img src="https://github.com/zzsza/bigquery-tutorial/raw/f80caf45a9f835ddc20442a56654baf8be927e52/tutorials/images/012_airflow_05.png" /></p>
+
+<ul>
+  <li>Task의 로그 확인(View Log), 실행(Run), 실행 상태 초기화(Clear) 등을 할 수 있음
+    <ul>
+      <li>Task 재실행시 Run을 누르는 방법과 Clear를 누르는 방법이 있음</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<hr />
+
+<h3 id="4-connections-설정">4) Connections 설정</h3>
+<ul>
+  <li>Airflow에서 MySQL, Google Cloud, Slack 등에 연결하고 싶은 경우 Admin - Connections에 설정을 저장해야 함
+    <ul>
+      <li>Google Cloud BigQuery 설정하고 싶은 경우</li>
+      <li><img src="https://github.com/zzsza/bigquery-tutorial/raw/81e22e9080a728b866ca51b14de843fa9fd371bd/tutorials/images/012_airflow_07.png" /></li>
+      <li>Project Id : <a href="https://console.cloud.google.com/">구글 클라우드 콘솔</a>에 나오는 Project Id</li>
+      <li>Keyfile Path : <a href="https://github.com/zzsza/bigquery-tutorial/blob/master/tutorials/05-ETC/01.%20GOOGLE_CLOUD_CRENDENTIALS_json_file_setting.ipynb">json keyfile</a>의 경로를 입력</li>
+      <li>Scopes : <a href="https://cloud.google.com/storage/docs/authentication">Scope 문서</a>를 확인! https://www.googleapis.com/auth/cloud-platform 입력</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<hr />
+
+<h3 id="airflow-다양한-tip">Airflow 다양한 Tip</h3>
+<ul>
+  <li>pip로 설치하면 생기는 기본 설정
+    <ul>
+      <li>sequential executor : 기본적으로 1개만 실행할 수 있음. 병렬 실행 불가능
+        <ul>
+          <li>celery executor를 사용해 병렬로 실행할 수 있음</li>
+          <li>이건 RabbitMQ나 Redis가 필요함</li>
+        </ul>
+      </li>
+      <li>sqlite : 기본 meta store는 sqlite인데, 동시 접근이 불가능해서 병렬 불가능
+        <ul>
+          <li>병렬 실행하기 위해 mysql이나 postgresql을 사용해야 함</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>위 설정을 서버에 매번 하는 일은 번거로운 일
+    <ul>
+      <li><code class="highlighter-rouge">Docker</code>로 만들면 쉽게 가능</li>
+      <li><a href="https://github.com/puckel/docker-airflow">docker-airflow</a> Github에 보면 이미 만들어진 Dockerfile이 있음</li>
+      <li>docker-compose로 실행하는 방법도 있고, Airflow 버전이 올라가면 빠르게 업데이트하는 편</li>
+    </ul>
+  </li>
+  <li>Airflow의 DAG 폴더(default는 ~/airflow/dags)를 더 쉽게 사용하려면 해당 폴더를 workspace로 하는 jupyter notebook을 띄워도 좋음
+    <ul>
+      <li>데이터 분석가도 쉽게 DAG 파일 생성 가능</li>
+    </ul>
+  </li>
+  <li>Error: Already running on PID XXXX 에러 발생시
+    <ul>
+      <li>Airflow webserver 실행시 ~/airflow/airflow-webserver.pid에 process id를 저장함</li>
+      <li>쉘에서 빠져나왔지만 종료되지 않는 경우가 있음</li>
+      <li>
+        <p>아래 명령어로 pid를 죽이면 됨(다른 포트를 사용할 경우 8080쪽 수정)</p>
+
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  kill -9 $(lsof -t -i:8080)
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>Task간 데이터를 주고 받아야 할 경우
+    <ul>
+      <li>xcom 사용</li>
+      <li>Admin - xcom에 들어가면 값이 보임</li>
+      <li>
+        <p>xcom에 데이터 저장(xcom_push)</p>
+
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  task_instance = kwargs['task_instance']
+  task_instance.xcom_push(key='the_key', value=my_str)
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>다른 task에서 데이터 불러오기(xcom_pull)</p>
+
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  task_instance.xcom_pull(task_ids='my_task', key='the_key')
+</code></pre></div>        </div>
+      </li>
+      <li>참고로 PythonOperator에서 사용하는 python_callable 함수에서 return하는 값은 xcom에 자동으로 push됨</li>
+    </ul>
+  </li>
+  <li>DAG에서 다른 DAG에 종속성이 필요한 경우
+    <ul>
+      <li><a href="https://airflow.readthedocs.io/en/stable/_api/airflow/sensors/external_task_sensor/">ExternalTaskSensor</a> 사용</li>
+      <li>1개의 DAG에서 하면 좋지만, 여러 사람이 만든 DAG이 있고 그 중 하나를 사용해야 할 경우도 있음</li>
+    </ul>
+  </li>
+  <li>특정 DAG을 Trigger하고 싶은 경우
+    <ul>
+      <li><a href="https://airflow.readthedocs.io/en/stable/_api/airflow/operators/dagrun_operator/index.html#airflow.operators.dagrun_operator.TriggerDagRunOperator.execute">TriggerDagRunOperator</a> 사용</li>
+      <li><a href="https://github.com/apache/airflow/blob/master/airflow/example_dags/example_trigger_controller_dag.py">예제</a></li>
+    </ul>
+  </li>
+  <li>특정 Task의 성공/실패에 따라 다른 Task를 실행시키고 싶은 경우
+    <ul>
+      <li>Airflow Trigger Rule 사용</li>
+      <li>예를 들어 앞의 두 작업중 하나만 실패한 경우</li>
+      <li><a href="https://airflow.apache.org/docs/stable/concepts.html#trigger-rules">Document</a> 참고</li>
+    </ul>
+  </li>
+  <li>Jinja Template이 작동하지 않는 경우
+    <ul>
+      <li>우선 provide_context=True 조건을 주었는지 확인</li>
+      <li>Jinja Template이 있는 함수의 파라미터가 어떤 것인지 확인</li>
+      <li>
+        <p>Operator마다 Jinja Template을 해주는 template_fields가 있는데, 기존 정의가 아닌 파라미터에서 사용하고 싶은 경우 새롭게 정의</p>
+
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  class MyPythonOperator(PythonOperator):
+      template_fields = ('templates_dict','op_args')
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>Airflow 변수를 저장하고 싶은 경우
+    <ul>
+      <li>Variable 사용</li>
+      <li>Admin - Variables에서 볼 수 있음</li>
+      <li>json 파일로 변수 저장해서 사용하는 방식을 자주 사용함</li>
+    </ul>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  from airflow.models import Variable
+	
+  config=Variable.get(f"{HOME}/config.json", deserialize_json=True)
+	
+  environment=config["environment"]
+  project_id=config["project_id"]
+</code></pre></div>    </div>
+  </li>
+  <li>Task를 그룹화하고 싶은 경우
+    <ul>
+      <li>dummy_operator 사용</li>
+      <li>workflow 목적으로 사용하는 경우도 있음. 일부 작업을 건너뛰고 싶은 경우, 빈 작업 경로를 가질 수 없어서 dummy_operator를 사용하기도 함</li>
+    </ul>
+  </li>
+  <li>
+    <p>1개의 Task이 완료된 후에 2개의 Task를 병렬로 실행하기</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  task1 &gt;&gt; [task2_1, task_2_2]
+</code></pre></div>    </div>
+  </li>
+  <li>앞선 Task의 결과에 따라 True인 경우엔 A Task, False인 경우엔 B Task를 실행해야 하는 경우
+    <ul>
+      <li>BranchPythonOperator 사용</li>
+      <li>python_callable에 if문을 넣어 그 다음 task_id를 정의할 수 있음</li>
+      <li>단순하게 앞선 task가 성공, 1개만 실패 등이라면 trigger_rule만 정의해도 됨</li>
+    </ul>
+  </li>
+  <li>Airflow에서 Jupyter Notebook의 특정 값만 바꾸며 실행하고 싶은 경우
+    <ul>
+      <li>Papermill 사용</li>
+      <li><a href="https://airflow.readthedocs.io/en/latest/howto/operator/papermill.html">참고 문서</a></li>
+    </ul>
+  </li>
+  <li>UTC 시간대를 항상 생각하는 습관 갖기</li>
+  <li>execution_date이 너무 헷갈림
+    <ul>
+      <li>2017년에 Airflow 처음 사용할 때 매우 헷갈렸던 개념</li>
+      <li>박호균님의 <a href="https://blog.naver.com/gyrbsdl18/221561318823">블로그</a> 참고</li>
+      <li>추후 다른 글로 정리할 예정</li>
+    </ul>
+  </li>
+  <li>Task가 실패했을 경우 슬랙 메세지 전송하기
+    <ul>
+      <li><a href="https://medium.com/datareply/integrating-slack-alerts-in-airflow-c9dcd155105">Integrating Slack Alerts in Airflow</a> 참고하면 잘 나와있음</li>
+    </ul>
+  </li>
+  <li>Hook이란?
+    <ul>
+      <li>Hook은 외부 플랫폼, 데이터베이스(예: Hive, S3, MySQL, Postgres, Google Cloud Platfom 등)에 접근할 수 있도록 만든 인터페이스</li>
+      <li>대부분 Operator가 실행되기 전에 Hook을 통해 통신함</li>
+      <li><a href="https://airflow.apache.org/docs/stable/concepts.html#hooks">공식 문서</a> 참고</li>
+    </ul>
+  </li>
+  <li>머신러닝에서 사용한 예시는 <a href="https://github.com/zzsza/fastcampus-machine-learning-project/tree/master/03-Taxi-Demand-Prediction">Github</a> 참고</li>
+  <li><a href="https://github.com/apache/airflow/tree/master/airflow/example_dags">airflow Github</a>에 많은 예제 파일이 있음</li>
+  <li>Context Variable이나 Jinja Template의 ds를 사용해 Airflow에서 날짜를 컨트롤 하는 경우, Backfill을 사용할 수 있음
+    <ul>
+      <li>과거값 기준으로 재실행</li>
+      <li>단, 쿼리에 CURRENT_DATE() 등을 쓰면 Airflow에서 날짜를 컨트롤하지 않고 쿼리에서 날짜 컨트롤하는 경우라 backfill해도 CURRENT_DATE()이 있어서 현재 날짜 기준으로 될 것임</li>
+    </ul>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  airflow backfill -s 2020-01-05 -e 2020-01-10 dag_id
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<hr />
+
+<h3 id="추천-자료">추천 자료</h3>
+<ul>
+  <li><a href="https://github.com/tuanavu/airflow-tutorial/">Airflow Tutorial</a> : Video 자료 존재</li>
+  <li><a href="https://www.slideshare.net/taofung/airflow-at-lyft">Lyft의 Airflow 활용 사례</a></li>
+  <li><a href="https://github.com/jghoman/awesome-apache-airflow">Awesome Apache Airflow</a> : Airflow 관련 링크 모음</li>
+  <li><a href="https://gtoonstra.github.io/etl-with-airflow/">ETL best practices with Airflow</a> : 1.8 버전이지만 내용들이 좋음</li>
+  <li><a href="https://github.com/zzsza/airflow-examples">제 Github</a> : Airflow example 저장하는 중
+    <ul>
+      <li><a href="https://github.com/zzsza/fastcampus-machine-learning-project/tree/master/03-Taxi-Demand-Prediction">제 다른 Github</a> : ML에서 활용한 Airflow</li>
+    </ul>
+  </li>
+  <li><a href="https://medium.com/datareply/airflow-lesser-known-tips-tricks-and-best-practises-cf4d4a90f8f">Airflow: Lesser Known Tips, Tricks, and Best Practises</a></li>
+  <li><a href="https://precocityllc.com/blog/airflow-and-xcom-inter-task-communication-use-cases/">Airflow and XCOM: Inter Task Communication Use Cases</a></li>
+  <li><a href="https://github.com/puckel/docker-airflow">Docker Airflow Github</a></li>
+  <li><a href="https://github.com/geosolutions-it/evo-odas/wiki/Airflow---about-subDAGs,-branching-and-xcom">Airflow about subDAGs, branching and xcom</a></li>
+  <li><a href="https://youtu.be/p6d3tr02exQ">What’s coming in Apache Airflow 2.0</a></li>
+</ul>
+
+      <br/>
+      <p><a href="https://bit.ly/kyleschool_blog">카일스쿨 유튜브</a> 채널을 만들었습니다. 데이터 사이언스, 성장, 리더십, BigQuery 등을 이야기할 예정이니, 관심 있으시면 구독 부탁드립니다 :)</p>
+      <p>이 글이 도움이 되셨다면 추천 클릭을 부탁드립니다 :)</p>
+      <br/>
+      <br/>
+      <div style="text-align:center">
+        <style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFFFFF !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 0px 9px !important;font-size: 17px !important;letter-spacing:-0.08px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/zzsza"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
+      </div>
+      <br/>
+      <br/>
+       <!--블로그-하단-반응형 -->
+      <ins class="adsbygoogle"
+          style="display:block; width:100%; height:300px;"
+          data-ad-client="ca-pub-5105555504153863"
+          data-ad-slot="1037589043"
+          data-ad-format="auto"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+
+    </div>
+  
+
+</article>
+
+  <hr class="dingbat" />
+
+  <div class="share">
+      <h2>Share this post</h2>
+      <div class="share-body">
+        <a href="http://twitter.com/share?text=Apache Airflow - Workflow 관리 도구(1)&amp;url=http://localhost:4000/data/2018/01/04/airflow-1/"
+    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <span class="icon-twitter">
+            </span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/data/2018/01/04/airflow-1/"
+    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <span class="icon-facebook">
+            </span>
+        </a>
+    </div>
+  </div>
+  <br/>
+
+
+
+
+
+
+  <aside class="author" role="complementary">
+    <div class="author">
+  <h2 class="page-title hr">
+    About
+  </h2>
+<div class="author-body">
+  
+    
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="seongyun byeon"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+  
+  <div class="author-body-description">
+    <p>Machine Learning Engineer</p>
+
+  </div>
+</div>
+</div>
+
+  </aside>
+
+
+
+
+
+<aside class="related" role="complementary">
+  <h2 class="hr">Related Posts</h2>
+
+  <ul class="related-posts">
+    
+      
+      
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/data/2019/12/15/rules-of-ml/" data-flip="title">
+    <span>Rules of Machine Learning: Best Practices for ML Engineering 정리</span>
+  </a>
+  <small><time datetime="2019-12-15T00:00:00+09:00">
+    15 Dec 2019
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/data/2019/12/03/cs224w-ml-with-graph/" data-flip="title">
+    <span>CS224W - Machine Learning with Graphs 1강 정리</span>
+  </a>
+  <small><time datetime="2019-12-03T00:00:00+09:00">
+    03 Dec 2019
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/data/2019/11/24/pydeck/" data-flip="title">
+    <span>지도 데이터 시각화 : Uber의 pydeck 사용하기</span>
+  </a>
+  <small><time datetime="2019-11-24T00:00:00+09:00">
+    24 Nov 2019
+  </time></small>
+</li>
+
+        
+      
+        
+        
+      
+    
+  </ul>
+</aside>
+
+
+
+      
+        <aside class="comments" role="complementary">
+  <h2>Comments</h2>
+  <hr/>
+
+  <div id="disqus_thread"></div>
+
+  <script>
+    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="Apache Airflow - Workflow 관리 도구(1)",this.page.identifier="/data/2018/01/04/airflow-1",this.page.url="http://localhost:4000/data/2018/01/04/airflow-1/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//zzsza.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</aside>
+
+      
+
+      <footer>
+  <hr/>
+  
+    <p>© 2017. by Seongyun Byeon</p>
+
+  
+  <p>
+    <code>Powered by <a href="https://zzsza.github.io/">zzsza</a></code>
+  </p>
+</footer>
+
+    </main>
+    <div class="right-side">
+  <div class="ad-first">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- 블로그-상단-모바일 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:100%;"
+         data-ad-client="ca-pub-5105555504153863"
+         data-ad-slot="9090558636"
+         data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+<br/>
+<br/>
+  <div class="ad-second">
+    <!-- 블로그-스카이스크래퍼 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;max-width:320px;width:100%;height:600px"
+         data-ad-client="ca-pub-5105555504153863"
+         data-ad-slot="3646660262"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+</div>
+
+
+  </div>
+  <div id="_yDrawer">
+  <div id="_sidebar" class="sidebar">
+    <div class="sidebar-bg" style="background-color:#4f86aa;background-image:url(/assets/img/nap.jpg)"></div>
+    <header class="sidebar-sticky" role="banner">
+      <br/>
+      <div class="sidebar-about">
+        <h1><a id="_title" href="/">어쩐지 오늘은</a></h1>
+        <p>Machine Learning Engineer</p>
+
+      </div>
+
+      <br/>
+      <nav class="sidebar-nav heading" role="navigation">
+        <span class="sr-only">Navigation:</span>
+<ul>
+  
+
+  
+
+  
+  
+  
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-1"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/diary/">Diary</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/diary-diary/">diary</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-2"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/data/">Data</a>
+       <label class="folder" for="list-item-2">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-ml/">Machine-Learning</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-dl/">Deep-Learning</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-mobility/">Mobility</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-engineering/">Engineering</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-optimization/">Optimization</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-paper/">Paper</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-pytorch/">Pytorch</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-cs231/">CS231n</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-rl/">Reinforcement-Learning</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-time-series/">Time Series</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-analytics/">Analytics</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-kaggle/">Kaggle</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-vision/">Vision</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-interpretable-ml/">Interpretable ML</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-simulation/">Simulation</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-graph/">Graph</a>
+             </li>
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-3"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/mlops/">MLOps</a>
+       <label class="folder" for="list-item-3">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-basic/">Basic</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-airflow/">Airflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-mlflow/">MLflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-tfx/">Tensorflow Extended</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-serving/">Serving</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-feature/">Feature</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-version/">Model & Pipeline version</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-4"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/gcp/">Google Cloud Platform</a>
+       <label class="folder" for="list-item-4">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-basic/">Basic</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-bigquery/">BigQuery</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-aiplatform/">AI Platform</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-dataflow/">Dataflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-cloud-functions/">Cloud Functions</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-5"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/development/">Development</a>
+       <label class="folder" for="list-item-5">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-linux/">Linux</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-web/">Web</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-python/">Python</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-sql/">SQL</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-scala/">Scala</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-os/">OS</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-kubernetes/">Kubernetes</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-devops/">DevOps</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-kotlin/">Kotlin</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-julia/">Julia</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-tools/">Tools</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-6"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/etc/">ETC</a>
+       <label class="folder" for="list-item-6">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/etc-lecture/">Lecture</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/etc-book/">Book</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-7"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/about/">About</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+</ul>
+
+      </nav>
+    <!-- search box -->
+    <form action="/search">
+      <div class="tipue_search_box">
+        <input type="text" name="q" id="tipue_search_input" placeholder="&#xF002;  Search" pattern=".{2,}" title="최소 2글자 이상" required></div>
+      <div style="clear: both;"></div>
+    </form>
+    <br/>
+      <div class="sidebar-box">
+        
+          
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="seongyun byeon"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+        
+      </div>
+      <p>메모가 습관인 데이터쟁이입니다</p>
+
+      
+      
+        <div class="sidebar-social">
+          <span class="sr-only">Social:</span>
+<ul>
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://facebook.com/zzsza">
+    <span class="icon-facebook" title="Facebook"></span>
+    <span class="sr-only">Facebook</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.youtube.com/channel/UCYyAaezBGEVmXcnink6nY9Q">
+    <span class="icon-youtube" title="YouTube"></span>
+    <span class="sr-only">YouTube</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://instagram.com/data.scientist">
+    <span class="icon-instagram" title="Instagram"></span>
+    <span class="sr-only">Instagram</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://github.com/zzsza">
+    <span class="icon-github" title="GitHub"></span>
+    <span class="sr-only">GitHub</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.linkedin.com/in/seong-yun-byeon-8183a8113">
+    <span class="icon-linkedin2" title="LinkedIn"></span>
+    <span class="sr-only">LinkedIn</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="mailto:snugyun01@gmail.com">
+    <span class="icon-mail" title="Email"></span>
+    <span class="sr-only">Email</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://zzsza.github.io/feed.xml">
+    <span class="icon-rss2" title="RSS"></span>
+    <span class="sr-only">RSS</span>
+  </a>
+</li>
+
+  
+</ul>
+
+        </div>
+      
+    </header>
+  </div>
+</div>
+
+</div>
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+
+<script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-110573232-1', 'auto');
+  ga('send', 'pageview');
+  loadJSDeferred('https://www.google-analytics.com/analytics.js');
+</script>
+
+
+
+
+
+<!--[if gt IE 8]><!---->
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    
+    google: {
+      families: 'Lato'.split('|')
+    },
+    
+
+    custom: {
+      families: ['icomoon'],
+      urls: ['/assets/icomoon/style.css']
+    }
+  });
+</script>
+<!--<![endif]-->
+
+
+  <!--[if gt IE 9]><!---->
+  
+  <script>loadJSDeferred('/assets/js/hydejack.js?v=6.4.0');</script>
+
+  
+  <!--<![endif]-->
+
+
+
+</body>
+
+</html>

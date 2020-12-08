@@ -1,0 +1,2327 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
+-->
+
+
+
+
+
+
+
+
+
+<head>
+  <!-- =============== -->
+<!-- META            -->
+<!-- =============== -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="naver-site-verification" content="22c5b4ef3bfda7fc6100671413989219de7a4ac8"/>
+<meta property="og:title" content="딥모닝 1주차. PR12-001~006">
+<meta property="og:type" content="article">
+
+
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/img/logo.png">
+
+
+<meta property="og:image:width" content="640" />
+<meta property="og:image:height" content="360" />
+
+
+
+  <title>딥모닝 1주차. PR12-001~006 &middot; 어쩐지 오늘은</title>
+
+
+
+<meta name="description" content="
+  PR12 동영상을 하루에 1개씩 보는 “딥모닝” 스터디에서 본 영상을 정리하는 글입니다
+  PR-001 : Generative adversarial nets
+  PR-002 : Deformable Convolutional Networks
+  PR-003 : RNN encoder-decoder
+  PR-004 : Image Super-Resolution Using Deep Convolutional Networks
+  PR-005 : Playing Atari with Deep Reinforcement Learning
+  PR-006 : Neural Turing Machines
+
+
+">
+<meta property="og:description" content="
+  PR12 동영상을 하루에 1개씩 보는 “딥모닝” 스터디에서 본 영상을 정리하는 글입니다
+  PR-001 : Generative adversarial nets
+  PR-002 : Deformable Convolutional Networks
+  PR-003 : RNN encoder-decoder
+  PR-004 : Image Super-Resolution Using Deep Convolutional Networks
+  PR-005 : Playing Atari with Deep Reinforcement Learning
+  PR-006 : Neural Turing Machines
+
+
+">
+
+
+<!-- tipuesearch -->
+<link rel="stylesheet" href="/assets/tipuesearch/css/tipuesearch.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+<!-- =============== -->
+<!-- LINKS           -->
+<!-- =============== -->
+<link rel="canonical" href="http://localhost:4000/data/2018/11/11/deepmorning-week1/">
+<meta property="og:url" content="http://localhost:4000/data/2018/11/11/deepmorning-week1/">
+
+<link rel="alternate" type="application/atom+xml" title="어쩐지 오늘은 Feed" href="http://localhost:4000/feed.xml">
+
+
+  <link rel="prev" href="http://localhost:4000/data/2018/11/01/reinforcement-learning-intro/">
+
+
+
+  <link rel="next" href="http://localhost:4000/diary/2018/11/11/geultto2/">
+
+
+<link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+<!-- Place favicon.ico in the root directory -->
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+<script>
+  !function(n,e){function t(n,e){n.onload=function(){this.onerror=this.onload=null,e(null,n)},n.onerror=function(){this.onerror=this.onload=null,e(new Error("Failed to load "+this.src),n)}}function o(n,e){n.onreadystatechange=function(){"complete"!=this.readyState&&"loaded"!=this.readyState||(this.onreadystatechange=null,e(null,n))}}n._loaded=!1,n.loadJSDeferred=function(a,d){function r(){n._loaded=!0;var r=e.createElement("script");r.src=a,d&&(("onload"in r?t:o)(r,d),r.onload||t(r,d));var l=e.getElementsByTagName("script")[0];l.parentNode.insertBefore(r,l)}n._loaded?r():n.addEventListener?n.addEventListener("load",r,!1):n.attachEvent?n.attachEvent("onload",r):n.onload=r}}(window,document);
+
+  !function(e){"use strict";var n=function(n,t,o){function i(e){if(a.body)return e();setTimeout(function(){i(e)})}function r(){l.addEventListener&&l.removeEventListener("load",r),l.media=o||"all"}var d,a=e.document,l=a.createElement("link");if(t)d=t;else{var f=(a.body||a.getElementsByTagName("head")[0]).childNodes;d=f[f.length-1]}var s=a.styleSheets;l.rel="stylesheet",l.href=n,l.media="only x",i(function(){d.parentNode.insertBefore(l,t?d:d.nextSibling)});var u=function(e){for(var n=l.href,t=s.length;t--;)if(s[t].href===n)return e();setTimeout(function(){u(e)})};return l.addEventListener&&l.addEventListener("load",r),l.onloadcssdefined=u,u(r),l};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
+
+  !function(t){if(t.loadCSS){var e=loadCSS.relpreload={};if(e.support=function(){try{return t.document.createElement("link").relList.supports("preload")}catch(t){return!1}},e.poly=function(){for(var e=t.document.getElementsByTagName("link"),r=0;r<e.length;r++){var n=e[r];"preload"===n.rel&&"style"===n.getAttribute("as")&&(t.loadCSS(n.href,n,n.getAttribute("media")),n.rel=null)}},!e.support()){e.poly();var r=t.setInterval(e.poly,300);t.addEventListener&&t.addEventListener("load",function(){e.poly(),t.clearInterval(r)}),t.attachEvent&&t.attachEvent("onload",function(){t.clearInterval(r)})}}}(this);
+
+  window.disablePushState = false;
+  window.disableDrawer = false;
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5105555504153863",
+    enable_page_level_ads: true
+  });
+</script>
+
+<!--[if lt IE 9]>
+<script src="https://unpkg.com/html5shiv/dist/html5shiv.min.js"></script>
+<![endif]-->
+
+<!-- =============== -->
+<!-- STYLES          -->
+<!-- =============== -->
+<!--[if gt IE 8]><!---->
+<style>
+  
+  article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}*{box-sizing:border-box}html,body{margin:0;padding:0}html{font-size:16px;line-height:1.75}body{color:#333;background-color:#fff;overflow-y:scroll}a{text-decoration:none}.lead{margin-left:-1rem;margin-right:-1rem}img,.img{display:block;max-width:100%;margin-bottom:1rem;border:none}img.lead,.img.lead{max-width:calc(100% + 2rem);width:calc(100% + 2rem)}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-weight:bold;text-rendering:optimizeLegibility}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{margin:1.6rem 0 1rem;line-height:1.6}h1,.h1{font-size:2rem;line-height:1.25}h2,.h2{font-size:1.5rem}h3,.h3{font-size:1.17em}p{margin-top:0;margin-bottom:1rem}p.lead{font-size:1.25rem;font-weight:300;padding:0 1rem}ul,ol,dl{margin-top:0;margin-bottom:1rem}ul,ol{padding-left:1.25rem}hr{position:relative;margin:1.5rem 0;border:0;border-top:1px solid #eee}.hr{padding-bottom:.5rem;border-bottom:1px solid #eee;margin-bottom:1.5rem}h4,h5,h6,.h4,.h5,.h6{margin-bottom:0.5rem;font-size:1rem}table{margin-bottom:1rem;width:100%;width:calc(100% + 2rem);margin-left:-1rem;border:1px solid #e5e5e5;border-collapse:collapse;border-spacing:0}td,th{padding:.25rem .5rem;border:1px solid #e5e5e5}td:first-child,th:first-child{padding-left:1rem}td:last-child,th:last-child{padding-right:1rem}thead+tbody,tbody+tbody,tfoot{border-top:3px double #e5e5e5}tbody tr:nth-child(odd) td,tbody tr:nth-child(odd) th{background-color:#f9f9f9}footer{margin-bottom:2rem}.page,.post{margin-bottom:3em}.page li+li,.post li+li{margin-top:.25rem}.page>header,.post>header{margin-bottom:2rem}.page-title,.post-title{margin-top:0}.post-date{display:block;margin-top:-0.5rem;margin-bottom:1rem;color:#9a9a9a}.related-posts{padding-left:0;list-style:none}.related-posts>li,.related-posts>li+li{margin-top:1rem}.related-posts>li>small,.related-posts>li+li>small{font-size:75%;color:#9a9a9a}.message{margin-bottom:1rem;padding:1rem;color:#787878;background-color:#f9f9f9;margin-left:-1rem;margin-right:-1rem}body,main{position:relative;overflow-x:hidden}@media screen{body::before{content:'';background:#e5e5e5;position:absolute;left:0;top:0;bottom:0}}@media screen and (min-width: 40em){html{font-size:17px}}@media screen and (min-width: 54em){html{font-size:16px}}@media screen and (min-width: 88em){html{font-size:17px}}@media screen and (min-width: 125em){html{font-size:18px}}.sr-only{display:none}.clearfix,.sidebar-social::after,.clearafter::after{content:"";display:table;clear:both}a,.a{position:relative;padding-bottom:.15rem;border-style:hidden}.img{overflow:hidden;background-color:#f9f9f9}.img>img{margin:0;width:100%;height:100%}.sixteen-nine{position:relative}.sixteen-nine::before{display:block;content:"";width:100%;padding-top:56.25%}.sixteen-nine>*{position:absolute;top:0;left:0;right:0;bottom:0}h1+hr,h2+hr,h3+hr,h4+hr,h5+hr,h6+hr{margin-top:0}.fade-in{animation-duration:500ms;animation-name:fade-in;animation-fill-mode:forwards}@keyframes fade-in{from{transform:translateY(-2rem);opacity:0}50%{transform:translateY(-2rem);opacity:0}to{transform:translateY(0);opacity:1}}.mb6{margin-bottom:10rem}.sidebar{color:rgba(255,255,255,0.75);text-align:left}.sidebar::before{content:"";position:absolute;z-index:2;top:0;left:0;bottom:0;right:0;background:linear-gradient(to bottom, rgba(32,32,32,0) 0%, rgba(32,32,32,0.5) 100%)}.sidebar a{color:#fff;border-bottom-color:rgba(255,255,255,0.2)}.right-side{width:100%;margin-left:auto;margin-right:auto}.right-side .ad-first{text-align:center}.right-side .ad-second{text-align:center}@media screen{.right-side{max-width:38rem;min-height:100vh}}@media screen and (min-width: 54em){.right-side{margin-left:20rem;margin-right:1rem;padding:4rem 1rem 12rem}}@media screen and (min-width: 72em){.right-side{margin-left:22rem;max-width:42rem}}@media screen and (min-width: 88em){.right-side{width:162px;margin-left:0rem;margin-right:0rem;padding:0rem;margin-top:10rem;display:block;float:left}}@media screen and (min-width: 96em){.right-side{width:300px;margin-right:0rem}}#_yDrawer{position:relative}@media screen{#_yDrawer{min-height:640px;min-height:100vh}}@media screen and (min-width: 54em){#_yDrawer{width:18rem;margin-left:0}}.sidebar-bg{position:absolute;height:100%;overflow:hidden;top:0;right:0;bottom:0;left:0;background:#202020 center / cover}.sidebar-box{display:flex;justify-content:center}.sidebar-sticky{position:relative;z-index:3}@media screen{.sidebar-sticky{-ms-overflow-style:none;overflow:-moz-scrollbars-none;height:100%;overflow:auto;position:absolute;padding:3rem 0rem;right:2.5rem;left:2.5rem}}.sidebar-sticky::-webkit-scrollbar{display:none}.sidebar-about>h1{color:#fff;font-size:2rem}.sidebar-nav>ul{list-style:none;padding-left:0;margin-bottom:.5rem}a.sidebar-nav-item{width:100%;font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}a.sidebar-nav-subitem{font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}@media screen{.y-drawer-scrim{z-index:2}.y-drawer-content{width:18rem;left:-18rem;z-index:3}}.sidebar-social{margin-bottom:.5rem}.sidebar-social>ul{list-style:none;padding-left:0;margin:0 -.25rem}.sidebar-social>ul>li{float:left}.sidebar-social>ul>li>a{display:inline-block;text-align:center;font-size:1.6rem;line-height:3rem;width:3.1249rem;height:4rem;padding:.5rem 0}.sidebar-social>ul li+li{margin-top:0}.fixed-top{position:fixed;top:0;left:0;width:100%;z-index:1}.navbar>.content{padding-top:0;padding-bottom:0;min-height:0;height:0}.menu{display:inline-block;padding:1.75rem 1.5rem;border-bottom:none;margin-left:-1.5rem;color:#9a9a9a !important}.menu::after{content:"\2630"}@media screen and (min-width: 54em){.menu{padding:1.25rem 1.5rem;position:absolute;left:-9999px}.menu:focus{position:static}}.animation-main{pointer-events:none}.loading{display:none}@media print{.menu{display:none}}.animation-main{opacity:0;will-change:opacity}.loading{position:absolute;top:0;right:0;padding:5.25rem 4.5rem;transform-origin:top right;transform:scale(0.33)}.content{position:relative;margin-left:auto;margin-right:auto;padding:5rem 1rem 12rem}@media screen{.content{min-height:100vh}}@media screen and (min-width: 54em){.content{padding:4rem 1rem 12rem;margin-left:19rem;margin-right:3rem}}@media screen and (min-width: 72em){.content{max-width:42rem;margin-left:21rem}}@media screen and (min-width: 88em){.content{float:left;width:100%;margin-left:22rem;margin-right:5rem}}@media screen and (min-width: 96em){.content{max-width:44rem}}@media screen and (min-width: 102em){.content{margin-left:25rem;margin-right:8rem}}.me{width:6.5rem;height:6.5rem;align-self:center;margin-right:20px;border-radius:100%;position:relative}@media screen and (min-width: 40em){.me{width:7rem;height:7rem}}@media screen and (min-width: 54em){.me{width:6.5rem;height:6.5rem}}@media screen and (min-width: 72em){.me{width:7rem;height:7rem}}main>footer{width:100%;position:absolute;bottom:0;left:0;right:0;padding:0 1rem;color:#9a9a9a;font-size:smaller;text-align:center}main>footer>p{margin-bottom:0}html{font-family:'Sans-serif'}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-family:'Sans-serif'}
+
+</style>
+
+
+<link rel="preload" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0" as="style" onload="this.rel='stylesheet'">
+
+<style id="_pageStyle">
+
+.content a{color:#4f86aa;border-color:rgba(79,134,170,0.2)}.content a:hover{border-color:#4f86aa}:focus{outline-color:#4f86aa}::selection{color:#fff;background:#4f86aa}::-moz-selection{color:#fff;background:#4f86aa}
+
+</style>
+
+
+<noscript>
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0">
+  
+  
+  
+
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <style>
+      html { font-family: 'Lato', 'Sans-serif' }
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading { font-family: 'Lato', 'Sans-serif' }
+    </style>
+  
+
+  
+  <link rel="stylesheet" href="http://localhost:4000/assets/icomoon/style.css">
+</noscript>
+<!--<![endif]-->
+
+</head>
+
+<body>
+  <!-- =============== -->
+<!-- MENU            -->
+<!-- =============== -->
+<div class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <a id="_menu" class="menu no-hover" href="#_title">
+      <span class="sr-only">Menu</span>
+    </a>
+  </div>
+</div>
+
+<!-- =============== -->
+<!-- CONTENT         -->
+<!-- =============== -->
+<div id="_yPushState">
+  <div class="fade-in">
+    <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/nap.jpg">
+      
+
+<article id="post-data/2018/11/11/deepmorning-week1" class="post" role="article">
+  <header>
+    <h1 class="post-title">
+      
+        딥모닝 1주차. PR12-001~006
+      
+    </h1>
+
+    <p class="post-date heading">
+      <time datetime="2018-11-11T00:00:00+09:00">11 Nov 2018</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/data/" data-flip="title">Data</a>
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/data-paper/" data-flip="title">Paper</a>
+
+    </p>
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+    <div class="markdown-body">
+
+
+<style>
+.myAd1190 { display:block; width:98%; height: 280px; }
+@media(min-width: 600px) { .myAd1190 { display: none; } }
+</style>
+<ins class="adsbygoogle myAd1190"
+    data-ad-client="ca-pub-5105555504153863"
+    data-ad-slot="6481487416"
+    ></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
+<br/>
+      <ul>
+  <li>PR12 동영상을 하루에 1개씩 보는 “딥모닝” 스터디에서 본 영상을 정리하는 글입니다</li>
+  <li>PR-001 : Generative adversarial nets</li>
+  <li>PR-002 : Deformable Convolutional Networks</li>
+  <li>PR-003 : RNN encoder-decoder</li>
+  <li>PR-004 : Image Super-Resolution Using Deep Convolutional Networks</li>
+  <li>PR-005 : Playing Atari with Deep Reinforcement Learning</li>
+  <li>PR-006 : Neural Turing Machines</li>
+</ul>
+
+<hr />
+
+<h2 id="pr-001--gangenerative-adversarial-nets">PR-001 : GAN(Generative adversarial nets)</h2>
+<h3 id="generative">Generative</h3>
+<ul>
+  <li>생성!
+    <ul>
+      <li>파인만 “내가 창조할 수 없는 것은 이해할 수 없다”</li>
+      <li>뉴럴넷이 그림을 그릴 수 있다는 것은 라벨의 Feature를 품고있는 것이고 classification은 당연히 따라옴</li>
+    </ul>
+  </li>
+  <li>Unsupervised Learning에 속함
+    <ul>
+      <li>No label or curriculum =&gt; self learning</li>
+      <li>1) 볼츠만 머신</li>
+      <li>2) Auto-encoder or Variational Inference</li>
+      <li>3) Generative Adversarial Network</li>
+    </ul>
+  </li>
+  <li>Stacker autoencodder - SAE
+    <ul>
+      <li>자기 자신을 답으로 사용하고 L2 loss</li>
+      <li>인코딩으로 latent space에 넣고 다시 디코딩</li>
+    </ul>
+  </li>
+  <li>Variational autoencoder
+    <ul>
+      <li>Variational inference를 사용</li>
+      <li>우리가 알 수 있는 모델로 하한을 계산하고, 하한을 높이는 방식을 취함(Variational approximations)</li>
+      <li>Likelihood는 logistic regression과 유사 =&gt; min 값을 학습 =&gt; blur</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="adversarial">Adversarial</h3>
+<p><img src="https://www.dropbox.com/s/hgr7gfwqe8v1kvf/Screenshot%202018-11-04%2014.55.41.png?raw=1" /></p>
+
+<ul>
+  <li>Generator, Discriminator 모델 2개 존재</li>
+  <li>모르는 Z space에 넣은 후, 우리가 가진 x와 g로 나온 아웃풋과 비교</li>
+  <li>경찰과 지폐위조범 사례</li>
+  <li>z값을 줬을 때 x 이미지를 내보내는 모델(Q)를 정의하고 실제 데이터 모델 P에 가깝도록!</li>
+  <li><img src="https://www.dropbox.com/s/o5qi0rh9dj58154/Screenshot%202018-11-04%2014.57.22.png?raw=1" /></li>
+  <li>왼쪽에서 점점 우측으로 이동하며 원본과 유사해짐</li>
+  <li>수식이 min max가 정말 어려워 보이지만 극단적 예시를 넣으면 쉽게 이해할 수 있음
+    <ul>
+      <li>Discriminator가 잘한다고 했을 때, <code class="MathJax_Preview">D(x)=1</code><script type="math/tex">D(x)=1</script>이라 로그 부분은 0이 됨</li>
+      <li>Discriminator 입장에선 0인게 max</li>
+      <li>Generator 입장에선 속이는 것이 좋기 때문에 min</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="two-step-approach">Two Step Approach</h3>
+<ul>
+  <li>아래와 같은 내용을 증명해야 함
+    <ul>
+      <li><img src="https://www.dropbox.com/s/1246e4f5z4610wp/Screenshot%202018-11-04%2015.05.50.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Proposition 1
+    <ul>
+      <li><code class="MathJax_Preview">a \log(y)+b \log(1-y)</code><script type="math/tex">a \log(y)+b \log(1-y)</script>를 미분하면 <code class="MathJax_Preview">a(1-y)-by=0</code><script type="math/tex">a(1-y)-by=0</script> 따라서 <code class="MathJax_Preview">y = \frac{a}{a+b}</code><script type="math/tex">y = \frac{a}{a+b}</script></li>
+      <li>G가 fixed 되었을 때 D의 optimal 포인트는 다음과 같이 나타낼 수 있음</li>
+      <li>
+        <pre class="MathJax_Preview"><code>D_{G}^{*}(x)=\frac{p_{data}(x)}{p_{data}(x)+p_{g}(x)}</code></pre>
+        <script type="math/tex; mode=display">D_{G}^{*}(x)=\frac{p_{data}(x)}{p_{data}(x)+p_{g}(x)}</script>
+      </li>
+      <li>D에 관한 것을 껴넣고 표현!</li>
+    </ul>
+  </li>
+  <li>Main Theorem
+    <ul>
+      <li><img src="https://www.dropbox.com/s/ns6f8110ln1n9gb/Screenshot%202018-11-04%2015.20.17.png?raw=1" /></li>
+      <li>D가 optimal에 도달했을 때 G의 입장에서 어쩔 때 Global optima를 가지는지 확인</li>
+      <li><code class="MathJax_Preview">p_{g}=p_{data}</code><script type="math/tex">p_{g}=p_{data}</script>일 경우 <code class="MathJax_Preview">D_{G}^{*}(x)=\frac{1}{2}</code><script type="math/tex">D_{G}^{*}(x)=\frac{1}{2}</script>, 대입해서 풀면 <code class="MathJax_Preview">C(G)=-log(4)</code><script type="math/tex">C(G)=-log(4)</script></li>
+      <li>KL 다이버전스..! 검색해보기</li>
+      <li><code class="MathJax_Preview">C(G)</code><script type="math/tex">C(G)</script> : discriminator를 fix한 상태에서 g로만 dependent한 loss function</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="convergence-of-the-proposed-algorithm">Convergence of the proposed algorithm</h3>
+<ul>
+  <li>minmax problem이 global optimal을 가짐
+    <ul>
+      <li>모델 distribution이 실제 데이터 distribution과 정확히 일치할 때 뿐</li>
+    </ul>
+  </li>
+  <li><img src="https://www.dropbox.com/s/uo80syly2yedv8h/Screenshot%202018-11-04%2015.33.36.png?raw=1" /></li>
+  <li>D에 대해 supream(max)에 대한 loss 함수가 있고, 모든 p_{g}에 컨벡스하면 d_optimal 서드 드리프트(미분들의 set)에 포함됨</li>
+  <li>convex 문제는 미분해서 gradient descent하면 global optimal에 도달하는 것이 보장되어 있음</li>
+</ul>
+
+<h3 id="gan-do">Gan do</h3>
+<ul>
+  <li>이미지 생성</li>
+  <li>vector arithmetic(벡터 산수)</li>
+  <li>이미지에서도 사용 가능!(DCGAN)
+    <ul>
+      <li><img src="https://www.dropbox.com/s/6des3ge07sayvry/Screenshot%202018-11-04%2015.42.37.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Rotation 되는 것처럼 이미지를 생성할 수 있음</li>
+</ul>
+
+<h3 id="difficuties">Difficuties</h3>
+<ul>
+  <li>생성된 모델이 잘된건지 파악하기 힘듬
+    <ul>
+      <li>Inception Score</li>
+    </ul>
+  </li>
+  <li>Mode Collapse
+    <ul>
+      <li>min max problem때문에 생기는 문제</li>
+      <li>뉴럴넷 입장에선 max min로 볼수도 있음</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="related-works">Related works</h3>
+<ul>
+  <li>Super-resolution(SRGAN)</li>
+  <li>Img2Img Translation(CycleGAN)</li>
+  <li>Find a code(infoGan)</li>
+</ul>
+
+<hr />
+
+<h2 id="pr-002--deformable-convolutional-networks">PR-002 : Deformable Convolutional Networks</h2>
+
+<ul>
+  <li>Input 데이터에 대해 Transform(rotation, add noise 등)을 적용하는데 이걸 사람이 정해주는게 아닌, 자동으로 할 수 있을까?에 대한 논문</li>
+</ul>
+
+<h3 id="abstract">Abstract</h3>
+<ul>
+  <li>우리의 한계는 늘 고정된 convolution filter를 사용(3by3, 5by5)</li>
+  <li>이런 것을 알고리즘이 배우게 하자!</li>
+  <li>Convolution, RoI pooling을 자동으로 배워보자</li>
+</ul>
+
+<h3 id="introduction">Introduction</h3>
+<ul>
+  <li>data augmentation한 것도 모두 같은 label</li>
+  <li>crop, rotate, flip, jitter, occlude</li>
+  <li>레이블을 바꾸지 않는 data augmentation을 알고 있어야 함</li>
+  <li>그러나 특정한 도메인(의료, 암)은 size 스케일링을 하면 안됨</li>
+  <li>Transformation-invariant feature를 찾는 것도 좋지만, 쉽지 않음</li>
+  <li>drawback : assumed fixed and known</li>
+  <li>배경, 큰 물체, 작은 물체를 학습해야 할 때 같은 필터를 사용하는 것은 비효율..! filter size를 flexible하게!</li>
+</ul>
+
+<h3 id="핵심">핵심</h3>
+<ul>
+  <li>1) Convolution -&gt; deformable convolution
+    <ul>
+      <li>점을 움직일 수 있도록 하면 되지 않을까</li>
+    </ul>
+  </li>
+  <li>2) RoI pooling -&gt; deformable RoI pooling</li>
+  <li>RoI pooling
+    <ul>
+      <li>다양한 사이즈에서 fixed size를 얻음</li>
+    </ul>
+  </li>
+  <li>Spatial Transform Network(STN)
+    <ul>
+      <li>딥마인드</li>
+      <li>인풋이 틀어진 경우 정방향으로 갖다두는 네트워크</li>
+      <li>분류하기 좋도록 classification</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="deformable-convnet">Deformable convnet</h3>
+<ul>
+  <li>Deformable convolution
+    <ul>
+      <li><code class="MathJax_Preview">p_{n}</code><script type="math/tex">p_{n}</script>은 offset</li>
+      <li><code class="MathJax_Preview">\Delta p_{n}</code><script type="math/tex">\Delta p_{n}</script>는 분수로 사용</li>
+      <li>interpolation하면 점을 얻을 수 있음</li>
+      <li>학습할 때 convolution layer 사용</li>
+    </ul>
+  </li>
+  <li>Deformable ROI Pooling
+    <ul>
+      <li>중심 값에 대해서 진행하는데, 역시 오프셋을 도입하자</li>
+      <li>학습할 때 fully connected layer 사용</li>
+    </ul>
+  </li>
+  <li>Deformable ConvNets
+    <ul>
+      <li>기존 conv layer를 살짝만 바꿔도 작동</li>
+      <li>1) conv feature를 학습</li>
+      <li>2) classification, task specific network</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="result">Result</h3>
+<p><img src="https://www.dropbox.com/s/ynfu3vwhkjgd8mt/Screenshot%202018-11-05%2009.19.34.png?raw=1" /></p>
+
+<ul>
+  <li>효과적으로 늘어나는 것을 볼 수 있음</li>
+  <li><a href="https://github.com/felixlaumon">구현물</a></li>
+  <li>Scaled MNIST에선 deformable이 더 잘됨</li>
+  <li>다른 것과 비교
+    <ul>
+      <li>STN와 비교
+        <ul>
+          <li>Linear Transform을 학습 =&gt; 한계</li>
+          <li>정면으로 바꾸는 것(interpolation), 각 픽셀에 대해 진행하니 expensive</li>
+          <li>deformable convolution은 filter weight에 집중하지 않고 filter의 어떤 샘플(x)을 쓰느냐에 신경</li>
+        </ul>
+      </li>
+      <li>Effective Receptive Field
+        <ul>
+          <li>receptive fielld size는 루트에 비례해서 커짐</li>
+          <li>deformable은 확확 커짐</li>
+        </ul>
+      </li>
+      <li>Atrous convolution
+        <ul>
+          <li>팽창하는 conv, 정방</li>
+          <li>deformable은 정방이 아닌 틀어져도 가능</li>
+        </ul>
+      </li>
+      <li>Dynamic Filter
+        <ul>
+          <li>상황에 맞게 dynamic filter를 다양하게 생성</li>
+          <li>deformable은 filter가 아닌 x를 중요시</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="질문">질문</h3>
+<ul>
+  <li>연산량
+    <ul>
+      <li>STN보단 조금임</li>
+      <li>서브 네트워크 하나를 더 배우는 것</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="pr-003--rnn-encoder-decoder">PR-003 : RNN encoder-decoder</h2>
+<ul>
+  <li>기계번역을 위한 자연어 표현 학습</li>
+  <li>RNN Encoder-Decoder
+    <ul>
+      <li>RNN을 활용해 문장 구절 학습 (다양한 길이에 적용)</li>
+      <li>Encoder-Decoder라는 새로운 구조 제안</li>
+      <li>새로운 Hidden Unit 제안</li>
+    </ul>
+  </li>
+  <li>Stastical Machine Translation의 성능을 개선
+    <ul>
+      <li>제안하는 RNN 모델로 기존의 SMT의 성능 개선</li>
+    </ul>
+  </li>
+  <li>SMT 이외의 가능성도 보여줌
+    <ul>
+      <li>학습된 Vector가 의미와 문법을 포착</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="rnn">RNN</h3>
+<ul>
+  <li>sequence data를 사용</li>
+  <li>김성훈 교수님 강의 참고</li>
+</ul>
+
+<h3 id="기계-번역machine-translation">기계 번역(Machine Translation)</h3>
+<ul>
+  <li>Rule-based MT : dictionary, 문법 기반의 번역(Parser, Analyzer, Transfer Lexicon)</li>
+  <li>Statistical MT : 이미 번역된 문서들을 바탕으로한 통계 기반의 번역, 확률로 나타냄</li>
+  <li>Hybrid MT : Rule-based + Statistical</li>
+  <li>Neural MT : Depp Learning을 활용한 번역</li>
+</ul>
+
+<h3 id="smt">SMT</h3>
+<p><img src="https://www.dropbox.com/s/18o89ld3ma0ehg9/Screenshot%202018-11-06%2009.02.37.png?raw=1" /></p>
+
+<h3 id="rnn-encoder-decoder-구조-소개">RNN Encoder-Decoder 구조 소개</h3>
+<p><img src="https://www.dropbox.com/s/p9fy9whs4g16r2e/Screenshot%202018-11-06%2009.03.46.png?raw=1" /></p>
+
+<ul>
+  <li>decoder : 제네레이터같은 역할, c를 포함</li>
+</ul>
+
+<h3 id="hidden-unit">Hidden Unit</h3>
+<p><img src="https://www.dropbox.com/s/zzbdbx10136z25z/Screenshot%202018-11-06%2009.06.18.png?raw=1" /></p>
+
+<ul>
+  <li>게이트가 2개 존재</li>
+  <li>r이 완전히 열리면 이전 state를 버림</li>
+  <li>update gate는 새로운 것을 얼마나 반영할 것인가</li>
+</ul>
+
+<h3 id="rnn-encoder">RNN Encoder</h3>
+<p><img src="https://www.dropbox.com/s/8y2vtwkb1i04j4n/Screenshot%202018-11-06%2009.08.41.png?raw=1" /></p>
+
+<h3 id="rnn-decoder">RNN Decoder</h3>
+<p><img src="https://www.dropbox.com/s/kh0m66her5h8zf2/Screenshot%202018-11-06%2009.10.39.png?raw=1" /></p>
+
+<h3 id="학습">학습</h3>
+<p><img src="https://www.dropbox.com/s/hxoa089tsvj9oxb/Screenshot%202018-11-06%2009.11.29.png?raw=1" /></p>
+
+<h3 id="활용">활용</h3>
+<ul>
+  <li>SMT에 적용
+    <ul>
+      <li>RNN Encoder-Decoder에서 구한 확률 값이 feature 함수로 들어감</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="왜-성능이-잘-나올까">왜 성능이 잘 나올까?</h3>
+<ul>
+  <li>CSLM의 contribution과 많이 겹치지 않음</li>
+  <li>통계적으로 도출된 Score가 아님
+    <ul>
+      <li>출현 빈도가 많지 않은 표현들에 대한 보완이 가능</li>
+    </ul>
+  </li>
+  <li>RNN Encoder-Decoder가 짧은 표현을 선호
+    <ul>
+      <li>일반적으로 BLEU 값은 짧은 표현에서 높게 나옴</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="이외의-활용-방안">이외의 활용 방안</h3>
+<ul>
+  <li>SMT를 완전히 대체</li>
+  <li>범용적인 Phrase Representation
+    <ul>
+      <li>의미와 문법 모두 담아냄</li>
+      <li>word2vec처럼 표현, 의미를 담아냄</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="결론">결론</h3>
+<ul>
+  <li>SMT의 성능을 높일 수 있었다</li>
+  <li>기존 번역 시스템에 쉽게 적용</li>
+  <li>완전히 SMT를 대체할 수 있음</li>
+  <li>범용적인 Phrase Representation</li>
+</ul>
+
+<hr />
+
+<h2 id="pr-004--image-super-resolution-using-deep-convolutional-networks">PR-004 : Image Super-Resolution Using Deep Convolutional Networks</h2>
+
+<ul>
+  <li>ILL-posed problem
+    <ul>
+      <li>다양한 솔루션이 존재하는 문제</li>
+    </ul>
+  </li>
+  <li>저해상도 이미지로부터 고해상도 이미지를 만드는 문제</li>
+  <li>위성 영상, 의료 영상, 천체 영상 등에서 많이 사용되고 있음</li>
+  <li>적은 수의 데이터를 사용하고 있음</li>
+</ul>
+
+<h3 id="배경지식">배경지식</h3>
+<ul>
+  <li>평가 방식
+    <ul>
+      <li>영상이 얼마나 개선되었는지, 우리가 만드려고 하는 ground truth랑 우리가 만든 것이 얼마나 유사한지 평가하는 방식들</li>
+      <li>PSNR (Peak Signal-to-Noise Ratio)
+        <ul>
+          <li>최대 신호 대 잡음비(영상 화질 손싱정보에 대한 평가)</li>
+        </ul>
+      </li>
+      <li>SSIM (structural similarity index)
+        <ul>
+          <li>밝기, 명암, 구조를 조합해 두 영상의 유사도 평가</li>
+        </ul>
+      </li>
+      <li>MS-SSIM (Multi-scal SSIM)
+        <ul>
+          <li>다양한 배율에 대한 SSIM 평가</li>
+        </ul>
+      </li>
+      <li>IFC(Information fidelity criterion)
+        <ul>
+          <li>서로 다른 두 확률분포에 대한 의존도 평가</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>SISR 관련 선행 연구
+    <ul>
+      <li>Example-Based Super-Resolution
+        <ul>
+          <li>데이터셋이나 학습 모델을 구축하기 어려움</li>
+        </ul>
+      </li>
+      <li>Image Super-resolution
+        <ul>
+          <li>sparse를 사용해 어떻게 고해상도를 얻을까</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="방법론">방법론</h3>
+<ul>
+  <li>핵심 아이디어
+    <ul>
+      <li><img src="https://www.dropbox.com/s/7sqxzvxu6b8tyi1/Screenshot%202018-11-11%2012.27.06.png?raw=1" /></li>
+      <li>Convolutional Neural Networks with 3-layers</li>
+      <li>super-resolution 문제에서 최초로 딥러닝을 적용</li>
+      <li>index를 바꿔서 쓰는 중, image가 Y고 ground truth가 X</li>
+      <li>resolution image에서 하나의 픽셀(값)을 regression하는 문제</li>
+    </ul>
+  </li>
+  <li>수식화
+    <ul>
+      <li>6분쯤 이미지 추가</li>
+      <li>conv-relu-conv-relu-conv</li>
+      <li>차이가 작으면 작을수록 PSNR이 올라감</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="실험-결과">실험 결과</h3>
+<ul>
+  <li>나비 이미지 사례</li>
+  <li>필터 사이즈를 늘렸을 때, PSNR이 늘어남(동시에 트레인 시간도)</li>
+  <li>RGB 채널을 그대로 사용하지 않고, YCbCR에 적용</li>
+</ul>
+
+<h3 id="리뷰-의견">리뷰 의견</h3>
+<ul>
+  <li>Sparse-coding과 같은 맥락의 표현을 CNN으로 구현</li>
+  <li>End to End라 효율적</li>
+  <li>Single Image Super Resolution 문제에서 최초로 딥러닝 적용
+    <ul>
+      <li>모델 구조가 독창적이진 않았음</li>
+    </ul>
+  </li>
+  <li>2014년 이후 모두 SRCNN을 기반으로 함</li>
+</ul>
+
+<h3 id="질문-1">질문</h3>
+<ul>
+  <li>patch based로 하면 바운더리 펙트로 문제가 생기는데, 학습을 한 후 파인튜닝을 하는가?
+    <ul>
+      <li>그러진 않고 inference시 전체 이미지 사용</li>
+    </ul>
+  </li>
+  <li>GAN에 적용해서 사용할 수 있을까?
+    <ul>
+      <li>합성된 이미지에서 적용해 성능을 늘릴 수 있을까? Generative는 structure 정보가 없기 때문에 해상도는 늘릴 수 있지만 원점(앵커 포인트)는 틀어지는 문제가 생길 수 있음 =&gt; 진짜 고해상도 이미지인지?</li>
+    </ul>
+  </li>
+  <li>data augmentation 언급은 없음</li>
+  <li>2배로 해상도 늘리고 나온 아웃풋을 다시 인풋으로 넣으면 계속 해상도가 늘어날 수 있을까?
+    <ul>
+      <li>8배까지가 눈으로 봤을 때 정상적이고 16배부턴 잘 안되는듯</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="accurate-image-super-resolution-using-very-deep-convolutional-networks">Accurate Image Super Resolution using Very Deep Convolutional Networks</h2>
+<ul>
+  <li>이번엔 논문 2개</li>
+  <li>모델을 복잡하게 할 수 있을까?</li>
+</ul>
+
+<h3 id="방법론-1">방법론</h3>
+<p><img src="https://www.dropbox.com/s/m4muppp8i8wwzw7/Screenshot%202018-11-11%2012.26.19.png?raw=1" /></p>
+
+<ul>
+  <li>Receptive field를 키우고, scale factor를 2배 3배 4배 고려</li>
+  <li>이미지 learning decay</li>
+  <li>레이어 자체를 vgg처럼 비슷하게 3x3을 20개 쌓고, 마지막에 residual 부분을 넣음</li>
+  <li>원 이미지를 학습하는 것이 아닌 경계 값만 학습
+    <ul>
+      <li>두 이미지의 차는 달라지는 부분이 없음</li>
+    </ul>
+  </li>
+  <li>너무 high하지 않도록 gradient를 조절</li>
+</ul>
+
+<h3 id="실험-결과-1">실험 결과</h3>
+<ul>
+  <li>경계 부분이 확실히 더 살아남</li>
+  <li>scale factor가 깊어질수록 좋아짐</li>
+</ul>
+
+<h3 id="리뷰-의견-1">리뷰 의견</h3>
+<ul>
+  <li>Edge 부분만 학습해서 뛰어남</li>
+  <li>SRCNN을 20개의 레이어로 확장해서 표현력 증가됨</li>
+  <li>Residual learning과 adhustable gradient clipping을 통해 빠른 학습 가능</li>
+  <li>Image restoration 문제에서 input-output의 유사성을 residual learning 적용</li>
+  <li>학습 속도 대폭 개선하고, SRCNN과 비교해 확연히 개선됨</li>
+</ul>
+
+<hr />
+
+<h2 id="pr-005--playing-atari-with-deep-reinforcement-learning">PR-005 : Playing Atari with Deep Reinforcement Learning</h2>
+<ul>
+  <li>논문의 스토리 텔링이 엄청 좋음</li>
+  <li>모범적인 논문</li>
+</ul>
+
+<h3 id="abstract-1">Abstract</h3>
+<ul>
+  <li>First deep learning model
+    <ul>
+      <li>Successfully learn control policies directly</li>
+      <li>High-dimensional sensory input</li>
+    </ul>
+  </li>
+  <li>CNN model trained on variant of Q-learning</li>
+  <li>아타리 2600 게임 3은 사람보다 잘함</li>
+</ul>
+
+<h3 id="introduction-1">Introduction</h3>
+<ul>
+  <li>문제 제기
+    <ul>
+      <li>High dimensional sensory input으로부터 직접 학습하고 싶음</li>
+      <li>대부분 RL은 hand-crafted feature를 가지고 했음</li>
+    </ul>
+  </li>
+  <li>인사이트
+    <ul>
+      <li>컴퓨터 비전과 음성 인식에서 잘되고 있음</li>
+      <li>그냥 딥러닝을 Reinforcement에 적용하면 안됨, 그 이유는
+        <ul>
+          <li>DL은 레이블된 데이터를 사용
+            <ul>
+              <li>이걸 해결하기 위해 CNN with a variant Q-learning을 사용</li>
+            </ul>
+          </li>
+          <li>대부분 딥러닝 논문은 데이터 샘플이 independent라는 것을 가정, 지금은 시퀀스 데이터를 받음
+            <ul>
+              <li>Experience replay</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="background">Background</h3>
+<ul>
+  <li>수학은 딱 1페이지</li>
+  <li>Agent, Environment</li>
+  <li>State</li>
+  <li>Policy : 특정 상황에서 내가 뭘 해야되는지 알려줌
+    <ul>
+      <li>Deterministic하면 바로 나오고, Stochastic하면 확률로 나옴</li>
+    </ul>
+  </li>
+  <li>Value Fuction : 어떤 상태에 내가 있다면 가치가 얼마인지?
+    <ul>
+      <li>Q를 학습하는 과정</li>
+    </ul>
+  </li>
+  <li>Value-Based learning</li>
+  <li>Q-Networks
+    <ul>
+      <li>w라는 weight를 하나 더 갖는 함수로 정의, <code class="MathJax_Preview">Q(s, a, w)</code><script type="math/tex">Q(s, a, w)</script></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="deep-q-networksdqn">Deep Q-Networks(DQN)</h3>
+<ul>
+  <li>딥러닝할 때 (셔플하고) 배치로 읽는 것과 비슷한 아이디어</li>
+  <li>state를 다 저장했다가, 셔플해서 사용
+    <ul>
+      <li>이 작업으로 correlation을 제거</li>
+    </ul>
+  </li>
+  <li>DQN in Atari
+    <ul>
+      <li>화면 하나만 보여주면 어디로 움직이는지 모름</li>
+      <li>화면 4개 이미지를 동시에 사용하고, 액션을 예측</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="training-and-stability">Training and Stability</h3>
+<ul>
+  <li>그 당시엔 Q가 converge될 것인가를 네트워크에서 설명하지 못했는데, 이걸 설명함</li>
+  <li>에피소드마다 리워드가 어떻게 변화하는지 보여줌, 마치 학습이 잘 안되는 것처럼 왔다갔다 함</li>
+  <li>그러나 우리는 리워드가 아니라 Q를 approximate하고 싶은 것, Q를 보니 점수가 계속 상승하고 있음</li>
+</ul>
+
+<h3 id="visualizing-the-value-functions">Visualizing the value functions</h3>
+<ul>
+  <li>적과 같은 선상에 있으면 Q의 기대치가 상승</li>
+  <li>맞기 직전에서 상승</li>
+  <li>적이 없어지면 Q의 기대치가 하락</li>
+</ul>
+
+<h3 id="experience-replay">Experience Replay</h3>
+<ul>
+  <li>네트워크를 target과 학습하려는 weight으로 분리</li>
+  <li>이 부분은 여기서 자세히 다루진 않음</li>
+  <li>이걸 진행하면 3배 높은 스코어를 얻을 수 있음</li>
+</ul>
+
+<hr />
+
+<h2 id="pr-006--neural-turing-machines">PR-006 : Neural Turing Machines</h2>
+<ul>
+  <li>2014년에 처음 나온 논문</li>
+</ul>
+
+<h3 id="tuning-machine">Tuning Machine</h3>
+<ul>
+  <li>컴퓨터 모델</li>
+  <li>읽기 쓰기 장치 존재</li>
+  <li>프로그램이 칸을 이동하며 Read/write</li>
+  <li>Discrete해서 backpropagation 불가</li>
+</ul>
+
+<h3 id="neural-turing-machine">Neural Turing Machine</h3>
+<ul>
+  <li>알고리즘은 못하지만 일반화를 잘 함</li>
+  <li>프로그램을 배울 수 있음</li>
+  <li>Differentiable(미분 가능한) Turing machine</li>
+  <li>
+    <p><strong>Sharp</strong> functions made smooth and can train with backpropagation</p>
+  </li>
+  <li>계산과 메모리가 분리된 뉴럴넷
+    <ul>
+      <li>뉴럴넷 : CPU, 메모리 : RAM</li>
+    </ul>
+  </li>
+  <li>알고리즘의 입력과 출력을 보고 알고리즘을 배울 수 있음
+    <ul>
+      <li>복사, 반복, 정렬 알고리즘에 대한 실험 결과를 나타냄</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="구조">구조</h3>
+<p><img src="https://www.dropbox.com/s/xgwcmzv9yabx6kc/Screenshot%202018-11-09%2009.05.28.png?raw=1" /></p>
+
+<ul>
+  <li>그냥 Turing 머신과 다른 점은 read/write 헤드가 여러개 있을 수 있는 점
+    <ul>
+      <li>여러 헤드가 있어서 더 효율적</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="rnn-or-lstm">RNN or LSTM</h3>
+<ul>
+  <li>RNN이나 LSTM은 메모리 수를 증가시키면 네트워크가 커지고, 계산량이 많아짐</li>
+  <li>RNN은 계속 내용이 업데이트 되서 전 내용을 쓸 수 없음
+    <ul>
+      <li>LSTM이 이걸 해결해주긴 하는데, 이 논문에선 이 아이디어를 더 앞서서 NTM을 만듬</li>
+    </ul>
+  </li>
+  <li>Hidden state의 size를 증가시키기 위해 사용</li>
+</ul>
+
+<h3 id="innovations">Innovations</h3>
+<ul>
+  <li>메모리와 뉴럴넷이 나뉘어짐</li>
+  <li>2014년에 Attention 메커니즘이 거의 없었음</li>
+  <li>Memory Networks에서 발전된 End-to-End Memory는 Read만 있는데 NTM은 Read, Write 둘 다 있음</li>
+</ul>
+
+<h3 id="detail">Detail</h3>
+
+<p><img src="https://www.dropbox.com/s/ipmha2fswb8d9rn/Screenshot%202018-11-09%2009.09.36.png?raw=1" /></p>
+
+<ul>
+  <li>Addresing
+    <ul>
+      <li>주소 찾기
+        <ul>
+          <li>Content Only
+            <ul>
+              <li>위치를 대략적으로 찾음</li>
+            </ul>
+          </li>
+          <li>Location Only
+            <ul>
+              <li>Shift iterates from the last focus</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Content -&gt; interploation -&gt; Conv Shift -&gt; Sharpening</li>
+      <li>Content Addressing
+        <ul>
+          <li>근사값을 찾는 과정</li>
+          <li>softmax</li>
+        </ul>
+      </li>
+      <li>Interpolation
+        <ul>
+          <li>Location addressing</li>
+          <li>contetn와 locate 방식을 얼마나 할지 정함</li>
+        </ul>
+      </li>
+      <li>Convolutional Shift
+        <ul>
+          <li>얼마나 많은 지점에 영향을 받는지 계산</li>
+        </ul>
+      </li>
+      <li>Sharpening
+        <ul>
+          <li>최종 주소 weight를 구함</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Writing
+    <ul>
+      <li>Erase 후 Add</li>
+      <li>Erase
+        <ul>
+          <li>w는 어디를 지울지 e는 얼마나 지울지</li>
+          <li>w가 커질수록 더 많이 지워짐</li>
+        </ul>
+      </li>
+      <li>Add
+        <ul>
+          <li>w는 어디를 추가할지</li>
+          <li>a는 뉴럴넷에서 나온 것</li>
+        </ul>
+      </li>
+      <li>Erase후 Add하면 업데이트됨!</li>
+    </ul>
+  </li>
+  <li>Read
+    <ul>
+      <li>w는 어디를 읽을지</li>
+    </ul>
+  </li>
+  <li>Flow
+    <ul>
+      <li>Input을 정렬되지 않은 리스트와 정렬된 리스트(정답값)을 받음</li>
+      <li>뉴럴넷을 통해 Addressing, Writing, Memory 연산, Reading, <code class="MathJax_Preview">r_{t}</code><script type="math/tex">r_{t}</script>를 구함</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="what-to-improve">What to improve</h3>
+<ul>
+  <li>Memory management probelm : Dynamic Allocation</li>
+  <li>Time Retrieval Memory in Order : Temporal Matrix</li>
+  <li>Graph Algorithm for wider range of tasks</li>
+  <li>Reinforcement Learning</li>
+</ul>
+
+
+      <br/>
+      <p><a href="https://bit.ly/kyleschool_blog">카일스쿨 유튜브</a> 채널을 만들었습니다. 데이터 사이언스, 성장, 리더십, BigQuery 등을 이야기할 예정이니, 관심 있으시면 구독 부탁드립니다 :)</p>
+      <p>이 글이 도움이 되셨다면 추천 클릭을 부탁드립니다 :)</p>
+      <br/>
+      <br/>
+      <div style="text-align:center">
+        <style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFFFFF !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 0px 9px !important;font-size: 17px !important;letter-spacing:-0.08px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/zzsza"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
+      </div>
+      <br/>
+      <br/>
+       <!--블로그-하단-반응형 -->
+      <ins class="adsbygoogle"
+          style="display:block; width:100%; height:300px;"
+          data-ad-client="ca-pub-5105555504153863"
+          data-ad-slot="1037589043"
+          data-ad-format="auto"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+
+    </div>
+  
+
+</article>
+
+  <hr class="dingbat" />
+
+  <div class="share">
+      <h2>Share this post</h2>
+      <div class="share-body">
+        <a href="http://twitter.com/share?text=딥모닝 1주차. PR12-001~006&amp;url=http://localhost:4000/data/2018/11/11/deepmorning-week1/"
+    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <span class="icon-twitter">
+            </span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/data/2018/11/11/deepmorning-week1/"
+    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <span class="icon-facebook">
+            </span>
+        </a>
+    </div>
+  </div>
+  <br/>
+
+
+
+
+
+
+  <aside class="author" role="complementary">
+    <div class="author">
+  <h2 class="page-title hr">
+    About
+  </h2>
+<div class="author-body">
+  
+    
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="seongyun byeon"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+  
+  <div class="author-body-description">
+    <p>Machine Learning Engineer</p>
+
+  </div>
+</div>
+</div>
+
+  </aside>
+
+
+
+
+
+<aside class="related" role="complementary">
+  <h2 class="hr">Related Posts</h2>
+
+  <ul class="related-posts">
+    
+      
+      
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/data/2019/12/15/rules-of-ml/" data-flip="title">
+    <span>Rules of Machine Learning: Best Practices for ML Engineering 정리</span>
+  </a>
+  <small><time datetime="2019-12-15T00:00:00+09:00">
+    15 Dec 2019
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/data/2019/12/03/cs224w-ml-with-graph/" data-flip="title">
+    <span>CS224W - Machine Learning with Graphs 1강 정리</span>
+  </a>
+  <small><time datetime="2019-12-03T00:00:00+09:00">
+    03 Dec 2019
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/data/2019/11/24/pydeck/" data-flip="title">
+    <span>지도 데이터 시각화 : Uber의 pydeck 사용하기</span>
+  </a>
+  <small><time datetime="2019-11-24T00:00:00+09:00">
+    24 Nov 2019
+  </time></small>
+</li>
+
+        
+      
+        
+        
+      
+    
+  </ul>
+</aside>
+
+
+
+      
+        <aside class="comments" role="complementary">
+  <h2>Comments</h2>
+  <hr/>
+
+  <div id="disqus_thread"></div>
+
+  <script>
+    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="딥모닝 1주차. PR12-001~006",this.page.identifier="/data/2018/11/11/deepmorning-week1",this.page.url="http://localhost:4000/data/2018/11/11/deepmorning-week1/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//zzsza.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</aside>
+
+      
+
+      <footer>
+  <hr/>
+  
+    <p>© 2017. by Seongyun Byeon</p>
+
+  
+  <p>
+    <code>Powered by <a href="https://zzsza.github.io/">zzsza</a></code>
+  </p>
+</footer>
+
+    </main>
+    <div class="right-side">
+  <div class="ad-first">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- 블로그-상단-모바일 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:100%;"
+         data-ad-client="ca-pub-5105555504153863"
+         data-ad-slot="9090558636"
+         data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+<br/>
+<br/>
+  <div class="ad-second">
+    <!-- 블로그-스카이스크래퍼 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;max-width:320px;width:100%;height:600px"
+         data-ad-client="ca-pub-5105555504153863"
+         data-ad-slot="3646660262"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+</div>
+
+
+  </div>
+  <div id="_yDrawer">
+  <div id="_sidebar" class="sidebar">
+    <div class="sidebar-bg" style="background-color:#4f86aa;background-image:url(/assets/img/nap.jpg)"></div>
+    <header class="sidebar-sticky" role="banner">
+      <br/>
+      <div class="sidebar-about">
+        <h1><a id="_title" href="/">어쩐지 오늘은</a></h1>
+        <p>Machine Learning Engineer</p>
+
+      </div>
+
+      <br/>
+      <nav class="sidebar-nav heading" role="navigation">
+        <span class="sr-only">Navigation:</span>
+<ul>
+  
+
+  
+
+  
+  
+  
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-1"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/diary/">Diary</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/diary-diary/">diary</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-2"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/data/">Data</a>
+       <label class="folder" for="list-item-2">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-ml/">Machine-Learning</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-dl/">Deep-Learning</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-mobility/">Mobility</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-engineering/">Engineering</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-optimization/">Optimization</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-paper/">Paper</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-pytorch/">Pytorch</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-cs231/">CS231n</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-rl/">Reinforcement-Learning</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-time-series/">Time Series</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-analytics/">Analytics</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-kaggle/">Kaggle</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-vision/">Vision</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-interpretable-ml/">Interpretable ML</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-simulation/">Simulation</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-graph/">Graph</a>
+             </li>
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-3"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/mlops/">MLOps</a>
+       <label class="folder" for="list-item-3">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-basic/">Basic</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-airflow/">Airflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-mlflow/">MLflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-tfx/">Tensorflow Extended</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-serving/">Serving</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-feature/">Feature</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-version/">Model & Pipeline version</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-4"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/gcp/">Google Cloud Platform</a>
+       <label class="folder" for="list-item-4">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-basic/">Basic</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-bigquery/">BigQuery</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-aiplatform/">AI Platform</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-dataflow/">Dataflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-cloud-functions/">Cloud Functions</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-5"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/development/">Development</a>
+       <label class="folder" for="list-item-5">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-linux/">Linux</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-web/">Web</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-python/">Python</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-sql/">SQL</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-scala/">Scala</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-os/">OS</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-kubernetes/">Kubernetes</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-devops/">DevOps</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-kotlin/">Kotlin</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-julia/">Julia</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-tools/">Tools</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-6"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/etc/">ETC</a>
+       <label class="folder" for="list-item-6">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/etc-lecture/">Lecture</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/etc-book/">Book</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-7"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/about/">About</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+</ul>
+
+      </nav>
+    <!-- search box -->
+    <form action="/search">
+      <div class="tipue_search_box">
+        <input type="text" name="q" id="tipue_search_input" placeholder="&#xF002;  Search" pattern=".{2,}" title="최소 2글자 이상" required></div>
+      <div style="clear: both;"></div>
+    </form>
+    <br/>
+      <div class="sidebar-box">
+        
+          
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="seongyun byeon"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+        
+      </div>
+      <p>메모가 습관인 데이터쟁이입니다</p>
+
+      
+      
+        <div class="sidebar-social">
+          <span class="sr-only">Social:</span>
+<ul>
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://facebook.com/zzsza">
+    <span class="icon-facebook" title="Facebook"></span>
+    <span class="sr-only">Facebook</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.youtube.com/channel/UCYyAaezBGEVmXcnink6nY9Q">
+    <span class="icon-youtube" title="YouTube"></span>
+    <span class="sr-only">YouTube</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://instagram.com/data.scientist">
+    <span class="icon-instagram" title="Instagram"></span>
+    <span class="sr-only">Instagram</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://github.com/zzsza">
+    <span class="icon-github" title="GitHub"></span>
+    <span class="sr-only">GitHub</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.linkedin.com/in/seong-yun-byeon-8183a8113">
+    <span class="icon-linkedin2" title="LinkedIn"></span>
+    <span class="sr-only">LinkedIn</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="mailto:snugyun01@gmail.com">
+    <span class="icon-mail" title="Email"></span>
+    <span class="sr-only">Email</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://zzsza.github.io/feed.xml">
+    <span class="icon-rss2" title="RSS"></span>
+    <span class="sr-only">RSS</span>
+  </a>
+</li>
+
+  
+</ul>
+
+        </div>
+      
+    </header>
+  </div>
+</div>
+
+</div>
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+
+<script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-110573232-1', 'auto');
+  ga('send', 'pageview');
+  loadJSDeferred('https://www.google-analytics.com/analytics.js');
+</script>
+
+
+
+
+
+<!--[if gt IE 8]><!---->
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    
+    google: {
+      families: 'Lato'.split('|')
+    },
+    
+
+    custom: {
+      families: ['icomoon'],
+      urls: ['/assets/icomoon/style.css']
+    }
+  });
+</script>
+<!--<![endif]-->
+
+
+  <!--[if gt IE 9]><!---->
+  
+  <script>loadJSDeferred('/assets/js/hydejack.js?v=6.4.0');</script>
+
+  
+  <!--<![endif]-->
+
+
+
+</body>
+
+</html>

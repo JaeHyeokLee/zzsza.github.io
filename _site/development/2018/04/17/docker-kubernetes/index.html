@@ -1,0 +1,2222 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
+-->
+
+
+
+
+
+
+
+
+
+<head>
+  <!-- =============== -->
+<!-- META            -->
+<!-- =============== -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="naver-site-verification" content="22c5b4ef3bfda7fc6100671413989219de7a4ac8"/>
+<meta property="og:title" content="Docker와 쿠버네티스의 이해">
+<meta property="og:type" content="article">
+
+
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/img/logo.png">
+
+
+<meta property="og:image:width" content="640" />
+<meta property="og:image:height" content="360" />
+
+
+
+  <title>Docker와 쿠버네티스의 이해 &middot; 어쩐지 오늘은</title>
+
+
+
+<meta name="description" content="네이버 AI 해커톤에 참여하다가 빠르게 도커 사용법을 익혀야해서 찾아본 방법 및 IBM developerWorks 밋업에서 진행한 도커와 쿠버네티스, 두 마리 토끼를 잡자!을 들으며 기록한 Docker, Kubernetes를 정리한 문서입니다
+
+">
+<meta property="og:description" content="네이버 AI 해커톤에 참여하다가 빠르게 도커 사용법을 익혀야해서 찾아본 방법 및 IBM developerWorks 밋업에서 진행한 도커와 쿠버네티스, 두 마리 토끼를 잡자!을 들으며 기록한 Docker, Kubernetes를 정리한 문서입니다
+
+">
+
+
+<!-- tipuesearch -->
+<link rel="stylesheet" href="/assets/tipuesearch/css/tipuesearch.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+<!-- =============== -->
+<!-- LINKS           -->
+<!-- =============== -->
+<link rel="canonical" href="http://localhost:4000/development/2018/04/17/docker-kubernetes/">
+<meta property="og:url" content="http://localhost:4000/development/2018/04/17/docker-kubernetes/">
+
+<link rel="alternate" type="application/atom+xml" title="어쩐지 오늘은 Feed" href="http://localhost:4000/feed.xml">
+
+
+  <link rel="prev" href="http://localhost:4000/development/2018/04/16/domain-name-system/">
+
+
+
+  <link rel="next" href="http://localhost:4000/data/2018/04/18/machine-learning-basic/">
+
+
+<link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+<!-- Place favicon.ico in the root directory -->
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+<script>
+  !function(n,e){function t(n,e){n.onload=function(){this.onerror=this.onload=null,e(null,n)},n.onerror=function(){this.onerror=this.onload=null,e(new Error("Failed to load "+this.src),n)}}function o(n,e){n.onreadystatechange=function(){"complete"!=this.readyState&&"loaded"!=this.readyState||(this.onreadystatechange=null,e(null,n))}}n._loaded=!1,n.loadJSDeferred=function(a,d){function r(){n._loaded=!0;var r=e.createElement("script");r.src=a,d&&(("onload"in r?t:o)(r,d),r.onload||t(r,d));var l=e.getElementsByTagName("script")[0];l.parentNode.insertBefore(r,l)}n._loaded?r():n.addEventListener?n.addEventListener("load",r,!1):n.attachEvent?n.attachEvent("onload",r):n.onload=r}}(window,document);
+
+  !function(e){"use strict";var n=function(n,t,o){function i(e){if(a.body)return e();setTimeout(function(){i(e)})}function r(){l.addEventListener&&l.removeEventListener("load",r),l.media=o||"all"}var d,a=e.document,l=a.createElement("link");if(t)d=t;else{var f=(a.body||a.getElementsByTagName("head")[0]).childNodes;d=f[f.length-1]}var s=a.styleSheets;l.rel="stylesheet",l.href=n,l.media="only x",i(function(){d.parentNode.insertBefore(l,t?d:d.nextSibling)});var u=function(e){for(var n=l.href,t=s.length;t--;)if(s[t].href===n)return e();setTimeout(function(){u(e)})};return l.addEventListener&&l.addEventListener("load",r),l.onloadcssdefined=u,u(r),l};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
+
+  !function(t){if(t.loadCSS){var e=loadCSS.relpreload={};if(e.support=function(){try{return t.document.createElement("link").relList.supports("preload")}catch(t){return!1}},e.poly=function(){for(var e=t.document.getElementsByTagName("link"),r=0;r<e.length;r++){var n=e[r];"preload"===n.rel&&"style"===n.getAttribute("as")&&(t.loadCSS(n.href,n,n.getAttribute("media")),n.rel=null)}},!e.support()){e.poly();var r=t.setInterval(e.poly,300);t.addEventListener&&t.addEventListener("load",function(){e.poly(),t.clearInterval(r)}),t.attachEvent&&t.attachEvent("onload",function(){t.clearInterval(r)})}}}(this);
+
+  window.disablePushState = false;
+  window.disableDrawer = false;
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5105555504153863",
+    enable_page_level_ads: true
+  });
+</script>
+
+<!--[if lt IE 9]>
+<script src="https://unpkg.com/html5shiv/dist/html5shiv.min.js"></script>
+<![endif]-->
+
+<!-- =============== -->
+<!-- STYLES          -->
+<!-- =============== -->
+<!--[if gt IE 8]><!---->
+<style>
+  
+  article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}*{box-sizing:border-box}html,body{margin:0;padding:0}html{font-size:16px;line-height:1.75}body{color:#333;background-color:#fff;overflow-y:scroll}a{text-decoration:none}.lead{margin-left:-1rem;margin-right:-1rem}img,.img{display:block;max-width:100%;margin-bottom:1rem;border:none}img.lead,.img.lead{max-width:calc(100% + 2rem);width:calc(100% + 2rem)}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-weight:bold;text-rendering:optimizeLegibility}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{margin:1.6rem 0 1rem;line-height:1.6}h1,.h1{font-size:2rem;line-height:1.25}h2,.h2{font-size:1.5rem}h3,.h3{font-size:1.17em}p{margin-top:0;margin-bottom:1rem}p.lead{font-size:1.25rem;font-weight:300;padding:0 1rem}ul,ol,dl{margin-top:0;margin-bottom:1rem}ul,ol{padding-left:1.25rem}hr{position:relative;margin:1.5rem 0;border:0;border-top:1px solid #eee}.hr{padding-bottom:.5rem;border-bottom:1px solid #eee;margin-bottom:1.5rem}h4,h5,h6,.h4,.h5,.h6{margin-bottom:0.5rem;font-size:1rem}table{margin-bottom:1rem;width:100%;width:calc(100% + 2rem);margin-left:-1rem;border:1px solid #e5e5e5;border-collapse:collapse;border-spacing:0}td,th{padding:.25rem .5rem;border:1px solid #e5e5e5}td:first-child,th:first-child{padding-left:1rem}td:last-child,th:last-child{padding-right:1rem}thead+tbody,tbody+tbody,tfoot{border-top:3px double #e5e5e5}tbody tr:nth-child(odd) td,tbody tr:nth-child(odd) th{background-color:#f9f9f9}footer{margin-bottom:2rem}.page,.post{margin-bottom:3em}.page li+li,.post li+li{margin-top:.25rem}.page>header,.post>header{margin-bottom:2rem}.page-title,.post-title{margin-top:0}.post-date{display:block;margin-top:-0.5rem;margin-bottom:1rem;color:#9a9a9a}.related-posts{padding-left:0;list-style:none}.related-posts>li,.related-posts>li+li{margin-top:1rem}.related-posts>li>small,.related-posts>li+li>small{font-size:75%;color:#9a9a9a}.message{margin-bottom:1rem;padding:1rem;color:#787878;background-color:#f9f9f9;margin-left:-1rem;margin-right:-1rem}body,main{position:relative;overflow-x:hidden}@media screen{body::before{content:'';background:#e5e5e5;position:absolute;left:0;top:0;bottom:0}}@media screen and (min-width: 40em){html{font-size:17px}}@media screen and (min-width: 54em){html{font-size:16px}}@media screen and (min-width: 88em){html{font-size:17px}}@media screen and (min-width: 125em){html{font-size:18px}}.sr-only{display:none}.clearfix,.sidebar-social::after,.clearafter::after{content:"";display:table;clear:both}a,.a{position:relative;padding-bottom:.15rem;border-style:hidden}.img{overflow:hidden;background-color:#f9f9f9}.img>img{margin:0;width:100%;height:100%}.sixteen-nine{position:relative}.sixteen-nine::before{display:block;content:"";width:100%;padding-top:56.25%}.sixteen-nine>*{position:absolute;top:0;left:0;right:0;bottom:0}h1+hr,h2+hr,h3+hr,h4+hr,h5+hr,h6+hr{margin-top:0}.fade-in{animation-duration:500ms;animation-name:fade-in;animation-fill-mode:forwards}@keyframes fade-in{from{transform:translateY(-2rem);opacity:0}50%{transform:translateY(-2rem);opacity:0}to{transform:translateY(0);opacity:1}}.mb6{margin-bottom:10rem}.sidebar{color:rgba(255,255,255,0.75);text-align:left}.sidebar::before{content:"";position:absolute;z-index:2;top:0;left:0;bottom:0;right:0;background:linear-gradient(to bottom, rgba(32,32,32,0) 0%, rgba(32,32,32,0.5) 100%)}.sidebar a{color:#fff;border-bottom-color:rgba(255,255,255,0.2)}.right-side{width:100%;margin-left:auto;margin-right:auto}.right-side .ad-first{text-align:center}.right-side .ad-second{text-align:center}@media screen{.right-side{max-width:38rem;min-height:100vh}}@media screen and (min-width: 54em){.right-side{margin-left:20rem;margin-right:1rem;padding:4rem 1rem 12rem}}@media screen and (min-width: 72em){.right-side{margin-left:22rem;max-width:42rem}}@media screen and (min-width: 88em){.right-side{width:162px;margin-left:0rem;margin-right:0rem;padding:0rem;margin-top:10rem;display:block;float:left}}@media screen and (min-width: 96em){.right-side{width:300px;margin-right:0rem}}#_yDrawer{position:relative}@media screen{#_yDrawer{min-height:640px;min-height:100vh}}@media screen and (min-width: 54em){#_yDrawer{width:18rem;margin-left:0}}.sidebar-bg{position:absolute;height:100%;overflow:hidden;top:0;right:0;bottom:0;left:0;background:#202020 center / cover}.sidebar-box{display:flex;justify-content:center}.sidebar-sticky{position:relative;z-index:3}@media screen{.sidebar-sticky{-ms-overflow-style:none;overflow:-moz-scrollbars-none;height:100%;overflow:auto;position:absolute;padding:3rem 0rem;right:2.5rem;left:2.5rem}}.sidebar-sticky::-webkit-scrollbar{display:none}.sidebar-about>h1{color:#fff;font-size:2rem}.sidebar-nav>ul{list-style:none;padding-left:0;margin-bottom:.5rem}a.sidebar-nav-item{width:100%;font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}a.sidebar-nav-subitem{font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}@media screen{.y-drawer-scrim{z-index:2}.y-drawer-content{width:18rem;left:-18rem;z-index:3}}.sidebar-social{margin-bottom:.5rem}.sidebar-social>ul{list-style:none;padding-left:0;margin:0 -.25rem}.sidebar-social>ul>li{float:left}.sidebar-social>ul>li>a{display:inline-block;text-align:center;font-size:1.6rem;line-height:3rem;width:3.1249rem;height:4rem;padding:.5rem 0}.sidebar-social>ul li+li{margin-top:0}.fixed-top{position:fixed;top:0;left:0;width:100%;z-index:1}.navbar>.content{padding-top:0;padding-bottom:0;min-height:0;height:0}.menu{display:inline-block;padding:1.75rem 1.5rem;border-bottom:none;margin-left:-1.5rem;color:#9a9a9a !important}.menu::after{content:"\2630"}@media screen and (min-width: 54em){.menu{padding:1.25rem 1.5rem;position:absolute;left:-9999px}.menu:focus{position:static}}.animation-main{pointer-events:none}.loading{display:none}@media print{.menu{display:none}}.animation-main{opacity:0;will-change:opacity}.loading{position:absolute;top:0;right:0;padding:5.25rem 4.5rem;transform-origin:top right;transform:scale(0.33)}.content{position:relative;margin-left:auto;margin-right:auto;padding:5rem 1rem 12rem}@media screen{.content{min-height:100vh}}@media screen and (min-width: 54em){.content{padding:4rem 1rem 12rem;margin-left:19rem;margin-right:3rem}}@media screen and (min-width: 72em){.content{max-width:42rem;margin-left:21rem}}@media screen and (min-width: 88em){.content{float:left;width:100%;margin-left:22rem;margin-right:5rem}}@media screen and (min-width: 96em){.content{max-width:44rem}}@media screen and (min-width: 102em){.content{margin-left:25rem;margin-right:8rem}}.me{width:6.5rem;height:6.5rem;align-self:center;margin-right:20px;border-radius:100%;position:relative}@media screen and (min-width: 40em){.me{width:7rem;height:7rem}}@media screen and (min-width: 54em){.me{width:6.5rem;height:6.5rem}}@media screen and (min-width: 72em){.me{width:7rem;height:7rem}}main>footer{width:100%;position:absolute;bottom:0;left:0;right:0;padding:0 1rem;color:#9a9a9a;font-size:smaller;text-align:center}main>footer>p{margin-bottom:0}html{font-family:'Sans-serif'}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-family:'Sans-serif'}
+
+</style>
+
+
+<link rel="preload" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0" as="style" onload="this.rel='stylesheet'">
+
+<style id="_pageStyle">
+
+.content a{color:#4f86aa;border-color:rgba(79,134,170,0.2)}.content a:hover{border-color:#4f86aa}:focus{outline-color:#4f86aa}::selection{color:#fff;background:#4f86aa}::-moz-selection{color:#fff;background:#4f86aa}
+
+</style>
+
+
+<noscript>
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0">
+  
+  
+  
+
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <style>
+      html { font-family: 'Lato', 'Sans-serif' }
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading { font-family: 'Lato', 'Sans-serif' }
+    </style>
+  
+
+  
+  <link rel="stylesheet" href="http://localhost:4000/assets/icomoon/style.css">
+</noscript>
+<!--<![endif]-->
+
+</head>
+
+<body>
+  <!-- =============== -->
+<!-- MENU            -->
+<!-- =============== -->
+<div class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <a id="_menu" class="menu no-hover" href="#_title">
+      <span class="sr-only">Menu</span>
+    </a>
+  </div>
+</div>
+
+<!-- =============== -->
+<!-- CONTENT         -->
+<!-- =============== -->
+<div id="_yPushState">
+  <div class="fade-in">
+    <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/nap.jpg">
+      
+
+<article id="post-development/2018/04/17/docker-kubernetes" class="post" role="article">
+  <header>
+    <h1 class="post-title">
+      
+        Docker와 쿠버네티스의 이해
+      
+    </h1>
+
+    <p class="post-date heading">
+      <time datetime="2018-04-17T00:00:00+09:00">17 Apr 2018</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/development/" data-flip="title">Development</a>
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/development-linux/" data-flip="title">Linux</a>
+
+    </p>
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+    <div class="markdown-body">
+
+
+<style>
+.myAd1190 { display:block; width:98%; height: 280px; }
+@media(min-width: 600px) { .myAd1190 { display: none; } }
+</style>
+<ins class="adsbygoogle myAd1190"
+    data-ad-client="ca-pub-5105555504153863"
+    data-ad-slot="6481487416"
+    ></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
+<br/>
+      <p><a href="https://github.com/naver/ai-hackathon-2018">네이버 AI 해커톤</a>에 참여하다가 빠르게 도커 사용법을 익혀야해서 찾아본 방법 및 IBM developerWorks 밋업에서 진행한 도커와 쿠버네티스, 두 마리 토끼를 잡자!을 들으며 기록한 Docker, Kubernetes를 정리한 문서입니다</p>
+
+<h1 id="contents">Contents</h1>
+<ul>
+  <li><a href="#docker">Docker</a></li>
+  <li><a href="#kubernetes">Kubernetes</a></li>
+</ul>
+
+<h2 id="docker">Docker</h2>
+<ul>
+  <li>Docker : 컨테이너 기반의 오픈소스 가상화 플랫폼</li>
+  <li>Images : 컨테이너 실행에 필요한 파일과 설정값 등을 포함하는 것으로, 상태값을 가지지 않고 변하지 않습니다(Immutable)
+    <ul>
+      <li>tar 파일을 묶어놓은 file system으로 Template같은 친구들</li>
+    </ul>
+  </li>
+  <li>Container : 이미지를 실행한 상태이며 추가되거나 변하는 값은 컨테이너에 저장됩니다
+    <ul>
+      <li>단, 컨테이너를 삭제하면 내부의 데이터가 삭제됩니다. 이를 해결하기 위해 <code class="highlighter-rouge">Volumn</code>을 사용합니다</li>
+    </ul>
+  </li>
+  <li><a href="https://subicura.com/2017/01/19/docker-guide-for-beginners-1.html">서비큐라님 Docker 글</a> : 꼭 읽어보기!! 추천!!!</li>
+  <li><a href="https://subicura.com/2019/05/19/kubernetes-basic-1.html">서비큐라님 Kubernetes 글</a></li>
+  <li><a href="http://docker-dwmeetup.mybluemix.net/docker1.html">IBM Document</a></li>
+</ul>
+
+<hr />
+
+<h3 id="도커가-등장하기-전-서버-운영">도커가 등장하기 전 서버 운영</h3>
+<ul>
+  <li>자체 서버 운영 ⇒ 설정 관리 도구 등장(ansible, chef 등) ⇒ 가상머신 등장 ⇒ 클라우드 등장 ⇒ PaaS 등장 ⇒ 도커 등장 ⇒ 쿠버네티스 등장 ⇒ 서비스메시 등장
+    <ul>
+      <li>서비스메시
+        <ul>
+          <li>요소마다 프록시 서버가 떠서 네트워크 감시 ⇒ 네트워크</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>가상 머신 등장
+    <ul>
+      <li>immutable 변하지 않는</li>
+      <li>mutable vs immutable
+        <ul>
+          <li>서버에 설치된 애플리케이션을 새로운 버전으로 업데이트하면 mutable
+            <ul>
+              <li>업그레이드하다 네트워크 이슈로 타임아웃날 수 있음. 논리적으론 맞지만 오류가 날 수 있음</li>
+            </ul>
+          </li>
+          <li>새로운 버전이 설치된 서버의 상태를 이미지로 만들고 교체하면 immutable</li>
+          <li>개념이 단순해짐
+            <ul>
+              <li>기존 상태를 고려할 필요 없이 통째로 서버를 교체</li>
+            </ul>
+          </li>
+          <li>생각보다 어렵고 느리고 특정 회사의 제품을 써야함</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>클라우드 이미지 단점
+    <ul>
+      <li>어떻게 만들었는지 모름</li>
+      <li>생각보다 쓰기 어려움</li>
+    </ul>
+  </li>
+  <li>Platform as a service
+    <ul>
+      <li>서버 운영이 매우 복잡하고 어려움</li>
+      <li>소스 코드만으로 배포가 가능함</li>
+      <li>일반화된 프로비저닝으로 사용 가능</li>
+      <li>스타트업도 초반에 Paas를 씀</li>
+      <li>단점
+        <ul>
+          <li>애플리케이션을 PaaS 방식에 맞게 작성</li>
+          <li>서버에 대한 원격 접속 시스템을 제공하지 않음. 새로 띄우면 날라가니 s3를 써야함</li>
+          <li>배포 패러다임을 바꿔야 함</li>
+          <li>크론잡, 데이터 분석, 로그 분석, 애플리케이션 성능 모니터링, AB Test, 카나리 배포, 네트워크 스토리 설정을 PaaS 업체에서 제공하지 않으면 사용할 수 없음</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Docker
+    <ul>
+      <li>VM vs Docker</li>
+      <li>VM : OS 위에 OS가 또 올라감. Docker아 OS 위에 격리만 함</li>
+      <li>도커의 특징</li>
+      <li>1) 확장성
+        <ul>
+          <li>도커가 설치되었으면 어디서든 컨테이너 실행 가능</li>
+          <li>특정 회사/서비스에 종속적이지 않음</li>
+          <li>개발 서버, 테스트 서버 쉽게 만들 수 있음</li>
+        </ul>
+      </li>
+      <li>2) 표준성
+        <ul>
+          <li>배포 방식이 다 다르지만 run이라는 것 하나로 가능</li>
+        </ul>
+      </li>
+      <li>3) 이미지</li>
+      <li>4) 설정
+        <ul>
+          <li>환경 변수를 넣어서 관리</li>
+        </ul>
+      </li>
+      <li>5) 자원
+        <ul>
+          <li>첨부 파일을 s3 같은 곳에 업로드</li>
+        </ul>
+      </li>
+      <li>paas처럼 제한이 없지만 클라우드 이미지보다 관리 쉬움</li>
+      <li>빌드 기록이 남음</li>
+      <li>복잡한 기술 몰라도 됨</li>
+      <li>오픈소스</li>
+      <li>모든 것을 컨테이너로! ⇒ 도커이미지 있으면 사용</li>
+      <li>Blue - Green 배포
+        <ul>
+          <li>애플리케이션을 업데이트하기 위해 컨테이너를 교체하는 방식 사용</li>
+          <li>proxy nginx를 사용해서 기존 컨테이너 보다가 새 컨테이너 바라보고 기존꺼 죽임</li>
+        </ul>
+      </li>
+      <li>서비스 디스커버리
+        <ul>
+          <li>컨테이너를 마구 띄우다보니 IP가 뭔지 알아내서 자동으로 연결하고 싶어함</li>
+          <li>key value storage를 사용해 쓸 수 있음</li>
+        </ul>
+      </li>
+      <li>서버가 2대가 있고, 하나가 추가된 경우 기존 2개의 ip만 알고 있음.
+        <ul>
+          <li>key value에 web3에 새 ip와 포트 추가하면 nginx manager가 변경될 경우 이벤트로 감지하고 nginx 설정 파일 새로 만들고 재시작함</li>
+        </ul>
+      </li>
+      <li>docker-gen</li>
+    </ul>
+  </li>
+  <li>컨테이너 오케스트레이션
+    <ul>
+      <li>여러 대의 서버와 여러 개의 서비스를 관리해주는 서비스</li>
+      <li>스케줄링
+        <ul>
+          <li>적당한 서버에 배포</li>
+        </ul>
+      </li>
+      <li>클러스터링
+        <ul>
+          <li>여러 개의 서버를 하나의 서버처럼 사용</li>
+        </ul>
+      </li>
+      <li>서비스 디스커버리
+        <ul>
+          <li>key value에 저장할 필요 없이 바로 가져올 수 있음</li>
+        </ul>
+      </li>
+      <li>로깅, 모니터링으로 중앙에서 관리 가능</li>
+    </ul>
+  </li>
+  <li>docker swarm
+    <ul>
+      <li>docker에서 만든 컨테이너 오케스트레이션 도구</li>
+      <li>업데이트가 잘 안되고 있음</li>
+    </ul>
+  </li>
+  <li>Kubernetes
+    <ul>
+      <li>대규모에 적합, 다양한 생태계</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="docker-install">Docker Install</h3>
+<ul>
+  <li>
+    <p>json parser인 jq 설치</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  sudo apt install -y jq
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Docker 설치</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  curl -fsSL https://get.docker.com/ | sudo sh
+  sudo usermod -aG docker $USER
+	
+  sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  sudo chmod +x /usr/local/bin/docker-compose
+	
+  # check (re-login)
+  docker version
+  docker-compose version
+	
+  # reboot
+  sudo reboot
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="docker-기본-명령어">Docker 기본 명령어</h3>
+<p><code class="highlighter-rouge">docker run hello-world</code>, <code class="highlighter-rouge">docker container run hello-world</code> : 기존에 명령어를 전자같이 사용했으나, 17년 초중반부터 명령어가 후자같이 세분화되고 있습니다</p>
+
+<h3 id="docker-images">docker images</h3>
+<ul>
+  <li>현재 사용 가능한 image 목록을 출력. <code class="highlighter-rouge">-a</code> 옵션을 주면 모든 것을 보여줌</li>
+</ul>
+
+<h3 id="docker-ps">docker ps</h3>
+<ul>
+  <li>현재 사용 가능한 컨테이너 목록을 출력. <code class="highlighter-rouge">-a</code> 옵션을 주면 모든 것을 보여줌</li>
+</ul>
+
+<h3 id="dokcer-pull">dokcer pull</h3>
+<ul>
+  <li><code class="highlighter-rouge">docker pull &lt;아이디&gt;/&lt;이미지 이름&gt;:&lt;태그&gt;</code></li>
+  <li><a href="https://hub.docker.com/">docker hub</a>에 있는 이미지를 가지고 옴</li>
+</ul>
+
+<h3 id="docker-이미지로-container-실행하고-싶은-경우">docker 이미지로 container 실행하고 싶은 경우</h3>
+<ul>
+  <li><code class="highlighter-rouge">docker run -it &lt;아이디&gt;/&lt;이미지 이름&gt;:&lt;태그&gt; /bin/bash</code> : <code class="highlighter-rouge">-it</code> 옵션과 함께 실행하면 실행한 명령이 Console에 붙어서 진행됩니다. i는 interactive, t는 tty를 의미합니다</li>
+  <li><code class="highlighter-rouge">docker container run &lt;container 이름&gt; ls -l</code> : ls -l 명령어를 실행하며 컨테이너를 실행해라!</li>
+  <li><code class="highlighter-rouge">docker container run -it --name &lt;container 별명&gt; &lt;image 이름&gt; /bin/ash</code> : <code class="highlighter-rouge">--name</code>을 통해 container 이름을 부여합니다. container 이름을 부여하지 않으면 랜덤하게 생성됩니다</li>
+</ul>
+
+<h3 id="exit된-docker-container-접속">exit된 docker container 접속</h3>
+<ul>
+  <li><code class="highlighter-rouge">docker container start &lt;container ID&gt;</code></li>
+</ul>
+
+<h3 id="docker-container에서-명령어-실행">docker container에서 명령어 실행</h3>
+<ul>
+  <li><code class="highlighter-rouge">docker container exec &lt;container ID&gt; ls</code> : <code class="highlighter-rouge">exec</code>은 container에서 명령어를 실행! <code class="highlighter-rouge">exec</code>로 실행하면 <code class="highlighter-rouge">ps auxf</code>에 살아있습니다</li>
+</ul>
+
+<h3 id="docker-diff-">docker diff <container ID=""></container></h3>
+<ul>
+  <li>컨테이너가 부모 이미지와 파일 변경 사항을 확인할 수 있는 명령어</li>
+</ul>
+
+<h3 id="docker-container-commit">docker container commit</h3>
+<ul>
+  <li><code class="highlighter-rouge">docker commit &lt;container ID&gt; &lt;아이디&gt;/&lt;이미지 이름&gt;:&lt;태그&gt;</code></li>
+  <li>새로운 도커 이미지 생성</li>
+</ul>
+
+<h3 id="docker-push-image">docker push image</h3>
+<ul>
+  <li><code class="highlighter-rouge">docker push &lt;아이디&gt;/\&lt;이미지 이름\&gt;:&lt;태그&gt;</code></li>
+  <li>docker hub에 이미지 업로드</li>
+</ul>
+
+<h3 id="docker-build">docker build</h3>
+<ul>
+  <li><code class="highlighter-rouge">docker build --tag &lt;아이디&gt;/\&lt;이미지 이름\&gt;:&lt;태그&gt; .</code></li>
+  <li><code class="highlighter-rouge">Dockerfile</code>에 있는 곳에서 명령어를 치면 파일에 나온대로 이미지 생성</li>
+</ul>
+
+<hr />
+
+<h3 id="dockerfile-형식">Dockerfile 형식</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM ubuntu:14.04
+MAINTAINER Foo Bar &lt;foo@bar.com&gt;
+
+RUN apt-get update
+RUN apt-get install -y nginx
+RUN echo "\ndaemon off;" &gt;&gt; /etc/nginx/nginx.conf
+RUN chown -R www-data:www-data /var/lib/nginx
+EXPOSE 8080 
+
+WORKDIR /etc/nginx
+
+CMD ["nginx"]
+COPY app.js
+</code></pre></div></div>
+
+<ul>
+  <li><code class="highlighter-rouge">FROM</code> : 어떤 이미지를 기반으로 할지 설정</li>
+  <li><code class="highlighter-rouge">MAINTAINER</code> : 메인테이너 정보</li>
+  <li><code class="highlighter-rouge">RUN</code> : 쉘 스크립트 혹은 명령 실행
+    <ul>
+      <li>이미지 생성 중에는 사용자 입력을 받을 수 있어서, apt-get install에서 <code class="highlighter-rouge">-y</code> 옵션을 꼭 넣어줘야 함. 안 넣으면 Fail</li>
+      <li><code class="highlighter-rouge">RUN</code>은 한줄이 이미지 하나로 빌드됨</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">EXPOSE</code> : 포트 노출</li>
+  <li><code class="highlighter-rouge">CMD</code> : 컨테이너가 시작되었을 때 실행할 실행 파일 또는 쉘 스크립트</li>
+  <li><code class="highlighter-rouge">WORKDIR</code> : CMD에서 설정한 실행 파일이 실행될 디렉터리</li>
+  <li><code class="highlighter-rouge">COPY</code> : 말 그대로 복사</li>
+</ul>
+
+<h3 id="docker-container-stop">Docker Container Stop</h3>
+<ul>
+  <li><code class="highlighter-rouge">docker container rm &lt;container ID/Name&gt;</code> : container 삭제! 돌아가고 있는 container는 삭제가 되지 않습니다. 먼저 중지한 후, 삭제해야 합니다! 그러나 <code class="highlighter-rouge">-f</code> 조건을 주면 바로 삭제할 수 있습니다</li>
+</ul>
+
+<h3 id="delete-all-containers">Delete all containers</h3>
+<ul>
+  <li><code class="highlighter-rouge">docker rm $(docker container ls -a -q)</code></li>
+  <li><code class="highlighter-rouge">docker container ls -a -q</code>는 container의 id만 출력합니다</li>
+</ul>
+
+<h3 id="delete-all-images">Delete all images</h3>
+<ul>
+  <li><code class="highlighter-rouge">docker rmi $(docker images -q)</code></li>
+  <li><code class="highlighter-rouge">docker image ls -q | xargs docker image rm</code> : docker image들을 삭제! <code class="highlighter-rouge">xargs</code>는 앞의 결과를 인자로 받습니다</li>
+</ul>
+
+<h3 id="docker-port-and-volume">Docker port and volume</h3>
+<ul>
+  <li>순서대로 따라해보면 됩니다!</li>
+  <li><code class="highlighter-rouge">docker container run -d --name mynginx nginx</code> : <code class="highlighter-rouge">-d</code> 조건을 줘서 데몬으로 실행</li>
+  <li><code class="highlighter-rouge">docker containers ls</code> : 현재 PORT가 나옵니다!</li>
+  <li><code class="highlighter-rouge">docker container exec mynginx hostname -I</code> : hostname-IP 출력하면 여러 IP가 나옵니다</li>
+  <li><code class="highlighter-rouge">ifconfig docker0</code> : docker가 네트워크도 격리된 환경을 만들었습니다!! IP가 유사하면 서로 접근할 수 있습니다</li>
+  <li><code class="highlighter-rouge">curl http://&lt;container IP&gt;</code> 하면 접근을 한 것을 알 수 있습니다</li>
+  <li><code class="highlighter-rouge">docker container run -d --name mynginx2 -p 8080:80 nginx:alpine</code> : alpine 리눅스 기반으로 호스트의 8080 포트를 컨테이너의 80으로 설정합니다</li>
+  <li><code class="highlighter-rouge">docker container ls</code>를 하면 PORTS에 0.0.0.0:8080-&gt;80/tcp가 나타납니다! 컨테이너 안에있던 친구들이 외부로 노출된 것을 알 수 있습니다!</li>
+  <li><code class="highlighter-rouge">cd ~/workspace</code>한 후, <code class="highlighter-rouge">docker container cp mynginx2:/etc/nginx/conf.d/default.conf .</code> 를 하면 컨테이너 안에 있던 친구들을 호스트로 꺼내왔습니다! 파일에 location을 보면 root : /usr/share/nginx/html이라고 나와있습니다</li>
+  <li><code class="highlighter-rouge">echo "hello world!" &gt; index.html</code>을 하신 후, <code class="highlighter-rouge">docker container cp index.html mynginx2:/usr/share/nginx/html/index.html</code> 하면 파일이 바뀜을 알 수 있습니다</li>
+  <li><code class="highlighter-rouge">docker container run -d --name mynginx3 -p 8083:80 -v /home/ibmcloud/workspace:/usr/share/nginx/html nginx:alpine</code> : workspace 디렉토리를 연결해서 실행해보니 8083도 위에서 만든 8080가 동일합니다! 여기서 <code class="highlighter-rouge">-v</code> 옵션을 줘서 다양하게 디렉터리를 공유할 수 있습니다!</li>
+  <li><code class="highlighter-rouge">docker system prune</code> : 멈춰있는 container를 모두 지우고, 태그안된 image 등을 깔끔하게 삭제합니다</li>
+</ul>
+
+<hr />
+
+<h3 id="build-docker-image">Build Docker image</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/IBM/container-service-getting-started-wt
+cd container-service-getting-started-wt/Lab\ 1
+cat package.json
+cat app.js
+cat Dockerfile
+</code></pre></div></div>
+
+<ul>
+  <li><code class="highlighter-rouge">Dockerfile</code>은 이미지를 만드는 방법을 나타냅니다</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>EXPOSE 8080 # 8080 포트 노출
+CMD node app.js # app.js 실행!
+COPY app.js
+</code></pre></div></div>
+
+<ul>
+  <li><code class="highlighter-rouge">app.js</code>를 마지막으로 하면 빌드 과정에서 달라집니다!(COPY package.json 같은 것들이 app.js에 종속됨) 이미지의 순서가 정말 중요합니다</li>
+  <li><code class="highlighter-rouge">docker image build -t hello-world:1 .</code> : docker 빌드</li>
+  <li><code class="highlighter-rouge">docker image inspect hello-world:1</code> : 도커 이미지를 검사합니다</li>
+  <li><code class="highlighter-rouge">docker container run -d -p 8080:8080 --name hello-world-a hello-world:1</code> : 방금 만든 이미지를 사용해 container를 실행합니다</li>
+  <li><code class="highlighter-rouge">docker container logs &lt;container name&gt;</code> : 로그를 확인할 수 있습니다!</li>
+  <li><code class="highlighter-rouge">docker container exec hello-world-a hostname ip addr |grep inet</code> , <code class="highlighter-rouge">docker container exec hello-world-b hostname ip addr |grep inet</code> 해보면 각자의 Network가 생성되어 있습니다!</li>
+  <li><code class="highlighter-rouge">docker container stop hello-world-a hello-world-b</code> : c를 제외하고 삭제합니다</li>
+  <li><code class="highlighter-rouge">ps auxf |grep app.js |grep node</code>해서 process 번호를 확인하고 <code class="highlighter-rouge">sudo kill &lt;PID&gt;</code>를 하면 컨테이너가 종료됩니다. c는 kill signal을 주고 로그가 남습니다! 이 죽은 애들을 살려주는 곳이 쿠버네티스!</li>
+</ul>
+
+<hr />
+
+<h2 id="kubernetes">Kubernetes</h2>
+<ul>
+  <li>Docker는 Host에 배포하는 방식
+    <ul>
+      <li>보통 socket 파일로 되는데, 포트로 오픈</li>
+      <li>내부망에 포트를 오픈하고 ip docker run</li>
+      <li>centurion이란 툴을 만듬</li>
+      <li>2~3대라면 이정도도 괜찮음</li>
+    </ul>
+  </li>
+  <li>그러나 서버가 많아지면?
+    <ul>
+      <li>컨테이너 관리도구 춘추전국시대</li>
+      <li>그러나 쿠버네티스가 평정</li>
+    </ul>
+  </li>
+  <li>Kubernetes Native Platform!</li>
+  <li>Cloud Support</li>
+  <li>컨테이너 플랫폼
+    <ul>
+      <li>Knative : Serverless</li>
+      <li>Istio : Service Mesh</li>
+      <li>Kubeflow : Machine Learning</li>
+    </ul>
+  </li>
+  <li>기본 기능
+    <ul>
+      <li>상태 관리 : 상태를 선언하고 선언한 상태를 유지 / 노드가 죽거나 컨테이너 응답이 없을 경우 자동으로 복구</li>
+      <li>스케줄링 : 클러스터의 여러 노드 중 조건에 맞는 노드를 찾아 컨테이너를 배치</li>
+      <li>클러스터 : 가상 네트워크를 통해 하나의 서버에 있는 것처럼 통신</li>
+      <li>서비스 디스커버리 : 서로 다른 서비스를 쉽게 찾고 통신할 수 있음. mysql라고 띄우면 mysql로 부를 수 있음</li>
+      <li>리소스 모니터링 : cAdvisor를 통한 리소스 모니터링</li>
+      <li>스케일링 : 리소스에 따라 자동으로 서비스를 조정함</li>
+      <li>RollOut/RollBack : 배포/롤백 및 버전 관리</li>
+    </ul>
+  </li>
+  <li>빠른 업데이트</li>
+  <li>다양한 배포 방식
+    <ul>
+      <li>Daemon Set</li>
+      <li>Replica Set ⇒ deployment</li>
+      <li>Stateful sets</li>
+      <li>Job</li>
+      <li>Replication Controller ⇒ 거의 deprecated, replica set으로 변함</li>
+    </ul>
+  </li>
+  <li>Ingress 설정
+    <ul>
+      <li>domain path를 작성하면 쉽게 설정할 수 있음</li>
+    </ul>
+  </li>
+  <li>Namespace &amp; Label</li>
+  <li>RBAC
+    <ul>
+      <li>내부적 롤을 서브젝트, 리소스, 오퍼레이션으로 관리함</li>
+    </ul>
+  </li>
+  <li>Kubernetes Object
+    <ul>
+      <li>The Illustrated Children’s Guide to Kubernetes</li>
+      <li><a href="https://www.cncf.io/the-childrens-illustrated-guide-to-kubernetes/">https://www.cncf.io/the-childrens-illustrated-guide-to-kubernetes/</a></li>
+      <li>컨테이너를 바로 쓰지 않고 Pod으로 감싸서 사용</li>
+      <li>ReplicaSet : Pod을 복제해서 쓰는 개념</li>
+      <li>Servuce : 일종의 로드 밸런서</li>
+      <li>Volume : 저장소</li>
+      <li>Namespace : 전체를 묶음</li>
+    </ul>
+  </li>
+  <li>Object Spec
+    <ul>
+      <li>YAML 파일을 사용</li>
+      <li>원하는 상태를 다양한 오브젝트에 라벨을 붙여 정의(yaml)하고 사용</li>
+    </ul>
+  </li>
+  <li>Server - Agent
+    <ul>
+      <li>Master : API server
+        <ul>
+          <li>확장성을 고려해 다양한 모듈이 기능별로 쪼개져 있음</li>
+          <li>마스터가 죽으면 API server를 관리할 수 없어서 보통 3개 정도 사용함</li>
+          <li>마스터가 죽어도 노드는 살아있음, update를 못할뿐</li>
+        </ul>
+      </li>
+      <li>Node : 컨테이너가 돔, kubelet
+        <ul>
+          <li>마스터 서버와 통신하며 필요한 pod을 생성하고 네트워크와 볼륨 설정</li>
+          <li>kubectl 라는 명령도구 사용함</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>단점
+    <ul>
+      <li>복잡한 개념
+        <ul>
+          <li>공부할게 너무 많고, 구성 관리하려면 알아야할 내용이 많아서 배보다 배꼽이 더 크다고 생각할 수 있음</li>
+        </ul>
+      </li>
+      <li>복잡한 설치
+        <ul>
+          <li>클라우드를 이용합시다</li>
+        </ul>
+      </li>
+      <li>무거운 환경
+        <ul>
+          <li>아무것도 안띄어져 있어도 기본 리소스 사용이 많은편</li>
+        </ul>
+      </li>
+      <li>복잡한 설정파일
+        <ul>
+          <li>모든 설정이 마이크로서비스 스럽게 나뉘어져 있어서 길고 복잡함</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>앱을 만들면 Container로 실행합니다. 이걸 쿠버네티스에서 <code class="highlighter-rouge">pod</code> (포드, 팟)이라고 부릅니다. 각각의 pod는 1개의 IP를 가집니다! 모이면 리플리카셋이 되고, 이것들을 deployment라고 배포합니다. 이런 친구들은 워커 노드에서 돌아갑니다.
+    <ul>
+      <li>Master Node : 스케쥴링</li>
+      <li>Worker Node : 실제 일을 하는 친구들</li>
+    </ul>
+  </li>
+  <li>쿠버네티스는 마스터를 다 관리해줍니다! 요새 IBM, GCP 등에 마스터를 알아서 관리해주고 워커만 저희가 보면 됩니다</li>
+  <li>중요한 개념
+    <ul>
+      <li>내부적 엔진의 역할은 딱 1개
+        <ul>
+          <li>현재 상태(current state)와 관리자가 원하는 상태를 계속 비교해서(diff) 원하는 상태로 계속 바꿔줌(act)</li>
+          <li>storage 체크하는 애는 storaeg만, 네트워크 체크하는 애는 네트워크만 계속 체크함</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>쿠버네티스는 컨테이너를 pod이라는 개념으로 감싸서 씀
+    <ul>
+      <li>개발자 입장에서 짜는 프로그램을 만든다 하면 if문을 써서 어떤 노드가 있고, 빈 공간이 있는지 체크해서 cpu 메모리가 적은 곳에 할당한다 이럴텐데</li>
+      <li>스토리
+        <ul>
+          <li>쿠버네티스는 pod을 생성 ⇒ 생성 요청된 것을 감시하다가 있으면 할당 ⇒ 실제 노드 서버에 컨테이너를 띄우는 할당이 아니라 이 pod은 3번 노드에 띄우겠다 정보만 올림 ⇒ 할당은 되었지만 실행은 안됨 ⇒ 3번 노드 입장에서 자신에게 할당되었지만 실행 안된거가 있는지 확인 ⇒ 있다면 도커로 띄우고 ⇒ Pod의 상태를 알려주고 ⇒ 아 이제 다 할당이 되었구나! 이런 흐름</li>
+        </ul>
+      </li>
+      <li>5개의 모듈이 분리가 되서 사용됨
+        <ul>
+          <li>결국 모듈이 많지만 같은 메커니즘으로 운영됨</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>cloud native 사이트에 가면 소속된 레플리케이션이 많이 있음
+    <ul>
+      <li>cncf cloud native interactive landscape</li>
+      <li><a href="https://landscape.cncf.io/">https://landscape.cncf.io/</a></li>
+      <li>이 레플리케이션이 쿠버네티스와 밀접한 관계를 가짐. 쿠버네티스 쓰면 레플리케이션이 잘 돌아감</li>
+    </ul>
+  </li>
+  <li>개발자가 기능 개발을 할 경우
+    <ul>
+      <li>브랜치 따고 테스트하고 자동화를 함</li>
+      <li>젠킨스가 빌드를 해서 이미지 올리고, 빌드한 후 또다른 git branch에 배포하라는 명령어를 push함</li>
+      <li>소스 ⇒ 빌드 ⇒ 쿠버 클러스터에 이 브런치를 띄워줘라는 push
+        <ul>
+          <li>쿠버네티스는 상태를 만들도록 노력함</li>
+        </ul>
+      </li>
+      <li>application에 feature가 3개 있으면 3개가 모두 뜸
+        <ul>
+          <li>미묘한 차이 : 띄워라고 명령을 보내는게 아니라 이 3개의 컨테이너가 있으면 좋겠어! 라고 싱크함</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="쿠버네티스의-장점">쿠버네티스의 장점</h3>
+<ul>
+  <li>스케쥴링을 잘해줌</li>
+  <li>죽어도 스스로 잘 살려줌</li>
+  <li>확장성</li>
+  <li>로드 밸런싱</li>
+  <li>롤아웃/롤백이 자동으로 진행</li>
+  <li>설정을 관리</li>
+</ul>
+
+<hr />
+
+<h3 id="service">Service</h3>
+<ul>
+  <li>서비스의 종류
+    <ul>
+      <li><a href="https://medium.com/google-cloud/kubernetes-nodeport-vs-loadbalancer-vs-ingress-when-should-i-use-what-922f010849e0">https://medium.com/google-cloud/kubernetes-nodeport-vs-loadbalancer-vs-ingress-when-should-i-use-what-922f010849e0</a></li>
+      <li>총 4개</li>
+      <li>1) ClusterIP
+        <ul>
+          <li>쿠버네티스 클러스터에 팟이 3개 있고, 팟을 통하기 위해 서비스 하나가 있음</li>
+          <li>이 서비스가 클러스터 IP임</li>
+          <li>redis를 만들고 두개의 팟을 나누고, 레디스 접근하기 위해 서비스 오픈이 되어야 함</li>
+          <li>여태한 것은 컨테이너 띄우기만 했지 접근을 할 수 없음</li>
+          <li>컨테이너 접근하기 위해 ClusterIP를 만들어야 함</li>
+          <li>내부에서 사용하는 작은 로드 밸런서라고 생각하면 됨</li>
+          <li>Pod을 하나만 만들어도 Service가 하나 생성됨 ⇒ IP를 가지고 있음</li>
+        </ul>
+      </li>
+      <li>2) NodePort
+        <ul>
+          <li>이 클러스터 IP는 클러스터에서 사용하는 대표 IP인데 외부에서 사용할 수 없고, 내부 통신만 가능</li>
+          <li>노드포트로 오픈하면 외부에서 오픈할 수 있는 것이 모든 노드에 열림. 하나의 노드에 연결하면 클러스터 IP에 연결됨</li>
+          <li>모든 노드에 열리다보니 더 좋은 것이 로드밸런서에 더 좋음</li>
+        </ul>
+      </li>
+      <li>3) LoadBalancer
+        <ul>
+          <li>클라우드에서만 존재하는 개념</li>
+          <li>회사에 서버 3대를 띄우고 쿠버 설정을 하면 로드밸런서 설정을 해야함</li>
+          <li>이게 엄청 추상적 개념인데, 일반적 조립 서버에선 로드 밸런서가 없음</li>
+          <li>모든 노드의 포트가 아니라 로드밸런서를 통해 클러스터 IP로 접근</li>
+          <li>이 친구의 단점은 바라보는 서비스는 1대임. 서비스 10개 띄우면 10개를 봐야함 ⇒ 이걸 위해 Ingress</li>
+        </ul>
+      </li>
+      <li>4) Ingress
+        <ul>
+          <li>nginx가 있어서 다 80 포트로 받지만 path에 따라 서비스를 분기할 수 있음</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="install-kubectl-cli">Install kubectl cli</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt update &amp;&amp; sudo apt install -y apt-transport-https	
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -	
+echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" |sudo tee /etc/apt/sources.list.d/kubernetes.list	
+sudo apt update	
+sudo apt install -y kubectl	
+</code></pre></div></div>
+
+<ul>
+  <li>kubectl을 설치해야 합니다!(단 처음 설치하면 tab이 안됨)</li>
+  <li><code class="highlighter-rouge">kubectl version</code> : 쿠버네티스 버전 명시(처음엔 Client만 나올겁니다)</li>
+  <li><code class="highlighter-rouge">source &lt;(kubectl completion bash)</code> : 자동완성 가능하도록 설정</li>
+  <li><code class="highlighter-rouge">kubectl completion bash |sudo tee /etc/bash_completion.d/kubectl</code> : 종료해도 자동완성 가능하도록 설정!</li>
+</ul>
+
+<hr />
+
+<h3 id="deploying-apps-into-clusters">Deploying apps into clusters</h3>
+<ul>
+  <li>
+    <p><a href="http://docker-dwmeetup.mybluemix.net/k8s1.html">문서</a></p>
+  </li>
+  <li><code class="highlighter-rouge">bx login</code> : <code class="highlighter-rouge">au-syd</code> 선택!</li>
+  <li><code class="highlighter-rouge">bx cr region-set</code> : 개인 저장소를 사용하기 위한 명령어. container repository의 약자( <code class="highlighter-rouge">cs</code>) <code class="highlighter-rouge">ap-south</code> 선택!</li>
+  <li><code class="highlighter-rouge">bx cr namespace-list</code> : 이름을 출력!</li>
+  <li><code class="highlighter-rouge">export MY_REGISTRY_NAMESPACE=&lt;namespace&gt;</code> : 환경설정 추가</li>
+  <li><code class="highlighter-rouge">bx cr namespace-add $MY_REGISTRY_NAMESPACE</code> : 네임스페이스 추가!!</li>
+  <li><code class="highlighter-rouge">bx cr login</code> : <code class="highlighter-rouge">cat ~/.docker/config.json</code>을 사용해 로그인합니다</li>
+  <li><code class="highlighter-rouge">docker image ls</code> : 현재 로컬에 있는 docker 이미지 출력</li>
+  <li><code class="highlighter-rouge">docker image tag hello-world:1 registry.au-syd.bluemix.net/$MY_REGISTRY_NAMESPACE/hello-world:1</code> : 같은 Image ID를 가지는 image가 생성됩니다</li>
+  <li><code class="highlighter-rouge">docker image push registry.au-syd.bluemix.net/$MY_REGISTRY_NAMESPAC/hello-world:1</code> : 이미지가 IBM 개인 저장소로 push!</li>
+  <li><code class="highlighter-rouge">bx cr image-list</code> : 개인 저장소에 있는 image를 출력합니다</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker image tag hello-world:2 registry.au-syd.bluemix.net/$MY_REGISTRY_NAMESPACE/hello-world:2
+docker image push registry.au-syd.bluemix.net/$MY_REGISTRY_NAMESPAC/hello-world:2
+</code></pre></div></div>
+<p>hello-world:2도 올려줍니다!</p>
+
+<ul>
+  <li><code class="highlighter-rouge">bx cs clusters</code> : 명령어가 <code class="highlighter-rouge">cs</code>로 바뀌었습니다! container service</li>
+  <li><code class="highlighter-rouge">export MY_CLUSTER_NAME=&lt;cluster 이름&gt;</code></li>
+  <li><code class="highlighter-rouge">bx cs workers $MY_CLUSTER_NAME</code> : worker들의 설정을 보여줍니다</li>
+  <li><code class="highlighter-rouge">bx cs cluster-config $MY_CLUSTER_NAME</code> : export KUBECONFIG ~를 그대로 복사해서 터미널에서 실행! 해당 config에 쿠버네티스 정보가 나타납니다</li>
+  <li><code class="highlighter-rouge">kubectl version</code> : 이제 Server도 출력됩니다!</li>
+  <li><code class="highlighter-rouge">kubectl version --short</code> : 짧게 Version 출력</li>
+</ul>
+
+<h3 id="worker-올리는-부분">Worker 올리는 부분</h3>
+<ul>
+  <li><code class="highlighter-rouge">kubectl run hello-world-deployment --image=registry.au-syd.bluemix.net/$MY_REGISTRY_NAMESPACE/hello-world:1</code> : 해당 image를 가지고 와서 쿠버네티스 실행!</li>
+  <li><code class="highlighter-rouge">kubectl get pod</code> : pod 생성되었는지 확인</li>
+  <li><code class="highlighter-rouge">kubectl get deployment</code> : 방금 deploy한 친구의 정보가 나옵니다. deployment 뒤에 이름을 붙여서 볼수도 있음</li>
+  <li><code class="highlighter-rouge">kubectl get deployment hello-world-deployment -o yaml</code> : <code class="highlighter-rouge">-o yaml</code>을 사용해 더 상세한 데이터를 보여줍니다
+    <ul>
+      <li>replicas : 1개로 되어있음</li>
+      <li>rollingUpdate : deployment 정책! 1개씩만 올리고 내림</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">kubectl describe deployment hello-world-deployment</code> : 현재 상태를 보여줍니다</li>
+  <li><code class="highlighter-rouge">kubectl get replicaset</code> : replicaset이 나타납니다</li>
+  <li><code class="highlighter-rouge">kubectl get replicaset -o yaml</code> : 특정 replicaset 정보를 가지고 옵니다(여기서 pod 관리 정책이 있음)</li>
+  <li><code class="highlighter-rouge">kubectl get pod</code> : pod이 생겼습니다!!</li>
+  <li><code class="highlighter-rouge">kubectl get pod -o yaml</code> : pod은 특정 ip를 가지고 있습니다! hostIP도 나타나며 다른 정보들도 포함되어 있습니다</li>
+</ul>
+
+<h3 id="pod-외부에서-확인하고-싶을-경우">pod 외부에서 확인하고 싶을 경우</h3>
+<ul>
+  <li>외부에서 확인하기 위해선 cluster ip, node port 열어주기 등의 방법이 필요합니다. 여기선 node port를 열어보겠습니다</li>
+  <li><code class="highlighter-rouge">kubectl expose deployment/hello-world-deployment --type=NodePort --port=8080 --name=hello-world-service --target-port=8080
+</code></li>
+  <li><code class="highlighter-rouge">kubectl describe service hello-world-service</code> : 해당 서비스 설명 출력됩니다. 8080:30384/TCP가 되어있습니다!</li>
+  <li><code class="highlighter-rouge">bx cs workers $MY_CLUSTER_NAME</code> : 해당 IP를 확인한 후, nodePORT를 연결하면 접속이 됩니다!</li>
+  <li><code class="highlighter-rouge">kubectl edit deployment hello-world-deployment</code> : deployment를 수정합니다! replicas의 수를 수정할 수 있습니다</li>
+  <li><code class="highlighter-rouge">kubectl scale --replicas=5 deployment hello-world-deployment</code> : replicas 개수를 조절할 수 있습니다</li>
+  <li><code class="highlighter-rouge">kubectl get pod</code> : 하면 개수가 증가됨을 볼 수 있습니다</li>
+  <li><code class="highlighter-rouge">kubectl rollout status deployment hello-world-deployment</code> : rollout 상태를 보여줍니다</li>
+  <li><code class="highlighter-rouge">kubectl describe replicaset</code>를 입력하면 4개가 추가됨을 볼 수 있습니다</li>
+  <li><code class="highlighter-rouge">watch -n 1 curl http://워커아이피:노드포트/</code> : 1초마다 해당 내용이 가져오는데, 어떤 팟을 쓰는지 볼 수 있습니다</li>
+</ul>
+
+<h3 id="version-오류-발생시-대처가-어떻게-되는지">Version 오류 발생시 대처가 어떻게 되는지?</h3>
+<ul>
+  <li><code class="highlighter-rouge">export MY_REGISTRY_NAMESPACE=&lt;ID&gt;</code></li>
+  <li><code class="highlighter-rouge">kubectl set image deployment hello-world-deployment hello-world-deployment=registry.au-syd.bluemix.net/$MY_REGISTRY_NAMESPACE/hello-world:3</code> : 아직 3을 안만들었지만 생성됨</li>
+  <li><code class="highlighter-rouge">kubectl rollout status deployment hello-world-deployment</code> : 2개가 업데이트되고 진행이 안됩니다</li>
+  <li><code class="highlighter-rouge">kubectl describe pod</code> : 상태가 다릅니다</li>
+  <li><code class="highlighter-rouge">kubectl get pod</code> : 이미지를 PULL하다 에러가 뜸!</li>
+  <li><code class="highlighter-rouge">kubectl rollout undo deployment hello-world-deployment</code> : 롤백!!!!!</li>
+  <li><code class="highlighter-rouge">kubectl get pod</code> : 멀쩡한 것을 볼 수 있습니다</li>
+</ul>
+
+<hr />
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://subicura.com/2017/01/19/docker-guide-for-beginners-1.html">서비큐라님 블로그</a></li>
+  <li><a href="http://blog.nacyot.com/articles/2014-01-27-easy-deploy-with-docker/">도커 튜토리얼 : 깐 김에 배포까지</a></li>
+  <li><a href="http://interp.blog/docker%EC%97%90%EC%84%9C-apt-get-update%EA%B0%80-%EC%8B%A4%ED%8C%A8%ED%95%A0-%EB%95%8C/">Docker에서 apt-get update가 실패할 때</a></li>
+  <li><a href="http://forum.falinux.com/zbxe/index.php?document_srl=806457&amp;mid=lecture_tip">Docker 컨테이너 이미지 생성</a></li>
+  <li><a href="https://github.com/tianon/docker-brew-ubuntu-core/issues/48">Image doe not contain ‘sudo’</a></li>
+  <li><a href="https://www.facebook.com/groups/developerWorksKRUG/permalink/2020459798166854/">IBM developerWorks 밋업, 도커와 쿠버네티스, 두 마리 토끼를 잡자!</a></li>
+  <li><a href="http://docker-dwmeetup.mybluemix.net/docker1.html">IBM Document</a></li>
+</ul>
+
+
+      <br/>
+      <p><a href="https://bit.ly/kyleschool_blog">카일스쿨 유튜브</a> 채널을 만들었습니다. 데이터 사이언스, 성장, 리더십, BigQuery 등을 이야기할 예정이니, 관심 있으시면 구독 부탁드립니다 :)</p>
+      <p>이 글이 도움이 되셨다면 추천 클릭을 부탁드립니다 :)</p>
+      <br/>
+      <br/>
+      <div style="text-align:center">
+        <style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFFFFF !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 0px 9px !important;font-size: 17px !important;letter-spacing:-0.08px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/zzsza"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
+      </div>
+      <br/>
+      <br/>
+       <!--블로그-하단-반응형 -->
+      <ins class="adsbygoogle"
+          style="display:block; width:100%; height:300px;"
+          data-ad-client="ca-pub-5105555504153863"
+          data-ad-slot="1037589043"
+          data-ad-format="auto"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+
+    </div>
+  
+
+</article>
+
+  <hr class="dingbat" />
+
+  <div class="share">
+      <h2>Share this post</h2>
+      <div class="share-body">
+        <a href="http://twitter.com/share?text=Docker와 쿠버네티스의 이해&amp;url=http://localhost:4000/development/2018/04/17/docker-kubernetes/"
+    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <span class="icon-twitter">
+            </span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/development/2018/04/17/docker-kubernetes/"
+    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <span class="icon-facebook">
+            </span>
+        </a>
+    </div>
+  </div>
+  <br/>
+
+
+
+
+
+
+  <aside class="author" role="complementary">
+    <div class="author">
+  <h2 class="page-title hr">
+    About
+  </h2>
+<div class="author-body">
+  
+    
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="seongyun byeon"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+  
+  <div class="author-body-description">
+    <p>Machine Learning Engineer</p>
+
+  </div>
+</div>
+</div>
+
+  </aside>
+
+
+
+
+
+<aside class="related" role="complementary">
+  <h2 class="hr">Related Posts</h2>
+
+  <ul class="related-posts">
+    
+      
+      
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/development/2020/01/06/jupyter_notebook_voila_dashboard/" data-flip="title">
+    <span>Voila를 사용해 Jupyter Notebook Dashboard 만들기</span>
+  </a>
+  <small><time datetime="2020-01-06T00:00:00+09:00">
+    06 Jan 2020
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/development/2019/12/27/julia_basic/" data-flip="title">
+    <span>Julia Language 프로그래밍 언어 기본 문법 정리</span>
+  </a>
+  <small><time datetime="2019-12-27T00:00:00+09:00">
+    27 Dec 2019
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/development/2019/08/09/spreadsheet-with-auth/" data-flip="title">
+    <span>Python에서 Auth를 사용해 Google Spreadsheets 연동하기</span>
+  </a>
+  <small><time datetime="2019-08-09T00:00:00+09:00">
+    09 Aug 2019
+  </time></small>
+</li>
+
+        
+      
+        
+        
+      
+    
+  </ul>
+</aside>
+
+
+
+      
+        <aside class="comments" role="complementary">
+  <h2>Comments</h2>
+  <hr/>
+
+  <div id="disqus_thread"></div>
+
+  <script>
+    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="Docker와 쿠버네티스의 이해",this.page.identifier="/development/2018/04/17/docker-kubernetes",this.page.url="http://localhost:4000/development/2018/04/17/docker-kubernetes/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//zzsza.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</aside>
+
+      
+
+      <footer>
+  <hr/>
+  
+    <p>© 2017. by Seongyun Byeon</p>
+
+  
+  <p>
+    <code>Powered by <a href="https://zzsza.github.io/">zzsza</a></code>
+  </p>
+</footer>
+
+    </main>
+    <div class="right-side">
+  <div class="ad-first">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- 블로그-상단-모바일 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:100%;"
+         data-ad-client="ca-pub-5105555504153863"
+         data-ad-slot="9090558636"
+         data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+<br/>
+<br/>
+  <div class="ad-second">
+    <!-- 블로그-스카이스크래퍼 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;max-width:320px;width:100%;height:600px"
+         data-ad-client="ca-pub-5105555504153863"
+         data-ad-slot="3646660262"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+</div>
+
+
+  </div>
+  <div id="_yDrawer">
+  <div id="_sidebar" class="sidebar">
+    <div class="sidebar-bg" style="background-color:#4f86aa;background-image:url(/assets/img/nap.jpg)"></div>
+    <header class="sidebar-sticky" role="banner">
+      <br/>
+      <div class="sidebar-about">
+        <h1><a id="_title" href="/">어쩐지 오늘은</a></h1>
+        <p>Machine Learning Engineer</p>
+
+      </div>
+
+      <br/>
+      <nav class="sidebar-nav heading" role="navigation">
+        <span class="sr-only">Navigation:</span>
+<ul>
+  
+
+  
+
+  
+  
+  
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-1"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/diary/">Diary</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/diary-diary/">diary</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-2"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/data/">Data</a>
+       <label class="folder" for="list-item-2">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-ml/">Machine-Learning</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-dl/">Deep-Learning</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-mobility/">Mobility</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-engineering/">Engineering</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-optimization/">Optimization</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-paper/">Paper</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-pytorch/">Pytorch</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-cs231/">CS231n</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-rl/">Reinforcement-Learning</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-time-series/">Time Series</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-analytics/">Analytics</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-kaggle/">Kaggle</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-vision/">Vision</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-interpretable-ml/">Interpretable ML</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-simulation/">Simulation</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-graph/">Graph</a>
+             </li>
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-3"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/mlops/">MLOps</a>
+       <label class="folder" for="list-item-3">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-basic/">Basic</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-airflow/">Airflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-mlflow/">MLflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-tfx/">Tensorflow Extended</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-serving/">Serving</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-feature/">Feature</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-version/">Model & Pipeline version</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-4"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/gcp/">Google Cloud Platform</a>
+       <label class="folder" for="list-item-4">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-basic/">Basic</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-bigquery/">BigQuery</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-aiplatform/">AI Platform</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-dataflow/">Dataflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-cloud-functions/">Cloud Functions</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-5"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/development/">Development</a>
+       <label class="folder" for="list-item-5">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-linux/">Linux</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-web/">Web</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-python/">Python</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-sql/">SQL</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-scala/">Scala</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-os/">OS</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-kubernetes/">Kubernetes</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-devops/">DevOps</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-kotlin/">Kotlin</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-julia/">Julia</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-tools/">Tools</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-6"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/etc/">ETC</a>
+       <label class="folder" for="list-item-6">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/etc-lecture/">Lecture</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/etc-book/">Book</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-7"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/about/">About</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+</ul>
+
+      </nav>
+    <!-- search box -->
+    <form action="/search">
+      <div class="tipue_search_box">
+        <input type="text" name="q" id="tipue_search_input" placeholder="&#xF002;  Search" pattern=".{2,}" title="최소 2글자 이상" required></div>
+      <div style="clear: both;"></div>
+    </form>
+    <br/>
+      <div class="sidebar-box">
+        
+          
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="seongyun byeon"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+        
+      </div>
+      <p>메모가 습관인 데이터쟁이입니다</p>
+
+      
+      
+        <div class="sidebar-social">
+          <span class="sr-only">Social:</span>
+<ul>
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://facebook.com/zzsza">
+    <span class="icon-facebook" title="Facebook"></span>
+    <span class="sr-only">Facebook</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.youtube.com/channel/UCYyAaezBGEVmXcnink6nY9Q">
+    <span class="icon-youtube" title="YouTube"></span>
+    <span class="sr-only">YouTube</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://instagram.com/data.scientist">
+    <span class="icon-instagram" title="Instagram"></span>
+    <span class="sr-only">Instagram</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://github.com/zzsza">
+    <span class="icon-github" title="GitHub"></span>
+    <span class="sr-only">GitHub</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.linkedin.com/in/seong-yun-byeon-8183a8113">
+    <span class="icon-linkedin2" title="LinkedIn"></span>
+    <span class="sr-only">LinkedIn</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="mailto:snugyun01@gmail.com">
+    <span class="icon-mail" title="Email"></span>
+    <span class="sr-only">Email</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://zzsza.github.io/feed.xml">
+    <span class="icon-rss2" title="RSS"></span>
+    <span class="sr-only">RSS</span>
+  </a>
+</li>
+
+  
+</ul>
+
+        </div>
+      
+    </header>
+  </div>
+</div>
+
+</div>
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+
+<script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-110573232-1', 'auto');
+  ga('send', 'pageview');
+  loadJSDeferred('https://www.google-analytics.com/analytics.js');
+</script>
+
+
+
+
+
+<!--[if gt IE 8]><!---->
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    
+    google: {
+      families: 'Lato'.split('|')
+    },
+    
+
+    custom: {
+      families: ['icomoon'],
+      urls: ['/assets/icomoon/style.css']
+    }
+  });
+</script>
+<!--<![endif]-->
+
+
+  <!--[if gt IE 9]><!---->
+  
+  <script>loadJSDeferred('/assets/js/hydejack.js?v=6.4.0');</script>
+
+  
+  <!--<![endif]-->
+
+
+
+</body>
+
+</html>

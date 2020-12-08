@@ -1,0 +1,1997 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
+-->
+
+
+
+
+
+
+
+
+
+<head>
+  <!-- =============== -->
+<!-- META            -->
+<!-- =============== -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="naver-site-verification" content="22c5b4ef3bfda7fc6100671413989219de7a4ac8"/>
+<meta property="og:title" content="Tensorflow Data Validation 사용하기">
+<meta property="og:type" content="article">
+
+
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/img/logo.png">
+
+
+<meta property="og:image:width" content="640" />
+<meta property="og:image:height" content="360" />
+
+
+
+  <title>Tensorflow Data Validation 사용하기 &middot; 어쩐지 오늘은</title>
+
+
+
+<meta name="description" content="
+  TFX에서 Data Validation을 담당하고 있는 TensorFlow Data Validation(TFDV)에 대한 글입니다
+
+
+">
+<meta property="og:description" content="
+  TFX에서 Data Validation을 담당하고 있는 TensorFlow Data Validation(TFDV)에 대한 글입니다
+
+
+">
+
+
+<!-- tipuesearch -->
+<link rel="stylesheet" href="/assets/tipuesearch/css/tipuesearch.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+<!-- =============== -->
+<!-- LINKS           -->
+<!-- =============== -->
+<link rel="canonical" href="http://localhost:4000/mlops/2019/05/12/tensorflow-data-validation-basic/">
+<meta property="og:url" content="http://localhost:4000/mlops/2019/05/12/tensorflow-data-validation-basic/">
+
+<link rel="alternate" type="application/atom+xml" title="어쩐지 오늘은 Feed" href="http://localhost:4000/feed.xml">
+
+
+  <link rel="prev" href="http://localhost:4000/development/2019/05/08/mac-zip-password/">
+
+
+
+  <link rel="next" href="http://localhost:4000/diary/2019/07/07/2019-half-retrospect/">
+
+
+<link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+<!-- Place favicon.ico in the root directory -->
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+<script>
+  !function(n,e){function t(n,e){n.onload=function(){this.onerror=this.onload=null,e(null,n)},n.onerror=function(){this.onerror=this.onload=null,e(new Error("Failed to load "+this.src),n)}}function o(n,e){n.onreadystatechange=function(){"complete"!=this.readyState&&"loaded"!=this.readyState||(this.onreadystatechange=null,e(null,n))}}n._loaded=!1,n.loadJSDeferred=function(a,d){function r(){n._loaded=!0;var r=e.createElement("script");r.src=a,d&&(("onload"in r?t:o)(r,d),r.onload||t(r,d));var l=e.getElementsByTagName("script")[0];l.parentNode.insertBefore(r,l)}n._loaded?r():n.addEventListener?n.addEventListener("load",r,!1):n.attachEvent?n.attachEvent("onload",r):n.onload=r}}(window,document);
+
+  !function(e){"use strict";var n=function(n,t,o){function i(e){if(a.body)return e();setTimeout(function(){i(e)})}function r(){l.addEventListener&&l.removeEventListener("load",r),l.media=o||"all"}var d,a=e.document,l=a.createElement("link");if(t)d=t;else{var f=(a.body||a.getElementsByTagName("head")[0]).childNodes;d=f[f.length-1]}var s=a.styleSheets;l.rel="stylesheet",l.href=n,l.media="only x",i(function(){d.parentNode.insertBefore(l,t?d:d.nextSibling)});var u=function(e){for(var n=l.href,t=s.length;t--;)if(s[t].href===n)return e();setTimeout(function(){u(e)})};return l.addEventListener&&l.addEventListener("load",r),l.onloadcssdefined=u,u(r),l};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
+
+  !function(t){if(t.loadCSS){var e=loadCSS.relpreload={};if(e.support=function(){try{return t.document.createElement("link").relList.supports("preload")}catch(t){return!1}},e.poly=function(){for(var e=t.document.getElementsByTagName("link"),r=0;r<e.length;r++){var n=e[r];"preload"===n.rel&&"style"===n.getAttribute("as")&&(t.loadCSS(n.href,n,n.getAttribute("media")),n.rel=null)}},!e.support()){e.poly();var r=t.setInterval(e.poly,300);t.addEventListener&&t.addEventListener("load",function(){e.poly(),t.clearInterval(r)}),t.attachEvent&&t.attachEvent("onload",function(){t.clearInterval(r)})}}}(this);
+
+  window.disablePushState = false;
+  window.disableDrawer = false;
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5105555504153863",
+    enable_page_level_ads: true
+  });
+</script>
+
+<!--[if lt IE 9]>
+<script src="https://unpkg.com/html5shiv/dist/html5shiv.min.js"></script>
+<![endif]-->
+
+<!-- =============== -->
+<!-- STYLES          -->
+<!-- =============== -->
+<!--[if gt IE 8]><!---->
+<style>
+  
+  article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}*{box-sizing:border-box}html,body{margin:0;padding:0}html{font-size:16px;line-height:1.75}body{color:#333;background-color:#fff;overflow-y:scroll}a{text-decoration:none}.lead{margin-left:-1rem;margin-right:-1rem}img,.img{display:block;max-width:100%;margin-bottom:1rem;border:none}img.lead,.img.lead{max-width:calc(100% + 2rem);width:calc(100% + 2rem)}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-weight:bold;text-rendering:optimizeLegibility}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{margin:1.6rem 0 1rem;line-height:1.6}h1,.h1{font-size:2rem;line-height:1.25}h2,.h2{font-size:1.5rem}h3,.h3{font-size:1.17em}p{margin-top:0;margin-bottom:1rem}p.lead{font-size:1.25rem;font-weight:300;padding:0 1rem}ul,ol,dl{margin-top:0;margin-bottom:1rem}ul,ol{padding-left:1.25rem}hr{position:relative;margin:1.5rem 0;border:0;border-top:1px solid #eee}.hr{padding-bottom:.5rem;border-bottom:1px solid #eee;margin-bottom:1.5rem}h4,h5,h6,.h4,.h5,.h6{margin-bottom:0.5rem;font-size:1rem}table{margin-bottom:1rem;width:100%;width:calc(100% + 2rem);margin-left:-1rem;border:1px solid #e5e5e5;border-collapse:collapse;border-spacing:0}td,th{padding:.25rem .5rem;border:1px solid #e5e5e5}td:first-child,th:first-child{padding-left:1rem}td:last-child,th:last-child{padding-right:1rem}thead+tbody,tbody+tbody,tfoot{border-top:3px double #e5e5e5}tbody tr:nth-child(odd) td,tbody tr:nth-child(odd) th{background-color:#f9f9f9}footer{margin-bottom:2rem}.page,.post{margin-bottom:3em}.page li+li,.post li+li{margin-top:.25rem}.page>header,.post>header{margin-bottom:2rem}.page-title,.post-title{margin-top:0}.post-date{display:block;margin-top:-0.5rem;margin-bottom:1rem;color:#9a9a9a}.related-posts{padding-left:0;list-style:none}.related-posts>li,.related-posts>li+li{margin-top:1rem}.related-posts>li>small,.related-posts>li+li>small{font-size:75%;color:#9a9a9a}.message{margin-bottom:1rem;padding:1rem;color:#787878;background-color:#f9f9f9;margin-left:-1rem;margin-right:-1rem}body,main{position:relative;overflow-x:hidden}@media screen{body::before{content:'';background:#e5e5e5;position:absolute;left:0;top:0;bottom:0}}@media screen and (min-width: 40em){html{font-size:17px}}@media screen and (min-width: 54em){html{font-size:16px}}@media screen and (min-width: 88em){html{font-size:17px}}@media screen and (min-width: 125em){html{font-size:18px}}.sr-only{display:none}.clearfix,.sidebar-social::after,.clearafter::after{content:"";display:table;clear:both}a,.a{position:relative;padding-bottom:.15rem;border-style:hidden}.img{overflow:hidden;background-color:#f9f9f9}.img>img{margin:0;width:100%;height:100%}.sixteen-nine{position:relative}.sixteen-nine::before{display:block;content:"";width:100%;padding-top:56.25%}.sixteen-nine>*{position:absolute;top:0;left:0;right:0;bottom:0}h1+hr,h2+hr,h3+hr,h4+hr,h5+hr,h6+hr{margin-top:0}.fade-in{animation-duration:500ms;animation-name:fade-in;animation-fill-mode:forwards}@keyframes fade-in{from{transform:translateY(-2rem);opacity:0}50%{transform:translateY(-2rem);opacity:0}to{transform:translateY(0);opacity:1}}.mb6{margin-bottom:10rem}.sidebar{color:rgba(255,255,255,0.75);text-align:left}.sidebar::before{content:"";position:absolute;z-index:2;top:0;left:0;bottom:0;right:0;background:linear-gradient(to bottom, rgba(32,32,32,0) 0%, rgba(32,32,32,0.5) 100%)}.sidebar a{color:#fff;border-bottom-color:rgba(255,255,255,0.2)}.right-side{width:100%;margin-left:auto;margin-right:auto}.right-side .ad-first{text-align:center}.right-side .ad-second{text-align:center}@media screen{.right-side{max-width:38rem;min-height:100vh}}@media screen and (min-width: 54em){.right-side{margin-left:20rem;margin-right:1rem;padding:4rem 1rem 12rem}}@media screen and (min-width: 72em){.right-side{margin-left:22rem;max-width:42rem}}@media screen and (min-width: 88em){.right-side{width:162px;margin-left:0rem;margin-right:0rem;padding:0rem;margin-top:10rem;display:block;float:left}}@media screen and (min-width: 96em){.right-side{width:300px;margin-right:0rem}}#_yDrawer{position:relative}@media screen{#_yDrawer{min-height:640px;min-height:100vh}}@media screen and (min-width: 54em){#_yDrawer{width:18rem;margin-left:0}}.sidebar-bg{position:absolute;height:100%;overflow:hidden;top:0;right:0;bottom:0;left:0;background:#202020 center / cover}.sidebar-box{display:flex;justify-content:center}.sidebar-sticky{position:relative;z-index:3}@media screen{.sidebar-sticky{-ms-overflow-style:none;overflow:-moz-scrollbars-none;height:100%;overflow:auto;position:absolute;padding:3rem 0rem;right:2.5rem;left:2.5rem}}.sidebar-sticky::-webkit-scrollbar{display:none}.sidebar-about>h1{color:#fff;font-size:2rem}.sidebar-nav>ul{list-style:none;padding-left:0;margin-bottom:.5rem}a.sidebar-nav-item{width:100%;font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}a.sidebar-nav-subitem{font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}@media screen{.y-drawer-scrim{z-index:2}.y-drawer-content{width:18rem;left:-18rem;z-index:3}}.sidebar-social{margin-bottom:.5rem}.sidebar-social>ul{list-style:none;padding-left:0;margin:0 -.25rem}.sidebar-social>ul>li{float:left}.sidebar-social>ul>li>a{display:inline-block;text-align:center;font-size:1.6rem;line-height:3rem;width:3.1249rem;height:4rem;padding:.5rem 0}.sidebar-social>ul li+li{margin-top:0}.fixed-top{position:fixed;top:0;left:0;width:100%;z-index:1}.navbar>.content{padding-top:0;padding-bottom:0;min-height:0;height:0}.menu{display:inline-block;padding:1.75rem 1.5rem;border-bottom:none;margin-left:-1.5rem;color:#9a9a9a !important}.menu::after{content:"\2630"}@media screen and (min-width: 54em){.menu{padding:1.25rem 1.5rem;position:absolute;left:-9999px}.menu:focus{position:static}}.animation-main{pointer-events:none}.loading{display:none}@media print{.menu{display:none}}.animation-main{opacity:0;will-change:opacity}.loading{position:absolute;top:0;right:0;padding:5.25rem 4.5rem;transform-origin:top right;transform:scale(0.33)}.content{position:relative;margin-left:auto;margin-right:auto;padding:5rem 1rem 12rem}@media screen{.content{min-height:100vh}}@media screen and (min-width: 54em){.content{padding:4rem 1rem 12rem;margin-left:19rem;margin-right:3rem}}@media screen and (min-width: 72em){.content{max-width:42rem;margin-left:21rem}}@media screen and (min-width: 88em){.content{float:left;width:100%;margin-left:22rem;margin-right:5rem}}@media screen and (min-width: 96em){.content{max-width:44rem}}@media screen and (min-width: 102em){.content{margin-left:25rem;margin-right:8rem}}.me{width:6.5rem;height:6.5rem;align-self:center;margin-right:20px;border-radius:100%;position:relative}@media screen and (min-width: 40em){.me{width:7rem;height:7rem}}@media screen and (min-width: 54em){.me{width:6.5rem;height:6.5rem}}@media screen and (min-width: 72em){.me{width:7rem;height:7rem}}main>footer{width:100%;position:absolute;bottom:0;left:0;right:0;padding:0 1rem;color:#9a9a9a;font-size:smaller;text-align:center}main>footer>p{margin-bottom:0}html{font-family:'Sans-serif'}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-family:'Sans-serif'}
+
+</style>
+
+
+<link rel="preload" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0" as="style" onload="this.rel='stylesheet'">
+
+<style id="_pageStyle">
+
+.content a{color:#4f86aa;border-color:rgba(79,134,170,0.2)}.content a:hover{border-color:#4f86aa}:focus{outline-color:#4f86aa}::selection{color:#fff;background:#4f86aa}::-moz-selection{color:#fff;background:#4f86aa}
+
+</style>
+
+
+<noscript>
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0">
+  
+  
+  
+
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <style>
+      html { font-family: 'Lato', 'Sans-serif' }
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading { font-family: 'Lato', 'Sans-serif' }
+    </style>
+  
+
+  
+  <link rel="stylesheet" href="http://localhost:4000/assets/icomoon/style.css">
+</noscript>
+<!--<![endif]-->
+
+</head>
+
+<body>
+  <!-- =============== -->
+<!-- MENU            -->
+<!-- =============== -->
+<div class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <a id="_menu" class="menu no-hover" href="#_title">
+      <span class="sr-only">Menu</span>
+    </a>
+  </div>
+</div>
+
+<!-- =============== -->
+<!-- CONTENT         -->
+<!-- =============== -->
+<div id="_yPushState">
+  <div class="fade-in">
+    <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/nap.jpg">
+      
+
+<article id="post-mlops/2019/05/12/tensorflow-data-validation-basic" class="post" role="article">
+  <header>
+    <h1 class="post-title">
+      
+        Tensorflow Data Validation 사용하기
+      
+    </h1>
+
+    <p class="post-date heading">
+      <time datetime="2019-05-12T00:00:00+09:00">12 May 2019</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/mlops/" data-flip="title">MLOps</a>
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/mlops-tfx/" data-flip="title">Tensorflow Extended</a>
+
+    </p>
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+    <div class="markdown-body">
+
+
+<style>
+.myAd1190 { display:block; width:98%; height: 280px; }
+@media(min-width: 600px) { .myAd1190 { display: none; } }
+</style>
+<ins class="adsbygoogle myAd1190"
+    data-ad-client="ca-pub-5105555504153863"
+    data-ad-slot="6481487416"
+    ></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
+<br/>
+      <ul>
+  <li>TFX에서 Data Validation을 담당하고 있는 TensorFlow Data Validation(TFDV)에 대한 글입니다</li>
+</ul>
+
+<h3 id="tfdv">TFDV</h3>
+<ul>
+  <li><a href="https://github.com/tensorflow/data-validation">Github Repo</a></li>
+  <li>TensorFlow Data Validation는 데이터를 더 쉽게 이해하고 점검할 수 있도록 도와주는 라이브러리</li>
+  <li>Google에서 매일 페타바이트의 데이터를 분석하고 점검할 때 사용</li>
+  <li>Train, Test Data의 요약 통계, 분포를 쉽게 비교 가능</li>
+  <li>필수 값, 데이터에 대한 기대치를 의미하는 데이터 스키마 생성</li>
+  <li>지정된 조건을 벗어나는 경우(예시 : int 타입을 예상했는데 float이 들어오는 경우) 예외를 식별</li>
+  <li>Python 2.7, 3.5만 지원</li>
+  <li>Mac OS(시에라) 이상, Ubuntu 16.04 이상 지원
+    <ul>
+      <li>윈도우는 추후 지원 예정</li>
+    </ul>
+  </li>
+  <li>내부적으로 <a href="https://github.com/PAIR-code/facets">Facet</a>, <a href="https://beam.apache.org/">Apache Beam</a> 사용</li>
+  <li>회사 업무시, 데이터 경진대회(캐글 등)에서 유용할 듯</li>
+  <li>이 글은 0.13.1 버전 기준으로 작성했습니다. 추후 계속 수정될 예정입니다</li>
+  <li>코드는 모두 Github에 올렸습니다. <a href="https://nbviewer.jupyter.org/github/zzsza/tfx-tutorial/blob/master/data-validation/All-Features-Example.ipynb?flush_cache=true">Nbviewer</a>로 확인 부탁드려요!</li>
+</ul>
+
+<h3 id="기능">기능</h3>
+<ul>
+  <li>Statistics 생성 및 시각화
+    <ul>
+      <li>Train과 Test셋 데이터 분포 동시에 확인</li>
+    </ul>
+  </li>
+  <li>스키마 추론</li>
+  <li>데이터 검증</li>
+  <li>Drift와 Skew 체크</li>
+</ul>
+
+<h3 id="설치">설치</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install tensorflow-data-validation
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>설치한 후, 확인</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  import sys, os
+  import tempfile, urllib, zipfile
+  import tensorflow_data_validation as tfdv
+  print('TFDV version: {}'.format(tfdv.version.__version__))
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="데이터-준비">데이터 준비</h3>
+<ul>
+  <li>
+    <p>시카고 택시 데이터를 다운로드 후, 압축 해제</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  BASE_DIR = tempfile.mkdtemp()
+  DATA_DIR = os.path.join(BASE_DIR, 'data')
+  OUTPUT_DIR = os.path.join(BASE_DIR, 'chicago_taxi_output')
+  TRAIN_DATA = os.path.join(DATA_DIR, 'train', 'data.csv')
+  EVAL_DATA = os.path.join(DATA_DIR, 'eval', 'data.csv')
+  SERVING_DATA = os.path.join(DATA_DIR, 'serving', 'data.csv')
+	
+  zip, headers = urllib.urlretrieve('https://storage.googleapis.com/tfx-colab-datasets/chicago_data.zip')
+  zipfile.ZipFile(zip).extractall(BASE_DIR)
+  zipfile.ZipFile(zip).close()
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="statistics-생성-및-시각화">Statistics 생성 및 시각화</h3>
+<ul>
+  <li>
+    <p>csv, dataframe, tfrecord을 통해 Statistics를 생성할 수 있음</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  [methods for methods in dir(tfdv) if "generate" in methods]
+  &gt;&gt;&gt; ['generate_statistics_from_csv',
+   	 'generate_statistics_from_dataframe',
+       'generate_statistics_from_tfrecord']
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Statistics 생성</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  train_stats = tfdv.generate_statistics_from_csv(data_location=TRAIN_DATA)
+  # method : tfdv.generate_statistics_from_csv(data_location, column_names=None, delimiter=',', output_path=None, stats_options=&lt;tensorflow_data_validation.statistics.stats_options.StatsOptions object at 0x14436a110&gt;, pipeline_options=None)
+</code></pre></div>    </div>
+
+    <ul>
+      <li>train_stats를 확인해보면 feature별로 다양한 통계치를 가지고 있음</li>
+    </ul>
+  </li>
+  <li>
+    <p>시각화</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  tfdv.visualize_statistics(train_stats)
+  # method : tfdv.visualize_statistics(lhs_statistics, rhs_statistics=None, lhs_name='lhs_statistics', rhs_name='rhs_statistics)
+</code></pre></div>    </div>
+
+    <p><img src="https://www.dropbox.com/s/wuudyhmvisv9d3e/Screenshot%202019-05-12%2013.44.27.png?raw=1" /></p>
+
+    <ul>
+      <li>Interactive하게 직접 만져보고 싶으신 분은 웹에서 제 <a href="https://nbviewer.jupyter.org/github/zzsza/tfx-tutorial/blob/master/data-validation/All-Features-Example.ipynb?flush_cache=true">Github nbviewer</a> 참고!</li>
+      <li>Numeric Features
+        <ul>
+          <li>맨 왼쪽에 Sort By 옵션
+            <ul>
+              <li>Non-uniformity</li>
+              <li><img src="https://www.dropbox.com/s/gv4a1ljc3a2whww/Screenshot%202019-05-12%2013.50.49.png?raw=1" /></li>
+              <li>Amount missing/zero</li>
+              <li><img src="https://www.dropbox.com/s/e3odgkz2fom61v1/Screenshot%202019-05-12%2013.51.11.png?raw=1" /></li>
+            </ul>
+          </li>
+          <li>오른쪽에 Chart to show은 분포, Quantiles, Value list length 등으로 볼 수 있고, 클릭으로 log로 변환 가능</li>
+        </ul>
+      </li>
+      <li>Categorical Feature도 아래처럼 시각화됨
+        <ul>
+          <li><img src="https://www.dropbox.com/s/3v0v13mx83kxt06/Screenshot%202019-05-12%2013.54.21.png?raw=1" /></li>
+          <li>SHOW RAW DATA를 누르면 카테고리 데이터 count 결과 보여줌</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Train과 Eval Data 동시에 시각화</p>
+    <ul>
+      <li>Kaggle에서 매우 유용할 듯</li>
+    </ul>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  eval_stats = tfdv.generate_statistics_from_csv(data_location=EVAL_DATA)
+  tfdv.visualize_statistics(lhs_statistics=eval_stats, rhs_statistics=train_stats,
+                        lhs_name='EVAL_DATASET', rhs_name='TRAIN_DATASET')
+</code></pre></div>    </div>
+
+    <p><img src="https://www.dropbox.com/s/yp05oqr5pz5mcag/Screenshot%202019-05-12%2013.57.04.png?raw=1" /></p>
+
+    <ul>
+      <li>이제 파란색은 Eval data, 주황색은 Train data</li>
+      <li>우측 Charts to show에서 percentages를 클릭시 Eval과 Train의 비율을 포개서 보여줌
+        <ul>
+          <li><img src="https://www.dropbox.com/s/p9uzhb7b6xauwgr/Screenshot%202019-05-12%2013.59.00.png?raw=1" /></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="스키마-추론">스키마 추론</h3>
+<ul>
+  <li><code class="highlighter-rouge">tfdv.infer_schema</code>로 스키마를 추론한 후, <code class="highlighter-rouge">tfdv.display_shcema</code>로 출력</li>
+  <li>
+    <p>infer schema 결과 스키마 Protocol buffer가 생성됨</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  schema = tfdv.infer_schema(statistics=train_stats)
+  # method : tfdv.infer_schema(statistics, infer_feature_shape=True, max_string_domain_size=100)
+	
+  tfdv.display_schema(schema=schema)
+</code></pre></div>    </div>
+
+    <p><img src="https://www.dropbox.com/s/pukezj5i0v7tp3g/Screenshot%202019-05-12%2014.02.39.png?raw=1" /></p>
+
+    <ul>
+      <li>각 Feature별 Type, Presence, Valency, Domain 출력</li>
+    </ul>
+  </li>
+  <li>
+    <p>Feautre의 속성을 바꾸고 싶을 경우 <code class="highlighter-rouge">tfdv.get_feature</code>로 가져온 후 수정</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  tfdv.get_feature(schema, 'payment_type').name = "oh"
+  schema 
+  # find name: 'oh'
+</code></pre></div>    </div>
+
+    <ul>
+      <li>다시 복구</li>
+    </ul>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  tfdv.get_feature(schema, 'oh').name = "payment_type"
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="데이터-검증">데이터 검증</h3>
+<ul>
+  <li>Validation 기능</li>
+  <li>
+    <p>예를 들어 Train엔 없는 Categorical Value가 Test에 존재한다면?</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  anomalies = tfdv.validate_statistics(statistics=eval_stats, schema=schema)
+  tfdv.display_anomalies(anomalies)
+</code></pre></div>    </div>
+
+    <p><img src="https://www.dropbox.com/s/mqhkt513q5ufwcp/Screenshot%202019-05-12%2014.51.21.png?raw=1" /></p>
+
+    <ul>
+      <li>company, payment type feature에 예상하지 못한 값이 있음</li>
+      <li>문제 해결을 위해 min_domain_mass 제약 조건을 추가하고, value를 수동으로 추가함</li>
+    </ul>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  # Relax the minimum fraction of values that must come from the domain for feature company.
+  company = tfdv.get_feature(schema, 'company')
+  company.distribution_constraints.min_domain_mass = 0.9
+	
+  # Add new value to the domain of feature payment_type.
+  payment_type_domain = tfdv.get_domain(schema, 'payment_type')
+  payment_type_domain.value.append('Prcard')
+	
+  # Validate eval stats after updating the schema 
+  updated_anomalies = tfdv.validate_statistics(eval_stats, schema)
+  tfdv.display_anomalies(updated_anomalies)
+</code></pre></div>    </div>
+  </li>
+  <li>Serving시 데이터 검증
+    <ul>
+      <li>requirements를 정의해 특정 문제가 발생하면 자동으로 수정될 수 있게 보조해주는 기능도 존재</li>
+    </ul>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  serving_stats = tfdv.generate_statistics_from_csv(SERVING_DATA)
+  serving_anomalies = tfdv.validate_statistics(serving_stats, schema)
+
+  tfdv.display_anomalies(serving_anomalies)
+</code></pre></div>    </div>
+
+    <p><img src="https://www.dropbox.com/s/lmdgwnk79ii3n5s/Screenshot%202019-05-12%2015.04.57.png?raw=1" /></p>
+
+    <ul>
+      <li>tips 컬럼은 완벽하게 missing이고 trip_seconds는 FLOAT 타입을 예상했는데 INT 타입이 들어옴</li>
+      <li>타입 문제 해결 방법
+        <ul>
+          <li><code class="highlighter-rouge">infer_type_from_schema=True</code>인 StatsOptions를 생성한 후, generate_statistics_from_csv에 추가</li>
+        </ul>
+
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  options = tfdv.StatsOptions(schema=schema, infer_type_from_schema=True)
+  serving_stats = tfdv.generate_statistics_from_csv(SERVING_DATA, stats_options=options)
+  serving_anomalies = tfdv.validate_statistics(serving_stats, schema)
+
+  tfdv.display_anomalies(serving_anomalies)
+</code></pre></div>        </div>
+      </li>
+      <li>tips feature가 serving 데이터에 없는 문제 해결 방법
+        <ul>
+          <li>스키마 환경을 TRAINING과 SERVING으로 생성한 후, SERVING시 tips 데이터가 없는 것을 명시</li>
+        </ul>
+
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  # All features are by default in both TRAINING and SERVING environments.
+  schema.default_environment.append('TRAINING')
+  schema.default_environment.append('SERVING')
+		
+  # Specify that 'tips' feature is not in SERVING environment.
+  tfdv.get_feature(schema, 'tips').not_in_environment.append('SERVING')
+		
+  serving_anomalies_with_env = tfdv.validate_statistics(
+      serving_stats, schema, environment='SERVING')
+		
+  tfdv.display_anomalies(serving_anomalies_with_env)
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="drift와-skew-체크">Drift와 Skew 체크</h3>
+<ul>
+  <li><code class="highlighter-rouge">tfdv.validate_statistics()</code> method를 사용해 체크</li>
+  <li>Drift
+    <ul>
+      <li>Drift detection은 Categorical 데이터 및 데이터의 연속 기간(N, N+1) 사이(예를 들면 서로 다른 날의 훈련 데이터 사이)에서 지원</li>
+      <li><a href="https://en.wikipedia.org/wiki/Chebyshev_distance">L-infinity distnace</a>로 Drift를 표현하고 허용값보다 높으면 경고를 받을 수 있음</li>
+      <li>정확한 거리를 설정하는 것은 도메인 지식과 실험을 필요로하는 반복 프로세스</li>
+    </ul>
+  </li>
+  <li>Skew
+    <ul>
+      <li>Schema Skew
+        <ul>
+          <li>같은 스키마를 가지지 않을 때</li>
+        </ul>
+      </li>
+      <li>Feature Skew
+        <ul>
+          <li>Feature 생성 로직이 변경될 때</li>
+        </ul>
+      </li>
+      <li>Distribution Skew
+        <ul>
+          <li>Train, Serving 데이터 분포가 다를 경우</li>
+        </ul>
+      </li>
+    </ul>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  # Add skew comparator for 'payment_type' feature.
+  payment_type = tfdv.get_feature(schema, 'payment_type')
+  payment_type.skew_comparator.infinity_norm.threshold = 0.01
+	
+  # Add drift comparator for 'company' feature.
+  company=tfdv.get_feature(schema, 'company')
+  company.drift_comparator.infinity_norm.threshold = 0.001
+	
+  skew_anomalies = tfdv.validate_statistics(train_stats, schema,
+                                            previous_statistics=eval_stats,
+                                            serving_statistics=serving_stats)
+	
+  tfdv.display_anomalies(skew_anomalies)
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p><img src="https://www.dropbox.com/s/2gsxvyl6rke62iq/Screenshot%202019-05-12%2015.18.46.png?raw=1" /></p>
+
+<ul>
+  <li>payment_type이 train / serving시 거리가 매우 큼</li>
+  <li>company가 과거와 현재의 거리가 매우 큼</li>
+  <li>위 예시에선 의도적으로 threshold값을 낮게 설정해 오류가 발생하도록 한 것이기 때문에 따로 수정하지 않음</li>
+</ul>
+
+<h3 id="스키마-저장">스키마 저장</h3>
+<ul>
+  <li>
+    <p>스키마를 검토하고 큐레이션이 되었으니 “frozen”(고정된) 상태를 반영하도록 Protocol Buffer에 저장</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  from tensorflow.python.lib.io import file_io
+  from google.protobuf import text_format
+	
+  file_io.recursive_create_dir(OUTPUT_DIR)
+  schema_file = os.path.join(OUTPUT_DIR, 'schema.pbtxt')
+  tfdv.write_schema_text(schema, schema_file)
+	
+  !cat {schema_file}
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="데이터-형태가-다를-경우">데이터 형태가 다를 경우</h3>
+<ul>
+  <li>현재 TFRecord, CSV, Dataframe만 지원하는데 그 외의 데이터 타입을 사용한다면 Apache Beam의 <code class="highlighter-rouge">PTransform</code>을 사용해 데이터를 가공할 수 있음</li>
+  <li><a href="https://www.tensorflow.org/tfx/data_validation/get_started#writing_custom_data_connector">링크</a> 참고하면 예시가 나와있음</li>
+</ul>
+
+<h3 id="구글-클라우드에서-사용하기">구글 클라우드에서 사용하기</h3>
+<ul>
+  <li>
+    <p>설치</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  pip download tensorflow_data_validation \
+  --no-deps \
+  --platform manylinux1_x86_64 \
+  --only-binary=:all:
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>예시 코드 snippet</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  import tensorflow_data_validation as tfdv
+  from apache_beam.options.pipeline_options import PipelineOptions, GoogleCloudOptions, StandardOptions, SetupOptions
+	
+  PROJECT_ID = ''
+  JOB_NAME = ''
+  GCS_STAGING_LOCATION = ''
+  GCS_TMP_LOCATION = ''
+  GCS_DATA_LOCATION = ''
+  # GCS_STATS_OUTPUT_PATH is the file path to which to output the data statistics
+  # result.
+  GCS_STATS_OUTPUT_PATH = ''
+	
+  PATH_TO_WHL_FILE = ''
+	
+	
+  # Create and set your PipelineOptions.
+  options = PipelineOptions()
+	
+  # For Cloud execution, set the Cloud Platform project, job_name,
+  # staging location, temp_location and specify DataflowRunner.
+  google_cloud_options = options.view_as(GoogleCloudOptions)
+  google_cloud_options.project = PROJECT_ID
+  google_cloud_options.job_name = JOB_NAME
+  google_cloud_options.staging_location = GCS_STAGING_LOCATION
+  google_cloud_options.temp_location = GCS_TMP_LOCATION
+  options.view_as(StandardOptions).runner = 'DataflowRunner'
+	
+  setup_options = options.view_as(SetupOptions)
+  # PATH_TO_WHL_FILE should point to the downloaded tfdv wheel file.
+  setup_options.extra_packages = [PATH_TO_WHL_FILE]
+	
+  tfdv.generate_statistics_from_tfrecord(GCS_DATA_LOCATION,
+                                         output_path=GCS_STATS_OUTPUT_PATH,
+                                         pipeline_options=options)
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="언제-tfdv를-사용해야할까">언제 TFDV를 사용해야할까?</h3>
+<ul>
+  <li>갑자기 이상한 feature가 들어오는지 확인하고 싶을 경우</li>
+  <li>Decision surface에서 모델이 훈련 잘되었는지 확인하고 싶을 경우</li>
+  <li>feature engineering 실수 방지하고 싶을 경우</li>
+</ul>
+
+<hr />
+
+<h2 id="facets">Facets</h2>
+<ul>
+  <li>사실 TFDV의 데이터 분포 보여주는 부분은 <a href="https://pair-code.github.io/facets/">Facets</a>으로 이루어져 있음</li>
+  <li>Facets은 현재 2가지 시각화를 제공하는데, 1) FACETS OVERVIEW가 위에서 TFDV가 보여준 시각화고 2) FACETS DIVE로 다양한 양의 데이터를 한번에 인터랙티브하게 시각화해줌</li>
+  <li>FACETS DIVE는 아래처럼 시각화됨
+    <ul>
+      <li><img src="https://www.dropbox.com/s/rb6nllzw1oqamun/Screenshot%202019-05-12%2015.34.51.png?raw=1" /></li>
+      <li>데이터를 연령대별 직업별로 보여줌</li>
+      <li>Quick Draw 데이터셋을 인터렉티브하게 보려면 <a href="https://pair-code.github.io/facets/quickdraw.html">링크</a> 참고</li>
+    </ul>
+  </li>
+  <li>Colab에서 사용하는 예제는 <a href="https://github.com/PAIR-code/facets/blob/master/colab_facets.ipynb">Github</a>에 나와있음
+    <ul>
+      <li>데이터를 데이터프레임으로 불러온 후, to_json을 사용해 json으로 변경</li>
+      <li>그 후 HTML Template을 사용해 노트북에서 볼 수 있도록 출력</li>
+    </ul>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  # Load UCI census train and test data into dataframes.
+  import pandas as pd
+  features = ["Age", "Workclass", "fnlwgt", "Education", "Education-Num", "Marital Status",
+              "Occupation", "Relationship", "Race", "Sex", "Capital Gain", "Capital Loss",
+              "Hours per week", "Country", "Target"]
+  train_data = pd.read_csv(
+      "https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data",
+      names=features,
+      sep=r'\s*,\s*',
+      engine='python',
+      na_values="?")
+  test_data = pd.read_csv(
+      "https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.test",
+      names=features,
+      sep=r'\s*,\s*',
+      skiprows=[0],
+      engine='python',
+      na_values="?")
+	    
+  # Display the Dive visualization for the training data.
+  from IPython.core.display import display, HTML
+	
+  jsonstr = train_data.to_json(orient='records')
+  HTML_TEMPLATE = """
+          &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.24/webcomponents-lite.js"&gt;&lt;/script&gt;
+          &lt;link rel="import" href="https://raw.githubusercontent.com/PAIR-code/facets/master/facets-dist/facets-jupyter.html"&gt;
+          &lt;facets-dive id="elem" height="600"&gt;&lt;/facets-dive&gt;
+          &lt;script&gt;
+            var data = {jsonstr};
+            document.querySelector("#elem").data = data;
+          &lt;/script&gt;"""
+  html = HTML_TEMPLATE.format(jsonstr=jsonstr)
+  display(HTML(html))
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="refenrece">Refenrece</h3>
+<ul>
+  <li><a href="https://github.com/tensorflow/data-validation">TFDV Github</a></li>
+  <li><a href="https://www.tensorflow.org/tfx/data_validation/get_started">TFDV Document</a></li>
+  <li><a href="https://github.com/PAIR-code/facets">Facets Github</a></li>
+</ul>
+
+      <br/>
+      <p><a href="https://bit.ly/kyleschool_blog">카일스쿨 유튜브</a> 채널을 만들었습니다. 데이터 사이언스, 성장, 리더십, BigQuery 등을 이야기할 예정이니, 관심 있으시면 구독 부탁드립니다 :)</p>
+      <p>이 글이 도움이 되셨다면 추천 클릭을 부탁드립니다 :)</p>
+      <br/>
+      <br/>
+      <div style="text-align:center">
+        <style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFFFFF !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 0px 9px !important;font-size: 17px !important;letter-spacing:-0.08px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/zzsza"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
+      </div>
+      <br/>
+      <br/>
+       <!--블로그-하단-반응형 -->
+      <ins class="adsbygoogle"
+          style="display:block; width:100%; height:300px;"
+          data-ad-client="ca-pub-5105555504153863"
+          data-ad-slot="1037589043"
+          data-ad-format="auto"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+
+    </div>
+  
+
+</article>
+
+  <hr class="dingbat" />
+
+  <div class="share">
+      <h2>Share this post</h2>
+      <div class="share-body">
+        <a href="http://twitter.com/share?text=Tensorflow Data Validation 사용하기&amp;url=http://localhost:4000/mlops/2019/05/12/tensorflow-data-validation-basic/"
+    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <span class="icon-twitter">
+            </span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/mlops/2019/05/12/tensorflow-data-validation-basic/"
+    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <span class="icon-facebook">
+            </span>
+        </a>
+    </div>
+  </div>
+  <br/>
+
+
+
+
+
+
+  <aside class="author" role="complementary">
+    <div class="author">
+  <h2 class="page-title hr">
+    About
+  </h2>
+<div class="author-body">
+  
+    
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="seongyun byeon"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+  
+  <div class="author-body-description">
+    <p>Machine Learning Engineer</p>
+
+  </div>
+</div>
+</div>
+
+  </aside>
+
+
+
+
+
+<aside class="related" role="complementary">
+  <h2 class="hr">Related Posts</h2>
+
+  <ul class="related-posts">
+    
+      
+      
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/mlops/2020/02/17/what-if-tool/" data-flip="title">
+    <span>What If Tool 논문 리뷰 및 사용 방법?</span>
+  </a>
+  <small><time datetime="2020-02-17T00:00:00+09:00">
+    17 Feb 2020
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/mlops/2020/02/05/hopsworks/" data-flip="title">
+    <span>머신러닝 프레임워크 Hopsworks</span>
+  </a>
+  <small><time datetime="2020-02-05T00:00:00+09:00">
+    05 Feb 2020
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/mlops/2020/02/02/feature-store/" data-flip="title">
+    <span>Machine Learning의 Feature Store란?</span>
+  </a>
+  <small><time datetime="2020-02-02T00:00:00+09:00">
+    02 Feb 2020
+  </time></small>
+</li>
+
+        
+      
+        
+        
+      
+    
+  </ul>
+</aside>
+
+
+
+      
+        <aside class="comments" role="complementary">
+  <h2>Comments</h2>
+  <hr/>
+
+  <div id="disqus_thread"></div>
+
+  <script>
+    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="Tensorflow Data Validation 사용하기",this.page.identifier="/mlops/2019/05/12/tensorflow-data-validation-basic",this.page.url="http://localhost:4000/mlops/2019/05/12/tensorflow-data-validation-basic/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//zzsza.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</aside>
+
+      
+
+      <footer>
+  <hr/>
+  
+    <p>© 2017. by Seongyun Byeon</p>
+
+  
+  <p>
+    <code>Powered by <a href="https://zzsza.github.io/">zzsza</a></code>
+  </p>
+</footer>
+
+    </main>
+    <div class="right-side">
+  <div class="ad-first">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- 블로그-상단-모바일 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:100%;"
+         data-ad-client="ca-pub-5105555504153863"
+         data-ad-slot="9090558636"
+         data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+<br/>
+<br/>
+  <div class="ad-second">
+    <!-- 블로그-스카이스크래퍼 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;max-width:320px;width:100%;height:600px"
+         data-ad-client="ca-pub-5105555504153863"
+         data-ad-slot="3646660262"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+</div>
+
+
+  </div>
+  <div id="_yDrawer">
+  <div id="_sidebar" class="sidebar">
+    <div class="sidebar-bg" style="background-color:#4f86aa;background-image:url(/assets/img/nap.jpg)"></div>
+    <header class="sidebar-sticky" role="banner">
+      <br/>
+      <div class="sidebar-about">
+        <h1><a id="_title" href="/">어쩐지 오늘은</a></h1>
+        <p>Machine Learning Engineer</p>
+
+      </div>
+
+      <br/>
+      <nav class="sidebar-nav heading" role="navigation">
+        <span class="sr-only">Navigation:</span>
+<ul>
+  
+
+  
+
+  
+  
+  
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-1"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/diary/">Diary</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/diary-diary/">diary</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-2"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/data/">Data</a>
+       <label class="folder" for="list-item-2">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-ml/">Machine-Learning</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-dl/">Deep-Learning</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-mobility/">Mobility</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-engineering/">Engineering</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-optimization/">Optimization</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-paper/">Paper</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-pytorch/">Pytorch</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-cs231/">CS231n</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-rl/">Reinforcement-Learning</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-time-series/">Time Series</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-analytics/">Analytics</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-kaggle/">Kaggle</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-vision/">Vision</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-interpretable-ml/">Interpretable ML</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-simulation/">Simulation</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-graph/">Graph</a>
+             </li>
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-3"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/mlops/">MLOps</a>
+       <label class="folder" for="list-item-3">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-basic/">Basic</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-airflow/">Airflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-mlflow/">MLflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-tfx/">Tensorflow Extended</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-serving/">Serving</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-feature/">Feature</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-version/">Model & Pipeline version</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-4"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/gcp/">Google Cloud Platform</a>
+       <label class="folder" for="list-item-4">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-basic/">Basic</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-bigquery/">BigQuery</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-aiplatform/">AI Platform</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-dataflow/">Dataflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-cloud-functions/">Cloud Functions</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-5"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/development/">Development</a>
+       <label class="folder" for="list-item-5">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-linux/">Linux</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-web/">Web</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-python/">Python</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-sql/">SQL</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-scala/">Scala</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-os/">OS</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-kubernetes/">Kubernetes</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-devops/">DevOps</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-kotlin/">Kotlin</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-julia/">Julia</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-tools/">Tools</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-6"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/etc/">ETC</a>
+       <label class="folder" for="list-item-6">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/etc-lecture/">Lecture</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/etc-book/">Book</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-7"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/about/">About</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+</ul>
+
+      </nav>
+    <!-- search box -->
+    <form action="/search">
+      <div class="tipue_search_box">
+        <input type="text" name="q" id="tipue_search_input" placeholder="&#xF002;  Search" pattern=".{2,}" title="최소 2글자 이상" required></div>
+      <div style="clear: both;"></div>
+    </form>
+    <br/>
+      <div class="sidebar-box">
+        
+          
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="seongyun byeon"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+        
+      </div>
+      <p>메모가 습관인 데이터쟁이입니다</p>
+
+      
+      
+        <div class="sidebar-social">
+          <span class="sr-only">Social:</span>
+<ul>
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://facebook.com/zzsza">
+    <span class="icon-facebook" title="Facebook"></span>
+    <span class="sr-only">Facebook</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.youtube.com/channel/UCYyAaezBGEVmXcnink6nY9Q">
+    <span class="icon-youtube" title="YouTube"></span>
+    <span class="sr-only">YouTube</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://instagram.com/data.scientist">
+    <span class="icon-instagram" title="Instagram"></span>
+    <span class="sr-only">Instagram</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://github.com/zzsza">
+    <span class="icon-github" title="GitHub"></span>
+    <span class="sr-only">GitHub</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.linkedin.com/in/seong-yun-byeon-8183a8113">
+    <span class="icon-linkedin2" title="LinkedIn"></span>
+    <span class="sr-only">LinkedIn</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="mailto:snugyun01@gmail.com">
+    <span class="icon-mail" title="Email"></span>
+    <span class="sr-only">Email</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://zzsza.github.io/feed.xml">
+    <span class="icon-rss2" title="RSS"></span>
+    <span class="sr-only">RSS</span>
+  </a>
+</li>
+
+  
+</ul>
+
+        </div>
+      
+    </header>
+  </div>
+</div>
+
+</div>
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+
+<script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-110573232-1', 'auto');
+  ga('send', 'pageview');
+  loadJSDeferred('https://www.google-analytics.com/analytics.js');
+</script>
+
+
+
+
+
+<!--[if gt IE 8]><!---->
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    
+    google: {
+      families: 'Lato'.split('|')
+    },
+    
+
+    custom: {
+      families: ['icomoon'],
+      urls: ['/assets/icomoon/style.css']
+    }
+  });
+</script>
+<!--<![endif]-->
+
+
+  <!--[if gt IE 9]><!---->
+  
+  <script>loadJSDeferred('/assets/js/hydejack.js?v=6.4.0');</script>
+
+  
+  <!--<![endif]-->
+
+
+
+</body>
+
+</html>

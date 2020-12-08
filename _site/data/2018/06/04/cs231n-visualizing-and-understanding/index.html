@@ -1,0 +1,1865 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
+-->
+
+
+
+
+
+
+
+
+
+<head>
+  <!-- =============== -->
+<!-- META            -->
+<!-- =============== -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="naver-site-verification" content="22c5b4ef3bfda7fc6100671413989219de7a4ac8"/>
+<meta property="og:title" content="CS231n 12강. Visualizing and Understanding">
+<meta property="og:type" content="article">
+
+
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/img/logo.png">
+
+
+<meta property="og:image:width" content="640" />
+<meta property="og:image:height" content="360" />
+
+
+
+  <title>CS231n 12강. Visualizing and Understanding &middot; 어쩐지 오늘은</title>
+
+
+
+<meta name="description" content="Stanfoard CS231n 2017 12강을 요약한 글입니다.
+
+">
+<meta property="og:description" content="Stanfoard CS231n 2017 12강을 요약한 글입니다.
+
+">
+
+
+<!-- tipuesearch -->
+<link rel="stylesheet" href="/assets/tipuesearch/css/tipuesearch.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+<!-- =============== -->
+<!-- LINKS           -->
+<!-- =============== -->
+<link rel="canonical" href="http://localhost:4000/data/2018/06/04/cs231n-visualizing-and-understanding/">
+<meta property="og:url" content="http://localhost:4000/data/2018/06/04/cs231n-visualizing-and-understanding/">
+
+<link rel="alternate" type="application/atom+xml" title="어쩐지 오늘은 Feed" href="http://localhost:4000/feed.xml">
+
+
+  <link rel="prev" href="http://localhost:4000/data/2018/06/02/apache-zeppelin/">
+
+
+
+  <link rel="next" href="http://localhost:4000/data/2018/06/05/apache-spark-sql-and-dataframe/">
+
+
+<link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+<!-- Place favicon.ico in the root directory -->
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+<script>
+  !function(n,e){function t(n,e){n.onload=function(){this.onerror=this.onload=null,e(null,n)},n.onerror=function(){this.onerror=this.onload=null,e(new Error("Failed to load "+this.src),n)}}function o(n,e){n.onreadystatechange=function(){"complete"!=this.readyState&&"loaded"!=this.readyState||(this.onreadystatechange=null,e(null,n))}}n._loaded=!1,n.loadJSDeferred=function(a,d){function r(){n._loaded=!0;var r=e.createElement("script");r.src=a,d&&(("onload"in r?t:o)(r,d),r.onload||t(r,d));var l=e.getElementsByTagName("script")[0];l.parentNode.insertBefore(r,l)}n._loaded?r():n.addEventListener?n.addEventListener("load",r,!1):n.attachEvent?n.attachEvent("onload",r):n.onload=r}}(window,document);
+
+  !function(e){"use strict";var n=function(n,t,o){function i(e){if(a.body)return e();setTimeout(function(){i(e)})}function r(){l.addEventListener&&l.removeEventListener("load",r),l.media=o||"all"}var d,a=e.document,l=a.createElement("link");if(t)d=t;else{var f=(a.body||a.getElementsByTagName("head")[0]).childNodes;d=f[f.length-1]}var s=a.styleSheets;l.rel="stylesheet",l.href=n,l.media="only x",i(function(){d.parentNode.insertBefore(l,t?d:d.nextSibling)});var u=function(e){for(var n=l.href,t=s.length;t--;)if(s[t].href===n)return e();setTimeout(function(){u(e)})};return l.addEventListener&&l.addEventListener("load",r),l.onloadcssdefined=u,u(r),l};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
+
+  !function(t){if(t.loadCSS){var e=loadCSS.relpreload={};if(e.support=function(){try{return t.document.createElement("link").relList.supports("preload")}catch(t){return!1}},e.poly=function(){for(var e=t.document.getElementsByTagName("link"),r=0;r<e.length;r++){var n=e[r];"preload"===n.rel&&"style"===n.getAttribute("as")&&(t.loadCSS(n.href,n,n.getAttribute("media")),n.rel=null)}},!e.support()){e.poly();var r=t.setInterval(e.poly,300);t.addEventListener&&t.addEventListener("load",function(){e.poly(),t.clearInterval(r)}),t.attachEvent&&t.attachEvent("onload",function(){t.clearInterval(r)})}}}(this);
+
+  window.disablePushState = false;
+  window.disableDrawer = false;
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5105555504153863",
+    enable_page_level_ads: true
+  });
+</script>
+
+<!--[if lt IE 9]>
+<script src="https://unpkg.com/html5shiv/dist/html5shiv.min.js"></script>
+<![endif]-->
+
+<!-- =============== -->
+<!-- STYLES          -->
+<!-- =============== -->
+<!--[if gt IE 8]><!---->
+<style>
+  
+  article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}*{box-sizing:border-box}html,body{margin:0;padding:0}html{font-size:16px;line-height:1.75}body{color:#333;background-color:#fff;overflow-y:scroll}a{text-decoration:none}.lead{margin-left:-1rem;margin-right:-1rem}img,.img{display:block;max-width:100%;margin-bottom:1rem;border:none}img.lead,.img.lead{max-width:calc(100% + 2rem);width:calc(100% + 2rem)}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-weight:bold;text-rendering:optimizeLegibility}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{margin:1.6rem 0 1rem;line-height:1.6}h1,.h1{font-size:2rem;line-height:1.25}h2,.h2{font-size:1.5rem}h3,.h3{font-size:1.17em}p{margin-top:0;margin-bottom:1rem}p.lead{font-size:1.25rem;font-weight:300;padding:0 1rem}ul,ol,dl{margin-top:0;margin-bottom:1rem}ul,ol{padding-left:1.25rem}hr{position:relative;margin:1.5rem 0;border:0;border-top:1px solid #eee}.hr{padding-bottom:.5rem;border-bottom:1px solid #eee;margin-bottom:1.5rem}h4,h5,h6,.h4,.h5,.h6{margin-bottom:0.5rem;font-size:1rem}table{margin-bottom:1rem;width:100%;width:calc(100% + 2rem);margin-left:-1rem;border:1px solid #e5e5e5;border-collapse:collapse;border-spacing:0}td,th{padding:.25rem .5rem;border:1px solid #e5e5e5}td:first-child,th:first-child{padding-left:1rem}td:last-child,th:last-child{padding-right:1rem}thead+tbody,tbody+tbody,tfoot{border-top:3px double #e5e5e5}tbody tr:nth-child(odd) td,tbody tr:nth-child(odd) th{background-color:#f9f9f9}footer{margin-bottom:2rem}.page,.post{margin-bottom:3em}.page li+li,.post li+li{margin-top:.25rem}.page>header,.post>header{margin-bottom:2rem}.page-title,.post-title{margin-top:0}.post-date{display:block;margin-top:-0.5rem;margin-bottom:1rem;color:#9a9a9a}.related-posts{padding-left:0;list-style:none}.related-posts>li,.related-posts>li+li{margin-top:1rem}.related-posts>li>small,.related-posts>li+li>small{font-size:75%;color:#9a9a9a}.message{margin-bottom:1rem;padding:1rem;color:#787878;background-color:#f9f9f9;margin-left:-1rem;margin-right:-1rem}body,main{position:relative;overflow-x:hidden}@media screen{body::before{content:'';background:#e5e5e5;position:absolute;left:0;top:0;bottom:0}}@media screen and (min-width: 40em){html{font-size:17px}}@media screen and (min-width: 54em){html{font-size:16px}}@media screen and (min-width: 88em){html{font-size:17px}}@media screen and (min-width: 125em){html{font-size:18px}}.sr-only{display:none}.clearfix,.sidebar-social::after,.clearafter::after{content:"";display:table;clear:both}a,.a{position:relative;padding-bottom:.15rem;border-style:hidden}.img{overflow:hidden;background-color:#f9f9f9}.img>img{margin:0;width:100%;height:100%}.sixteen-nine{position:relative}.sixteen-nine::before{display:block;content:"";width:100%;padding-top:56.25%}.sixteen-nine>*{position:absolute;top:0;left:0;right:0;bottom:0}h1+hr,h2+hr,h3+hr,h4+hr,h5+hr,h6+hr{margin-top:0}.fade-in{animation-duration:500ms;animation-name:fade-in;animation-fill-mode:forwards}@keyframes fade-in{from{transform:translateY(-2rem);opacity:0}50%{transform:translateY(-2rem);opacity:0}to{transform:translateY(0);opacity:1}}.mb6{margin-bottom:10rem}.sidebar{color:rgba(255,255,255,0.75);text-align:left}.sidebar::before{content:"";position:absolute;z-index:2;top:0;left:0;bottom:0;right:0;background:linear-gradient(to bottom, rgba(32,32,32,0) 0%, rgba(32,32,32,0.5) 100%)}.sidebar a{color:#fff;border-bottom-color:rgba(255,255,255,0.2)}.right-side{width:100%;margin-left:auto;margin-right:auto}.right-side .ad-first{text-align:center}.right-side .ad-second{text-align:center}@media screen{.right-side{max-width:38rem;min-height:100vh}}@media screen and (min-width: 54em){.right-side{margin-left:20rem;margin-right:1rem;padding:4rem 1rem 12rem}}@media screen and (min-width: 72em){.right-side{margin-left:22rem;max-width:42rem}}@media screen and (min-width: 88em){.right-side{width:162px;margin-left:0rem;margin-right:0rem;padding:0rem;margin-top:10rem;display:block;float:left}}@media screen and (min-width: 96em){.right-side{width:300px;margin-right:0rem}}#_yDrawer{position:relative}@media screen{#_yDrawer{min-height:640px;min-height:100vh}}@media screen and (min-width: 54em){#_yDrawer{width:18rem;margin-left:0}}.sidebar-bg{position:absolute;height:100%;overflow:hidden;top:0;right:0;bottom:0;left:0;background:#202020 center / cover}.sidebar-box{display:flex;justify-content:center}.sidebar-sticky{position:relative;z-index:3}@media screen{.sidebar-sticky{-ms-overflow-style:none;overflow:-moz-scrollbars-none;height:100%;overflow:auto;position:absolute;padding:3rem 0rem;right:2.5rem;left:2.5rem}}.sidebar-sticky::-webkit-scrollbar{display:none}.sidebar-about>h1{color:#fff;font-size:2rem}.sidebar-nav>ul{list-style:none;padding-left:0;margin-bottom:.5rem}a.sidebar-nav-item{width:100%;font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}a.sidebar-nav-subitem{font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}@media screen{.y-drawer-scrim{z-index:2}.y-drawer-content{width:18rem;left:-18rem;z-index:3}}.sidebar-social{margin-bottom:.5rem}.sidebar-social>ul{list-style:none;padding-left:0;margin:0 -.25rem}.sidebar-social>ul>li{float:left}.sidebar-social>ul>li>a{display:inline-block;text-align:center;font-size:1.6rem;line-height:3rem;width:3.1249rem;height:4rem;padding:.5rem 0}.sidebar-social>ul li+li{margin-top:0}.fixed-top{position:fixed;top:0;left:0;width:100%;z-index:1}.navbar>.content{padding-top:0;padding-bottom:0;min-height:0;height:0}.menu{display:inline-block;padding:1.75rem 1.5rem;border-bottom:none;margin-left:-1.5rem;color:#9a9a9a !important}.menu::after{content:"\2630"}@media screen and (min-width: 54em){.menu{padding:1.25rem 1.5rem;position:absolute;left:-9999px}.menu:focus{position:static}}.animation-main{pointer-events:none}.loading{display:none}@media print{.menu{display:none}}.animation-main{opacity:0;will-change:opacity}.loading{position:absolute;top:0;right:0;padding:5.25rem 4.5rem;transform-origin:top right;transform:scale(0.33)}.content{position:relative;margin-left:auto;margin-right:auto;padding:5rem 1rem 12rem}@media screen{.content{min-height:100vh}}@media screen and (min-width: 54em){.content{padding:4rem 1rem 12rem;margin-left:19rem;margin-right:3rem}}@media screen and (min-width: 72em){.content{max-width:42rem;margin-left:21rem}}@media screen and (min-width: 88em){.content{float:left;width:100%;margin-left:22rem;margin-right:5rem}}@media screen and (min-width: 96em){.content{max-width:44rem}}@media screen and (min-width: 102em){.content{margin-left:25rem;margin-right:8rem}}.me{width:6.5rem;height:6.5rem;align-self:center;margin-right:20px;border-radius:100%;position:relative}@media screen and (min-width: 40em){.me{width:7rem;height:7rem}}@media screen and (min-width: 54em){.me{width:6.5rem;height:6.5rem}}@media screen and (min-width: 72em){.me{width:7rem;height:7rem}}main>footer{width:100%;position:absolute;bottom:0;left:0;right:0;padding:0 1rem;color:#9a9a9a;font-size:smaller;text-align:center}main>footer>p{margin-bottom:0}html{font-family:'Sans-serif'}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-family:'Sans-serif'}
+
+</style>
+
+
+<link rel="preload" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0" as="style" onload="this.rel='stylesheet'">
+
+<style id="_pageStyle">
+
+.content a{color:#4f86aa;border-color:rgba(79,134,170,0.2)}.content a:hover{border-color:#4f86aa}:focus{outline-color:#4f86aa}::selection{color:#fff;background:#4f86aa}::-moz-selection{color:#fff;background:#4f86aa}
+
+</style>
+
+
+<noscript>
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0">
+  
+  
+  
+
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <style>
+      html { font-family: 'Lato', 'Sans-serif' }
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading { font-family: 'Lato', 'Sans-serif' }
+    </style>
+  
+
+  
+  <link rel="stylesheet" href="http://localhost:4000/assets/icomoon/style.css">
+</noscript>
+<!--<![endif]-->
+
+</head>
+
+<body>
+  <!-- =============== -->
+<!-- MENU            -->
+<!-- =============== -->
+<div class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <a id="_menu" class="menu no-hover" href="#_title">
+      <span class="sr-only">Menu</span>
+    </a>
+  </div>
+</div>
+
+<!-- =============== -->
+<!-- CONTENT         -->
+<!-- =============== -->
+<div id="_yPushState">
+  <div class="fade-in">
+    <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/nap.jpg">
+      
+
+<article id="post-data/2018/06/04/cs231n-visualizing-and-understanding" class="post" role="article">
+  <header>
+    <h1 class="post-title">
+      
+        CS231n 12강. Visualizing and Understanding
+      
+    </h1>
+
+    <p class="post-date heading">
+      <time datetime="2018-06-04T00:00:00+09:00">04 Jun 2018</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/data/" data-flip="title">Data</a>
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/data-cs231/" data-flip="title">CS231n</a>
+
+    </p>
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+    <div class="markdown-body">
+
+
+<style>
+.myAd1190 { display:block; width:98%; height: 280px; }
+@media(min-width: 600px) { .myAd1190 { display: none; } }
+</style>
+<ins class="adsbygoogle myAd1190"
+    data-ad-client="ca-pub-5105555504153863"
+    data-ad-slot="6481487416"
+    ></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
+<br/>
+      <p>Stanfoard <a href="https://www.youtube.com/watch?v=vT1JzLTH4G4&amp;list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv&amp;index=0">CS231n 2017</a> 12강을 요약한 글입니다.</p>
+
+<h2 id="question">Question</h2>
+<hr />
+<ul>
+  <li>What’s really going on inside convolutional networks?</li>
+  <li>How did they do the things that they do?</li>
+  <li>What kinds of features are they looking for?</li>
+  <li>What are all these other layers in the middle doing?</li>
+  <li>What are the intermediate features looking for?</li>
+  <li>How ConvNets are working?</li>
+  <li>What types of things in the image they are looking for?</li>
+  <li>ConvNet 안에있는 레이어에서 어떤 일이 일어나고 있을까?</li>
+  <li>블랙박스라고 불리는 딥러닝 모델을 사람이 조금 더 해석할 수 있도록 도와주는 시각화 방법들에 대해 배웁니다</li>
+</ul>
+
+<h2 id="first-layer--visualize-filters">First Layer : Visualize Filters</h2>
+<hr />
+<p><img src="https://www.dropbox.com/s/4qolb65q8x3oo6p/Screenshot%202018-06-02%2012.05.49.png?raw=1" /></p>
+
+<ul>
+  <li>Filter로 구성됩니다. AlexNet은 여러개의 Convolution Filter가 존재합니다</li>
+  <li>Get slide input image -&gt; inner product</li>
+  <li>Weight of filter and the pixel of the image</li>
+  <li>Weight of filter를 시각화
+    <ul>
+      <li>oriented edges를 볼 수 있음(light bar and dark bar)</li>
+      <li>다양한 각도에서 다양한 모습, 반대 색상 등</li>
+      <li>강의 초반부에 말했듯, 사람의 뇌는 oriented edges를 찾음</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="intermediate-layer">Intermediate layer</h2>
+<hr />
+<p><img src="https://www.dropbox.com/s/h5u6yziqi1z6bza/Screenshot%202018-06-02%2012.16.47.png?raw=1" /></p>
+
+<ul>
+  <li>생각보다 흥미롭지 않음. 해석하기 힘듬</li>
+  <li>Input 이미지와 직접적으로 연결되어 있지 않음</li>
+  <li>그러나 두번째 레이어는 첫번째 레이어와 연결되어 있기 때문에 첫번째 이후의 Activation 패턴을 알 수 있음. 그러나 해석이 힘들기 때문에 다른 방법을 찾아야 합니다</li>
+</ul>
+
+<h2 id="last-layer">Last Layer</h2>
+<hr />
+<p><img src="https://www.dropbox.com/s/gnpajyui0z3simg/Screenshot%202018-06-02%2012.22.35.png?raw=1" /></p>
+
+<ul>
+  <li>AlexNet의 경우 4096차원의 feature vector</li>
+  <li>ConvNet의 마지막 layer는 어떤 일을 하고 있을까?</li>
+  <li>알아보기 위해 많은 이미지를 네트워크에 돌려보고 마지막 레이어를 시각화</li>
+</ul>
+
+<p><img src="https://www.dropbox.com/s/qeozj796fwiipy0/Screenshot%202018-06-02%2012.29.47.png?raw=1" /></p>
+
+<ul>
+  <li>단순히 생각하면 Nearest Neighbors를 떠올릴 수 있음</li>
+  <li>2강에서 배운 것처럼 test image와 pixel space에서 이웃인 것을 찾습니다(좌측)</li>
+  <li>ConvNet는 Semantic content가 유사하게 나옵니다. feature space에서 이웃인 것을 찾습니다
+    <ul>
+      <li>코끼리의 좌측면이 Test image였는데 우측면이 이웃으로 나온 것은 pixel 관점에선 매우 다르지만 feature 관점에선 유사합니다!</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="https://www.dropbox.com/s/98rluzs2vwiibq5/Screenshot%202018-06-02%2012.42.57.png?raw=1" /></p>
+
+<ul>
+  <li>차원 축소의 효과도 있습니다</li>
+  <li>4096 차원을 2 차원으로 압축</li>
+  <li>PCA, t-SNE도 같은 효과</li>
+  <li>t-SNE
+    <ul>
+      <li>natural clustering</li>
+      <li><img src="https://www.dropbox.com/s/dbkoa9uhy17wez9/Screenshot%202018-06-02%2012.46.43.png?raw=1" /></li>
+      <li><a href="https://cs.stanford.edu/people/karpathy/cnnembed/">karpathy의 CNN 코드</a> 참고</li>
+      <li><a href="https://www.slideshare.net/ssuser06e0c5/visualizing-data-using-tsne-73621033">김홍배님 Slideshare</a> 참고</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="visualizing-activation">Visualizing Activation</h2>
+<hr />
+<p><img src="https://www.dropbox.com/s/o7xoy2nlz81a8uj/Screenshot%202018-06-02%2012.51.52.png?raw=1" /></p>
+
+<ul>
+  <li>중간 레이어를 가중치를 시각화하는 것은 해석하기 힘들었지만, Activation을 시각화하는 것은 어떤 경우 해석 가능합니다</li>
+  <li>데이터를 네트워크에 넣고 어떤 이미지에서 특정 뉴런이 최대 활성화를 가지는지 봅니다. 그러면 입력 이미지와 연결된 영역을 볼 수 있습니다</li>
+  <li>왼쪽 아래 사진은 사람의 얼굴 feature로 보임</li>
+  <li>요약
+    <ul>
+      <li>Feature Map은 계층적인 응답을 보여줍니다. 예를 들어 눈 2개 + 혀 + 코 + 귀 =&gt; 개 얼굴</li>
+      <li>각각의 Feature Map은 강하게 그룹화합니다</li>
+      <li>높은 layer(layer 5)에서 변화가 큽니다</li>
+      <li>이미지 내에서 다양한 위치의 영상을 선택할 수 있습니다</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="maximally-activating-patches">Maximally Activating Patches</h2>
+<hr />
+<p><img src="https://www.dropbox.com/s/vuaa6qn9k6glrye/Screenshot%202018-06-02%2013.19.50.png?raw=1" /></p>
+
+<ul>
+  <li>Visualizing intermediate feature의 다른 방법</li>
+  <li>Input image의 특정 patch를 시각화</li>
+  <li>conv5는 <code class="MathJax_Preview">128 \times 13 \times 13</code><script type="math/tex">128 \times 13 \times 13</script>, 17번 채널(총 128 중)을 선택</li>
+  <li>네트워크에 이미지를 많이 돌린 후, 선택된 채널의 value를 기록</li>
+  <li>그 후, 최대 activation에 해당하는 이미지 패치를 시각화합니다</li>
+</ul>
+
+<h2 id="occlusion-experiments">Occlusion Experiments</h2>
+<hr />
+<p><img src="https://www.dropbox.com/s/vnwzj45x9v3sy7f/Screenshot%202018-06-02%2013.25.53.png?raw=1" /></p>
+
+<ul>
+  <li>Occlusion : 폐쇄</li>
+  <li>input 이미지의 어떤 부분이 classification에 영향을 많이 미치는지 찾아보는 방법</li>
+  <li>cnn에 넣기 전에, 이미지의 일부를 마스크하고 마스크 위치에서 확률의 히트맵(heatmap of probability)를 그립니다</li>
+  <li>이 실험은 이미지의 특정 부분을 block하면 network score가 극단적으로 변할것이고, 그러면 특정 부분은 classification decision에 매우 중요할 것이라는 아이디어에서 나왔습니다</li>
+  <li>빨간 색은 low probability고 하얀색/노란색은 high probability입니다. go-kart 부분을 block out하면 go-kart class 확률은 꽤 내려갈 것입니다</li>
+  <li>이 작업의 목적은 성능을 향상시키는 것이 아니라 사람이 조금 더 잘 이해할 수 있도록 돕는 것입니다</li>
+</ul>
+
+<h2 id="saliency-maps">Saliency Maps</h2>
+<hr />
+<p><img src="https://www.dropbox.com/s/n8zt9s0i28jaohq/Screenshot%202018-06-02%2013.36.42.png?raw=1" /></p>
+
+<ul>
+  <li>saliency : 중요한</li>
+  <li>이미지 픽셀에 대해 class score의 gradient를 계산하고, 절대값을 취하기 + RGB 채널을 최대로 취하는 방식(이미지를 흔든다고 표현했음)</li>
+  <li>Input에서 어떤 이미지가 classification에 중요한지 파악하는 방법!(Occlusion Experiments처럼)</li>
+  <li>Semantic Segmentation을 수행하기 위해 해당 작업을 하기도 함</li>
+  <li><img src="https://www.dropbox.com/s/h0ym48ycdcoow8v/Screenshot%202018-06-02%2013.49.26.png?raw=1" /></li>
+  <li><img src="https://www.dropbox.com/s/dawuia4wibmjdz9/Screenshot%202018-06-02%2013.56.18.png?raw=1" /></li>
+  <li>이미지 내의 Object를 추출할 수 있어서 정말 좋음! 그러나 다루기 어렵고 효과를 보려면 엄청 많은 접근을 해야합니다. 따라서 이게 실용적인진 모르겠음</li>
+  <li>그러나 supervision과 함께 훈련된 것보다 훨씬 효과적일듯!</li>
+  <li>fixed input image</li>
+  <li><a href="https://en.wikipedia.org/wiki/Saliency_map">위키피디아</a> 참고</li>
+</ul>
+
+<h2 id="intermediate-features-via-guided-backprop">Intermediate Features via (guided) backprop</h2>
+<hr />
+<p><img src="https://www.dropbox.com/s/waxqanp7q40w4ry/Screenshot%202018-06-02%2018.57.25.png?raw=1" /></p>
+
+<ul>
+  <li>이해가 잘 안됨..</li>
+  <li>DeConv를 이용해 뉴런의 Gradient를 시각화하는 과정에서 사용하는 Back Propagation의 일종</li>
+  <li>일반적인 Back Propagation과 달리 Positive influence만 반영해 관심있는 뉴런의 Gradient를 선명하게 시각화 가능</li>
+  <li>이미지의 어떤 부분이 최고로 영향을 미치는지 확인할 수 있는 방법</li>
+  <li><img src="https://www.dropbox.com/s/g7y27b558qd8q9s/Screenshot%202018-06-02%2023.47.54.png?raw=1" /></li>
+  <li>fixed input image</li>
+  <li><a href="http://jsideas.net/python/2018/01/12/grad_cam.html">Grad-CAM: 대선주자 얼굴 위치 추적기</a> 참고</li>
+</ul>
+
+<h2 id="gradient-ascent">Gradient Ascent</h2>
+<hr />
+<p><img src="https://www.dropbox.com/s/mrn5cbfftaea81k/Screenshot%202018-06-03%2000.21.19.png?raw=1" /></p>
+
+<ul>
+  <li>참고 자료 : <a href="http://freesearch.pe.kr/archives/4685">Grad Cam을 이용한 딥러닝 모형 해석</a>, <a href="https://www.facebook.com/terryum/posts/10154593107119417">엄태웅님 글</a></li>
+  <li>일부 Input image에서 의존성을 제거합니다</li>
+  <li>Gradient Ascent를 실행해 이미지를 합성</li>
+  <li>Weight는 고정한 후, Input image의 픽셀을 변경
+    <ul>
+      <li>“하늘”이라는 초기 이미지를 주고 “새”의 속성을 갖도록 gradient ascent로 점점 변형 =&gt; 딥드림, 딥러닝 아트의 원리</li>
+    </ul>
+  </li>
+  <li>Regularization Term
+    <ul>
+      <li>특정 뉴런의 값을 Maximize</li>
+      <li>그러나 자연스러운 이미지로 보이기</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="https://www.dropbox.com/s/mxchl8mryawjd85/Screenshot%202018-06-03%2000.21.38.png?raw=1" /></p>
+
+<ul>
+  <li>gradient ascent를 이미지 자체의 픽셀에 적용</li>
+</ul>
+
+<p><img src="https://www.dropbox.com/s/py1xr2napf5qg55/Screenshot%202018-06-03%2000.22.08.png?raw=1" /></p>
+
+<ul>
+  <li>Simple Regularizer : 생성된 이미지의 L2 norm을 penalize</li>
+  <li>이미지를 생성하기 시작</li>
+</ul>
+
+<p><img src="https://www.dropbox.com/s/9ui0hkcjpz42ekn/Screenshot%202018-06-03%2000.22.30.png?raw=1" /></p>
+
+<ul>
+  <li>가우시안 블러 이미지를 추가하고, 작은 value를 가진 픽셀을 0으로 바꾸고, 작은 그라디언트를 가지는 픽셀을 0으로 바꿈</li>
+  <li>위 결과로 조금 더 나은 시각화를 보여주고 있습니다</li>
+</ul>
+
+<p><img src="https://www.dropbox.com/s/wl67whk1new17r8/Screenshot%202018-06-03%2000.22.49.png?raw=1" /></p>
+
+<p><img src="https://www.dropbox.com/s/hc80l86fdfi38wy/Screenshot%202018-06-03%2000.23.00.png?raw=1" /></p>
+
+<p><img src="https://www.dropbox.com/s/4sboypbf9j27fpk/Screenshot%202018-06-05%2001.34.22.png?raw=1" /></p>
+
+<ul>
+  <li>Pixel space 대신 FC6 latent space를 최적화</li>
+  <li>궁금하면 논문을 꼭 읽어볼 것</li>
+  <li>해당 강의에서 깊게 들어가진 않겠음</li>
+</ul>
+
+<h2 id="fooling-images--adversarial-examples">Fooling Images / Adversarial Examples</h2>
+<hr />
+
+<ul>
+  <li>이미지를 속이는 것!
+    <ul>
+      <li>임의의 이미지를 선택한 후, 다른 이미지의 점수를 최대화</li>
+      <li>코끼리의 사진에 코알라의 점수를 최대화</li>
+      <li>네트워크는 코끼리 사진을 코알라로 분류합니다</li>
+    </ul>
+  </li>
+  <li>(1) Start from an arbitrary image</li>
+  <li>(2) Pick an arbitrary class</li>
+  <li>(3) Modify the image to maximize the class</li>
+  <li>(4) Repeat until network is fooled</li>
+</ul>
+
+<p><img src="https://www.dropbox.com/s/k91g3bbm9claoy0/Screenshot%202018-06-03%2000.50.07.png?raw=1" /></p>
+
+<ul>
+  <li>위와 같은 행동이 어떻게 가능한지는 이안 굿펠로우의 강의를 통해서 알아볼 예정입니다</li>
+</ul>
+
+<h2 id="deepdream--amplify-existing-features">DeepDream : Amplify existing features</h2>
+<hr />
+
+<p><img src="https://www.dropbox.com/s/s4vcexd9hlofqxx/Screenshot%202018-06-05%2001.42.25.png?raw=1" /></p>
+
+<ul>
+  <li>참고 자료 : <a href="http://solarisailab.com/archives/535">텐서플로우를 이용해서 딥드림(DeepDream) 알고리즘 구현해보기</a></li>
+  <li>amplify : 증폭시키다</li>
+  <li>image와 layer를 선택한 후, 아래 작업을 반복
+    <ul>
+      <li>Forward</li>
+      <li>선택된 레이어에서 Activation 값과 같은 Gradient를 설정</li>
+      <li>Backward</li>
+      <li>Update Image</li>
+    </ul>
+  </li>
+  <li>한마디로 하면 Neural Networks의 Feature를 시각화하고 이를 Input 이미지와 결합해 환각적인 이미지를 만들어내는 알고리즘</li>
+  <li>하나의 뉴런이 아니라 레이어로 확장</li>
+</ul>
+
+<p><img src="https://www.dropbox.com/s/fm27c1q42f37xyr/Screenshot%202018-06-05%2001.47.22.png?raw=1" /></p>
+
+<ul>
+  <li>코드에서 사용한 몇가지 트릭
+    <ul>
+      <li>Jitter : 이미지를 두 픽셀씩 옮김</li>
+      <li>L1 Normalize</li>
+      <li>Clip pixel values</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="feature-inversion">Feature Inversion</h2>
+<hr />
+
+<ul>
+  <li>이미지에 대한 feature vector가 주어지면, 다음과 같은 이미지를 찾습니다
+    <ul>
+      <li>주어진 feature vector와 일치한 이미지</li>
+      <li>자연스러운 이미지</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="https://www.dropbox.com/s/5jwscyjtxsxnlag/Screenshot%202018-06-05%2002.05.31.png?raw=1" /></p>
+
+<ul>
+  <li>relu2_2가 완벽히 재현되어 있는 것을 보면, 해당 레이어는 버리면 안된다는 뜻입니다</li>
+  <li>relu5_3의 시각화는 이미지의 공간 구조는 유지한 채, 점점 색상 및 질감이 달라지고 있습니다</li>
+  <li>네트워크가 깊어지며 점점 Feature를 잃어버립니다</li>
+</ul>
+
+<h2 id="texture-synthesis">Texture Synthesis</h2>
+<hr />
+
+<ul>
+  <li>어떤 texture의 샘플 patch가 주어졌을 때, 같은 texture의 더 큰 이미지를 생성할 수 있을까요?</li>
+  <li>컴퓨터 그래픽에서 오래된 문제</li>
+  <li>동일한 texture를 가지는 두 이미지가 있다면, 두 이미지의 spatial statistics는 같다는 가정에서 진행</li>
+  <li>현재 픽셀 주변의 이웃을 계산한 후, 입력 이미지에서 한 픽셀을 복사</li>
+  <li>고전적인 알고리즘도 많이 있다는 것을 알려주고 싶었음. 자세히 몰라도 됨</li>
+</ul>
+
+<h2 id="neural-texture-synthesis">Neural Texture Synthesis</h2>
+<hr />
+
+<p><img src="https://www.dropbox.com/s/b8ca9fbso1defk8/Screenshot%202018-06-05%2002.16.59.png?raw=1" /></p>
+
+<h2 id="neural-style-transfer">Neural Style Transfer</h2>
+<hr />
+
+<ul>
+  <li>[<a href="https://github.com/jcjohnson/neural-style">코드</a>]</li>
+</ul>
+
+<p><img src="https://www.dropbox.com/s/zfl952phto2s483/Screenshot%202018-06-05%2002.19.04.png?raw=1" /></p>
+
+<p><img src="https://www.dropbox.com/s/unq7wo4igefklv8/Screenshot%202018-06-05%2002.19.24.png?raw=1" /></p>
+
+<ul>
+  <li>문제점 : many forward / backward가 필요해서 매우 느림</li>
+  <li>해결책 : 다른 neural network를 사용 =&gt; Fast Style Transfer</li>
+</ul>
+
+<h3 id="fast-style-transfer">Fast Style Transfer</h3>
+<ul>
+  <li>[<a href="https://github.com/jcjohnson/fast-neural-style">코드</a>]</li>
+</ul>
+
+<p><img src="https://www.dropbox.com/s/k8tuhnb6uiikk6c/Screenshot%202018-06-05%2002.22.27.png?raw=1" /></p>
+
+<h2 id="summary">Summary</h2>
+<hr />
+
+<p><img src="https://www.dropbox.com/s/ncg1jjkfwjopf7q/Screenshot%202018-06-05%2002.21.52.png?raw=1" /></p>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=vT1JzLTH4G4&amp;list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv&amp;index=0">Stanfoard CS231n 2017</a></li>
+  <li><a href="https://www.slideshare.net/ssuser06e0c5/visualizing-data-using-tsne-73621033">김홍배님 Slideshare</a></li>
+  <li><a href="http://jsideas.net/python/2018/01/12/grad_cam.html">Grad-CAM: 대선주자 얼굴 위치 추적기</a></li>
+</ul>
+
+      <br/>
+      <p><a href="https://bit.ly/kyleschool_blog">카일스쿨 유튜브</a> 채널을 만들었습니다. 데이터 사이언스, 성장, 리더십, BigQuery 등을 이야기할 예정이니, 관심 있으시면 구독 부탁드립니다 :)</p>
+      <p>이 글이 도움이 되셨다면 추천 클릭을 부탁드립니다 :)</p>
+      <br/>
+      <br/>
+      <div style="text-align:center">
+        <style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFFFFF !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 0px 9px !important;font-size: 17px !important;letter-spacing:-0.08px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/zzsza"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
+      </div>
+      <br/>
+      <br/>
+       <!--블로그-하단-반응형 -->
+      <ins class="adsbygoogle"
+          style="display:block; width:100%; height:300px;"
+          data-ad-client="ca-pub-5105555504153863"
+          data-ad-slot="1037589043"
+          data-ad-format="auto"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+
+    </div>
+  
+
+</article>
+
+  <hr class="dingbat" />
+
+  <div class="share">
+      <h2>Share this post</h2>
+      <div class="share-body">
+        <a href="http://twitter.com/share?text=CS231n 12강. Visualizing and Understanding&amp;url=http://localhost:4000/data/2018/06/04/cs231n-visualizing-and-understanding/"
+    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <span class="icon-twitter">
+            </span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/data/2018/06/04/cs231n-visualizing-and-understanding/"
+    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <span class="icon-facebook">
+            </span>
+        </a>
+    </div>
+  </div>
+  <br/>
+
+
+
+
+
+
+  <aside class="author" role="complementary">
+    <div class="author">
+  <h2 class="page-title hr">
+    About
+  </h2>
+<div class="author-body">
+  
+    
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="seongyun byeon"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+  
+  <div class="author-body-description">
+    <p>Machine Learning Engineer</p>
+
+  </div>
+</div>
+</div>
+
+  </aside>
+
+
+
+
+
+<aside class="related" role="complementary">
+  <h2 class="hr">Related Posts</h2>
+
+  <ul class="related-posts">
+    
+      
+      
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/data/2019/12/15/rules-of-ml/" data-flip="title">
+    <span>Rules of Machine Learning: Best Practices for ML Engineering 정리</span>
+  </a>
+  <small><time datetime="2019-12-15T00:00:00+09:00">
+    15 Dec 2019
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/data/2019/12/03/cs224w-ml-with-graph/" data-flip="title">
+    <span>CS224W - Machine Learning with Graphs 1강 정리</span>
+  </a>
+  <small><time datetime="2019-12-03T00:00:00+09:00">
+    03 Dec 2019
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/data/2019/11/24/pydeck/" data-flip="title">
+    <span>지도 데이터 시각화 : Uber의 pydeck 사용하기</span>
+  </a>
+  <small><time datetime="2019-11-24T00:00:00+09:00">
+    24 Nov 2019
+  </time></small>
+</li>
+
+        
+      
+        
+        
+      
+    
+  </ul>
+</aside>
+
+
+
+      
+        <aside class="comments" role="complementary">
+  <h2>Comments</h2>
+  <hr/>
+
+  <div id="disqus_thread"></div>
+
+  <script>
+    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="CS231n 12강. Visualizing and Understanding",this.page.identifier="/data/2018/06/04/cs231n-visualizing-and-understanding",this.page.url="http://localhost:4000/data/2018/06/04/cs231n-visualizing-and-understanding/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//zzsza.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</aside>
+
+      
+
+      <footer>
+  <hr/>
+  
+    <p>© 2017. by Seongyun Byeon</p>
+
+  
+  <p>
+    <code>Powered by <a href="https://zzsza.github.io/">zzsza</a></code>
+  </p>
+</footer>
+
+    </main>
+    <div class="right-side">
+  <div class="ad-first">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- 블로그-상단-모바일 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:100%;"
+         data-ad-client="ca-pub-5105555504153863"
+         data-ad-slot="9090558636"
+         data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+<br/>
+<br/>
+  <div class="ad-second">
+    <!-- 블로그-스카이스크래퍼 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;max-width:320px;width:100%;height:600px"
+         data-ad-client="ca-pub-5105555504153863"
+         data-ad-slot="3646660262"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+</div>
+
+
+  </div>
+  <div id="_yDrawer">
+  <div id="_sidebar" class="sidebar">
+    <div class="sidebar-bg" style="background-color:#4f86aa;background-image:url(/assets/img/nap.jpg)"></div>
+    <header class="sidebar-sticky" role="banner">
+      <br/>
+      <div class="sidebar-about">
+        <h1><a id="_title" href="/">어쩐지 오늘은</a></h1>
+        <p>Machine Learning Engineer</p>
+
+      </div>
+
+      <br/>
+      <nav class="sidebar-nav heading" role="navigation">
+        <span class="sr-only">Navigation:</span>
+<ul>
+  
+
+  
+
+  
+  
+  
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-1"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/diary/">Diary</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/diary-diary/">diary</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-2"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/data/">Data</a>
+       <label class="folder" for="list-item-2">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-ml/">Machine-Learning</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-dl/">Deep-Learning</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-mobility/">Mobility</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-engineering/">Engineering</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-optimization/">Optimization</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-paper/">Paper</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-pytorch/">Pytorch</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-cs231/">CS231n</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-rl/">Reinforcement-Learning</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-time-series/">Time Series</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-analytics/">Analytics</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-kaggle/">Kaggle</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-vision/">Vision</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-interpretable-ml/">Interpretable ML</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-simulation/">Simulation</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-graph/">Graph</a>
+             </li>
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-3"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/mlops/">MLOps</a>
+       <label class="folder" for="list-item-3">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-basic/">Basic</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-airflow/">Airflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-mlflow/">MLflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-tfx/">Tensorflow Extended</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-serving/">Serving</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-feature/">Feature</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-version/">Model & Pipeline version</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-4"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/gcp/">Google Cloud Platform</a>
+       <label class="folder" for="list-item-4">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-basic/">Basic</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-bigquery/">BigQuery</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-aiplatform/">AI Platform</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-dataflow/">Dataflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-cloud-functions/">Cloud Functions</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-5"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/development/">Development</a>
+       <label class="folder" for="list-item-5">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-linux/">Linux</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-web/">Web</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-python/">Python</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-sql/">SQL</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-scala/">Scala</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-os/">OS</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-kubernetes/">Kubernetes</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-devops/">DevOps</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-kotlin/">Kotlin</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-julia/">Julia</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-tools/">Tools</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-6"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/etc/">ETC</a>
+       <label class="folder" for="list-item-6">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/etc-lecture/">Lecture</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/etc-book/">Book</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-7"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/about/">About</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+</ul>
+
+      </nav>
+    <!-- search box -->
+    <form action="/search">
+      <div class="tipue_search_box">
+        <input type="text" name="q" id="tipue_search_input" placeholder="&#xF002;  Search" pattern=".{2,}" title="최소 2글자 이상" required></div>
+      <div style="clear: both;"></div>
+    </form>
+    <br/>
+      <div class="sidebar-box">
+        
+          
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="seongyun byeon"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+        
+      </div>
+      <p>메모가 습관인 데이터쟁이입니다</p>
+
+      
+      
+        <div class="sidebar-social">
+          <span class="sr-only">Social:</span>
+<ul>
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://facebook.com/zzsza">
+    <span class="icon-facebook" title="Facebook"></span>
+    <span class="sr-only">Facebook</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.youtube.com/channel/UCYyAaezBGEVmXcnink6nY9Q">
+    <span class="icon-youtube" title="YouTube"></span>
+    <span class="sr-only">YouTube</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://instagram.com/data.scientist">
+    <span class="icon-instagram" title="Instagram"></span>
+    <span class="sr-only">Instagram</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://github.com/zzsza">
+    <span class="icon-github" title="GitHub"></span>
+    <span class="sr-only">GitHub</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.linkedin.com/in/seong-yun-byeon-8183a8113">
+    <span class="icon-linkedin2" title="LinkedIn"></span>
+    <span class="sr-only">LinkedIn</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="mailto:snugyun01@gmail.com">
+    <span class="icon-mail" title="Email"></span>
+    <span class="sr-only">Email</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://zzsza.github.io/feed.xml">
+    <span class="icon-rss2" title="RSS"></span>
+    <span class="sr-only">RSS</span>
+  </a>
+</li>
+
+  
+</ul>
+
+        </div>
+      
+    </header>
+  </div>
+</div>
+
+</div>
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+
+<script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-110573232-1', 'auto');
+  ga('send', 'pageview');
+  loadJSDeferred('https://www.google-analytics.com/analytics.js');
+</script>
+
+
+
+
+
+<!--[if gt IE 8]><!---->
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    
+    google: {
+      families: 'Lato'.split('|')
+    },
+    
+
+    custom: {
+      families: ['icomoon'],
+      urls: ['/assets/icomoon/style.css']
+    }
+  });
+</script>
+<!--<![endif]-->
+
+
+  <!--[if gt IE 9]><!---->
+  
+  <script>loadJSDeferred('/assets/js/hydejack.js?v=6.4.0');</script>
+
+  
+  <!--<![endif]-->
+
+
+
+</body>
+
+</html>

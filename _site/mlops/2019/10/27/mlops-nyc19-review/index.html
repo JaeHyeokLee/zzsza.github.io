@@ -1,0 +1,2059 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
+-->
+
+
+
+
+
+
+
+
+
+<head>
+  <!-- =============== -->
+<!-- META            -->
+<!-- =============== -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="naver-site-verification" content="22c5b4ef3bfda7fc6100671413989219de7a4ac8"/>
+<meta property="og:title" content="MLOps NYC19 Conference 정리">
+<meta property="og:type" content="article">
+
+
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/img/logo.png">
+
+
+<meta property="og:image:width" content="640" />
+<meta property="og:image:height" content="360" />
+
+
+
+  <title>MLOps NYC19 Conference 정리 &middot; 어쩐지 오늘은</title>
+
+
+
+<meta name="description" content="MLOps NYC19 영상을 정리한 글입니다 시청한 영상 MLOps in the Newsroom Netflix Presents: A Human-Friendly Approach to MLOps The Architecture That Powers Twitter’s Feature Store Serverless for ML Pipelines from A to Z Deep Learning on Business Data at Uber The Growth and Future of Kubeflow for ML Stateless ML...">
+<meta property="og:description" content="MLOps NYC19 영상을 정리한 글입니다 시청한 영상 MLOps in the Newsroom Netflix Presents: A Human-Friendly Approach to MLOps The Architecture That Powers Twitter’s Feature Store Serverless for ML Pipelines from A to Z Deep Learning on Business Data at Uber The Growth and Future of Kubeflow for ML Stateless ML...">
+
+
+<!-- tipuesearch -->
+<link rel="stylesheet" href="/assets/tipuesearch/css/tipuesearch.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+<!-- =============== -->
+<!-- LINKS           -->
+<!-- =============== -->
+<link rel="canonical" href="http://localhost:4000/mlops/2019/10/27/mlops-nyc19-review/">
+<meta property="og:url" content="http://localhost:4000/mlops/2019/10/27/mlops-nyc19-review/">
+
+<link rel="alternate" type="application/atom+xml" title="어쩐지 오늘은 Feed" href="http://localhost:4000/feed.xml">
+
+
+  <link rel="prev" href="http://localhost:4000/etc/2019/10/20/tensorflow-kr-3th-meeting/">
+
+
+
+  <link rel="next" href="http://localhost:4000/etc/2019/10/28/deview2019-review/">
+
+
+<link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+<!-- Place favicon.ico in the root directory -->
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+<script>
+  !function(n,e){function t(n,e){n.onload=function(){this.onerror=this.onload=null,e(null,n)},n.onerror=function(){this.onerror=this.onload=null,e(new Error("Failed to load "+this.src),n)}}function o(n,e){n.onreadystatechange=function(){"complete"!=this.readyState&&"loaded"!=this.readyState||(this.onreadystatechange=null,e(null,n))}}n._loaded=!1,n.loadJSDeferred=function(a,d){function r(){n._loaded=!0;var r=e.createElement("script");r.src=a,d&&(("onload"in r?t:o)(r,d),r.onload||t(r,d));var l=e.getElementsByTagName("script")[0];l.parentNode.insertBefore(r,l)}n._loaded?r():n.addEventListener?n.addEventListener("load",r,!1):n.attachEvent?n.attachEvent("onload",r):n.onload=r}}(window,document);
+
+  !function(e){"use strict";var n=function(n,t,o){function i(e){if(a.body)return e();setTimeout(function(){i(e)})}function r(){l.addEventListener&&l.removeEventListener("load",r),l.media=o||"all"}var d,a=e.document,l=a.createElement("link");if(t)d=t;else{var f=(a.body||a.getElementsByTagName("head")[0]).childNodes;d=f[f.length-1]}var s=a.styleSheets;l.rel="stylesheet",l.href=n,l.media="only x",i(function(){d.parentNode.insertBefore(l,t?d:d.nextSibling)});var u=function(e){for(var n=l.href,t=s.length;t--;)if(s[t].href===n)return e();setTimeout(function(){u(e)})};return l.addEventListener&&l.addEventListener("load",r),l.onloadcssdefined=u,u(r),l};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
+
+  !function(t){if(t.loadCSS){var e=loadCSS.relpreload={};if(e.support=function(){try{return t.document.createElement("link").relList.supports("preload")}catch(t){return!1}},e.poly=function(){for(var e=t.document.getElementsByTagName("link"),r=0;r<e.length;r++){var n=e[r];"preload"===n.rel&&"style"===n.getAttribute("as")&&(t.loadCSS(n.href,n,n.getAttribute("media")),n.rel=null)}},!e.support()){e.poly();var r=t.setInterval(e.poly,300);t.addEventListener&&t.addEventListener("load",function(){e.poly(),t.clearInterval(r)}),t.attachEvent&&t.attachEvent("onload",function(){t.clearInterval(r)})}}}(this);
+
+  window.disablePushState = false;
+  window.disableDrawer = false;
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5105555504153863",
+    enable_page_level_ads: true
+  });
+</script>
+
+<!--[if lt IE 9]>
+<script src="https://unpkg.com/html5shiv/dist/html5shiv.min.js"></script>
+<![endif]-->
+
+<!-- =============== -->
+<!-- STYLES          -->
+<!-- =============== -->
+<!--[if gt IE 8]><!---->
+<style>
+  
+  article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}*{box-sizing:border-box}html,body{margin:0;padding:0}html{font-size:16px;line-height:1.75}body{color:#333;background-color:#fff;overflow-y:scroll}a{text-decoration:none}.lead{margin-left:-1rem;margin-right:-1rem}img,.img{display:block;max-width:100%;margin-bottom:1rem;border:none}img.lead,.img.lead{max-width:calc(100% + 2rem);width:calc(100% + 2rem)}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-weight:bold;text-rendering:optimizeLegibility}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{margin:1.6rem 0 1rem;line-height:1.6}h1,.h1{font-size:2rem;line-height:1.25}h2,.h2{font-size:1.5rem}h3,.h3{font-size:1.17em}p{margin-top:0;margin-bottom:1rem}p.lead{font-size:1.25rem;font-weight:300;padding:0 1rem}ul,ol,dl{margin-top:0;margin-bottom:1rem}ul,ol{padding-left:1.25rem}hr{position:relative;margin:1.5rem 0;border:0;border-top:1px solid #eee}.hr{padding-bottom:.5rem;border-bottom:1px solid #eee;margin-bottom:1.5rem}h4,h5,h6,.h4,.h5,.h6{margin-bottom:0.5rem;font-size:1rem}table{margin-bottom:1rem;width:100%;width:calc(100% + 2rem);margin-left:-1rem;border:1px solid #e5e5e5;border-collapse:collapse;border-spacing:0}td,th{padding:.25rem .5rem;border:1px solid #e5e5e5}td:first-child,th:first-child{padding-left:1rem}td:last-child,th:last-child{padding-right:1rem}thead+tbody,tbody+tbody,tfoot{border-top:3px double #e5e5e5}tbody tr:nth-child(odd) td,tbody tr:nth-child(odd) th{background-color:#f9f9f9}footer{margin-bottom:2rem}.page,.post{margin-bottom:3em}.page li+li,.post li+li{margin-top:.25rem}.page>header,.post>header{margin-bottom:2rem}.page-title,.post-title{margin-top:0}.post-date{display:block;margin-top:-0.5rem;margin-bottom:1rem;color:#9a9a9a}.related-posts{padding-left:0;list-style:none}.related-posts>li,.related-posts>li+li{margin-top:1rem}.related-posts>li>small,.related-posts>li+li>small{font-size:75%;color:#9a9a9a}.message{margin-bottom:1rem;padding:1rem;color:#787878;background-color:#f9f9f9;margin-left:-1rem;margin-right:-1rem}body,main{position:relative;overflow-x:hidden}@media screen{body::before{content:'';background:#e5e5e5;position:absolute;left:0;top:0;bottom:0}}@media screen and (min-width: 40em){html{font-size:17px}}@media screen and (min-width: 54em){html{font-size:16px}}@media screen and (min-width: 88em){html{font-size:17px}}@media screen and (min-width: 125em){html{font-size:18px}}.sr-only{display:none}.clearfix,.sidebar-social::after,.clearafter::after{content:"";display:table;clear:both}a,.a{position:relative;padding-bottom:.15rem;border-style:hidden}.img{overflow:hidden;background-color:#f9f9f9}.img>img{margin:0;width:100%;height:100%}.sixteen-nine{position:relative}.sixteen-nine::before{display:block;content:"";width:100%;padding-top:56.25%}.sixteen-nine>*{position:absolute;top:0;left:0;right:0;bottom:0}h1+hr,h2+hr,h3+hr,h4+hr,h5+hr,h6+hr{margin-top:0}.fade-in{animation-duration:500ms;animation-name:fade-in;animation-fill-mode:forwards}@keyframes fade-in{from{transform:translateY(-2rem);opacity:0}50%{transform:translateY(-2rem);opacity:0}to{transform:translateY(0);opacity:1}}.mb6{margin-bottom:10rem}.sidebar{color:rgba(255,255,255,0.75);text-align:left}.sidebar::before{content:"";position:absolute;z-index:2;top:0;left:0;bottom:0;right:0;background:linear-gradient(to bottom, rgba(32,32,32,0) 0%, rgba(32,32,32,0.5) 100%)}.sidebar a{color:#fff;border-bottom-color:rgba(255,255,255,0.2)}.right-side{width:100%;margin-left:auto;margin-right:auto}.right-side .ad-first{text-align:center}.right-side .ad-second{text-align:center}@media screen{.right-side{max-width:38rem;min-height:100vh}}@media screen and (min-width: 54em){.right-side{margin-left:20rem;margin-right:1rem;padding:4rem 1rem 12rem}}@media screen and (min-width: 72em){.right-side{margin-left:22rem;max-width:42rem}}@media screen and (min-width: 88em){.right-side{width:162px;margin-left:0rem;margin-right:0rem;padding:0rem;margin-top:10rem;display:block;float:left}}@media screen and (min-width: 96em){.right-side{width:300px;margin-right:0rem}}#_yDrawer{position:relative}@media screen{#_yDrawer{min-height:640px;min-height:100vh}}@media screen and (min-width: 54em){#_yDrawer{width:18rem;margin-left:0}}.sidebar-bg{position:absolute;height:100%;overflow:hidden;top:0;right:0;bottom:0;left:0;background:#202020 center / cover}.sidebar-box{display:flex;justify-content:center}.sidebar-sticky{position:relative;z-index:3}@media screen{.sidebar-sticky{-ms-overflow-style:none;overflow:-moz-scrollbars-none;height:100%;overflow:auto;position:absolute;padding:3rem 0rem;right:2.5rem;left:2.5rem}}.sidebar-sticky::-webkit-scrollbar{display:none}.sidebar-about>h1{color:#fff;font-size:2rem}.sidebar-nav>ul{list-style:none;padding-left:0;margin-bottom:.5rem}a.sidebar-nav-item{width:100%;font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}a.sidebar-nav-subitem{font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}@media screen{.y-drawer-scrim{z-index:2}.y-drawer-content{width:18rem;left:-18rem;z-index:3}}.sidebar-social{margin-bottom:.5rem}.sidebar-social>ul{list-style:none;padding-left:0;margin:0 -.25rem}.sidebar-social>ul>li{float:left}.sidebar-social>ul>li>a{display:inline-block;text-align:center;font-size:1.6rem;line-height:3rem;width:3.1249rem;height:4rem;padding:.5rem 0}.sidebar-social>ul li+li{margin-top:0}.fixed-top{position:fixed;top:0;left:0;width:100%;z-index:1}.navbar>.content{padding-top:0;padding-bottom:0;min-height:0;height:0}.menu{display:inline-block;padding:1.75rem 1.5rem;border-bottom:none;margin-left:-1.5rem;color:#9a9a9a !important}.menu::after{content:"\2630"}@media screen and (min-width: 54em){.menu{padding:1.25rem 1.5rem;position:absolute;left:-9999px}.menu:focus{position:static}}.animation-main{pointer-events:none}.loading{display:none}@media print{.menu{display:none}}.animation-main{opacity:0;will-change:opacity}.loading{position:absolute;top:0;right:0;padding:5.25rem 4.5rem;transform-origin:top right;transform:scale(0.33)}.content{position:relative;margin-left:auto;margin-right:auto;padding:5rem 1rem 12rem}@media screen{.content{min-height:100vh}}@media screen and (min-width: 54em){.content{padding:4rem 1rem 12rem;margin-left:19rem;margin-right:3rem}}@media screen and (min-width: 72em){.content{max-width:42rem;margin-left:21rem}}@media screen and (min-width: 88em){.content{float:left;width:100%;margin-left:22rem;margin-right:5rem}}@media screen and (min-width: 96em){.content{max-width:44rem}}@media screen and (min-width: 102em){.content{margin-left:25rem;margin-right:8rem}}.me{width:6.5rem;height:6.5rem;align-self:center;margin-right:20px;border-radius:100%;position:relative}@media screen and (min-width: 40em){.me{width:7rem;height:7rem}}@media screen and (min-width: 54em){.me{width:6.5rem;height:6.5rem}}@media screen and (min-width: 72em){.me{width:7rem;height:7rem}}main>footer{width:100%;position:absolute;bottom:0;left:0;right:0;padding:0 1rem;color:#9a9a9a;font-size:smaller;text-align:center}main>footer>p{margin-bottom:0}html{font-family:'Sans-serif'}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-family:'Sans-serif'}
+
+</style>
+
+
+<link rel="preload" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0" as="style" onload="this.rel='stylesheet'">
+
+<style id="_pageStyle">
+
+.content a{color:#4f86aa;border-color:rgba(79,134,170,0.2)}.content a:hover{border-color:#4f86aa}:focus{outline-color:#4f86aa}::selection{color:#fff;background:#4f86aa}::-moz-selection{color:#fff;background:#4f86aa}
+
+</style>
+
+
+<noscript>
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0">
+  
+  
+  
+
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <style>
+      html { font-family: 'Lato', 'Sans-serif' }
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading { font-family: 'Lato', 'Sans-serif' }
+    </style>
+  
+
+  
+  <link rel="stylesheet" href="http://localhost:4000/assets/icomoon/style.css">
+</noscript>
+<!--<![endif]-->
+
+</head>
+
+<body>
+  <!-- =============== -->
+<!-- MENU            -->
+<!-- =============== -->
+<div class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <a id="_menu" class="menu no-hover" href="#_title">
+      <span class="sr-only">Menu</span>
+    </a>
+  </div>
+</div>
+
+<!-- =============== -->
+<!-- CONTENT         -->
+<!-- =============== -->
+<div id="_yPushState">
+  <div class="fade-in">
+    <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/nap.jpg">
+      
+
+<article id="post-mlops/2019/10/27/mlops-nyc19-review" class="post" role="article">
+  <header>
+    <h1 class="post-title">
+      
+        MLOps NYC19 Conference 정리
+      
+    </h1>
+
+    <p class="post-date heading">
+      <time datetime="2019-10-27T00:00:00+09:00">27 Oct 2019</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/mlops/" data-flip="title">MLOps</a>
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/gcp-basic/" data-flip="title">Basic</a>
+
+    </p>
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+    <div class="markdown-body">
+
+
+<style>
+.myAd1190 { display:block; width:98%; height: 280px; }
+@media(min-width: 600px) { .myAd1190 { display: none; } }
+</style>
+<ins class="adsbygoogle myAd1190"
+    data-ad-client="ca-pub-5105555504153863"
+    data-ad-slot="6481487416"
+    ></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
+<br/>
+      <ul>
+  <li><a href="https://www.mlopsnyc.com/">MLOps NYC19</a> 영상을 정리한 글입니다</li>
+  <li>시청한 영상
+    <ul>
+      <li>MLOps in the Newsroom</li>
+      <li>Netflix Presents: A Human-Friendly Approach to MLOps</li>
+      <li>The Architecture That Powers Twitter’s Feature Store</li>
+      <li>Serverless for ML Pipelines from A to Z</li>
+      <li>Deep Learning on Business Data at Uber</li>
+      <li>The Growth and Future of Kubeflow for ML</li>
+      <li>Stateless ML Pipelines: Achieve reproducibility and automation while simplifying the pipeline</li>
+    </ul>
+  </li>
+  <li>Training session은 영상이 없지만, <a href="https://toddmorrill.github.io/blog/2019/10/05/MLOps-tooling">Review</a>를 통해 간접적으로 내용을 볼 수 있습니다</li>
+</ul>
+
+<hr />
+
+<h3 id="mlops-in-the-newsroom">MLOps in the Newsroom</h3>
+<ul>
+  <li>Information Platforms and the Rise of the Data Scientist(2009)라는 책에선 R / Hadoop을 사용했다고 하는데 NYTimes에선 TF / GCP를 사용함</li>
+  <li>NYTimes의 DS Software Stack
+    <ul>
+      <li><img src="https://www.dropbox.com/s/yfoecbi8dttrq0r/Screenshot%202019-10-26%2021.03.48.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Deployment at The New York Times
+    <ul>
+      <li><img src="https://www.dropbox.com/s/4nyham5sw4qsa5n/Screenshot%202019-10-26%2021.04.17.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>뉴스
+    <ul>
+      <li>20세기엔 church + state였다면</li>
+      <li>21세기엔 church + state + data(데이터가 앞 2가지 요소에 영향을 미침)</li>
+    </ul>
+  </li>
+  <li>모델링
+    <ul>
+      <li>Descriptive modeling
+        <ul>
+          <li>Readerscope</li>
+          <li>데이터를 설명하는 패턴을 찾음</li>
+          <li>현재 발생하는 상황에 대해 더 정교하고 실시간 통찰력이 필요했음</li>
+          <li>누가 무엇을 읽고 있는지? 그리고 어디에 있는가?</li>
+          <li>마케터가 drill down으로 LA에서 무슨 일이 있는지 등을 알 수 있음</li>
+          <li>Contextual bandit</li>
+        </ul>
+      </li>
+      <li>Predictive modeling
+        <ul>
+          <li>누가 구독할 것인가, 누가 떠날 것인가를 예측(퍼널 단계 단계를 예측)</li>
+          <li>리스크를 위해 성능과 해석 가능성을 중시</li>
+          <li>광고주가 광고할 때 어떤 사람에게 효과가 있는지? 관련있는 context를 제시 =&gt; 우리 광고는 Travel 부분과 digital 세대에 영향을 많이 미칠 것이다 등</li>
+          <li>텍스트 기반해서 Labeling(Inspired, Happiness, Sadness, Love 등)</li>
+        </ul>
+      </li>
+      <li>Prescriptive modeling
+        <ul>
+          <li>추천을 어떻게 할 것인가</li>
+          <li>톰슨 샘플링 &amp; 밴딧 사용</li>
+          <li><a href="http://modelingsocialdata.org/">Modeling Social Data</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>IDEA
+    <ul>
+      <li><img src="https://www.dropbox.com/s/bkgiq5exkxlu5ti/Screenshot%202019-10-26%2021.51.26.png?raw=1" /></li>
+      <li>best AI is AI + IRL
+        <ul>
+          <li>recpect for craft</li>
+          <li>recpect for collaborators</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="netflix-presents-a-human-friendly-approach-to-mlops">Netflix Presents: A Human-Friendly Approach to MLOps</h3>
+<ul>
+  <li>넷플릭스는 출시 전에 매일 프로그램 시청자의 예상 크기(estimated size)를 알고 싶어함</li>
+  <li>The Life of a Model
+    <ul>
+      <li>EDA
+        <ul>
+          <li>프로젝트를 잡고, 노트북에서 잡음</li>
+          <li>correlation를 찾고, scatter plot을 그림</li>
+          <li>2주 정도 진행</li>
+        </ul>
+      </li>
+      <li>Prototyping
+        <ul>
+          <li>다양한 실험을 하고, Feature 추가, 모델링 등등을 진행</li>
+          <li>6~8주</li>
+        </ul>
+      </li>
+      <li>Productionalize
+        <ul>
+          <li>Ship Model to Production(v1)</li>
+          <li>Scale &amp; Deploy</li>
+          <li>ETL / Feature Engineering / Model Traing / Model Hoasting / Batch Scoring / Live Scoring / Audits / Scheduling etc</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Metaflow
+    <ul>
+      <li>빠른 프로토 타이핑을 위해 만듬</li>
+      <li><img src="https://www.dropbox.com/s/m5oyy7p0tihcv7t/Screenshot%202019-10-26%2022.31.05.png?raw=1" /></li>
+      <li>코드의 구조는 next로 다음 행동을 지정할 수 있음
+        <ul>
+          <li><img src="https://www.dropbox.com/s/4sed61hnbujgaen/Screenshot%202019-10-26%2022.34.40.png?raw=1" /></li>
+        </ul>
+      </li>
+      <li><img src="https://www.dropbox.com/s/t3vqibm2tldcojc/Screenshot%202019-10-26%2022.35.50.png?raw=1" /></li>
+      <li>프로토타입 할 때 특정 부분만 안되면 resume 명령어로 다시 실행
+        <ul>
+          <li><img src="https://www.dropbox.com/s/ijkufviq5ezc2gs/Screenshot%202019-10-26%2022.37.56.png?raw=1" /></li>
+        </ul>
+      </li>
+      <li>컴퓨팅 파워는 titus에게 말하면 됨
+        <ul>
+          <li><img src="https://www.dropbox.com/s/lfkkt14rwtt2vmn/Screenshot%202019-10-26%2022.39.48.png?raw=1" /></li>
+        </ul>
+      </li>
+      <li>분산 처리
+        <ul>
+          <li><img src="https://www.dropbox.com/s/q84o74li5siiakg/Screenshot%202019-10-26%2022.40.55.png?raw=1" /></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Production 배포시 Meson 사용, meson create
+    <ul>
+      <li><a href="https://medium.com/netflix-techblog/meson-workflow-orchestration-for-netflix-recommendations-fc932625c1d9">넷플릭스 테크 블로그 : Meson: Workflow Orchestration for Netflix Recommendations</a></li>
+      <li><img src="https://www.dropbox.com/s/acramereyt3w82o/Screenshot%202019-10-26%2022.42.16.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Real time Scoring
+    <ul>
+      <li><img src="https://www.dropbox.com/s/69zaxl8beh7mlui/Screenshot%202019-10-26%2022.45.04.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>몇달이 지난 후</li>
+  <li>The Life of a Model
+    <ul>
+      <li>Maintenance
+        <ul>
+          <li>모델 유지하고 version 2 빌드</li>
+          <li>v1를 안전하게 복사</li>
+          <li>새로운 feature를 추가해 진행</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>inspect &amp; debug
+    <ul>
+      <li><img src="https://www.dropbox.com/s/7c9bf6kdph8k5y5/Screenshot%202019-10-26%2022.48.50.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Pick up &amp; iterate
+    <ul>
+      <li>다른 사람의 실험도 돌릴 수 있음
+        <ul>
+          <li><img src="https://www.dropbox.com/s/pazegy5n9i18waw/Screenshot%202019-10-26%2023.39.13.png?raw=1" /></li>
+        </ul>
+      </li>
+      <li>태그도 가능
+        <ul>
+          <li><img src="https://www.dropbox.com/s/wbzhy9xhnzc9uq5/Screenshot%202019-10-26%2023.39.56.png?raw=1" /></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Metaflow at scale
+    <ul>
+      <li>도입 후 정말 많은 프로젝트가 생기고 있음</li>
+      <li><img src="https://www.dropbox.com/s/j1rype7shji2hke/Screenshot%202019-10-26%2023.43.01.png?raw=1" /></li>
+      <li><img src="https://www.dropbox.com/s/n4weq63h8p9ryj0/Screenshot%202019-10-26%2023.43.19.png?raw=1" /></li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="the-architecture-that-powers-twitters-feature-store">The Architecture That Powers Twitter’s Feature Store</h3>
+<ul>
+  <li>많은 사람들이 모델링하면 겹치는 Feature Engineering이 있음
+    <ul>
+      <li>이미 많이 진행한 팀, 이제 막 머신러닝을 도입하려는 팀 등</li>
+      <li>이미 진행한 팀꺼를 fork하거나 밑바닥부터 만들 수 있음</li>
+      <li>전사에서 사용할 라이브러리 생성</li>
+    </ul>
+  </li>
+  <li>Featre Store는 library</li>
+  <li>오.. 트위터껀 아니지만 Gojek이 만든 <a href="https://github.com/gojek/feast">feast</a>가 있음
+    <ul>
+      <li><img src="https://github.com/gojek/feast/raw/master/docs/architecture.png" /></li>
+    </ul>
+  </li>
+  <li>Share
+    <ul>
+      <li>Feature Catalog</li>
+      <li>Succinct, declarative Definitions</li>
+    </ul>
+  </li>
+  <li>Datasets
+    <ul>
+      <li>온라인/오프라인 접근이 가능</li>
+      <li>동영상에서 화질이 너무 낮아 알아보기 힘듬 ㅠ</li>
+      <li>추가할 Feature를 정의</li>
+    </ul>
+  </li>
+  <li>Offline Integration
+    <ul>
+      <li>스칼라 사용</li>
+      <li>joinFeatures</li>
+    </ul>
+  </li>
+  <li>Online Integration
+    <ul>
+      <li><img src="https://www.dropbox.com/s/5c9shgg9mt5n5br/Screenshot%202019-10-27%2010.54.54.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Feature Store Client
+    <ul>
+      <li><img src="https://www.dropbox.com/s/7b3pewkkceqg8nj/Screenshot%202019-10-27%2010.55.45.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Strato
+    <ul>
+      <li>FeatureStore Client에서 Strato로 데이터 보내고, 캐싱하거나 DB에 넣거나 서비스에 쓰거나 하는듯</li>
+      <li><img src="https://www.dropbox.com/s/ezwfvjwr6gn5uyn/Screenshot%202019-10-27%2010.56.26.png?raw=1" /></li>
+      <li><img src="https://www.dropbox.com/s/xyeseqjs45ynx8g/Screenshot%202019-10-27%2010.57.01.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>영상은 10분만에 끝남. 딱히 인상 깊진 않음</li>
+</ul>
+
+<hr />
+
+<h3 id="serverless-for-ml-pipelines-from-a-to-z">Serverless for ML Pipelines from A to Z</h3>
+<ul>
+  <li>Code / Model Development is Just the First Step
+    <ul>
+      <li><img src="https://www.dropbox.com/s/2xny5vio2f6ysz0/Screenshot%202019-10-27%2010.59.00.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>파이프라인 예시
+    <ul>
+      <li>Weather 정보도 추가</li>
+      <li>여기서도 Feature Store란 단어가 나옴</li>
+      <li><img src="https://www.dropbox.com/s/klajbcfhxu0ld49/Screenshot%202019-10-27%2010.59.46.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Nuclio를 사용해 ETL과 Streaming을 가속
+    <ul>
+      <li><a href="https://github.com/nuclio/nuclio">Nuclio Github</a></li>
+      <li><img src="https://www.dropbox.com/s/coijvb4sg66zaj8/Screenshot%202019-10-27%2011.02.59.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Nuclio를 사용해 Serving
+    <ul>
+      <li><a href="https://github.com/nuclio/nuclio-jupyter">Nuclio Jupyter Github</a></li>
+      <li><img src="https://www.dropbox.com/s/firi83gflx0a7pc/Screenshot%202019-10-27%2011.05.01.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Buidling ML Pipelines From (Serverless) Functions
+    <ul>
+      <li>Feature Store가 있군!</li>
+      <li><img src="https://www.dropbox.com/s/yg0rxoxfj9aifiz/Screenshot%202019-10-27%2011.06.45.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Demo
+    <ul>
+      <li>KFServing을 쓰는듯</li>
+      <li><img src="https://www.dropbox.com/s/qvfh1ym7co0cfch/Screenshot%202019-10-27%2011.12.05.png?raw=1" /></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="deep-learning-on-business-data-at-uber">Deep Learning on Business Data at Uber</h3>
+<ul>
+  <li>왜 딥러닝인가?
+    <ul>
+      <li>기존에 사용하던 알고리즘보다 딥러닝이 더 좋은 성능을 보이고 있음</li>
+      <li>특정 도메인에선 압도적인 성능(vision)</li>
+      <li>기존에 사용하던 트리 모델과 결합해 하이브리드 모델을 만듬</li>
+    </ul>
+  </li>
+  <li>딥러닝 In Uber
+    <ul>
+      <li><img src="https://www.dropbox.com/s/f4l210de6l1ds2t/Screenshot%202019-10-27%2011.24.35.png?raw=1" /></li>
+      <li><img src="https://www.dropbox.com/s/46q5qf1pf24fc26/Screenshot%202019-10-27%2011.25.07.png?raw=1" /></li>
+      <li><img src="https://www.dropbox.com/s/1cbo9ksvjys9oit/Screenshot%202019-10-27%2011.26.00.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>이런 시스템을 어떻게 구현할까?
+    <ul>
+      <li>Option A : TFX</li>
+      <li>Option B : Apache Spark (이걸 사용)
+        <ul>
+          <li>Powerful ETL</li>
+          <li>Easy integration with XGBoost</li>
+          <li>이미 스파크를 사용하는 시스템이 있었음</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>1) Feature Store
+    <ul>
+      <li>Real time과 Batch를 통합</li>
+      <li><img src="https://www.dropbox.com/s/5qxi8pl7bu24d4t/Screenshot%202019-10-27%2011.27.31.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>2) Model Training
+    <ul>
+      <li>Apache Spark에서 딥러닝을 어떻게 합칠까?</li>
+      <li>Preprocessing
+        <ul>
+          <li><img src="https://www.dropbox.com/s/4si8hp8jyhw59u7/Screenshot%202019-10-27%2011.29.15.png?raw=1" /></li>
+        </ul>
+      </li>
+      <li>SparkML Pipelines
+        <ul>
+          <li>Estimator, Trnasformer, Pipeline</li>
+          <li><img src="https://www.dropbox.com/s/1mklfr4xpl7okle/Screenshot%202019-10-27%2011.30.11.png?raw=1" /></li>
+        </ul>
+      </li>
+      <li>Distributed Training
+        <ul>
+          <li><img src="https://www.dropbox.com/s/aaz7ryhgd4udr6a/Screenshot%202019-10-27%2011.31.09.png?raw=1" /></li>
+        </ul>
+      </li>
+      <li>Petastorm : 딥러닝 학습을 위한 데이터 접근
+        <ul>
+          <li>Parquet</li>
+          <li><img src="https://www.dropbox.com/s/qwevz08n6guz6u0/Screenshot%202019-10-27%2011.31.46.png?raw=1" /></li>
+        </ul>
+      </li>
+      <li>End-to-end Training Architecture
+        <ul>
+          <li><a href="http://eng.uber.com/petastorm">Petastorm Blog</a></li>
+          <li><img src="https://www.dropbox.com/s/0yj3we2us2pkfrb/Screenshot%202019-10-27%2011.33.02.png?raw=1" /></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>3) Prediction Service
+    <ul>
+      <li>자바와 딥러닝 프레임워크를 같이 실행시켜야 함</li>
+      <li><img src="https://www.dropbox.com/s/j4akgulln6vajtj/Screenshot%202019-10-27%2011.34.16.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>4) Authoring
+    <ul>
+      <li>데이터 사이언티스트들은 쥬피터 노트북을 좋아함</li>
+      <li>하나의 노트북에서 아이데이션, 학습, 평가, 딥러닝 모델 배포 등을 할 수 있을까?</li>
+      <li>Data Access
+        <ul>
+          <li><img src="https://www.dropbox.com/s/rvn5h7gj6jl9ifs/Screenshot%202019-10-27%2011.37.30.png?raw=1" /></li>
+        </ul>
+      </li>
+      <li>Data Preparation
+        <ul>
+          <li><img src="https://www.dropbox.com/s/mmp1krwr8g94j5h/Screenshot%202019-10-27%2011.39.06.png?raw=1" /></li>
+        </ul>
+      </li>
+      <li>Model Construction
+        <ul>
+          <li><img src="https://www.dropbox.com/s/7vryec8adgpjz8y/Screenshot%202019-10-27%2011.39.23.png?raw=1" /></li>
+        </ul>
+      </li>
+      <li>Train the Model
+        <ul>
+          <li><img src="https://www.dropbox.com/s/33iiyucyv06e3m2/Screenshot%202019-10-27%2011.39.39.png?raw=1" /></li>
+        </ul>
+      </li>
+      <li>Deploy the Model
+        <ul>
+          <li><img src="https://www.dropbox.com/s/grjfymmq0yx14f6/Screenshot%202019-10-27%2011.40.04.png?raw=1" /></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>5) Don’t know Deep Learning?
+    <ul>
+      <li>딥러닝을 몰라도 Ludwig 활용</li>
+      <li><a href="https://uber.github.io/ludwig/">Ludwig 홈페이지</a>, <a href="https://github.com/uber/ludwig">Ludwig Github</a></li>
+      <li><img src="https://www.dropbox.com/s/3y69bx9smagaj5o/Screenshot%202019-10-27%2011.40.24.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Recap(요약)
+    <ul>
+      <li>거대한 데이터셋을 가진 회사에서 딥러닝을 사용하면 powerful한 모델을 만들 수 있음</li>
+      <li>Uber의 딥러닝 시스템 아키텍쳐와 E2E DL 파이프라인을 정의하기 위해 노트북 친화적으로 만든 API를 떠올리기</li>
+      <li>Apache Spark, Horovod, Petastorm을 사용함</li>
+      <li>
+        <h2 id="ludwig에서-코드-없이-딥러닝-모델을-만듬">Ludwig에서 코드 없이 딥러닝 모델을 만듬</h2>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="the-growth-and-future-of-kubeflow-for-ml">The Growth and Future of Kubeflow for ML</h3>
+<ul>
+  <li>ML 구성은 매우 복잡함(이거 진짜 모든 MLOps 세미나에서 나오는듯…ㅋㅋㅋ)</li>
+  <li>MLOps Team이 당면한 문제
+    <ul>
+      <li><img src="https://www.dropbox.com/s/3jdmkhn65b1h3k9/Screenshot%202019-10-27%2011.46.29.png?raw=1" /></li>
+      <li>10배 넘게 생산성을 가지도록 하는 방법은?</li>
+    </ul>
+  </li>
+  <li>Kubeflow
+    <ul>
+      <li><img src="https://www.dropbox.com/s/6bcohn3vivnowwi/Screenshot%202019-10-27%2011.48.07.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Vibrant(활기찬) Ecosystem of Kubeflow
+    <ul>
+      <li>엄청 활발하게 발전되고 있는 에코시스템</li>
+      <li><img src="https://www.dropbox.com/s/tl0k49uafd42apj/Screenshot%202019-10-27%2011.49.29.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Deploy &amp; Manage
+    <ul>
+      <li>Composable, Scalable, Portable</li>
+      <li><img src="https://www.dropbox.com/s/9b8vdb8yen8ke3j/Screenshot%202019-10-27%2011.50.55.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>쿠버네티스가 MLOps에 좋은 이유
+    <ul>
+      <li><img src="https://www.dropbox.com/s/3bhobpdpr9wp49k/Screenshot%202019-10-27%2011.52.07.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Kubeflow 0.6
+    <ul>
+      <li>Metadata
+        <ul>
+          <li>인공물을 저장하고 스키마 정의 가능</li>
+        </ul>
+      </li>
+      <li>Deployment
+        <ul>
+          <li>Kustomize가 ksonnet을 대체함</li>
+        </ul>
+      </li>
+      <li>Multi user support</li>
+      <li>Pipelines
+        <ul>
+          <li>API와 UI 개선</li>
+        </ul>
+      </li>
+      <li><img src="https://www.dropbox.com/s/480fza1vdjmyjjy/Screenshot%202019-10-27%2011.52.51.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Anthos가 MLOps에 좋은 이유
+    <ul>
+      <li><a href="https://developers-kr.googleblog.com/2019/06/new-platform-for-managing-applications-in-todays-multi-cloud-world.html">Google Developer의 Anthos 소개 글</a></li>
+      <li>흠 Anthos는 규모에 따라 이득일지 아닐지가 나뉠듯..?</li>
+      <li><img src="https://www.dropbox.com/s/wegm6aeiowf6do0/Screenshot%202019-10-27%2011.55.41.png?raw=1" /></li>
+      <li><img src="https://www.dropbox.com/s/8gw1yyklg6hwhcq/Screenshot%202019-10-27%2012.05.37.png?raw=1" /></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="stateless-ml-pipelines-achieve-reproducibility-and-automation-while-simplifying-the-pipeline">Stateless ML Pipelines: Achieve reproducibility and automation while simplifying the pipeline</h3>
+<ul>
+  <li>나이키</li>
+  <li>데이터 사이언티스트와 팀은 모델 파이프라인부터 프러덕션까지 할 수 있어야 하고, 모델의 전체 lifecycle을 알아야 함</li>
+  <li>What Stateless Pipelines Changed
+    <ul>
+      <li>Airflow 사용 -&gt; 실패하면 알람</li>
+      <li>이제 모델 파이프라인을 몇분만에 만듬</li>
+      <li><img src="https://www.dropbox.com/s/ilpknrtapcmzbyz/Screenshot%202019-10-27%2012.09.48.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Lifecycle of an ML Project
+    <ul>
+      <li>CI/CD 어떻게 하는지 궁금</li>
+      <li><img src="https://www.dropbox.com/s/z0cls1c1z6vp6u6/Screenshot%202019-10-27%2012.13.14.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>파이프라인
+    <ul>
+      <li>기존 에어플로 설정을 더 간소화함</li>
+      <li><img src="https://www.dropbox.com/s/2ifepht6idg6ab8/Screenshot%202019-10-27%2012.18.07.png?raw=1" /></li>
+      <li><img src="https://www.dropbox.com/s/q1kj72aiqbbgca5/Screenshot%202019-10-27%2012.19.38.png?raw=1" /></li>
+      <li>아래는 뭐로 한건지 모르겠음. dsp?</li>
+      <li><img src="https://www.dropbox.com/s/kuajdntxeh3yhws/Screenshot%202019-10-27%2012.20.11.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>모델 실행 파이프라인 예시
+    <ul>
+      <li><img src="https://www.dropbox.com/s/bw8aeyd1pe4rwm7/Screenshot%202019-10-27%2012.22.27.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Providing Paths
+    <ul>
+      <li>Dev / Test / Prod가 저장되는 폴더가 다름</li>
+      <li><img src="https://www.dropbox.com/s/ixhpj53ic8e55uf/Screenshot%202019-10-27%2012.23.54.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Metrics
+    <ul>
+      <li><img src="https://www.dropbox.com/s/j652btdah2p6d50/Screenshot%202019-10-27%2012.24.16.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Standard CI/CD pipeline
+    <ul>
+      <li>젠킨스파일을 가짐</li>
+      <li><img src="https://www.dropbox.com/s/01xvl0l7vf8adsh/Screenshot%202019-10-27%2012.24.43.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Result
+    <ul>
+      <li><img src="https://www.dropbox.com/s/vvkydjq0dgpiivi/Screenshot%202019-10-27%2012.25.03.png?raw=1" /></li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="reference">Reference</h3>
+<ul>
+  <li><a href="https://www.youtube.com/playlist?list=PLH8M0UOY0uy6d_n3vEQe6J_gRBUrISF9m">MLOps NYC 2019 Youtube</a></li>
+</ul>
+
+
+      <br/>
+      <p><a href="https://bit.ly/kyleschool_blog">카일스쿨 유튜브</a> 채널을 만들었습니다. 데이터 사이언스, 성장, 리더십, BigQuery 등을 이야기할 예정이니, 관심 있으시면 구독 부탁드립니다 :)</p>
+      <p>이 글이 도움이 되셨다면 추천 클릭을 부탁드립니다 :)</p>
+      <br/>
+      <br/>
+      <div style="text-align:center">
+        <style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFFFFF !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 0px 9px !important;font-size: 17px !important;letter-spacing:-0.08px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/zzsza"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
+      </div>
+      <br/>
+      <br/>
+       <!--블로그-하단-반응형 -->
+      <ins class="adsbygoogle"
+          style="display:block; width:100%; height:300px;"
+          data-ad-client="ca-pub-5105555504153863"
+          data-ad-slot="1037589043"
+          data-ad-format="auto"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+
+    </div>
+  
+
+</article>
+
+  <hr class="dingbat" />
+
+  <div class="share">
+      <h2>Share this post</h2>
+      <div class="share-body">
+        <a href="http://twitter.com/share?text=MLOps NYC19 Conference 정리&amp;url=http://localhost:4000/mlops/2019/10/27/mlops-nyc19-review/"
+    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <span class="icon-twitter">
+            </span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/mlops/2019/10/27/mlops-nyc19-review/"
+    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <span class="icon-facebook">
+            </span>
+        </a>
+    </div>
+  </div>
+  <br/>
+
+
+
+
+
+
+  <aside class="author" role="complementary">
+    <div class="author">
+  <h2 class="page-title hr">
+    About
+  </h2>
+<div class="author-body">
+  
+    
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="seongyun byeon"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+  
+  <div class="author-body-description">
+    <p>Machine Learning Engineer</p>
+
+  </div>
+</div>
+</div>
+
+  </aside>
+
+
+
+
+
+<aside class="related" role="complementary">
+  <h2 class="hr">Related Posts</h2>
+
+  <ul class="related-posts">
+    
+      
+      
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/mlops/2020/02/17/what-if-tool/" data-flip="title">
+    <span>What If Tool 논문 리뷰 및 사용 방법?</span>
+  </a>
+  <small><time datetime="2020-02-17T00:00:00+09:00">
+    17 Feb 2020
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/mlops/2020/02/05/hopsworks/" data-flip="title">
+    <span>머신러닝 프레임워크 Hopsworks</span>
+  </a>
+  <small><time datetime="2020-02-05T00:00:00+09:00">
+    05 Feb 2020
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/mlops/2020/02/02/feature-store/" data-flip="title">
+    <span>Machine Learning의 Feature Store란?</span>
+  </a>
+  <small><time datetime="2020-02-02T00:00:00+09:00">
+    02 Feb 2020
+  </time></small>
+</li>
+
+        
+      
+        
+          
+          
+    
+  </ul>
+</aside>
+
+
+
+      
+        <aside class="comments" role="complementary">
+  <h2>Comments</h2>
+  <hr/>
+
+  <div id="disqus_thread"></div>
+
+  <script>
+    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="MLOps NYC19 Conference 정리",this.page.identifier="/mlops/2019/10/27/mlops-nyc19-review",this.page.url="http://localhost:4000/mlops/2019/10/27/mlops-nyc19-review/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//zzsza.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</aside>
+
+      
+
+      <footer>
+  <hr/>
+  
+    <p>© 2017. by Seongyun Byeon</p>
+
+  
+  <p>
+    <code>Powered by <a href="https://zzsza.github.io/">zzsza</a></code>
+  </p>
+</footer>
+
+    </main>
+    <div class="right-side">
+  <div class="ad-first">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- 블로그-상단-모바일 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:100%;"
+         data-ad-client="ca-pub-5105555504153863"
+         data-ad-slot="9090558636"
+         data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+<br/>
+<br/>
+  <div class="ad-second">
+    <!-- 블로그-스카이스크래퍼 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;max-width:320px;width:100%;height:600px"
+         data-ad-client="ca-pub-5105555504153863"
+         data-ad-slot="3646660262"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+</div>
+
+
+  </div>
+  <div id="_yDrawer">
+  <div id="_sidebar" class="sidebar">
+    <div class="sidebar-bg" style="background-color:#4f86aa;background-image:url(/assets/img/nap.jpg)"></div>
+    <header class="sidebar-sticky" role="banner">
+      <br/>
+      <div class="sidebar-about">
+        <h1><a id="_title" href="/">어쩐지 오늘은</a></h1>
+        <p>Machine Learning Engineer</p>
+
+      </div>
+
+      <br/>
+      <nav class="sidebar-nav heading" role="navigation">
+        <span class="sr-only">Navigation:</span>
+<ul>
+  
+
+  
+
+  
+  
+  
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-1"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/diary/">Diary</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/diary-diary/">diary</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-2"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/data/">Data</a>
+       <label class="folder" for="list-item-2">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-ml/">Machine-Learning</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-dl/">Deep-Learning</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-mobility/">Mobility</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-engineering/">Engineering</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-optimization/">Optimization</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-paper/">Paper</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-pytorch/">Pytorch</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-cs231/">CS231n</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-rl/">Reinforcement-Learning</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-time-series/">Time Series</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-analytics/">Analytics</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-kaggle/">Kaggle</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-vision/">Vision</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-interpretable-ml/">Interpretable ML</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-simulation/">Simulation</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-graph/">Graph</a>
+             </li>
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-3"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/mlops/">MLOps</a>
+       <label class="folder" for="list-item-3">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-basic/">Basic</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-airflow/">Airflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-mlflow/">MLflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-tfx/">Tensorflow Extended</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-serving/">Serving</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-feature/">Feature</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-version/">Model & Pipeline version</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-4"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/gcp/">Google Cloud Platform</a>
+       <label class="folder" for="list-item-4">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-basic/">Basic</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-bigquery/">BigQuery</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-aiplatform/">AI Platform</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-dataflow/">Dataflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-cloud-functions/">Cloud Functions</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-5"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/development/">Development</a>
+       <label class="folder" for="list-item-5">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-linux/">Linux</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-web/">Web</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-python/">Python</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-sql/">SQL</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-scala/">Scala</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-os/">OS</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-kubernetes/">Kubernetes</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-devops/">DevOps</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-kotlin/">Kotlin</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-julia/">Julia</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-tools/">Tools</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-6"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/etc/">ETC</a>
+       <label class="folder" for="list-item-6">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/etc-lecture/">Lecture</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/etc-book/">Book</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-7"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/about/">About</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+</ul>
+
+      </nav>
+    <!-- search box -->
+    <form action="/search">
+      <div class="tipue_search_box">
+        <input type="text" name="q" id="tipue_search_input" placeholder="&#xF002;  Search" pattern=".{2,}" title="최소 2글자 이상" required></div>
+      <div style="clear: both;"></div>
+    </form>
+    <br/>
+      <div class="sidebar-box">
+        
+          
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="seongyun byeon"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+        
+      </div>
+      <p>메모가 습관인 데이터쟁이입니다</p>
+
+      
+      
+        <div class="sidebar-social">
+          <span class="sr-only">Social:</span>
+<ul>
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://facebook.com/zzsza">
+    <span class="icon-facebook" title="Facebook"></span>
+    <span class="sr-only">Facebook</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.youtube.com/channel/UCYyAaezBGEVmXcnink6nY9Q">
+    <span class="icon-youtube" title="YouTube"></span>
+    <span class="sr-only">YouTube</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://instagram.com/data.scientist">
+    <span class="icon-instagram" title="Instagram"></span>
+    <span class="sr-only">Instagram</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://github.com/zzsza">
+    <span class="icon-github" title="GitHub"></span>
+    <span class="sr-only">GitHub</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.linkedin.com/in/seong-yun-byeon-8183a8113">
+    <span class="icon-linkedin2" title="LinkedIn"></span>
+    <span class="sr-only">LinkedIn</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="mailto:snugyun01@gmail.com">
+    <span class="icon-mail" title="Email"></span>
+    <span class="sr-only">Email</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://zzsza.github.io/feed.xml">
+    <span class="icon-rss2" title="RSS"></span>
+    <span class="sr-only">RSS</span>
+  </a>
+</li>
+
+  
+</ul>
+
+        </div>
+      
+    </header>
+  </div>
+</div>
+
+</div>
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+
+<script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-110573232-1', 'auto');
+  ga('send', 'pageview');
+  loadJSDeferred('https://www.google-analytics.com/analytics.js');
+</script>
+
+
+
+
+
+<!--[if gt IE 8]><!---->
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    
+    google: {
+      families: 'Lato'.split('|')
+    },
+    
+
+    custom: {
+      families: ['icomoon'],
+      urls: ['/assets/icomoon/style.css']
+    }
+  });
+</script>
+<!--<![endif]-->
+
+
+  <!--[if gt IE 9]><!---->
+  
+  <script>loadJSDeferred('/assets/js/hydejack.js?v=6.4.0');</script>
+
+  
+  <!--<![endif]-->
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,2153 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
+-->
+
+
+
+
+
+
+
+
+
+<head>
+  <!-- =============== -->
+<!-- META            -->
+<!-- =============== -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="naver-site-verification" content="22c5b4ef3bfda7fc6100671413989219de7a4ac8"/>
+<meta property="og:title" content="비전공자를 위한 SQL">
+<meta property="og:type" content="article">
+
+
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/img/logo.png">
+
+
+<meta property="og:image:width" content="640" />
+<meta property="og:image:height" content="360" />
+
+
+
+  <title>비전공자를 위한 SQL &middot; 어쩐지 오늘은</title>
+
+
+
+<meta name="description" content="데이터 사이언스를 공부하기 전, 마케팅/광고를 공부했습니다. 마케터가 배우면 제일 좋을 도구가 GA일까? 엑셀일까? 이것저것 고민하다가 그 당시 내린 결정은 SQL이었습니다. 일단 데이터를 스스로 가지고 올 수 있어야 분석을 할 수 있습니다(개발자들에게 매번 부탁하면 업무의 디펜던시가 개발자에게 걸리니..) 개발 경험이 없는 분들이 쉽게 SQL을 다룰 수 있도록 글을 작성할 예정입니다 
+
+
+">
+<meta property="og:description" content="데이터 사이언스를 공부하기 전, 마케팅/광고를 공부했습니다. 마케터가 배우면 제일 좋을 도구가 GA일까? 엑셀일까? 이것저것 고민하다가 그 당시 내린 결정은 SQL이었습니다. 일단 데이터를 스스로 가지고 올 수 있어야 분석을 할 수 있습니다(개발자들에게 매번 부탁하면 업무의 디펜던시가 개발자에게 걸리니..) 개발 경험이 없는 분들이 쉽게 SQL을 다룰 수 있도록 글을 작성할 예정입니다 
+
+
+">
+
+
+<!-- tipuesearch -->
+<link rel="stylesheet" href="/assets/tipuesearch/css/tipuesearch.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+<!-- =============== -->
+<!-- LINKS           -->
+<!-- =============== -->
+<link rel="canonical" href="http://localhost:4000/development/2018/03/18/sql-for-everyone/">
+<meta property="og:url" content="http://localhost:4000/development/2018/03/18/sql-for-everyone/">
+
+<link rel="alternate" type="application/atom+xml" title="어쩐지 오늘은 Feed" href="http://localhost:4000/feed.xml">
+
+
+  <link rel="prev" href="http://localhost:4000/data/2018/03/17/pytorch-rnn/">
+
+
+
+  <link rel="next" href="http://localhost:4000/data/2018/03/24/pytorch-sequence-model/">
+
+
+<link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+<!-- Place favicon.ico in the root directory -->
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+<script>
+  !function(n,e){function t(n,e){n.onload=function(){this.onerror=this.onload=null,e(null,n)},n.onerror=function(){this.onerror=this.onload=null,e(new Error("Failed to load "+this.src),n)}}function o(n,e){n.onreadystatechange=function(){"complete"!=this.readyState&&"loaded"!=this.readyState||(this.onreadystatechange=null,e(null,n))}}n._loaded=!1,n.loadJSDeferred=function(a,d){function r(){n._loaded=!0;var r=e.createElement("script");r.src=a,d&&(("onload"in r?t:o)(r,d),r.onload||t(r,d));var l=e.getElementsByTagName("script")[0];l.parentNode.insertBefore(r,l)}n._loaded?r():n.addEventListener?n.addEventListener("load",r,!1):n.attachEvent?n.attachEvent("onload",r):n.onload=r}}(window,document);
+
+  !function(e){"use strict";var n=function(n,t,o){function i(e){if(a.body)return e();setTimeout(function(){i(e)})}function r(){l.addEventListener&&l.removeEventListener("load",r),l.media=o||"all"}var d,a=e.document,l=a.createElement("link");if(t)d=t;else{var f=(a.body||a.getElementsByTagName("head")[0]).childNodes;d=f[f.length-1]}var s=a.styleSheets;l.rel="stylesheet",l.href=n,l.media="only x",i(function(){d.parentNode.insertBefore(l,t?d:d.nextSibling)});var u=function(e){for(var n=l.href,t=s.length;t--;)if(s[t].href===n)return e();setTimeout(function(){u(e)})};return l.addEventListener&&l.addEventListener("load",r),l.onloadcssdefined=u,u(r),l};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
+
+  !function(t){if(t.loadCSS){var e=loadCSS.relpreload={};if(e.support=function(){try{return t.document.createElement("link").relList.supports("preload")}catch(t){return!1}},e.poly=function(){for(var e=t.document.getElementsByTagName("link"),r=0;r<e.length;r++){var n=e[r];"preload"===n.rel&&"style"===n.getAttribute("as")&&(t.loadCSS(n.href,n,n.getAttribute("media")),n.rel=null)}},!e.support()){e.poly();var r=t.setInterval(e.poly,300);t.addEventListener&&t.addEventListener("load",function(){e.poly(),t.clearInterval(r)}),t.attachEvent&&t.attachEvent("onload",function(){t.clearInterval(r)})}}}(this);
+
+  window.disablePushState = false;
+  window.disableDrawer = false;
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5105555504153863",
+    enable_page_level_ads: true
+  });
+</script>
+
+<!--[if lt IE 9]>
+<script src="https://unpkg.com/html5shiv/dist/html5shiv.min.js"></script>
+<![endif]-->
+
+<!-- =============== -->
+<!-- STYLES          -->
+<!-- =============== -->
+<!--[if gt IE 8]><!---->
+<style>
+  
+  article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}*{box-sizing:border-box}html,body{margin:0;padding:0}html{font-size:16px;line-height:1.75}body{color:#333;background-color:#fff;overflow-y:scroll}a{text-decoration:none}.lead{margin-left:-1rem;margin-right:-1rem}img,.img{display:block;max-width:100%;margin-bottom:1rem;border:none}img.lead,.img.lead{max-width:calc(100% + 2rem);width:calc(100% + 2rem)}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-weight:bold;text-rendering:optimizeLegibility}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{margin:1.6rem 0 1rem;line-height:1.6}h1,.h1{font-size:2rem;line-height:1.25}h2,.h2{font-size:1.5rem}h3,.h3{font-size:1.17em}p{margin-top:0;margin-bottom:1rem}p.lead{font-size:1.25rem;font-weight:300;padding:0 1rem}ul,ol,dl{margin-top:0;margin-bottom:1rem}ul,ol{padding-left:1.25rem}hr{position:relative;margin:1.5rem 0;border:0;border-top:1px solid #eee}.hr{padding-bottom:.5rem;border-bottom:1px solid #eee;margin-bottom:1.5rem}h4,h5,h6,.h4,.h5,.h6{margin-bottom:0.5rem;font-size:1rem}table{margin-bottom:1rem;width:100%;width:calc(100% + 2rem);margin-left:-1rem;border:1px solid #e5e5e5;border-collapse:collapse;border-spacing:0}td,th{padding:.25rem .5rem;border:1px solid #e5e5e5}td:first-child,th:first-child{padding-left:1rem}td:last-child,th:last-child{padding-right:1rem}thead+tbody,tbody+tbody,tfoot{border-top:3px double #e5e5e5}tbody tr:nth-child(odd) td,tbody tr:nth-child(odd) th{background-color:#f9f9f9}footer{margin-bottom:2rem}.page,.post{margin-bottom:3em}.page li+li,.post li+li{margin-top:.25rem}.page>header,.post>header{margin-bottom:2rem}.page-title,.post-title{margin-top:0}.post-date{display:block;margin-top:-0.5rem;margin-bottom:1rem;color:#9a9a9a}.related-posts{padding-left:0;list-style:none}.related-posts>li,.related-posts>li+li{margin-top:1rem}.related-posts>li>small,.related-posts>li+li>small{font-size:75%;color:#9a9a9a}.message{margin-bottom:1rem;padding:1rem;color:#787878;background-color:#f9f9f9;margin-left:-1rem;margin-right:-1rem}body,main{position:relative;overflow-x:hidden}@media screen{body::before{content:'';background:#e5e5e5;position:absolute;left:0;top:0;bottom:0}}@media screen and (min-width: 40em){html{font-size:17px}}@media screen and (min-width: 54em){html{font-size:16px}}@media screen and (min-width: 88em){html{font-size:17px}}@media screen and (min-width: 125em){html{font-size:18px}}.sr-only{display:none}.clearfix,.sidebar-social::after,.clearafter::after{content:"";display:table;clear:both}a,.a{position:relative;padding-bottom:.15rem;border-style:hidden}.img{overflow:hidden;background-color:#f9f9f9}.img>img{margin:0;width:100%;height:100%}.sixteen-nine{position:relative}.sixteen-nine::before{display:block;content:"";width:100%;padding-top:56.25%}.sixteen-nine>*{position:absolute;top:0;left:0;right:0;bottom:0}h1+hr,h2+hr,h3+hr,h4+hr,h5+hr,h6+hr{margin-top:0}.fade-in{animation-duration:500ms;animation-name:fade-in;animation-fill-mode:forwards}@keyframes fade-in{from{transform:translateY(-2rem);opacity:0}50%{transform:translateY(-2rem);opacity:0}to{transform:translateY(0);opacity:1}}.mb6{margin-bottom:10rem}.sidebar{color:rgba(255,255,255,0.75);text-align:left}.sidebar::before{content:"";position:absolute;z-index:2;top:0;left:0;bottom:0;right:0;background:linear-gradient(to bottom, rgba(32,32,32,0) 0%, rgba(32,32,32,0.5) 100%)}.sidebar a{color:#fff;border-bottom-color:rgba(255,255,255,0.2)}.right-side{width:100%;margin-left:auto;margin-right:auto}.right-side .ad-first{text-align:center}.right-side .ad-second{text-align:center}@media screen{.right-side{max-width:38rem;min-height:100vh}}@media screen and (min-width: 54em){.right-side{margin-left:20rem;margin-right:1rem;padding:4rem 1rem 12rem}}@media screen and (min-width: 72em){.right-side{margin-left:22rem;max-width:42rem}}@media screen and (min-width: 88em){.right-side{width:162px;margin-left:0rem;margin-right:0rem;padding:0rem;margin-top:10rem;display:block;float:left}}@media screen and (min-width: 96em){.right-side{width:300px;margin-right:0rem}}#_yDrawer{position:relative}@media screen{#_yDrawer{min-height:640px;min-height:100vh}}@media screen and (min-width: 54em){#_yDrawer{width:18rem;margin-left:0}}.sidebar-bg{position:absolute;height:100%;overflow:hidden;top:0;right:0;bottom:0;left:0;background:#202020 center / cover}.sidebar-box{display:flex;justify-content:center}.sidebar-sticky{position:relative;z-index:3}@media screen{.sidebar-sticky{-ms-overflow-style:none;overflow:-moz-scrollbars-none;height:100%;overflow:auto;position:absolute;padding:3rem 0rem;right:2.5rem;left:2.5rem}}.sidebar-sticky::-webkit-scrollbar{display:none}.sidebar-about>h1{color:#fff;font-size:2rem}.sidebar-nav>ul{list-style:none;padding-left:0;margin-bottom:.5rem}a.sidebar-nav-item{width:100%;font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}a.sidebar-nav-subitem{font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}@media screen{.y-drawer-scrim{z-index:2}.y-drawer-content{width:18rem;left:-18rem;z-index:3}}.sidebar-social{margin-bottom:.5rem}.sidebar-social>ul{list-style:none;padding-left:0;margin:0 -.25rem}.sidebar-social>ul>li{float:left}.sidebar-social>ul>li>a{display:inline-block;text-align:center;font-size:1.6rem;line-height:3rem;width:3.1249rem;height:4rem;padding:.5rem 0}.sidebar-social>ul li+li{margin-top:0}.fixed-top{position:fixed;top:0;left:0;width:100%;z-index:1}.navbar>.content{padding-top:0;padding-bottom:0;min-height:0;height:0}.menu{display:inline-block;padding:1.75rem 1.5rem;border-bottom:none;margin-left:-1.5rem;color:#9a9a9a !important}.menu::after{content:"\2630"}@media screen and (min-width: 54em){.menu{padding:1.25rem 1.5rem;position:absolute;left:-9999px}.menu:focus{position:static}}.animation-main{pointer-events:none}.loading{display:none}@media print{.menu{display:none}}.animation-main{opacity:0;will-change:opacity}.loading{position:absolute;top:0;right:0;padding:5.25rem 4.5rem;transform-origin:top right;transform:scale(0.33)}.content{position:relative;margin-left:auto;margin-right:auto;padding:5rem 1rem 12rem}@media screen{.content{min-height:100vh}}@media screen and (min-width: 54em){.content{padding:4rem 1rem 12rem;margin-left:19rem;margin-right:3rem}}@media screen and (min-width: 72em){.content{max-width:42rem;margin-left:21rem}}@media screen and (min-width: 88em){.content{float:left;width:100%;margin-left:22rem;margin-right:5rem}}@media screen and (min-width: 96em){.content{max-width:44rem}}@media screen and (min-width: 102em){.content{margin-left:25rem;margin-right:8rem}}.me{width:6.5rem;height:6.5rem;align-self:center;margin-right:20px;border-radius:100%;position:relative}@media screen and (min-width: 40em){.me{width:7rem;height:7rem}}@media screen and (min-width: 54em){.me{width:6.5rem;height:6.5rem}}@media screen and (min-width: 72em){.me{width:7rem;height:7rem}}main>footer{width:100%;position:absolute;bottom:0;left:0;right:0;padding:0 1rem;color:#9a9a9a;font-size:smaller;text-align:center}main>footer>p{margin-bottom:0}html{font-family:'Sans-serif'}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-family:'Sans-serif'}
+
+</style>
+
+
+<link rel="preload" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0" as="style" onload="this.rel='stylesheet'">
+
+<style id="_pageStyle">
+
+.content a{color:#4f86aa;border-color:rgba(79,134,170,0.2)}.content a:hover{border-color:#4f86aa}:focus{outline-color:#4f86aa}::selection{color:#fff;background:#4f86aa}::-moz-selection{color:#fff;background:#4f86aa}
+
+</style>
+
+
+<noscript>
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0">
+  
+  
+  
+
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <style>
+      html { font-family: 'Lato', 'Sans-serif' }
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading { font-family: 'Lato', 'Sans-serif' }
+    </style>
+  
+
+  
+  <link rel="stylesheet" href="http://localhost:4000/assets/icomoon/style.css">
+</noscript>
+<!--<![endif]-->
+
+</head>
+
+<body>
+  <!-- =============== -->
+<!-- MENU            -->
+<!-- =============== -->
+<div class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <a id="_menu" class="menu no-hover" href="#_title">
+      <span class="sr-only">Menu</span>
+    </a>
+  </div>
+</div>
+
+<!-- =============== -->
+<!-- CONTENT         -->
+<!-- =============== -->
+<div id="_yPushState">
+  <div class="fade-in">
+    <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/nap.jpg">
+      
+
+<article id="post-development/2018/03/18/sql-for-everyone" class="post" role="article">
+  <header>
+    <h1 class="post-title">
+      
+        비전공자를 위한 SQL
+      
+    </h1>
+
+    <p class="post-date heading">
+      <time datetime="2018-03-18T00:00:00+09:00">18 Mar 2018</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/development/" data-flip="title">Development</a>
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/development-sql/" data-flip="title">SQL</a>
+
+    </p>
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+    <div class="markdown-body">
+
+
+<style>
+.myAd1190 { display:block; width:98%; height: 280px; }
+@media(min-width: 600px) { .myAd1190 { display: none; } }
+</style>
+<ins class="adsbygoogle myAd1190"
+    data-ad-client="ca-pub-5105555504153863"
+    data-ad-slot="6481487416"
+    ></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
+<br/>
+      <p>데이터 사이언스를 공부하기 전, 마케팅/광고를 공부했습니다. 마케터가 배우면 제일 좋을 도구가 GA일까? 엑셀일까? 이것저것 고민하다가 그 당시 내린 결정은 SQL이었습니다. 일단 데이터를 스스로 가지고 올 수 있어야 분석을 할 수 있습니다(개발자들에게 매번 부탁하면 업무의 디펜던시가 개발자에게 걸리니..) 개발 경험이 없는 분들이 쉽게 SQL을 다룰 수 있도록 글을 작성할 예정입니다 
+<br /><br /></p>
+
+<ul>
+  <li>최근 BigQuery 관련 슬라이드를 만들었습니다. 비전공자분들도 이해할 수 있도록 꽤 많은 내용을 다루었습니다. <a href="https://www.slideshare.net/zzsza/bigquery-147073606">BigQuery의 모든 것(기획자, 마케터, 신입 데이터 분석가를 위한) 입문편</a> 참고하셔도 좋을 것 같습니다 :)</li>
+</ul>
+
+<h1 id="이-글의-특징">이 글의 특징</h1>
+<ul>
+  <li>온라인으로 쿼리를 날려볼 수 있는 <a href="http://sqlfiddle.com/">sqlfiddle</a>에서 간단한 실습</li>
+  <li>실제 데이터 분석시 날려볼 쿼리 위주로 준비하고 있습니다</li>
+  <li>계속 업데이트 할 예정입니다(최종 수정일 : 19년 6월 8일)</li>
+</ul>
+
+<h2 id="todo">ToDo</h2>
+<ul>
+  <li>Join</li>
+  <li>LIKE</li>
+  <li>Pivot</li>
+  <li>Window Function</li>
+</ul>
+
+<h2 id="sql">SQL</h2>
+<p>SQL은 <strong>Structured Query Language</strong>의 약자로 관계형 데이터베이스 관리 시스템(RDBMS)의 데이터를 관리하기 위해 설계된 특수 목적의 프로그래밍 언어입니다. 그냥 데이터를 뽑아내기 위한 도구라고 생각하면 조금 이해하기 쉬울 것 같습니다. 대부분의 회사에서 데이터를 RDB에 저장하고 있습니다. 많이 사용되는 것은 MySQL, PostgreSQL, MariaDB, Oracle 등이 있습니다 <br /><br /></p>
+
+<p>기본적인 구조는 다음과 같습니다. 지금은 이해가 안되실텐데 그냥 그렇구나~ 하고 쭉 글을 읽어주세요! <br /></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT [컬럼 이름]
+FROM [테이블 이름]
+WHERE [조건]
+GROUP BY [그룹화할 컬럼]
+HAVING [그룹화한 뒤 조건]
+LIMIT [제한할 개수]
+</code></pre></div></div>
+
+<p><br /><br /></p>
+<h2 id="select--from">SELECT / FROM</h2>
+<p>우선 가장 중심이 되는것은 <code class="highlighter-rouge">SELECT</code>와 <code class="highlighter-rouge">FROM</code>입니다!<br />
+예를 들면 <strong>“서랍에 있는 연필을 찾고 싶은”</strong> 경우 SQL문으로 변경하면 다음과 같습니다
+<br /><br /></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT 연필
+FROM 서랍
+</code></pre></div></div>
+
+<p>SELECT 뒤에는 <code class="highlighter-rouge">찾고싶은 목적 대상들(Column)을 나열</code>하면 되고, FROM 뒤에는 <code class="highlighter-rouge">찾을 대상이 있는 공간(Table)</code>을 작성하면 됩니다<br /><br /></p>
+
+<h2 id="where">WHERE</h2>
+<p>만약 위의 예에서 조건을 추가해서 <strong>“서랍에 있는 연필 중 길이가 10cm 이상인 연필을 찾고 싶은”</strong> 경우를 SQL문으로 변경하면 다음과 같습니다</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT 연필
+FROM 서랍
+WHERE 길이 &gt;= 10cm
+</code></pre></div></div>
+
+<p><br /><br /></p>
+
+<p><code class="highlighter-rouge">조건을 주고싶은 경우엔 WHERE 뒤에</code> 작성해주시면 됩니다. WHERE 절은 엑셀 함수에서 IF와 비슷한 느낌이라고 생각하시면 좋을 것 같습니다</p>
+
+<p>조건을 늘려 <strong>“서랍에 있는 연필 중 길이가 10cm 이상이고 색상이 빨간색인 연필을 찾고 싶은”</strong> 경우</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT 연필
+FROM 서랍
+WHERE 길이 &gt;= 10 AND 색상 = "빨간색"
+</code></pre></div></div>
+<p><br /><br /></p>
+
+<h3 id="심화-지식">심화 지식</h3>
+<p>WHERE 뒤에 조건의 순서를 어떻게 하냐에 따라서 결과가 나오는 속도가 다른 경우가 있습니다. 이것은 <code class="highlighter-rouge">인덱스</code>와 관련이 있습니다.<br />
+회사의 개발자(Database를 담당하시는)에게 저희 DB 인덱스가 어떻게 되어있는지 알려주세요!라고 물어보시면 알려주실 겁니다! 인덱스를 어떻게 타야하는지는(=WHERE에 어떻게 작성해야 빠른지) 다른 글을 통해 알려드리겠습니다</p>
+
+<p><br /><br />
+쿼리를 조금 짜보신분들에겐 정말 쉬운 SELECT문이지만, 처음 해보시는 분들을 위해 실습을 해보겠습니다</p>
+
+<h2 id="실습-환경">실습 환경</h2>
+<p>실습 환경은 별도 구성 없이 온라인에서 진행합니다 <br />
+<a href="http://sqlfiddle.com/">http://sqlfiddle.com/</a>으로 들어가신 후, 왼쪽 창에 아래 내용을 복사 붙여넣기하고 Build Schema 버튼을 눌러주세요!( MySQL 5.6 사용 )<br /></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CREATE TABLE IF NOT EXISTS `user_log` (
+  `index` INTEGER NOT NULL AUTO_INCREMENT,
+  `user_id` VARCHAR(6) NOT NULL,
+  `event` VARCHAR(200) NOT NULL,
+  `event_date` date NOT NULL,
+  PRIMARY KEY (`index`, `user_id`)
+) DEFAULT CHARSET=utf8;
+INSERT INTO `user_log` (`user_id`, `event`,`event_date`) VALUES
+  ('1', 'login_facebook', '2018-03-12'),
+  ('1', 'write_posting', '2018-03-12'),
+  ('1', 'write_comment', '2018-03-12'),
+  ('1', 'view_posting', '2018-03-12'),
+  ('1', 'view_posting', '2018-03-12'),
+  ('2', 'login_facebook', '2018-03-12'),
+  ('2', 'view_posting', '2018-03-12'),
+  ('2', 'view_posting', '2018-03-12'),
+  ('2', 'write_comment', '2018-03-12'),
+  ('2', 'logout', '2018-03-12'),
+  ('2', 'login_facebook', '2018-03-13'),
+  ('3', 'login_google', '2018-03-13'),
+  ('3', 'write_posting', '2018-03-13'),
+  ('3', 'view_posting', '2018-03-13'),
+  ('3', 'view_posting', '2018-03-13'),
+  ('3', 'purchase_item', '2018-03-15'),
+  ('3', 'write_comment', '2018-03-14'),
+  ('1', 'view_posting', '2018-03-14'),
+  ('4', 'view_posting', '2018-03-14'),
+  ('5', 'purchase_item', '2018-03-13');
+
+</code></pre></div></div>
+<p><br />
+제가 임의로 만든 테이블로 Table 이름은 <code class="highlighter-rouge">user_log</code>입니다.<br />
+블로그 서비스를 하는 업체의 유저 로그 데이터라고 생각해주세요! <br />
+이 테이블엔 user_id, event, event_date가 기록되어 있습니다. 이제 우리는 화면의 우측에 쿼리를 작성한 후, RUN SQL 버튼을 눌러봅시다!!!!</p>
+
+<h2 id="1-1번-유저의-모든-이벤트-로그를-확인해보세요">1. “1”번 유저의 모든 이벤트 로그를 확인해보세요</h2>
+<ul>
+  <li>날짜는 고려하지 않으셔도 됩니다</li>
+  <li>Column : ?</li>
+  <li>Table : ?</li>
+  <li>WHERE : ?</li>
+</ul>
+
+<p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
+
+<h3 id="정답">정답</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT user_id, event, event_date
+FROM user_log
+WHERE user_id = '1';
+</code></pre></div></div>
+
+<h3 id="결과">결과</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>user_id</th>
+      <th>event</th>
+      <th>event_date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>login_facebook</td>
+      <td>2018-03-12</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>write_posting</td>
+      <td>2018-03-12</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>write_comment</td>
+      <td>2018-03-12</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>view_posting</td>
+      <td>2018-03-12</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>view_posting</td>
+      <td>2018-03-12</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>view_posting</td>
+      <td>2018-03-14</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br />
+3줄로 원하는 데이터를 뽑아냈습니다! 데이터를 보면 1번 유저는 3월 12일에 페이스북으로 로그인했습니다. 그리고 포스팅을 1번 작성했고 포스팅을 2번 봤습니다. 3월 14일에 포스팅을 1번 봤습니다.</p>
+
+<p><br />
+쿼리를 통해 이런 정보를 알 수 있었는데, 여기서 아쉬운 점은 <strong>같은 이벤트가 중복해서 2줄로 나와있는 점</strong>입니다. 위 결과에선 1번 유저가 view_posting을 3월 12일에 2번 했다는 것을 저희가 직접 Count를 해야합니다.</p>
+
+<p><br />
+이것을 쿼리로 간단하게 해보겠습니다!</p>
+
+<h2 id="group-by">GROUP BY</h2>
+<p>여기서 나오는 개념은 <code class="highlighter-rouge">GROUP BY</code> 입니다! GROUP BY [컬럼 이름] 이런 방식으로 사용하는데, 직관적으로 설명하자면 <strong>컬럼들을 그룹화한다(aggregate)</strong>라고 생각해주세요
+<br /></p>
+
+<p>GROUP BY에 대한 이해를 돕기 위해 그림을 그려봤는데, 아래와 같은 과정을 통해 결과가 나타납니다 <br /></p>
+
+<p><img src="https://github.com/zzsza/zzsza.github.io/blob/master/assets/img/sql2.png?raw=true" /></p>
+
+<p>우선 GROUP BY하기 위해 같은 값들을 모아두고, 그 후에 연산(COUNT 혹은 SUM 같은 집계 함수)을 수행합니다 <br /></p>
+
+<p>코드를 통해 보여드리겠습니다</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT user_id, event, event_date, COUNT(DISTINCT user_id) AS 'unique', COUNT(user_id) AS 'total'
+FROM user_log
+WHERE user_id = '1'
+GROUP BY user_id, event, event_date;
+</code></pre></div></div>
+<p><br /></p>
+
+<p>처음 보는 것들을 설명드리겠습니다</p>
+
+<ul>
+  <li>COUNT
+    <ul>
+      <li>개수를 Count하는 친구입니다</li>
+      <li>COUNT(개수를 셀 컬럼) 이런 방식으로 사용합니다</li>
+      <li>COUNT(user_id)를 하면 user_id의 개수를 세주는 것입니다</li>
+    </ul>
+  </li>
+  <li>DISTINCT
+    <ul>
+      <li>COUNT(DISTINCT user_id)를 하면 중복을 제외한 <strong>고유한</strong> user_id의 개수를 세주는 것입니다</li>
+    </ul>
+  </li>
+  <li>AS ‘unique’
+    <ul>
+      <li>값을 센 후 이름을 unique로 칭하겠다라는 뜻입니다</li>
+    </ul>
+  </li>
+</ul>
+
+<p>위 쿼리의 결과는 아래와 같습니다</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>user_id</th>
+      <th>event</th>
+      <th>event_date</th>
+      <th>unique</th>
+      <th>total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>login_facebook</td>
+      <td>2018-03-12</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>view_posting</td>
+      <td>2018-03-12</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>view_posting</td>
+      <td>2018-03-14</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>write_comment</td>
+      <td>2018-03-12</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>write_posting</td>
+      <td>2018-03-12</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /><br /></p>
+
+<p>여기서 또 조금 아쉬운 점은 <strong>event_date</strong> 기준으로 정렬되어 있지 않은 점!!! 이건 <code class="highlighter-rouge">ORDER BY</code> 로 해결할 수 있습니다
+<br /><br /></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT user_id, event, event_date, COUNT(DISTINCT user_id) AS 'unique', COUNT(user_id) AS 'total'
+FROM user_log
+WHERE user_id = '1'
+GROUP BY user_id, event, event_date
+ORDER BY event_date;
+</code></pre></div></div>
+<p><br /></p>
+
+<h2 id="order-by">ORDER BY</h2>
+<ul>
+  <li>ORDER BY [컬럼 이름] 으로 사용합니다. 기본 옵션은 오름차순이며 <code class="highlighter-rouge">DESC</code>을 붙여주면 내림차순으로 정렬됩니다. ORDER BY event_date DESC 이런 식으로 하면 최신 날짜부터 정렬됩니다</li>
+</ul>
+
+<h3 id="결과-1">결과</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>user_id</th>
+      <th>event</th>
+      <th>event_date</th>
+      <th>unique</th>
+      <th>total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>write_posting</td>
+      <td>2018-03-12</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>view_posting</td>
+      <td>2018-03-12</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>write_comment</td>
+      <td>2018-03-12</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>login_facebook</td>
+      <td>2018-03-12</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>view_posting</td>
+      <td>2018-03-14</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>위 결과를 해석하면 1번 유저는 write_posting을 3월 12일에 1회 했고, view_posting을 2회 했습니다! WHERE 조건에 user_id를 1로 고정했기 때문에 unique값은 모두 1입니다. 만약 id를 제외하고 event, event_date만 뽑으면 어떻게 될까요?</p>
+
+<h3 id="코드">코드</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT event, event_date, COUNT(DISTINCT user_id) AS 'unique', COUNT(user_id) AS 'total'
+FROM user_log
+GROUP BY event, event_date
+ORDER BY event_date;
+</code></pre></div></div>
+<p><br /></p>
+
+<h3 id="결과-2">결과</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>event</th>
+      <th>event_date</th>
+      <th>unique</th>
+      <th>total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>login_facebook</td>
+      <td>2018-03-12</td>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>write_posting</td>
+      <td>2018-03-12</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>write_comment</td>
+      <td>2018-03-12</td>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>view_posting</td>
+      <td>2018-03-12</td>
+      <td>2</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>logout</td>
+      <td>2018-03-12</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>purchase_item</td>
+      <td>2018-03-13</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>view_posting</td>
+      <td>2018-03-13</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>login_google</td>
+      <td>2018-03-13</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>login_facebook</td>
+      <td>2018-03-13</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>write_posting</td>
+      <td>2018-03-13</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>view_posting</td>
+      <td>2018-03-14</td>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>write_comment</td>
+      <td>2018-03-14</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>purchase_item</td>
+      <td>2018-03-15</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br />
+이제 특정 이벤트가 날짜별로 몇명이 했고, 몇번 했는지를 알 수 있습니다! 조금 더 쉽게 보고싶다면 데이터를 엑셀로 가져가 그래프로 그리면 될 것 같습니다!</p>
+
+<p><br />
+다시 돌아와서 또 다른 쿼리를 짜볼게요. 아마 데이터를 자주 보는 회사라면 DAU, WAU, MAU라는 말을 들을 수 있을거에요! DAU를 뽑아내는 쿼리를 만들어 봅시다
+<br /></p>
+
+<h2 id="2-dau-뽑기">2. DAU 뽑기</h2>
+<ul>
+  <li>DAU의 정의 : Daily Active User로 저희 서비스에서 어떤 이벤트라도 했던 사람을 Active로 정의하겠습니다</li>
+  <li>이 경우 어떻게 쿼리를 날려야 할까요? 직접 쿼리를 짜보세요!</li>
+</ul>
+
+<p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
+
+<h3 id="정답-1">정답</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT event_date, COUNT(DISTINCT user_id) AS 'DAU'
+FROM user_log
+GROUP BY event_date
+ORDER BY event_date;
+</code></pre></div></div>
+
+<h3 id="결과-3">결과</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>event_date</th>
+      <th>DAU</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2018-03-12</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>2018-03-13</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>2018-03-14</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>2018-03-15</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="2-1-dau가-2-이상인-날짜-뽑기">2-1. DAU가 2 이상인 날짜 뽑기</h2>
+<ul>
+  <li>GROUP BY를 통해 나온 값을 조건으로 걸고싶은 경우는 어떻게 해야할까요?</li>
+  <li>이럴 경우엔 <code class="highlighter-rouge">HAVING</code>이란 친구가 나옵니다</li>
+</ul>
+
+<h2 id="having">HAVING</h2>
+<ul>
+  <li>GROUP BY의 바로 아래에 작성해주시면 됩니다</li>
+  <li>HAVING 조건
+<br /><br />
+그룹화를 하기 전 컬럼에 대한 조건이라면 WHERE, 그룹화를 한 후의 컬럼에 대한 조건은 HAVING을 사용하는 것입니다</li>
+</ul>
+
+<h3 id="처음-sql-접하시는-분들이-자주-하시는-질문">처음 SQL 접하시는 분들이 자주 하시는 질문</h3>
+<ul>
+  <li><code class="highlighter-rouge">WHERE</code>과 <code class="highlighter-rouge">HAVING</code>의 차이가 무엇인가요?
+    <ul>
+      <li>WHERE은 <strong>현재 Table에서 조건을 뽑아</strong>내는 것이고 HAVING은 <strong>그룹화한 후 결과에서 조건을 뽑는 것</strong>입니다. 동시에 사용하는 경우도 있으며, <code class="highlighter-rouge">HAVING</code>은 주로 <code class="highlighter-rouge">GROUP BY</code>와 함께 쓰입니다</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="정답-2">정답</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT event_date, COUNT(DISTINCT user_id) AS 'DAU'
+FROM user_log
+GROUP BY event_date
+HAVING DAU &gt;= 2
+ORDER BY event_date;
+</code></pre></div></div>
+<p><br /><br /></p>
+
+<h3 id="결과-4">결과</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>event_date</th>
+      <th>DAU</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2018-03-12</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>2018-03-13</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>2018-03-14</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="짧은-정리">짧은 정리</h1>
+<p>맨 처음에 보여드렸던 기본적인 SQL 구조를 다시 보여드릴게요. 생각보다 많은 것이 보일거에요!</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT [컬럼 이름]
+FROM [테이블 이름]
+WHERE [조건]
+GROUP BY [그룹화할 컬럼]
+HAVING [그룹화한 뒤 조건]
+LIMIT [제한할 개수]
+</code></pre></div></div>
+
+<p>여기서 설명하지 않은 <code class="highlighter-rouge">LIMIT</code>은 보여줄 결과를 제한해주는 것입니다. 개수 제한이 필요할 경우 사용하면 됩니다 :)
+<br /></p>
+
+<p>SQL은 집합적 관점에서 접근하면 조금 더 쉬운데, 여태까지 배운 내용을 집합으로 표현해보겠습니다</p>
+
+<p><img src="https://github.com/zzsza/zzsza.github.io/blob/master/assets/img/sql1.png?raw=true" /></p>
+
+<p>Table에서 WHERE 조건에 해당하는 값들을 찾은 후, SELECT!</p>
+
+<p><br /></p>
+
+<h2 id="join">Join</h2>
+<p>Join은 2개 이상의 Table을 조합해 새로운 가상 Table처럼 만들어 결과로 보여줍니다. 여러 Table을 연결한다고 생각하면 좋을 것 같습니다</p>
+
+<h3 id="join은-왜-필요할까">Join은 왜 필요할까?</h3>
+<p>데이터베이스에 대한 지식이 없을 땐, <strong>모든 Data를 하나의 Table에 넣으면 Join이 필요없을텐데 왜 굳이 Table을 나눠서 저장할까?</strong>라는 의문을 가졌습니다. 조금 더 공부한 결과 관계형 데이터베이스는 <strong>정규화</strong> 과정을 거쳐 데이터 중복을 최소화해 데이터를 관리합니다. <br />
+이 정규화 과정을 거치면 Table끼리 관계(Relation)를 갖게 됩니다. 또한 저장 공간의 효율성과 확장성이 증가됩니다!</p>
+
+<p>Table에 저장된 데이터를 효과적으로 검색하기 위해 Join을 사용합니다. 제 사례를 들자면, User의 상태 데이터는 user_state table에 저장하고 User의 로그 데이터는 user_log table에 저장했습니다. 그리고 다양한 행동 패턴을 분석할 때 (예를 들어, 블로그에 누적 글이 3개 이상인 유저들과 3개 미만인 유저들의 행동 패턴을 비교하고 싶을 경우) Join을 사용했습니다</p>
+
+<h3 id="join의-종류">Join의 종류</h3>
+<ul>
+  <li>Inner Join</li>
+  <li>Cross Join</li>
+  <li>Self Join</li>
+  <li>Outer Join
+    <ul>
+      <li>Left Outer Join</li>
+      <li>Right Outer Join</li>
+      <li>Full Outer Join</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="join-문법">Join 문법</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT
+FROM TABLE_A as a
+LEFT JOIN
+(SELECT
+FROM TABLE_B) as b
+ON a.column1 = b.column1
+</code></pre></div></div>
+
+<ul>
+  <li>ToDo : Join 문제 만들기</li>
+  <li>설명글 추가</li>
+  <li>어떻게 쓰는지</li>
+  <li>그 후 설명</li>
+</ul>
+
+
+      <br/>
+      <p><a href="https://bit.ly/kyleschool_blog">카일스쿨 유튜브</a> 채널을 만들었습니다. 데이터 사이언스, 성장, 리더십, BigQuery 등을 이야기할 예정이니, 관심 있으시면 구독 부탁드립니다 :)</p>
+      <p>이 글이 도움이 되셨다면 추천 클릭을 부탁드립니다 :)</p>
+      <br/>
+      <br/>
+      <div style="text-align:center">
+        <style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFFFFF !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 0px 9px !important;font-size: 17px !important;letter-spacing:-0.08px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/zzsza"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
+      </div>
+      <br/>
+      <br/>
+       <!--블로그-하단-반응형 -->
+      <ins class="adsbygoogle"
+          style="display:block; width:100%; height:300px;"
+          data-ad-client="ca-pub-5105555504153863"
+          data-ad-slot="1037589043"
+          data-ad-format="auto"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+
+    </div>
+  
+
+</article>
+
+  <hr class="dingbat" />
+
+  <div class="share">
+      <h2>Share this post</h2>
+      <div class="share-body">
+        <a href="http://twitter.com/share?text=비전공자를 위한 SQL&amp;url=http://localhost:4000/development/2018/03/18/sql-for-everyone/"
+    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <span class="icon-twitter">
+            </span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/development/2018/03/18/sql-for-everyone/"
+    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <span class="icon-facebook">
+            </span>
+        </a>
+    </div>
+  </div>
+  <br/>
+
+
+
+
+
+
+  <aside class="author" role="complementary">
+    <div class="author">
+  <h2 class="page-title hr">
+    About
+  </h2>
+<div class="author-body">
+  
+    
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="seongyun byeon"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+  
+  <div class="author-body-description">
+    <p>Machine Learning Engineer</p>
+
+  </div>
+</div>
+</div>
+
+  </aside>
+
+
+
+
+
+<aside class="related" role="complementary">
+  <h2 class="hr">Related Posts</h2>
+
+  <ul class="related-posts">
+    
+      
+      
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/development/2020/01/06/jupyter_notebook_voila_dashboard/" data-flip="title">
+    <span>Voila를 사용해 Jupyter Notebook Dashboard 만들기</span>
+  </a>
+  <small><time datetime="2020-01-06T00:00:00+09:00">
+    06 Jan 2020
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/development/2019/12/27/julia_basic/" data-flip="title">
+    <span>Julia Language 프로그래밍 언어 기본 문법 정리</span>
+  </a>
+  <small><time datetime="2019-12-27T00:00:00+09:00">
+    27 Dec 2019
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/development/2019/08/09/spreadsheet-with-auth/" data-flip="title">
+    <span>Python에서 Auth를 사용해 Google Spreadsheets 연동하기</span>
+  </a>
+  <small><time datetime="2019-08-09T00:00:00+09:00">
+    09 Aug 2019
+  </time></small>
+</li>
+
+        
+      
+        
+        
+      
+    
+  </ul>
+</aside>
+
+
+
+      
+        <aside class="comments" role="complementary">
+  <h2>Comments</h2>
+  <hr/>
+
+  <div id="disqus_thread"></div>
+
+  <script>
+    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="비전공자를 위한 SQL",this.page.identifier="/development/2018/03/18/sql-for-everyone",this.page.url="http://localhost:4000/development/2018/03/18/sql-for-everyone/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//zzsza.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</aside>
+
+      
+
+      <footer>
+  <hr/>
+  
+    <p>© 2017. by Seongyun Byeon</p>
+
+  
+  <p>
+    <code>Powered by <a href="https://zzsza.github.io/">zzsza</a></code>
+  </p>
+</footer>
+
+    </main>
+    <div class="right-side">
+  <div class="ad-first">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- 블로그-상단-모바일 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:100%;"
+         data-ad-client="ca-pub-5105555504153863"
+         data-ad-slot="9090558636"
+         data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+<br/>
+<br/>
+  <div class="ad-second">
+    <!-- 블로그-스카이스크래퍼 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;max-width:320px;width:100%;height:600px"
+         data-ad-client="ca-pub-5105555504153863"
+         data-ad-slot="3646660262"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+</div>
+
+
+  </div>
+  <div id="_yDrawer">
+  <div id="_sidebar" class="sidebar">
+    <div class="sidebar-bg" style="background-color:#4f86aa;background-image:url(/assets/img/nap.jpg)"></div>
+    <header class="sidebar-sticky" role="banner">
+      <br/>
+      <div class="sidebar-about">
+        <h1><a id="_title" href="/">어쩐지 오늘은</a></h1>
+        <p>Machine Learning Engineer</p>
+
+      </div>
+
+      <br/>
+      <nav class="sidebar-nav heading" role="navigation">
+        <span class="sr-only">Navigation:</span>
+<ul>
+  
+
+  
+
+  
+  
+  
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-1"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/diary/">Diary</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/diary-diary/">diary</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-2"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/data/">Data</a>
+       <label class="folder" for="list-item-2">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-ml/">Machine-Learning</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-dl/">Deep-Learning</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-mobility/">Mobility</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-engineering/">Engineering</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-optimization/">Optimization</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-paper/">Paper</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-pytorch/">Pytorch</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-cs231/">CS231n</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-rl/">Reinforcement-Learning</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-time-series/">Time Series</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-analytics/">Analytics</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-kaggle/">Kaggle</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-vision/">Vision</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-interpretable-ml/">Interpretable ML</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-simulation/">Simulation</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-graph/">Graph</a>
+             </li>
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-3"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/mlops/">MLOps</a>
+       <label class="folder" for="list-item-3">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-basic/">Basic</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-airflow/">Airflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-mlflow/">MLflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-tfx/">Tensorflow Extended</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-serving/">Serving</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-feature/">Feature</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-version/">Model & Pipeline version</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-4"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/gcp/">Google Cloud Platform</a>
+       <label class="folder" for="list-item-4">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-basic/">Basic</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-bigquery/">BigQuery</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-aiplatform/">AI Platform</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-dataflow/">Dataflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-cloud-functions/">Cloud Functions</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-5"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/development/">Development</a>
+       <label class="folder" for="list-item-5">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-linux/">Linux</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-web/">Web</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-python/">Python</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-sql/">SQL</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-scala/">Scala</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-os/">OS</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-kubernetes/">Kubernetes</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-devops/">DevOps</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-kotlin/">Kotlin</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-julia/">Julia</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-tools/">Tools</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-6"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/etc/">ETC</a>
+       <label class="folder" for="list-item-6">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/etc-lecture/">Lecture</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/etc-book/">Book</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-7"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/about/">About</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+</ul>
+
+      </nav>
+    <!-- search box -->
+    <form action="/search">
+      <div class="tipue_search_box">
+        <input type="text" name="q" id="tipue_search_input" placeholder="&#xF002;  Search" pattern=".{2,}" title="최소 2글자 이상" required></div>
+      <div style="clear: both;"></div>
+    </form>
+    <br/>
+      <div class="sidebar-box">
+        
+          
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="seongyun byeon"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+        
+      </div>
+      <p>메모가 습관인 데이터쟁이입니다</p>
+
+      
+      
+        <div class="sidebar-social">
+          <span class="sr-only">Social:</span>
+<ul>
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://facebook.com/zzsza">
+    <span class="icon-facebook" title="Facebook"></span>
+    <span class="sr-only">Facebook</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.youtube.com/channel/UCYyAaezBGEVmXcnink6nY9Q">
+    <span class="icon-youtube" title="YouTube"></span>
+    <span class="sr-only">YouTube</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://instagram.com/data.scientist">
+    <span class="icon-instagram" title="Instagram"></span>
+    <span class="sr-only">Instagram</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://github.com/zzsza">
+    <span class="icon-github" title="GitHub"></span>
+    <span class="sr-only">GitHub</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.linkedin.com/in/seong-yun-byeon-8183a8113">
+    <span class="icon-linkedin2" title="LinkedIn"></span>
+    <span class="sr-only">LinkedIn</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="mailto:snugyun01@gmail.com">
+    <span class="icon-mail" title="Email"></span>
+    <span class="sr-only">Email</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://zzsza.github.io/feed.xml">
+    <span class="icon-rss2" title="RSS"></span>
+    <span class="sr-only">RSS</span>
+  </a>
+</li>
+
+  
+</ul>
+
+        </div>
+      
+    </header>
+  </div>
+</div>
+
+</div>
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+
+<script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-110573232-1', 'auto');
+  ga('send', 'pageview');
+  loadJSDeferred('https://www.google-analytics.com/analytics.js');
+</script>
+
+
+
+
+
+<!--[if gt IE 8]><!---->
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    
+    google: {
+      families: 'Lato'.split('|')
+    },
+    
+
+    custom: {
+      families: ['icomoon'],
+      urls: ['/assets/icomoon/style.css']
+    }
+  });
+</script>
+<!--<![endif]-->
+
+
+  <!--[if gt IE 9]><!---->
+  
+  <script>loadJSDeferred('/assets/js/hydejack.js?v=6.4.0');</script>
+
+  
+  <!--<![endif]-->
+
+
+
+</body>
+
+</html>

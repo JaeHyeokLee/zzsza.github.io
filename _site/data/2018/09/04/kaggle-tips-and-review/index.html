@@ -1,0 +1,1995 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
+-->
+
+
+
+
+
+
+
+
+
+<head>
+  <!-- =============== -->
+<!-- META            -->
+<!-- =============== -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="naver-site-verification" content="22c5b4ef3bfda7fc6100671413989219de7a4ac8"/>
+<meta property="og:title" content="Kaggle Tip 및 대회 후기">
+<meta property="og:type" content="article">
+
+
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/img/logo.png">
+
+
+<meta property="og:image:width" content="640" />
+<meta property="og:image:height" content="360" />
+
+
+
+  <title>Kaggle Tip 및 대회 후기 &middot; 어쩐지 오늘은</title>
+
+
+
+<meta name="description" content="Coursera 강의인 How to Win a Data Science Competition: Learn from Top Kaggler Week4~5 내용을  정리한 내용입니다
+
+">
+<meta property="og:description" content="Coursera 강의인 How to Win a Data Science Competition: Learn from Top Kaggler Week4~5 내용을  정리한 내용입니다
+
+">
+
+
+<!-- tipuesearch -->
+<link rel="stylesheet" href="/assets/tipuesearch/css/tipuesearch.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+<!-- =============== -->
+<!-- LINKS           -->
+<!-- =============== -->
+<link rel="canonical" href="http://localhost:4000/data/2018/09/04/kaggle-tips-and-review/">
+<meta property="og:url" content="http://localhost:4000/data/2018/09/04/kaggle-tips-and-review/">
+
+<link rel="alternate" type="application/atom+xml" title="어쩐지 오늘은 Feed" href="http://localhost:4000/feed.xml">
+
+
+  <link rel="prev" href="http://localhost:4000/data/2018/09/03/how-to-win-a-data-science-competition-week4/">
+
+
+
+  <link rel="next" href="http://localhost:4000/data/2018/09/08/feature-engineering/">
+
+
+<link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+<!-- Place favicon.ico in the root directory -->
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+<script>
+  !function(n,e){function t(n,e){n.onload=function(){this.onerror=this.onload=null,e(null,n)},n.onerror=function(){this.onerror=this.onload=null,e(new Error("Failed to load "+this.src),n)}}function o(n,e){n.onreadystatechange=function(){"complete"!=this.readyState&&"loaded"!=this.readyState||(this.onreadystatechange=null,e(null,n))}}n._loaded=!1,n.loadJSDeferred=function(a,d){function r(){n._loaded=!0;var r=e.createElement("script");r.src=a,d&&(("onload"in r?t:o)(r,d),r.onload||t(r,d));var l=e.getElementsByTagName("script")[0];l.parentNode.insertBefore(r,l)}n._loaded?r():n.addEventListener?n.addEventListener("load",r,!1):n.attachEvent?n.attachEvent("onload",r):n.onload=r}}(window,document);
+
+  !function(e){"use strict";var n=function(n,t,o){function i(e){if(a.body)return e();setTimeout(function(){i(e)})}function r(){l.addEventListener&&l.removeEventListener("load",r),l.media=o||"all"}var d,a=e.document,l=a.createElement("link");if(t)d=t;else{var f=(a.body||a.getElementsByTagName("head")[0]).childNodes;d=f[f.length-1]}var s=a.styleSheets;l.rel="stylesheet",l.href=n,l.media="only x",i(function(){d.parentNode.insertBefore(l,t?d:d.nextSibling)});var u=function(e){for(var n=l.href,t=s.length;t--;)if(s[t].href===n)return e();setTimeout(function(){u(e)})};return l.addEventListener&&l.addEventListener("load",r),l.onloadcssdefined=u,u(r),l};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
+
+  !function(t){if(t.loadCSS){var e=loadCSS.relpreload={};if(e.support=function(){try{return t.document.createElement("link").relList.supports("preload")}catch(t){return!1}},e.poly=function(){for(var e=t.document.getElementsByTagName("link"),r=0;r<e.length;r++){var n=e[r];"preload"===n.rel&&"style"===n.getAttribute("as")&&(t.loadCSS(n.href,n,n.getAttribute("media")),n.rel=null)}},!e.support()){e.poly();var r=t.setInterval(e.poly,300);t.addEventListener&&t.addEventListener("load",function(){e.poly(),t.clearInterval(r)}),t.attachEvent&&t.attachEvent("onload",function(){t.clearInterval(r)})}}}(this);
+
+  window.disablePushState = false;
+  window.disableDrawer = false;
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5105555504153863",
+    enable_page_level_ads: true
+  });
+</script>
+
+<!--[if lt IE 9]>
+<script src="https://unpkg.com/html5shiv/dist/html5shiv.min.js"></script>
+<![endif]-->
+
+<!-- =============== -->
+<!-- STYLES          -->
+<!-- =============== -->
+<!--[if gt IE 8]><!---->
+<style>
+  
+  article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}*{box-sizing:border-box}html,body{margin:0;padding:0}html{font-size:16px;line-height:1.75}body{color:#333;background-color:#fff;overflow-y:scroll}a{text-decoration:none}.lead{margin-left:-1rem;margin-right:-1rem}img,.img{display:block;max-width:100%;margin-bottom:1rem;border:none}img.lead,.img.lead{max-width:calc(100% + 2rem);width:calc(100% + 2rem)}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-weight:bold;text-rendering:optimizeLegibility}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{margin:1.6rem 0 1rem;line-height:1.6}h1,.h1{font-size:2rem;line-height:1.25}h2,.h2{font-size:1.5rem}h3,.h3{font-size:1.17em}p{margin-top:0;margin-bottom:1rem}p.lead{font-size:1.25rem;font-weight:300;padding:0 1rem}ul,ol,dl{margin-top:0;margin-bottom:1rem}ul,ol{padding-left:1.25rem}hr{position:relative;margin:1.5rem 0;border:0;border-top:1px solid #eee}.hr{padding-bottom:.5rem;border-bottom:1px solid #eee;margin-bottom:1.5rem}h4,h5,h6,.h4,.h5,.h6{margin-bottom:0.5rem;font-size:1rem}table{margin-bottom:1rem;width:100%;width:calc(100% + 2rem);margin-left:-1rem;border:1px solid #e5e5e5;border-collapse:collapse;border-spacing:0}td,th{padding:.25rem .5rem;border:1px solid #e5e5e5}td:first-child,th:first-child{padding-left:1rem}td:last-child,th:last-child{padding-right:1rem}thead+tbody,tbody+tbody,tfoot{border-top:3px double #e5e5e5}tbody tr:nth-child(odd) td,tbody tr:nth-child(odd) th{background-color:#f9f9f9}footer{margin-bottom:2rem}.page,.post{margin-bottom:3em}.page li+li,.post li+li{margin-top:.25rem}.page>header,.post>header{margin-bottom:2rem}.page-title,.post-title{margin-top:0}.post-date{display:block;margin-top:-0.5rem;margin-bottom:1rem;color:#9a9a9a}.related-posts{padding-left:0;list-style:none}.related-posts>li,.related-posts>li+li{margin-top:1rem}.related-posts>li>small,.related-posts>li+li>small{font-size:75%;color:#9a9a9a}.message{margin-bottom:1rem;padding:1rem;color:#787878;background-color:#f9f9f9;margin-left:-1rem;margin-right:-1rem}body,main{position:relative;overflow-x:hidden}@media screen{body::before{content:'';background:#e5e5e5;position:absolute;left:0;top:0;bottom:0}}@media screen and (min-width: 40em){html{font-size:17px}}@media screen and (min-width: 54em){html{font-size:16px}}@media screen and (min-width: 88em){html{font-size:17px}}@media screen and (min-width: 125em){html{font-size:18px}}.sr-only{display:none}.clearfix,.sidebar-social::after,.clearafter::after{content:"";display:table;clear:both}a,.a{position:relative;padding-bottom:.15rem;border-style:hidden}.img{overflow:hidden;background-color:#f9f9f9}.img>img{margin:0;width:100%;height:100%}.sixteen-nine{position:relative}.sixteen-nine::before{display:block;content:"";width:100%;padding-top:56.25%}.sixteen-nine>*{position:absolute;top:0;left:0;right:0;bottom:0}h1+hr,h2+hr,h3+hr,h4+hr,h5+hr,h6+hr{margin-top:0}.fade-in{animation-duration:500ms;animation-name:fade-in;animation-fill-mode:forwards}@keyframes fade-in{from{transform:translateY(-2rem);opacity:0}50%{transform:translateY(-2rem);opacity:0}to{transform:translateY(0);opacity:1}}.mb6{margin-bottom:10rem}.sidebar{color:rgba(255,255,255,0.75);text-align:left}.sidebar::before{content:"";position:absolute;z-index:2;top:0;left:0;bottom:0;right:0;background:linear-gradient(to bottom, rgba(32,32,32,0) 0%, rgba(32,32,32,0.5) 100%)}.sidebar a{color:#fff;border-bottom-color:rgba(255,255,255,0.2)}.right-side{width:100%;margin-left:auto;margin-right:auto}.right-side .ad-first{text-align:center}.right-side .ad-second{text-align:center}@media screen{.right-side{max-width:38rem;min-height:100vh}}@media screen and (min-width: 54em){.right-side{margin-left:20rem;margin-right:1rem;padding:4rem 1rem 12rem}}@media screen and (min-width: 72em){.right-side{margin-left:22rem;max-width:42rem}}@media screen and (min-width: 88em){.right-side{width:162px;margin-left:0rem;margin-right:0rem;padding:0rem;margin-top:10rem;display:block;float:left}}@media screen and (min-width: 96em){.right-side{width:300px;margin-right:0rem}}#_yDrawer{position:relative}@media screen{#_yDrawer{min-height:640px;min-height:100vh}}@media screen and (min-width: 54em){#_yDrawer{width:18rem;margin-left:0}}.sidebar-bg{position:absolute;height:100%;overflow:hidden;top:0;right:0;bottom:0;left:0;background:#202020 center / cover}.sidebar-box{display:flex;justify-content:center}.sidebar-sticky{position:relative;z-index:3}@media screen{.sidebar-sticky{-ms-overflow-style:none;overflow:-moz-scrollbars-none;height:100%;overflow:auto;position:absolute;padding:3rem 0rem;right:2.5rem;left:2.5rem}}.sidebar-sticky::-webkit-scrollbar{display:none}.sidebar-about>h1{color:#fff;font-size:2rem}.sidebar-nav>ul{list-style:none;padding-left:0;margin-bottom:.5rem}a.sidebar-nav-item{width:100%;font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}a.sidebar-nav-subitem{font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}@media screen{.y-drawer-scrim{z-index:2}.y-drawer-content{width:18rem;left:-18rem;z-index:3}}.sidebar-social{margin-bottom:.5rem}.sidebar-social>ul{list-style:none;padding-left:0;margin:0 -.25rem}.sidebar-social>ul>li{float:left}.sidebar-social>ul>li>a{display:inline-block;text-align:center;font-size:1.6rem;line-height:3rem;width:3.1249rem;height:4rem;padding:.5rem 0}.sidebar-social>ul li+li{margin-top:0}.fixed-top{position:fixed;top:0;left:0;width:100%;z-index:1}.navbar>.content{padding-top:0;padding-bottom:0;min-height:0;height:0}.menu{display:inline-block;padding:1.75rem 1.5rem;border-bottom:none;margin-left:-1.5rem;color:#9a9a9a !important}.menu::after{content:"\2630"}@media screen and (min-width: 54em){.menu{padding:1.25rem 1.5rem;position:absolute;left:-9999px}.menu:focus{position:static}}.animation-main{pointer-events:none}.loading{display:none}@media print{.menu{display:none}}.animation-main{opacity:0;will-change:opacity}.loading{position:absolute;top:0;right:0;padding:5.25rem 4.5rem;transform-origin:top right;transform:scale(0.33)}.content{position:relative;margin-left:auto;margin-right:auto;padding:5rem 1rem 12rem}@media screen{.content{min-height:100vh}}@media screen and (min-width: 54em){.content{padding:4rem 1rem 12rem;margin-left:19rem;margin-right:3rem}}@media screen and (min-width: 72em){.content{max-width:42rem;margin-left:21rem}}@media screen and (min-width: 88em){.content{float:left;width:100%;margin-left:22rem;margin-right:5rem}}@media screen and (min-width: 96em){.content{max-width:44rem}}@media screen and (min-width: 102em){.content{margin-left:25rem;margin-right:8rem}}.me{width:6.5rem;height:6.5rem;align-self:center;margin-right:20px;border-radius:100%;position:relative}@media screen and (min-width: 40em){.me{width:7rem;height:7rem}}@media screen and (min-width: 54em){.me{width:6.5rem;height:6.5rem}}@media screen and (min-width: 72em){.me{width:7rem;height:7rem}}main>footer{width:100%;position:absolute;bottom:0;left:0;right:0;padding:0 1rem;color:#9a9a9a;font-size:smaller;text-align:center}main>footer>p{margin-bottom:0}html{font-family:'Sans-serif'}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-family:'Sans-serif'}
+
+</style>
+
+
+<link rel="preload" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0" as="style" onload="this.rel='stylesheet'">
+
+<style id="_pageStyle">
+
+.content a{color:#4f86aa;border-color:rgba(79,134,170,0.2)}.content a:hover{border-color:#4f86aa}:focus{outline-color:#4f86aa}::selection{color:#fff;background:#4f86aa}::-moz-selection{color:#fff;background:#4f86aa}
+
+</style>
+
+
+<noscript>
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0">
+  
+  
+  
+
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <style>
+      html { font-family: 'Lato', 'Sans-serif' }
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading { font-family: 'Lato', 'Sans-serif' }
+    </style>
+  
+
+  
+  <link rel="stylesheet" href="http://localhost:4000/assets/icomoon/style.css">
+</noscript>
+<!--<![endif]-->
+
+</head>
+
+<body>
+  <!-- =============== -->
+<!-- MENU            -->
+<!-- =============== -->
+<div class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <a id="_menu" class="menu no-hover" href="#_title">
+      <span class="sr-only">Menu</span>
+    </a>
+  </div>
+</div>
+
+<!-- =============== -->
+<!-- CONTENT         -->
+<!-- =============== -->
+<div id="_yPushState">
+  <div class="fade-in">
+    <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/nap.jpg">
+      
+
+<article id="post-data/2018/09/04/kaggle-tips-and-review" class="post" role="article">
+  <header>
+    <h1 class="post-title">
+      
+        Kaggle Tip 및 대회 후기
+      
+    </h1>
+
+    <p class="post-date heading">
+      <time datetime="2018-09-04T00:00:00+09:00">04 Sep 2018</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/data/" data-flip="title">Data</a>
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/data-kaggle/" data-flip="title">Kaggle</a>
+
+    </p>
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+    <div class="markdown-body">
+
+
+<style>
+.myAd1190 { display:block; width:98%; height: 280px; }
+@media(min-width: 600px) { .myAd1190 { display: none; } }
+</style>
+<ins class="adsbygoogle myAd1190"
+    data-ad-client="ca-pub-5105555504153863"
+    data-ad-slot="6481487416"
+    ></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
+<br/>
+      <p>Coursera 강의인 How to Win a Data Science Competition: Learn from Top Kaggler Week4~5 내용을  정리한 내용입니다</p>
+
+<h2 id="tips-and-tricks">Tips and tricks</h2>
+<hr />
+
+<ul>
+  <li>5명의 강사분들이 경험한 내용을 전달!</li>
+  <li>누군가에겐 필요없는 내용일 수 있지만 도움이 되는 내용이 더 많을 듯</li>
+  <li>섹션별로 다른 강사가 이야기한 내용</li>
+</ul>
+
+<h3 id="대회에-참여하기-전">대회에 참여하기 전</h3>
+<ul>
+  <li>목표 설정하기
+    <ul>
+      <li>참여해서 얻고싶은 것은 무엇인가?</li>
+      <li>1) 흥미로운 문제에 대해 배우고 싶다
+        <ul>
+          <li>포럼에 토론이 많은 대회 추천!</li>
+          <li>주 관심사에 맞는 대회가 나오면 추천!</li>
+        </ul>
+      </li>
+      <li>2) 새로운 software 툴을 사용하고 싶다
+        <ul>
+          <li>Tutorial이 있는 대회 추천!</li>
+        </ul>
+      </li>
+      <li>3) 메달을 취득하고 싶다
+        <ul>
+          <li>참가자들의 제출 횟수를 파악</li>
+          <li>100회가 넘으면 아마 inconsistency of validation</li>
+          <li>횟수가 적으면 시도해볼 가치가 있음!</li>
+        </ul>
+      </li>
+      <li>이 목표에 따라 참여할 대회를 결정할 수 있음</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="아이디어를-토대로-작업">아이디어를 토대로 작업</h3>
+<ul>
+  <li>1) 아이디어를 구조화
+    <ul>
+      <li>포럼을 읽고 흥미로운 것을 모아두기</li>
+    </ul>
+  </li>
+  <li>2) 가장 중요하고 유망한 아이디어 선택</li>
+  <li>3) 왜 그것이 되거나(되지 않거나)를 이해해보기</li>
+</ul>
+
+<h3 id="하이퍼-파라미터">하이퍼 파라미터</h3>
+<ul>
+  <li>모든 것이 하이퍼 파라미터
+    <ul>
+      <li>Feature의 개수, 그라디언트 부스팅의 depth, cnn의 layer 수 등…</li>
+    </ul>
+  </li>
+  <li>모든 파라미터를 아래 항목으로 정렬</li>
+  <li>1) 중요도</li>
+  <li>2) 실행 가능도</li>
+  <li>3) 이해도</li>
+</ul>
+
+<hr />
+
+<h3 id="data-loading">Data loading</h3>
+<ul>
+  <li>csv/txt 파일을 <code class="highlighter-rouge">hdf5/npy</code>로 변경(빠르게 로딩하기 위해)</li>
+  <li>default data는 64-bit array로 저장되어있음!
+    <ul>
+      <li><code class="highlighter-rouge">32-bits</code>로 downcast해서 메모리를 2배 절약!</li>
+    </ul>
+  </li>
+  <li>거대한 데이터셋은 <code class="highlighter-rouge">chunks</code>로 작업을 할 수 있음
+    <ul>
+      <li>chunks 사용시 메모리를 많이 사용하지 않음</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="performacne-평가">Performacne 평가</h3>
+<ul>
+  <li>추가적인 validation이 항상 필요한 것은 아님
+    <ul>
+      <li>처음엔 full cross validation loop 대신 simple split</li>
+      <li>Full cv는 정말 필요할 때 진행</li>
+    </ul>
+  </li>
+  <li>가장 빠른 모델로 시작(LightGBM)</li>
+  <li>모델 튜닝, 샘플링, 스태킹 등은 FEature engineering이 만족한 후에 진행</li>
+  <li><img src="https://www.dropbox.com/s/9cdi4f0tetkpe1m/Screenshot%202018-09-03%2001.58.07.png?raw=1" /></li>
+</ul>
+
+<h3 id="빠르고-더럽지만-항상-좋은-방법">빠르고 더럽지만 항상 좋은 방법</h3>
+<ul>
+  <li>코드 퀄리티에 신경쓰지 말기</li>
+  <li>Simple을 유지하기 : 중요한 것을 아끼기</li>
+  <li>컴퓨팅 리소스가 불편하면 큰 서버를 빌리기</li>
+</ul>
+
+<hr />
+
+<h3 id="초기-파이프라인">초기 파이프라인</h3>
+<ul>
+  <li>간단한(심지어 원시적인) solution부터 시작</li>
+  <li>전체 파이프라인을 디버깅
+    <ul>
+      <li>read data ~ writing submission</li>
+    </ul>
+  </li>
+  <li>커널 또는 대회 주최자가 제공한 baseline을 읽고 완벽하게 숙지</li>
+  <li>From simple to complex
+    <ul>
+      <li>처음 시작할 땐 GBDT보다 파라미터를 튜닝할 필요가 없는 랜덤 포레스트를 선호</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="best-practices-from-software-development">Best Practices from Software Development</h3>
+<ul>
+  <li>좋은 변수 이름을 사용
+    <ul>
+      <li>코드가 읽기 어려우면 조만간 문제가 생길 수 있음</li>
+    </ul>
+  </li>
+  <li>연구를 재생산 가능하도록 유지
+    <ul>
+      <li>랜덤 Seed 고정</li>
+      <li>Feature를 어떻게 생성했는지 작성하기</li>
+      <li>버전관리하기</li>
+    </ul>
+  </li>
+  <li>코드 재사용
+    <ul>
+      <li>Train과 Test에서 feature 생성시 같은 코드를 사용하기</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="read-papers">Read papers</h3>
+<ul>
+  <li>ML과 관련된 아이디어
+    <ul>
+      <li>ex) How to optimize AUC</li>
+    </ul>
+  </li>
+  <li>도메인과 친해질 방법
+    <ul>
+      <li>특히 feature 생성시 유용함</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="my-pipeline">My pipeline</h3>
+<ul>
+  <li>포럼을 읽고 커널을 검사
+    <ul>
+      <li>항상 토론이 발생!</li>
+      <li>데이터의 버그가 있어 데이터가 모두 바뀔 수 있음. 그래서 대회 초창기에 참여하지 않는다고 함</li>
+    </ul>
+  </li>
+  <li>EDA과 베이스라인 시작
+    <ul>
+      <li>데이터를 정확하게 load</li>
+      <li>validation score가 안정한지 check</li>
+    </ul>
+  </li>
+  <li>Feature 추가
+    <ul>
+      <li>처음엔 만든 모든 변수를 추가</li>
+      <li>모든 변수를 한번에 평가함</li>
+    </ul>
+  </li>
+  <li>하이퍼파라미터 최적화
+    <ul>
+      <li>처음엔 트레인 데이터를 오버피팅할 수 있는 파라미터를 찾음</li>
+      <li>그리고 모델을 다듬음</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="코드-관리">코드 관리</h3>
+<ul>
+  <li>가장 중요한 것은 재생산!
+    <ul>
+      <li>코드를 깔끔하게 유지</li>
+    </ul>
+  </li>
+  <li>긴 실행 history 피하기
+    <ul>
+      <li>global variables가 있을 수 있음</li>
+      <li>주기적으로 노트북 재부팅</li>
+    </ul>
+  </li>
+  <li>변수 이름을 잘 정하기</li>
+  <li>One notebook per submission
+    <ul>
+      <li>그리고 git 사용하기</li>
+    </ul>
+  </li>
+  <li>submission을 만들기 전에 커널을 restart</li>
+  <li>test/val
+    <ul>
+      <li>처음에 train, test를 read한 후, train, val로 나누고 그 파일을 로컬에 저장해두기</li>
+    </ul>
+  </li>
+  <li>매크로 사용
+    <ul>
+      <li>import numpy 같은 것을 귀찮으니 매크로로 편하게 사용</li>
+      <li><a href="https://hub.coursera-notebooks.org/user/ynvomuepahfsgzmplvnxhw/notebooks/Reading%20materials/Macros.ipynb">참고 노트북</a></li>
+    </ul>
+  </li>
+  <li>Custom library
+    <ul>
+      <li>직접 구현해야 하는 경우</li>
+      <li>Out-of-fold predictions</li>
+      <li>Averaging</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="the-pipeline">The Pipeline</h3>
+<ul>
+  <li>Understand the problem (1 day)</li>
+  <li>Exploratory analysis (1-2 days)</li>
+  <li>Define cs strategy</li>
+  <li>Feature engineering (unitl last 3-4 days)</li>
+  <li>Modeling (until last 3-4 days)</li>
+  <li>Ensembling(lasy 3-4 days)</li>
+  <li>처음엔 커널이나 외부 정보를 전혀 받지 않고 스스로 문제해결 시도
+    <ul>
+      <li>그 후 다른 사람들의 커널을 보면 더 새로운 결과를 얻을 수 있음</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="문제를-넓게-이해하기">문제를 넓게 이해하기</h3>
+<ul>
+  <li>문제의 유형
+    <ul>
+      <li>이미지 인식, 음성 인식, 최적화 문제, tabular, 타임시리즈 등</li>
+    </ul>
+  </li>
+  <li>데이터가 얼마나 큰가?
+    <ul>
+      <li>데이터가 얼마나 필요한가?</li>
+    </ul>
+  </li>
+  <li>필요한 하드웨어
+    <ul>
+      <li>CPU, GPU, RAM, Disk space</li>
+      <li>딥러닝의 경우 GPU 필요</li>
+    </ul>
+  </li>
+  <li>필요한 소프트웨어
+    <ul>
+      <li>TF, sklearn, Lightgbm, xgboost</li>
+      <li>아나콘다, virtual 환경 생성</li>
+    </ul>
+  </li>
+  <li>테스트할 metric이 무엇인가?
+    <ul>
+      <li>regression, classification, rmse, mae, …</li>
+      <li>유사한 대회를 찾아 정보를 찾아봄</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="eda">EDA</h3>
+<ul>
+  <li>변수들을 plot
+    <ul>
+      <li>Train과 test에서 유사한 feature를 check</li>
+    </ul>
+  </li>
+  <li>시간대별 feature, target별 feature plot
+    <ul>
+      <li>시간이 지나며 target이 변하는지 check</li>
+    </ul>
+  </li>
+  <li>Feature와 Target의 연관성 탐색</li>
+  <li>Feature간의 상호 관계 파악</li>
+</ul>
+
+<h3 id="cross-validation-전략">Cross validation 전략</h3>
+<ul>
+  <li>매우 중요</li>
+  <li>Time 관련 데이터가 중요하면 시간으로 데이터 나누기! Time-based validation
+    <ul>
+      <li>항상 과거 데이터로 미래를 예측해야 함</li>
+    </ul>
+  </li>
+  <li>train보다 다른 entity가 있는 경우 Stratified validation</li>
+  <li>완벽하게 데이터가 random일 경우 Random validation(random K-fold)</li>
+  <li>위 사례의 Combination</li>
+</ul>
+
+<h3 id="feature-engineering">Feature engineering</h3>
+<p><img src="https://www.dropbox.com/s/r1glvl4rz6b5gfo/Screenshot%202018-09-03%2023.25.35.png?raw=1" /></p>
+
+<ul>
+  <li>Data cleaning and preparation</li>
+  <li>Handle missing value</li>
+  <li>Generate new feature</li>
+  <li>다른 문제들은 다른 feature engineering이 필요!</li>
+  <li>계속 하다보면 반복되는 패턴도 있어, 자동화를 어느정도 할 수 있음</li>
+</ul>
+
+<h3 id="modeling">Modeling</h3>
+<p><img src="https://www.dropbox.com/s/5tl6ylkllh9e6wh/Screenshot%202018-09-03%2023.31.39.png?raw=1" /></p>
+
+<ul>
+  <li>reference로 참고할 뿐 이게 진리는 아님!!</li>
+</ul>
+
+<h3 id="ensembling">Ensembling</h3>
+<p><img src="https://www.dropbox.com/s/qg2hd7dcsvxaqtl/Screenshot%202018-09-03%2023.46.00.png?raw=1" /></p>
+
+<ul>
+  <li>단순 평균 ~ 멀티레이어 스태킹 등 다양한 방법으로 결합</li>
+</ul>
+
+<h3 id="협업-팁">협업 팁</h3>
+<p><img src="https://www.dropbox.com/s/crd345coq0w035m/Screenshot%202018-09-03%2023.46.27.png?raw=1" /></p>
+
+<h2 id="대회-후기">대회 후기</h2>
+<h2 id="crowdflower-competition">Crowdflower Competition</h2>
+<hr />
+
+<ul>
+  <li>최종 등수 : 2위</li>
+  <li>대회 목표 : 검색 결과의 적절성을 측정</li>
+  <li><img src="https://www.dropbox.com/s/8fs0dzbwnlook3b/Screenshot%202018-09-04%2000.26.01.png?raw=1" /></li>
+  <li>Metric
+    <ul>
+      <li>Quadratic weighted kappa</li>
+      <li>Typical valu range 0 ~ 1</li>
+      <li><img src="https://www.dropbox.com/s/gbgdux8svsvry85/Screenshot%202018-09-04%2000.29.10.png?raw=1" /></li>
+      <li><img src="https://www.dropbox.com/s/nmlu1drb8e7fyfw/Screenshot%202018-09-04%2000.29.19.png?raw=1" /></li>
+      <li><img src="https://www.dropbox.com/s/iwqomg8j1hp5gmo/Screenshot%202018-09-04%2000.29.29.png?raw=1" /></li>
+      <li><img src="https://www.dropbox.com/s/tzr582jm29wiy5s/Screenshot%202018-09-04%2000.29.40.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>3 important points about data
+    <ul>
+      <li>query들은 매우 짧음</li>
+      <li>unique query는 261개</li>
+      <li>쿼리는 train과 test에 동일</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="solution">Solution</h3>
+<ul>
+  <li>Text features
+    <ul>
+      <li>Similarities(유사도)
+        <ul>
+          <li>query, title, description</li>
+          <li>(query, title), (query, description) pair로 계산</li>
+          <li>matching 단어의 개수</li>
+          <li>TF-IDF의 코사인 거리</li>
+          <li>평균 word2vc의 거리</li>
+          <li>Levenshtein 거리</li>
+        </ul>
+      </li>
+      <li>Symbolic n-grams</li>
+    </ul>
+  </li>
+  <li>Extending of queries
+    <ul>
+      <li><img src="https://www.dropbox.com/s/puzixmsj3jev07a/Screenshot%202018-09-04%2000.43.17.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Per-query models</li>
+  <li>Sample weighting
+    <ul>
+      <li><img src="https://www.dropbox.com/s/dwrungwdnomolhy/Screenshot%202018-09-04%2000.44.47.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Bumper features
+    <ul>
+      <li><img src="https://www.dropbox.com/s/i4yo0u07mapb1nj/Screenshot%202018-09-04%2000.45.04.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Ensemble
+    <ul>
+      <li><img src="https://www.dropbox.com/s/6l545g0h94a8vho/Screenshot%202018-09-04%2000.45.24.png?raw=1" /></li>
+      <li><img src="https://www.dropbox.com/s/ceka0f5iz0uxtig/Screenshot%202018-09-04%2000.45.36.png?raw=1" /></li>
+    </ul>
+  </li>
+  <li>Kappa optimization
+    <ul>
+      <li><img src="https://www.dropbox.com/s/u2gb29xw4bniijw/Screenshot%202018-09-04%2000.45.55.png?raw=1" /></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="conclusion">Conclusion</h3>
+<ul>
+  <li>Key points
+    <ul>
+      <li>Symbolic n-grams</li>
+      <li>Expansion of queries</li>
+      <li>Optimization of thresholds for Kappa</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="springleaf-marketing-response">Springleaf Marketing Response</h2>
+<hr />
+
+<ul>
+  <li>최종 등수 : 3등</li>
+</ul>
+
+<p><img src="https://www.dropbox.com/s/8q2k9flkxsx4dfl/Screenshot%202018-09-04%2011.21.05.png?raw=1" /></p>
+
+<h3 id="feature-packs">Feature packs</h3>
+<ul>
+  <li>Processed dataset
+    <ul>
+      <li>data cleaning과 feature engineering</li>
+    </ul>
+  </li>
+  <li>Basic dataset
+    <ul>
+      <li>Basic data cleaning and feature engineering</li>
+    </ul>
+  </li>
+  <li>Mean-encoded dataset
+    <ul>
+      <li>Projecting features into homogeneous space</li>
+    </ul>
+  </li>
+  <li>KNN dataset</li>
+  <li>distance features on mean-encoded</li>
+</ul>
+
+<h3 id="out-of-fold-predictions">Out-of-fold predictions</h3>
+<ul>
+  <li>xgboost
+    <ul>
+      <li>oof predictions(meatafeatures) should be diverse</li>
+      <li>each meatafeature should bring ‘new’ information about Y</li>
+    </ul>
+  </li>
+  <li>neural net
+    <ul>
+      <li>StandardScaler, Ranks, Power</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://www.coursera.org/learn/competitive-data-science">Coursera How to win a data science competition</a></li>
+  <li><a href="https://github.com/hse-aml/competitive-data-science">Competitive-data-science Github</a></li>
+</ul>
+
+      <br/>
+      <p><a href="https://bit.ly/kyleschool_blog">카일스쿨 유튜브</a> 채널을 만들었습니다. 데이터 사이언스, 성장, 리더십, BigQuery 등을 이야기할 예정이니, 관심 있으시면 구독 부탁드립니다 :)</p>
+      <p>이 글이 도움이 되셨다면 추천 클릭을 부탁드립니다 :)</p>
+      <br/>
+      <br/>
+      <div style="text-align:center">
+        <style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFFFFF !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 0px 9px !important;font-size: 17px !important;letter-spacing:-0.08px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/zzsza"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
+      </div>
+      <br/>
+      <br/>
+       <!--블로그-하단-반응형 -->
+      <ins class="adsbygoogle"
+          style="display:block; width:100%; height:300px;"
+          data-ad-client="ca-pub-5105555504153863"
+          data-ad-slot="1037589043"
+          data-ad-format="auto"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+
+    </div>
+  
+
+</article>
+
+  <hr class="dingbat" />
+
+  <div class="share">
+      <h2>Share this post</h2>
+      <div class="share-body">
+        <a href="http://twitter.com/share?text=Kaggle Tip 및 대회 후기&amp;url=http://localhost:4000/data/2018/09/04/kaggle-tips-and-review/"
+    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <span class="icon-twitter">
+            </span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/data/2018/09/04/kaggle-tips-and-review/"
+    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <span class="icon-facebook">
+            </span>
+        </a>
+    </div>
+  </div>
+  <br/>
+
+
+
+
+
+
+  <aside class="author" role="complementary">
+    <div class="author">
+  <h2 class="page-title hr">
+    About
+  </h2>
+<div class="author-body">
+  
+    
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="seongyun byeon"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+  
+  <div class="author-body-description">
+    <p>Machine Learning Engineer</p>
+
+  </div>
+</div>
+</div>
+
+  </aside>
+
+
+
+
+
+<aside class="related" role="complementary">
+  <h2 class="hr">Related Posts</h2>
+
+  <ul class="related-posts">
+    
+      
+      
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/data/2019/12/15/rules-of-ml/" data-flip="title">
+    <span>Rules of Machine Learning: Best Practices for ML Engineering 정리</span>
+  </a>
+  <small><time datetime="2019-12-15T00:00:00+09:00">
+    15 Dec 2019
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/data/2019/12/03/cs224w-ml-with-graph/" data-flip="title">
+    <span>CS224W - Machine Learning with Graphs 1강 정리</span>
+  </a>
+  <small><time datetime="2019-12-03T00:00:00+09:00">
+    03 Dec 2019
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/data/2019/11/24/pydeck/" data-flip="title">
+    <span>지도 데이터 시각화 : Uber의 pydeck 사용하기</span>
+  </a>
+  <small><time datetime="2019-11-24T00:00:00+09:00">
+    24 Nov 2019
+  </time></small>
+</li>
+
+        
+      
+        
+        
+      
+    
+  </ul>
+</aside>
+
+
+
+      
+        <aside class="comments" role="complementary">
+  <h2>Comments</h2>
+  <hr/>
+
+  <div id="disqus_thread"></div>
+
+  <script>
+    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="Kaggle Tip 및 대회 후기",this.page.identifier="/data/2018/09/04/kaggle-tips-and-review",this.page.url="http://localhost:4000/data/2018/09/04/kaggle-tips-and-review/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//zzsza.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</aside>
+
+      
+
+      <footer>
+  <hr/>
+  
+    <p>© 2017. by Seongyun Byeon</p>
+
+  
+  <p>
+    <code>Powered by <a href="https://zzsza.github.io/">zzsza</a></code>
+  </p>
+</footer>
+
+    </main>
+    <div class="right-side">
+  <div class="ad-first">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- 블로그-상단-모바일 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:100%;"
+         data-ad-client="ca-pub-5105555504153863"
+         data-ad-slot="9090558636"
+         data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+<br/>
+<br/>
+  <div class="ad-second">
+    <!-- 블로그-스카이스크래퍼 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;max-width:320px;width:100%;height:600px"
+         data-ad-client="ca-pub-5105555504153863"
+         data-ad-slot="3646660262"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+</div>
+
+
+  </div>
+  <div id="_yDrawer">
+  <div id="_sidebar" class="sidebar">
+    <div class="sidebar-bg" style="background-color:#4f86aa;background-image:url(/assets/img/nap.jpg)"></div>
+    <header class="sidebar-sticky" role="banner">
+      <br/>
+      <div class="sidebar-about">
+        <h1><a id="_title" href="/">어쩐지 오늘은</a></h1>
+        <p>Machine Learning Engineer</p>
+
+      </div>
+
+      <br/>
+      <nav class="sidebar-nav heading" role="navigation">
+        <span class="sr-only">Navigation:</span>
+<ul>
+  
+
+  
+
+  
+  
+  
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-1"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/diary/">Diary</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/diary-diary/">diary</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-2"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/data/">Data</a>
+       <label class="folder" for="list-item-2">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-ml/">Machine-Learning</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-dl/">Deep-Learning</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-mobility/">Mobility</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-engineering/">Engineering</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-optimization/">Optimization</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-paper/">Paper</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-pytorch/">Pytorch</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-cs231/">CS231n</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-rl/">Reinforcement-Learning</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-time-series/">Time Series</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-analytics/">Analytics</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-kaggle/">Kaggle</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-vision/">Vision</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-interpretable-ml/">Interpretable ML</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-simulation/">Simulation</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-graph/">Graph</a>
+             </li>
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-3"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/mlops/">MLOps</a>
+       <label class="folder" for="list-item-3">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-basic/">Basic</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-airflow/">Airflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-mlflow/">MLflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-tfx/">Tensorflow Extended</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-serving/">Serving</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-feature/">Feature</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-version/">Model & Pipeline version</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-4"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/gcp/">Google Cloud Platform</a>
+       <label class="folder" for="list-item-4">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-basic/">Basic</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-bigquery/">BigQuery</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-aiplatform/">AI Platform</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-dataflow/">Dataflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-cloud-functions/">Cloud Functions</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-5"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/development/">Development</a>
+       <label class="folder" for="list-item-5">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-linux/">Linux</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-web/">Web</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-python/">Python</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-sql/">SQL</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-scala/">Scala</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-os/">OS</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-kubernetes/">Kubernetes</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-devops/">DevOps</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-kotlin/">Kotlin</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-julia/">Julia</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-tools/">Tools</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-6"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/etc/">ETC</a>
+       <label class="folder" for="list-item-6">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/etc-lecture/">Lecture</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/etc-book/">Book</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-7"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/about/">About</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+</ul>
+
+      </nav>
+    <!-- search box -->
+    <form action="/search">
+      <div class="tipue_search_box">
+        <input type="text" name="q" id="tipue_search_input" placeholder="&#xF002;  Search" pattern=".{2,}" title="최소 2글자 이상" required></div>
+      <div style="clear: both;"></div>
+    </form>
+    <br/>
+      <div class="sidebar-box">
+        
+          
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="seongyun byeon"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+        
+      </div>
+      <p>메모가 습관인 데이터쟁이입니다</p>
+
+      
+      
+        <div class="sidebar-social">
+          <span class="sr-only">Social:</span>
+<ul>
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://facebook.com/zzsza">
+    <span class="icon-facebook" title="Facebook"></span>
+    <span class="sr-only">Facebook</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.youtube.com/channel/UCYyAaezBGEVmXcnink6nY9Q">
+    <span class="icon-youtube" title="YouTube"></span>
+    <span class="sr-only">YouTube</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://instagram.com/data.scientist">
+    <span class="icon-instagram" title="Instagram"></span>
+    <span class="sr-only">Instagram</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://github.com/zzsza">
+    <span class="icon-github" title="GitHub"></span>
+    <span class="sr-only">GitHub</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.linkedin.com/in/seong-yun-byeon-8183a8113">
+    <span class="icon-linkedin2" title="LinkedIn"></span>
+    <span class="sr-only">LinkedIn</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="mailto:snugyun01@gmail.com">
+    <span class="icon-mail" title="Email"></span>
+    <span class="sr-only">Email</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://zzsza.github.io/feed.xml">
+    <span class="icon-rss2" title="RSS"></span>
+    <span class="sr-only">RSS</span>
+  </a>
+</li>
+
+  
+</ul>
+
+        </div>
+      
+    </header>
+  </div>
+</div>
+
+</div>
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+
+<script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-110573232-1', 'auto');
+  ga('send', 'pageview');
+  loadJSDeferred('https://www.google-analytics.com/analytics.js');
+</script>
+
+
+
+
+
+<!--[if gt IE 8]><!---->
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    
+    google: {
+      families: 'Lato'.split('|')
+    },
+    
+
+    custom: {
+      families: ['icomoon'],
+      urls: ['/assets/icomoon/style.css']
+    }
+  });
+</script>
+<!--<![endif]-->
+
+
+  <!--[if gt IE 9]><!---->
+  
+  <script>loadJSDeferred('/assets/js/hydejack.js?v=6.4.0');</script>
+
+  
+  <!--<![endif]-->
+
+
+
+</body>
+
+</html>

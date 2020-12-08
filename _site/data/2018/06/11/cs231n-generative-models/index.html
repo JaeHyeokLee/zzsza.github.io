@@ -1,0 +1,1894 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
+-->
+
+
+
+
+
+
+
+
+
+<head>
+  <!-- =============== -->
+<!-- META            -->
+<!-- =============== -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="naver-site-verification" content="22c5b4ef3bfda7fc6100671413989219de7a4ac8"/>
+<meta property="og:title" content="CS231n 13강. Generative Models">
+<meta property="og:type" content="article">
+
+
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/img/logo.png">
+
+
+<meta property="og:image:width" content="640" />
+<meta property="og:image:height" content="360" />
+
+
+
+  <title>CS231n 13강. Generative Models &middot; 어쩐지 오늘은</title>
+
+
+
+<meta name="description" content="Stanfoard CS231n 2017 13강을 요약한 글입니다. 정리 목적이라 자세하게 작성하지 않은 부분도 있습니다. CS231n의 나머지 14강~16강은 작성하지 않을 예정입니다!
+
+">
+<meta property="og:description" content="Stanfoard CS231n 2017 13강을 요약한 글입니다. 정리 목적이라 자세하게 작성하지 않은 부분도 있습니다. CS231n의 나머지 14강~16강은 작성하지 않을 예정입니다!
+
+">
+
+
+<!-- tipuesearch -->
+<link rel="stylesheet" href="/assets/tipuesearch/css/tipuesearch.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+<!-- =============== -->
+<!-- LINKS           -->
+<!-- =============== -->
+<link rel="canonical" href="http://localhost:4000/data/2018/06/11/cs231n-generative-models/">
+<meta property="og:url" content="http://localhost:4000/data/2018/06/11/cs231n-generative-models/">
+
+<link rel="alternate" type="application/atom+xml" title="어쩐지 오늘은 Feed" href="http://localhost:4000/feed.xml">
+
+
+  <link rel="prev" href="http://localhost:4000/data/2018/06/09/apache-spark-cluster/">
+
+
+
+  <link rel="next" href="http://localhost:4000/data/2018/06/12/apache-spark-streaming/">
+
+
+<link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+<!-- Place favicon.ico in the root directory -->
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+<script>
+  !function(n,e){function t(n,e){n.onload=function(){this.onerror=this.onload=null,e(null,n)},n.onerror=function(){this.onerror=this.onload=null,e(new Error("Failed to load "+this.src),n)}}function o(n,e){n.onreadystatechange=function(){"complete"!=this.readyState&&"loaded"!=this.readyState||(this.onreadystatechange=null,e(null,n))}}n._loaded=!1,n.loadJSDeferred=function(a,d){function r(){n._loaded=!0;var r=e.createElement("script");r.src=a,d&&(("onload"in r?t:o)(r,d),r.onload||t(r,d));var l=e.getElementsByTagName("script")[0];l.parentNode.insertBefore(r,l)}n._loaded?r():n.addEventListener?n.addEventListener("load",r,!1):n.attachEvent?n.attachEvent("onload",r):n.onload=r}}(window,document);
+
+  !function(e){"use strict";var n=function(n,t,o){function i(e){if(a.body)return e();setTimeout(function(){i(e)})}function r(){l.addEventListener&&l.removeEventListener("load",r),l.media=o||"all"}var d,a=e.document,l=a.createElement("link");if(t)d=t;else{var f=(a.body||a.getElementsByTagName("head")[0]).childNodes;d=f[f.length-1]}var s=a.styleSheets;l.rel="stylesheet",l.href=n,l.media="only x",i(function(){d.parentNode.insertBefore(l,t?d:d.nextSibling)});var u=function(e){for(var n=l.href,t=s.length;t--;)if(s[t].href===n)return e();setTimeout(function(){u(e)})};return l.addEventListener&&l.addEventListener("load",r),l.onloadcssdefined=u,u(r),l};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
+
+  !function(t){if(t.loadCSS){var e=loadCSS.relpreload={};if(e.support=function(){try{return t.document.createElement("link").relList.supports("preload")}catch(t){return!1}},e.poly=function(){for(var e=t.document.getElementsByTagName("link"),r=0;r<e.length;r++){var n=e[r];"preload"===n.rel&&"style"===n.getAttribute("as")&&(t.loadCSS(n.href,n,n.getAttribute("media")),n.rel=null)}},!e.support()){e.poly();var r=t.setInterval(e.poly,300);t.addEventListener&&t.addEventListener("load",function(){e.poly(),t.clearInterval(r)}),t.attachEvent&&t.attachEvent("onload",function(){t.clearInterval(r)})}}}(this);
+
+  window.disablePushState = false;
+  window.disableDrawer = false;
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5105555504153863",
+    enable_page_level_ads: true
+  });
+</script>
+
+<!--[if lt IE 9]>
+<script src="https://unpkg.com/html5shiv/dist/html5shiv.min.js"></script>
+<![endif]-->
+
+<!-- =============== -->
+<!-- STYLES          -->
+<!-- =============== -->
+<!--[if gt IE 8]><!---->
+<style>
+  
+  article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}*{box-sizing:border-box}html,body{margin:0;padding:0}html{font-size:16px;line-height:1.75}body{color:#333;background-color:#fff;overflow-y:scroll}a{text-decoration:none}.lead{margin-left:-1rem;margin-right:-1rem}img,.img{display:block;max-width:100%;margin-bottom:1rem;border:none}img.lead,.img.lead{max-width:calc(100% + 2rem);width:calc(100% + 2rem)}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-weight:bold;text-rendering:optimizeLegibility}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{margin:1.6rem 0 1rem;line-height:1.6}h1,.h1{font-size:2rem;line-height:1.25}h2,.h2{font-size:1.5rem}h3,.h3{font-size:1.17em}p{margin-top:0;margin-bottom:1rem}p.lead{font-size:1.25rem;font-weight:300;padding:0 1rem}ul,ol,dl{margin-top:0;margin-bottom:1rem}ul,ol{padding-left:1.25rem}hr{position:relative;margin:1.5rem 0;border:0;border-top:1px solid #eee}.hr{padding-bottom:.5rem;border-bottom:1px solid #eee;margin-bottom:1.5rem}h4,h5,h6,.h4,.h5,.h6{margin-bottom:0.5rem;font-size:1rem}table{margin-bottom:1rem;width:100%;width:calc(100% + 2rem);margin-left:-1rem;border:1px solid #e5e5e5;border-collapse:collapse;border-spacing:0}td,th{padding:.25rem .5rem;border:1px solid #e5e5e5}td:first-child,th:first-child{padding-left:1rem}td:last-child,th:last-child{padding-right:1rem}thead+tbody,tbody+tbody,tfoot{border-top:3px double #e5e5e5}tbody tr:nth-child(odd) td,tbody tr:nth-child(odd) th{background-color:#f9f9f9}footer{margin-bottom:2rem}.page,.post{margin-bottom:3em}.page li+li,.post li+li{margin-top:.25rem}.page>header,.post>header{margin-bottom:2rem}.page-title,.post-title{margin-top:0}.post-date{display:block;margin-top:-0.5rem;margin-bottom:1rem;color:#9a9a9a}.related-posts{padding-left:0;list-style:none}.related-posts>li,.related-posts>li+li{margin-top:1rem}.related-posts>li>small,.related-posts>li+li>small{font-size:75%;color:#9a9a9a}.message{margin-bottom:1rem;padding:1rem;color:#787878;background-color:#f9f9f9;margin-left:-1rem;margin-right:-1rem}body,main{position:relative;overflow-x:hidden}@media screen{body::before{content:'';background:#e5e5e5;position:absolute;left:0;top:0;bottom:0}}@media screen and (min-width: 40em){html{font-size:17px}}@media screen and (min-width: 54em){html{font-size:16px}}@media screen and (min-width: 88em){html{font-size:17px}}@media screen and (min-width: 125em){html{font-size:18px}}.sr-only{display:none}.clearfix,.sidebar-social::after,.clearafter::after{content:"";display:table;clear:both}a,.a{position:relative;padding-bottom:.15rem;border-style:hidden}.img{overflow:hidden;background-color:#f9f9f9}.img>img{margin:0;width:100%;height:100%}.sixteen-nine{position:relative}.sixteen-nine::before{display:block;content:"";width:100%;padding-top:56.25%}.sixteen-nine>*{position:absolute;top:0;left:0;right:0;bottom:0}h1+hr,h2+hr,h3+hr,h4+hr,h5+hr,h6+hr{margin-top:0}.fade-in{animation-duration:500ms;animation-name:fade-in;animation-fill-mode:forwards}@keyframes fade-in{from{transform:translateY(-2rem);opacity:0}50%{transform:translateY(-2rem);opacity:0}to{transform:translateY(0);opacity:1}}.mb6{margin-bottom:10rem}.sidebar{color:rgba(255,255,255,0.75);text-align:left}.sidebar::before{content:"";position:absolute;z-index:2;top:0;left:0;bottom:0;right:0;background:linear-gradient(to bottom, rgba(32,32,32,0) 0%, rgba(32,32,32,0.5) 100%)}.sidebar a{color:#fff;border-bottom-color:rgba(255,255,255,0.2)}.right-side{width:100%;margin-left:auto;margin-right:auto}.right-side .ad-first{text-align:center}.right-side .ad-second{text-align:center}@media screen{.right-side{max-width:38rem;min-height:100vh}}@media screen and (min-width: 54em){.right-side{margin-left:20rem;margin-right:1rem;padding:4rem 1rem 12rem}}@media screen and (min-width: 72em){.right-side{margin-left:22rem;max-width:42rem}}@media screen and (min-width: 88em){.right-side{width:162px;margin-left:0rem;margin-right:0rem;padding:0rem;margin-top:10rem;display:block;float:left}}@media screen and (min-width: 96em){.right-side{width:300px;margin-right:0rem}}#_yDrawer{position:relative}@media screen{#_yDrawer{min-height:640px;min-height:100vh}}@media screen and (min-width: 54em){#_yDrawer{width:18rem;margin-left:0}}.sidebar-bg{position:absolute;height:100%;overflow:hidden;top:0;right:0;bottom:0;left:0;background:#202020 center / cover}.sidebar-box{display:flex;justify-content:center}.sidebar-sticky{position:relative;z-index:3}@media screen{.sidebar-sticky{-ms-overflow-style:none;overflow:-moz-scrollbars-none;height:100%;overflow:auto;position:absolute;padding:3rem 0rem;right:2.5rem;left:2.5rem}}.sidebar-sticky::-webkit-scrollbar{display:none}.sidebar-about>h1{color:#fff;font-size:2rem}.sidebar-nav>ul{list-style:none;padding-left:0;margin-bottom:.5rem}a.sidebar-nav-item{width:100%;font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}a.sidebar-nav-subitem{font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}@media screen{.y-drawer-scrim{z-index:2}.y-drawer-content{width:18rem;left:-18rem;z-index:3}}.sidebar-social{margin-bottom:.5rem}.sidebar-social>ul{list-style:none;padding-left:0;margin:0 -.25rem}.sidebar-social>ul>li{float:left}.sidebar-social>ul>li>a{display:inline-block;text-align:center;font-size:1.6rem;line-height:3rem;width:3.1249rem;height:4rem;padding:.5rem 0}.sidebar-social>ul li+li{margin-top:0}.fixed-top{position:fixed;top:0;left:0;width:100%;z-index:1}.navbar>.content{padding-top:0;padding-bottom:0;min-height:0;height:0}.menu{display:inline-block;padding:1.75rem 1.5rem;border-bottom:none;margin-left:-1.5rem;color:#9a9a9a !important}.menu::after{content:"\2630"}@media screen and (min-width: 54em){.menu{padding:1.25rem 1.5rem;position:absolute;left:-9999px}.menu:focus{position:static}}.animation-main{pointer-events:none}.loading{display:none}@media print{.menu{display:none}}.animation-main{opacity:0;will-change:opacity}.loading{position:absolute;top:0;right:0;padding:5.25rem 4.5rem;transform-origin:top right;transform:scale(0.33)}.content{position:relative;margin-left:auto;margin-right:auto;padding:5rem 1rem 12rem}@media screen{.content{min-height:100vh}}@media screen and (min-width: 54em){.content{padding:4rem 1rem 12rem;margin-left:19rem;margin-right:3rem}}@media screen and (min-width: 72em){.content{max-width:42rem;margin-left:21rem}}@media screen and (min-width: 88em){.content{float:left;width:100%;margin-left:22rem;margin-right:5rem}}@media screen and (min-width: 96em){.content{max-width:44rem}}@media screen and (min-width: 102em){.content{margin-left:25rem;margin-right:8rem}}.me{width:6.5rem;height:6.5rem;align-self:center;margin-right:20px;border-radius:100%;position:relative}@media screen and (min-width: 40em){.me{width:7rem;height:7rem}}@media screen and (min-width: 54em){.me{width:6.5rem;height:6.5rem}}@media screen and (min-width: 72em){.me{width:7rem;height:7rem}}main>footer{width:100%;position:absolute;bottom:0;left:0;right:0;padding:0 1rem;color:#9a9a9a;font-size:smaller;text-align:center}main>footer>p{margin-bottom:0}html{font-family:'Sans-serif'}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-family:'Sans-serif'}
+
+</style>
+
+
+<link rel="preload" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0" as="style" onload="this.rel='stylesheet'">
+
+<style id="_pageStyle">
+
+.content a{color:#4f86aa;border-color:rgba(79,134,170,0.2)}.content a:hover{border-color:#4f86aa}:focus{outline-color:#4f86aa}::selection{color:#fff;background:#4f86aa}::-moz-selection{color:#fff;background:#4f86aa}
+
+</style>
+
+
+<noscript>
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0">
+  
+  
+  
+
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <style>
+      html { font-family: 'Lato', 'Sans-serif' }
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading { font-family: 'Lato', 'Sans-serif' }
+    </style>
+  
+
+  
+  <link rel="stylesheet" href="http://localhost:4000/assets/icomoon/style.css">
+</noscript>
+<!--<![endif]-->
+
+</head>
+
+<body>
+  <!-- =============== -->
+<!-- MENU            -->
+<!-- =============== -->
+<div class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <a id="_menu" class="menu no-hover" href="#_title">
+      <span class="sr-only">Menu</span>
+    </a>
+  </div>
+</div>
+
+<!-- =============== -->
+<!-- CONTENT         -->
+<!-- =============== -->
+<div id="_yPushState">
+  <div class="fade-in">
+    <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/nap.jpg">
+      
+
+<article id="post-data/2018/06/11/cs231n-generative-models" class="post" role="article">
+  <header>
+    <h1 class="post-title">
+      
+        CS231n 13강. Generative Models
+      
+    </h1>
+
+    <p class="post-date heading">
+      <time datetime="2018-06-11T00:00:00+09:00">11 Jun 2018</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/data/" data-flip="title">Data</a>
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/data-cs231/" data-flip="title">CS231n</a>
+
+    </p>
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+    <div class="markdown-body">
+
+
+<style>
+.myAd1190 { display:block; width:98%; height: 280px; }
+@media(min-width: 600px) { .myAd1190 { display: none; } }
+</style>
+<ins class="adsbygoogle myAd1190"
+    data-ad-client="ca-pub-5105555504153863"
+    data-ad-slot="6481487416"
+    ></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
+<br/>
+      <p>Stanfoard <a href="https://www.youtube.com/watch?v=vT1JzLTH4G4&amp;list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv&amp;index=0">CS231n 2017</a> 13강을 요약한 글입니다. 정리 목적이라 자세하게 작성하지 않은 부분도 있습니다. CS231n의 나머지 14강~16강은 작성하지 않을 예정입니다!</p>
+
+<h2 id="overview">Overview</h2>
+<hr />
+
+<ul>
+  <li>Unsupervised Learning</li>
+  <li>Generative Models
+    <ul>
+      <li>PixelRNN and PixelCNN</li>
+      <li>Variational Autoencoders (VAE)</li>
+      <li>Generative Adversarial Networks (GAN)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="supervised-vs-unsupervised-learning">Supervised vs Unsupervised Learning</h2>
+<hr />
+
+<h3 id="supervised-learning">Supervised Learning</h3>
+<ul>
+  <li>Data : (x, y)
+    <ul>
+      <li>x is data, y is label</li>
+    </ul>
+  </li>
+  <li>Goal : Learn a function to maxp x -&gt; y</li>
+  <li>Examples : Classification, regression, object detection, semantic segmentation, image captioning, etc</li>
+</ul>
+
+<hr />
+<h3 id="unsupervised-learning">Unsupervised Learning</h3>
+<ul>
+  <li>Data : x
+    <ul>
+      <li>just data, no labels</li>
+      <li>Training data is cheap</li>
+    </ul>
+  </li>
+  <li>Goal : Learn som underlying hidden structure of the data
+    <ul>
+      <li>Holy grail : Solve unsupervised learning =&gt; understand structure of visual world</li>
+    </ul>
+  </li>
+  <li>Examples : Clustering, dimensionality reduction, feature learning(autoencoders), density estimation</li>
+</ul>
+
+<h2 id="generative-models">Generative Models</h2>
+<hr />
+
+<p><img src="https://www.dropbox.com/s/l3xa29mk7nl8jtp/Screenshot%202018-06-10%2010.20.02.png?raw=1" /></p>
+
+<ul>
+  <li>Train 데이터가 주어지면, 이 데이터의 분포와 동일한 새로운 samples을 생성</li>
+  <li><code class="MathJax_Preview">p_{model}(x)</code><script type="math/tex">p_{model}(x)</script>와 <code class="MathJax_Preview">p_{data}(x)</code><script type="math/tex">p_{data}(x)</script>가 유사하도록 학습</li>
+  <li>Density estimation</li>
+  <li>Several flavors
+    <ul>
+      <li>Explicit density estimation : <code class="MathJax_Preview">p_{model}(x)</code><script type="math/tex">p_{model}(x)</script>을 확실히 정의하고 estimation (MLE)</li>
+      <li>Implicit density estimation : 확실히 정의하지 않고 <code class="MathJax_Preview">p_{model}(x)</code><script type="math/tex">p_{model}(x)</script>의 샘플 생성</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="why-generative-models">Why Generative Models?</h3>
+<p><img src="https://www.dropbox.com/s/maobzorpfmopzw2/Screenshot%202018-06-10%2010.24.27.png?raw=1" /></p>
+
+<ul>
+  <li>Data로부터 실제와 같은 샘플을 얻을 수 있음(artwork, super-resolution, colorization 등)</li>
+  <li>time-series data의 generative model들은 simulation과 planning할 때 사용 가능(강화학습!)</li>
+  <li>Generative model을 학습하는 것은 일반적인 특징을 찾을때 유용한 latent representation(잠재적인 representation을 추론할 수 있음</li>
+  <li>High dimensional prob, distribution을 추출해서 다룰 수 있음</li>
+  <li>Semi-supervised learning에서 활용될 수 있음</li>
+</ul>
+
+<h3 id="taxonomy-of-generative-models">Taxonomy of Generative Models</h3>
+<p><img src="https://www.dropbox.com/s/2pzxib21t7z6x9k/Screenshot%202018-06-10%2010.27.26.png?raw=1" /></p>
+
+<ul>
+  <li>Generative Model의 분류</li>
+  <li>이 수업에선 3가지만 다룰 예정입니다</li>
+</ul>
+
+<h2 id="pixelrnn-and-pixelcnn">PixelRNN and PixelCNN</h2>
+<hr />
+
+<h3 id="fully-visible-belief-network">Fully visible belief network</h3>
+
+<p><img src="https://www.dropbox.com/s/xlcys4wh2i04ly9/Screenshot%202018-06-10%2010.35.26.png?raw=1" /></p>
+
+<ul>
+  <li>Explicit density model</li>
+  <li>1-d 차원의 이미지 x의 likelihood를 decompose하기 위해 chain rule 사용</li>
+  <li>그 후, training data의 likelihood를 최대화</li>
+  <li>n-dim vector의 확률을 n개의 확률곱으로 나타냄. WaveNet</li>
+  <li>샘플 요소들을 하나하나 차례로 생성해야하기 때문에 매우 느림</li>
+  <li>pixel value들의 복잡한 분포 =&gt; Neural Network를 사용해 표현!
+    <ul>
+      <li>previous pixels의 순서를 정의해야 함</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="pixelrnn">PixelRNN</h3>
+<p><img src="https://www.dropbox.com/s/brrhj1ag50znpkp/Screenshot%202018-06-10%2010.48.40.png?raw=1" width="220" height="200" /></p>
+
+<ul>
+  <li>corner부터 시작해 이미지 픽셀 생성</li>
+  <li>RNN/LSTM을 사용해 이전 픽셀에 dependency</li>
+  <li>그러나, sequential generation은 느림!!</li>
+</ul>
+
+<h3 id="pixelcnn">PixelCNN</h3>
+<p><img src="https://www.dropbox.com/s/n3pflqtf64vr99g/Screenshot%202018-06-10%2010.51.17.png?raw=1" widht="200" height="250" /></p>
+
+<ul>
+  <li>corner부터 시작해 이미지 픽셀 생성</li>
+  <li>CNN over context region을 사용해 이전 픽셀에 dependency</li>
+  <li>Training : maximize likelihood of training images</li>
+  <li>PixelRNN보단 빠름
+    <ul>
+      <li>Training 이미지의 context region values로  convolution을 병렬화</li>
+      <li>그러나 sequentially하기 때문에 여전히 느림</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="generations-samples">Generations Samples</h3>
+<p><img src="https://www.dropbox.com/s/6js5vkewwvc1s68/Screenshot%202018-06-10%2011.04.33.png?raw=1" /></p>
+
+<h3 id="summary">Summary</h3>
+<p><img src="https://www.dropbox.com/s/swi2wiyzc8zwz9v/Screenshot%202018-06-10%2011.05.00.png?raw=1" /></p>
+
+<h2 id="variational-autoencoders-vae">Variational Autoencoders (VAE)</h2>
+<hr />
+
+<p><img src="https://www.dropbox.com/s/cg0673i8cayx62g/Screenshot%202018-06-10%2011.14.03.png?raw=1" /></p>
+
+<ul>
+  <li>VAE는 latent z를 가진 intractable(다루기 힘든) 밀도 함수를 정의</li>
+  <li>직접적으로 최적화할 수 없고, likelihood에 대한 lower bound(하한)으로 유도하고 최적화</li>
+</ul>
+
+<h3 id="background-first-autoencoders">background first: Autoencoders</h3>
+<p><img src="https://www.dropbox.com/s/tpnoz2r1qvyhl9e/Screenshot%202018-06-10%2011.18.00.png?raw=1" /></p>
+
+<ul>
+  <li>unlabeled training data로 저차원의 feature representation을 만드는 unsupervised 접근</li>
+  <li>Encoder는 계속 변하고 있음</li>
+  <li>차원 축소를 하는 이유는?
+    <ul>
+      <li>의미있는 데이터 변동 factor를 찾을 수 있는 Feature를 얻기 위해</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="https://www.dropbox.com/s/wkhxy57nxgx5gca/Screenshot%202018-06-10%2011.23.21.png?raw=1" /></p>
+
+<ul>
+  <li>How to learn this feature representation?
+    <ul>
+      <li>original data를 재설계할 수 있는 feature를 학습</li>
+      <li>Autoencoding은 encoding 그 자체!</li>
+    </ul>
+  </li>
+  <li>Decoder도 Encoder처럼 계속 변하고 있음</li>
+</ul>
+
+<p><img src="https://www.dropbox.com/s/npg2xnhb81t645u/Screenshot%202018-06-10%2011.25.52.png?raw=1" /></p>
+
+<p><img src="https://www.dropbox.com/s/iuivz189dggea8x/Screenshot%202018-06-10%2011.27.19.png?raw=1" /></p>
+
+<ul>
+  <li>Encoder는 supervised model을 initialize하기 위해 사용할 수 있음</li>
+  <li>그렇다면 autoencoder로 새로운 이미지를 생성할 수 있을까? =&gt; VAE</li>
+</ul>
+
+<h3 id="variational-autoencoders">Variational Autoencoders</h3>
+<p><img src="https://www.dropbox.com/s/oc79eu8lxpyv860/Screenshot%202018-06-10%2011.30.22.png?raw=1" /></p>
+
+<ul>
+  <li>true parameters <code class="MathJax_Preview">\theta^*</code><script type="math/tex">\theta^*</script>를 estimate하고 싶음</li>
+  <li>How should we represent this model?
+    <ul>
+      <li>prior <code class="MathJax_Preview">p(z)</code><script type="math/tex">p(z)</script>는 간단하게 선택. (ex. 가우시안)</li>
+      <li>conditional <code class="MathJax_Preview">p(x\mid z)</code><script type="math/tex">p(x\mid z)</script>는 복잡 (이미지 생성)
+        <ul>
+          <li>Neural network로 표현</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>How to train the model?
+    <ul>
+      <li>learn model parameters to maximize likelihood of training data</li>
+      <li>
+        <pre class="MathJax_Preview"><code>p_{\theta}(x) = \int p_{\theta}(z)p_{\theta}(x\mid z)dz</code></pre>
+        <script type="math/tex; mode=display">p_{\theta}(x) = \int p_{\theta}(z)p_{\theta}(x\mid z)dz</script>
+      </li>
+    </ul>
+  </li>
+  <li>What is the problem with this?
+    <ul>
+      <li>Intractable!</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="intractabiltiy">Intractabiltiy</h3>
+<p><img src="https://www.dropbox.com/s/q6dycmy8lg8anmd/Screenshot%202018-06-10%2011.44.41.png?raw=1" /></p>
+
+<p><img src="https://www.dropbox.com/s/ivujma7vxmcm36q/Screenshot%202018-06-10%2011.48.14.png?raw=1" /></p>
+
+<ul>
+  <li>decoder network 모델링에 추가하기 위해 encoder network를 정의(<code class="MathJax_Preview">p_{\theta}(z\mid x)</code><script type="math/tex">p_{\theta}(z\mid x)</script>를 근사할)</li>
+</ul>
+
+<p><img src="https://www.dropbox.com/s/ivinifqg6g9qjn8/Screenshot%202018-06-10%2011.50.02.png?raw=1" /></p>
+
+<p><img src="https://www.dropbox.com/s/9vw12vta3bv0iqs/Screenshot%202018-06-10%2011.50.31.png?raw=1" /></p>
+
+<p><img src="https://www.dropbox.com/s/61ixhtnjyhsd2i8/Screenshot%202018-06-10%2011.54.36.png?raw=1" /></p>
+
+<p><img src="https://www.dropbox.com/s/9fepjx4h1m9kkv0/Screenshot%202018-06-10%2011.56.01.png?raw=1" /></p>
+
+<p><img src="https://www.dropbox.com/s/kiirfh2eeqgz6o1/Screenshot%202018-06-10%2011.56.16.png?raw=1" /></p>
+
+<p><img src="https://www.dropbox.com/s/563kc94iu6cpu1b/Screenshot%202018-06-10%2011.57.33.png?raw=1" /></p>
+
+<p><img src="https://www.dropbox.com/s/gs00ny0yz4913tw/Screenshot%202018-06-10%2011.58.22.png?raw=1" /></p>
+
+<h3 id="generating-data">Generating Data</h3>
+<p><img src="https://www.dropbox.com/s/8h63uinllaeiti7/Screenshot%202018-06-11%2022.42.16.png?raw=1" /></p>
+
+<p><img src="https://www.dropbox.com/s/u50jqxtihcvvc0y/Screenshot%202018-06-11%2022.42.30.png?raw=1" /></p>
+
+<h3 id="summary-1">Summary</h3>
+<p><img src="https://www.dropbox.com/s/1pskkm52djclycm/Screenshot%202018-06-11%2022.42.46.png?raw=1" /></p>
+
+<h2 id="generative-adversarial-networks-gan">Generative Adversarial Networks (GAN)</h2>
+<hr />
+
+<ul>
+  <li>PixcelCNN은 다루기 쉬운 밀도 함수를 정의하고, training data의 likelihood를 optimize했습니다</li>
+  <li>VAEs는 대조적으로 잠재변수 z를 가진 다루기 힘든 함수를 정의합니다. z는 좋은 속성을(property) 많이 가지고 있습니다
+    <ul>
+      <li>직접 optimize하지 못하고, likelihood의 lower bound를 optimize하도록 유도합니다</li>
+    </ul>
+  </li>
+  <li>명시적으로 밀도를 모델링하는 것을 포기하고, sample을 얻으면 어떨까요?</li>
+  <li>GANs : 명시적인 밀도 함수를 적용하지 않고 게임 이론으로 접근합니다
+    <ul>
+      <li>2 player game의 training 분포를 사용해 생성하는 것을 학습</li>
+    </ul>
+  </li>
+  <li>Problem
+    <ul>
+      <li>복잡하고 고차원의 샘플을 원함</li>
+      <li>이것을 직접적으로 할 방법이 없음</li>
+    </ul>
+  </li>
+  <li>Solution
+    <ul>
+      <li>간단한 분포의 sample을 얻음(예를 들어 random noise)</li>
+      <li>간단한 분포로부터 변형을 학습</li>
+    </ul>
+  </li>
+  <li>Q) What can we use to represent this complex transformation?</li>
+  <li>
+    <p>A) Neural Network!</p>
+  </li>
+  <li>Input : Random noise</li>
+  <li>Output : Sample from training distribution</li>
+</ul>
+
+<h3 id="training-gans-two-player-game">Training GANs: Two-player game</h3>
+<ul>
+  <li>Generator network : 실제와 같은 이미지를 생성해 discriminator를 속입니다</li>
+  <li>Discriminator network : 실제와 가짜 이미지를 구별합니다</li>
+</ul>
+
+<p><img src="https://www.dropbox.com/s/2fkftsb2sksw8ue/Screenshot%202018-06-11%2021.33.15.png?raw=1" /></p>
+
+<ul>
+  <li>Generator가 진짜같은 이미지를 생성해낸다면!!</li>
+</ul>
+
+<p><img src="https://www.dropbox.com/s/3wkocm1qvvxkl0i/Screenshot%202018-06-11%2021.39.28.png?raw=1" /></p>
+
+<ul>
+  <li>Discriminator는 objective를 최대화.
+    <ul>
+      <li><code class="MathJax_Preview">D(x)</code><script type="math/tex">D(x)</script>는 1에 가깝고 <code class="MathJax_Preview">D(G(z))</code><script type="math/tex">D(G(z))</script>는 0에 가까워야 합니다</li>
+    </ul>
+  </li>
+  <li>Generator는 objective를 최소화
+    <ul>
+      <li><code class="MathJax_Preview">D(G(z))</code><script type="math/tex">D(G(z))</script>는 1에 가까워야 함</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="https://www.dropbox.com/s/yrsd0ni269cjkc0/Screenshot%202018-06-11%2021.50.42.png?raw=1" /></p>
+
+<ul>
+  <li>generator에서 graident ascent 사용</li>
+</ul>
+
+<p><img src="https://www.dropbox.com/s/3tjgeka924xl0aw/Screenshot%202018-06-11%2022.32.47.png?raw=1" /></p>
+
+<ul>
+  <li>GAN training algorithm</li>
+  <li>training 후, 새 이미지를 생성하기 위해 generator 네트워크를 사용합니다</li>
+</ul>
+
+<h3 id="generated-samples">Generated samples</h3>
+<p><img src="https://www.dropbox.com/s/3fwxj66svo68s39/Screenshot%202018-06-11%2022.34.12.png?raw=1" /></p>
+
+<p><img src="https://www.dropbox.com/s/c2aeog6hwmlo9d4/Screenshot%202018-06-11%2022.34.28.png?raw=1" /></p>
+
+<h3 id="convolutional-architectures">Convolutional Architectures</h3>
+<p><img src="https://www.dropbox.com/s/wwinfk4wpaacb7r/Screenshot%202018-06-11%2022.35.56.png?raw=1" /></p>
+
+<ul>
+  <li>Gan이 더 잘 생산할 수 있도록 도와주는 아키텍쳐</li>
+</ul>
+
+<p><img src="https://www.dropbox.com/s/o1z2djeydhcaauv/Screenshot%202018-06-11%2022.36.28.png?raw=1" /></p>
+
+<p><img src="https://www.dropbox.com/s/yoplja0npkltfs6/Screenshot%202018-06-11%2022.37.10.png?raw=1" /></p>
+
+<p><img src="https://www.dropbox.com/s/k94lrafq3na9fln/Screenshot%202018-06-11%2022.37.33.png?raw=1" /></p>
+
+<ul>
+  <li>이런 작업들도 진행 가능</li>
+  <li>Vector의 연산이 가능 (Word2Vec처럼)</li>
+</ul>
+
+<h3 id="2017-year-of-the-gan">2017: Year of the GAN</h3>
+<p><img src="https://www.dropbox.com/s/so11qru56ixq1fa/Screenshot%202018-06-11%2022.38.14.png?raw=1" /></p>
+
+<ul>
+  <li>다양한 종류의 GAN이 연구되고 있습니다</li>
+  <li><a href="https://github.com/hindupuravinash/the-gan-zoo">The GAN Zoo</a> : GAN 관련 논문들을 정리한 repo</li>
+  <li><a href="https://github.com/soumith/ganhacks">ganhacks</a> : GAN들을 학습할 때 트릭과 팁을 주는 repo</li>
+</ul>
+
+<h3 id="summary-2">Summary</h3>
+<p><img src="https://www.dropbox.com/s/7dd1m75pdt9snv6/Screenshot%202018-06-11%2022.39.56.png?raw=1" /></p>
+
+<h2 id="recap">Recap</h2>
+<p><img src="https://www.dropbox.com/s/ehpw78xf9ed4tjh/Screenshot%202018-06-11%2022.40.13.png?raw=1" /></p>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=vT1JzLTH4G4&amp;list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv&amp;index=0">Stanfoard CS231n 2017</a></li>
+  <li><a href="https://www.facebook.com/photo.php?fbid=10154843949129417&amp;set=a.10150227079799417.333777.855314416&amp;type=3">엄태웅님 포스팅</a></li>
+  <li><a href="https://kakalabblog.wordpress.com/2017/07/27/gan-tutorial-2016/">GAN tutorial 2016 정리(1)</a></li>
+  <li><a href="https://www.slideshare.net/ssuser06e0c5/variational-autoencoder-76552518">알기쉬운 Variational AutoEncoder</a></li>
+  <li><a href="http://nolsigan.com/blog/what-is-variational-autoencoder/">What is variational autoencoder?</a></li>
+  <li><a href="https://zzsza.github.io/data/2017/12/27/gan/">GAN(Generative Adversarial Network) 기초</a></li>
+</ul>
+
+      <br/>
+      <p><a href="https://bit.ly/kyleschool_blog">카일스쿨 유튜브</a> 채널을 만들었습니다. 데이터 사이언스, 성장, 리더십, BigQuery 등을 이야기할 예정이니, 관심 있으시면 구독 부탁드립니다 :)</p>
+      <p>이 글이 도움이 되셨다면 추천 클릭을 부탁드립니다 :)</p>
+      <br/>
+      <br/>
+      <div style="text-align:center">
+        <style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFFFFF !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 0px 9px !important;font-size: 17px !important;letter-spacing:-0.08px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/zzsza"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
+      </div>
+      <br/>
+      <br/>
+       <!--블로그-하단-반응형 -->
+      <ins class="adsbygoogle"
+          style="display:block; width:100%; height:300px;"
+          data-ad-client="ca-pub-5105555504153863"
+          data-ad-slot="1037589043"
+          data-ad-format="auto"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+
+    </div>
+  
+
+</article>
+
+  <hr class="dingbat" />
+
+  <div class="share">
+      <h2>Share this post</h2>
+      <div class="share-body">
+        <a href="http://twitter.com/share?text=CS231n 13강. Generative Models&amp;url=http://localhost:4000/data/2018/06/11/cs231n-generative-models/"
+    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <span class="icon-twitter">
+            </span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/data/2018/06/11/cs231n-generative-models/"
+    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <span class="icon-facebook">
+            </span>
+        </a>
+    </div>
+  </div>
+  <br/>
+
+
+
+
+
+
+  <aside class="author" role="complementary">
+    <div class="author">
+  <h2 class="page-title hr">
+    About
+  </h2>
+<div class="author-body">
+  
+    
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="seongyun byeon"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+  
+  <div class="author-body-description">
+    <p>Machine Learning Engineer</p>
+
+  </div>
+</div>
+</div>
+
+  </aside>
+
+
+
+
+
+<aside class="related" role="complementary">
+  <h2 class="hr">Related Posts</h2>
+
+  <ul class="related-posts">
+    
+      
+      
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/data/2019/12/15/rules-of-ml/" data-flip="title">
+    <span>Rules of Machine Learning: Best Practices for ML Engineering 정리</span>
+  </a>
+  <small><time datetime="2019-12-15T00:00:00+09:00">
+    15 Dec 2019
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/data/2019/12/03/cs224w-ml-with-graph/" data-flip="title">
+    <span>CS224W - Machine Learning with Graphs 1강 정리</span>
+  </a>
+  <small><time datetime="2019-12-03T00:00:00+09:00">
+    03 Dec 2019
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/data/2019/11/24/pydeck/" data-flip="title">
+    <span>지도 데이터 시각화 : Uber의 pydeck 사용하기</span>
+  </a>
+  <small><time datetime="2019-11-24T00:00:00+09:00">
+    24 Nov 2019
+  </time></small>
+</li>
+
+        
+      
+        
+        
+      
+    
+  </ul>
+</aside>
+
+
+
+      
+        <aside class="comments" role="complementary">
+  <h2>Comments</h2>
+  <hr/>
+
+  <div id="disqus_thread"></div>
+
+  <script>
+    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="CS231n 13강. Generative Models",this.page.identifier="/data/2018/06/11/cs231n-generative-models",this.page.url="http://localhost:4000/data/2018/06/11/cs231n-generative-models/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//zzsza.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</aside>
+
+      
+
+      <footer>
+  <hr/>
+  
+    <p>© 2017. by Seongyun Byeon</p>
+
+  
+  <p>
+    <code>Powered by <a href="https://zzsza.github.io/">zzsza</a></code>
+  </p>
+</footer>
+
+    </main>
+    <div class="right-side">
+  <div class="ad-first">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- 블로그-상단-모바일 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:100%;"
+         data-ad-client="ca-pub-5105555504153863"
+         data-ad-slot="9090558636"
+         data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+<br/>
+<br/>
+  <div class="ad-second">
+    <!-- 블로그-스카이스크래퍼 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;max-width:320px;width:100%;height:600px"
+         data-ad-client="ca-pub-5105555504153863"
+         data-ad-slot="3646660262"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+</div>
+
+
+  </div>
+  <div id="_yDrawer">
+  <div id="_sidebar" class="sidebar">
+    <div class="sidebar-bg" style="background-color:#4f86aa;background-image:url(/assets/img/nap.jpg)"></div>
+    <header class="sidebar-sticky" role="banner">
+      <br/>
+      <div class="sidebar-about">
+        <h1><a id="_title" href="/">어쩐지 오늘은</a></h1>
+        <p>Machine Learning Engineer</p>
+
+      </div>
+
+      <br/>
+      <nav class="sidebar-nav heading" role="navigation">
+        <span class="sr-only">Navigation:</span>
+<ul>
+  
+
+  
+
+  
+  
+  
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-1"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/diary/">Diary</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/diary-diary/">diary</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-2"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/data/">Data</a>
+       <label class="folder" for="list-item-2">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-ml/">Machine-Learning</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-dl/">Deep-Learning</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-mobility/">Mobility</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-engineering/">Engineering</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-optimization/">Optimization</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-paper/">Paper</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-pytorch/">Pytorch</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-cs231/">CS231n</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-rl/">Reinforcement-Learning</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-time-series/">Time Series</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-analytics/">Analytics</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-kaggle/">Kaggle</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-vision/">Vision</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-interpretable-ml/">Interpretable ML</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-simulation/">Simulation</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/data-graph/">Graph</a>
+             </li>
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-3"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/mlops/">MLOps</a>
+       <label class="folder" for="list-item-3">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-basic/">Basic</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-airflow/">Airflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-mlflow/">MLflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-tfx/">Tensorflow Extended</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-serving/">Serving</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-feature/">Feature</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/mlops-version/">Model & Pipeline version</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-4"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/gcp/">Google Cloud Platform</a>
+       <label class="folder" for="list-item-4">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-basic/">Basic</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-bigquery/">BigQuery</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-aiplatform/">AI Platform</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-dataflow/">Dataflow</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/gcp-cloud-functions/">Cloud Functions</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-5"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/development/">Development</a>
+       <label class="folder" for="list-item-5">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-linux/">Linux</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-web/">Web</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-python/">Python</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-sql/">SQL</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-scala/">Scala</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-os/">OS</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-kubernetes/">Kubernetes</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-devops/">DevOps</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-kotlin/">Kotlin</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-julia/">Julia</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/development-tools/">Tools</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-6"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/etc/">ETC</a>
+       <label class="folder" for="list-item-6">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/etc-lecture/">Lecture</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/etc-book/">Book</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-7"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/about/">About</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+</ul>
+
+      </nav>
+    <!-- search box -->
+    <form action="/search">
+      <div class="tipue_search_box">
+        <input type="text" name="q" id="tipue_search_input" placeholder="&#xF002;  Search" pattern=".{2,}" title="최소 2글자 이상" required></div>
+      <div style="clear: both;"></div>
+    </form>
+    <br/>
+      <div class="sidebar-box">
+        
+          
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="seongyun byeon"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+        
+      </div>
+      <p>메모가 습관인 데이터쟁이입니다</p>
+
+      
+      
+        <div class="sidebar-social">
+          <span class="sr-only">Social:</span>
+<ul>
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://facebook.com/zzsza">
+    <span class="icon-facebook" title="Facebook"></span>
+    <span class="sr-only">Facebook</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.youtube.com/channel/UCYyAaezBGEVmXcnink6nY9Q">
+    <span class="icon-youtube" title="YouTube"></span>
+    <span class="sr-only">YouTube</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://instagram.com/data.scientist">
+    <span class="icon-instagram" title="Instagram"></span>
+    <span class="sr-only">Instagram</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://github.com/zzsza">
+    <span class="icon-github" title="GitHub"></span>
+    <span class="sr-only">GitHub</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.linkedin.com/in/seong-yun-byeon-8183a8113">
+    <span class="icon-linkedin2" title="LinkedIn"></span>
+    <span class="sr-only">LinkedIn</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="mailto:snugyun01@gmail.com">
+    <span class="icon-mail" title="Email"></span>
+    <span class="sr-only">Email</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://zzsza.github.io/feed.xml">
+    <span class="icon-rss2" title="RSS"></span>
+    <span class="sr-only">RSS</span>
+  </a>
+</li>
+
+  
+</ul>
+
+        </div>
+      
+    </header>
+  </div>
+</div>
+
+</div>
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+
+<script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-110573232-1', 'auto');
+  ga('send', 'pageview');
+  loadJSDeferred('https://www.google-analytics.com/analytics.js');
+</script>
+
+
+
+
+
+<!--[if gt IE 8]><!---->
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    
+    google: {
+      families: 'Lato'.split('|')
+    },
+    
+
+    custom: {
+      families: ['icomoon'],
+      urls: ['/assets/icomoon/style.css']
+    }
+  });
+</script>
+<!--<![endif]-->
+
+
+  <!--[if gt IE 9]><!---->
+  
+  <script>loadJSDeferred('/assets/js/hydejack.js?v=6.4.0');</script>
+
+  
+  <!--<![endif]-->
+
+
+
+</body>
+
+</html>
