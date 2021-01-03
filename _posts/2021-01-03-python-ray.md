@@ -517,7 +517,7 @@ comments: true
 		- Ray 공식 [Tutorial Github](https://github.com/ray-project/tutorial) : 위에 Anyscale이 최신본이고 이 레포는 그 이전 버전인데, exercises가 자세히 나와있어 유익함
 - 영상 또는 발표 자료
 	- [Ray Summit 2020](https://www.youtube.com/watch?v=8GTd8Y_JGTQ&list=PLzTswPQNepXlr2L75tZt7l8tyVZkO-RVt&ab_channel=anyscale) : 강력 추천! 
-	- [Ray: A System for Scalable Python and ML |SciPy 2020| Robert Nishihara Video](https://youtu.be/XIu8ZF7RSkw) : 유튜브에 Ray를 검색하면 Nishihara님이 발표해주신 영상이 꽤 있는데, 최신 영상 위주로 보면 좋음(내용은 비슷한 편)
+	- [Ray: A System for Scalable Python and ML](https://youtu.be/XIu8ZF7RSkw) : 유튜브에 Ray를 검색하면 Nishihara님이 발표해주신 영상이 꽤 있는데, 최신 영상 위주로 보면 좋음(내용은 비슷한 편)
 	- [Ray: A General Purpose Serverless Substrate?](https://static.sched.com/hosted_files/ray2020/a4/Ray-%20A%20General%20Purpose%20Serverless%20Substrate_%20-%20Eric%20Liang%2C%20Anyscale.pdf) :  서버리스와 Ray를 연결해서 설명한 발표 자료
 	- [Ray Serve: Scalable ML Serving](https://static.sched.com/hosted_files/ray2020/83/Introducing%20Ray%20Serve_%20Scalable%20and%20Programmable%20ML%20Serving%20Framework.pdf) : Ray Serve에 대한 발표 자료
 - 백서(WhitePaper)
