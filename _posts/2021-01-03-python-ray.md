@@ -104,7 +104,7 @@ comments: true
 	- 머신러닝/딥러닝 외에서도 활용 가능(크롤링 병렬처리, 최적화 병렬처리 등)
 - 6) 풍부한 생태계
 	- 강화학습을 위한 RLLib
-	- 하이퍼파라미터 튜닝을 위한 Ray Rune
+	- 하이퍼파라미터 튜닝을 위한 Ray Tune
 	- 분산 학습을 위한 Ray SGD
 	- Serving을 위한 Ray Serve
 	- 그 외에 Dask, Horovod, Hugging Face, Modin, PyCaret, Scikit Learn, Spacy, XGBoost, Seldon Alibi 등 다른 라이브러리와 활발하게 성장 중
