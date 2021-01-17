@@ -40,18 +40,20 @@ comments: true
 - Object-Oriented Programming
 - 프로그램을 단순히 데이터와 처리 방법으로 나누지 않고, 프로그램을 객체 단위로 생각하고 객체끼리 상호작용을 표현하는 방식
 	- 코드의 재사용, 코드 중복 방지, 유지보수 등을 위해 사용함
-- 과거엔 규모가 큰 프로젝트는 함수 중심으로 개발함
-	- 데이터가 방대해지고 복잡해져서 추후 개선이 어려움
+- 처음엔 함수 중심으로 개발할 수 있지만, 점점 구조가 복잡해지면 개선이 어려움
 - 항상 객체 지향이 최선은 아니며 프로젝트의 규모 등에 따라 다름
+- 객체 지향 프로그래밍 외에 절차 지향 프로그래밍도 존재
 
 
 	
 ### 절차 지향 프로그래밍 예시
 - 절차 지향 프로그래밍
 	- 순차적으로 진행되는 프로그래밍
+	- Jupyter Notebook에서 라인 바이 라인으로 실행하는 경우 절차 지향으로 볼 수 있음
 - 먼저 절차 지향 방식으로 구현하고, 점점 객체 지향으로 구현해보기
 - 일반적인 코딩
-	- 객체 없이 그냥 변수를 생성해서 만듬. 추가 요소를 만들 때는 숫자와 값만 변경하고 계속 증가시킴
+	- 객체 없이 그냥 변수를 생성
+	- 추가 요소를 만들 때는 숫자와 값만 변경하고 계속 증가시킴
 	- 스마트폰과 스마트폰 정보를 출력하려면 두 변수를 같이 프린트해야 함
 
 	```
@@ -151,7 +153,7 @@ print(Smartphone.__doc__)
 	
 	
 - self란?
-	- self는 자기 자신을 뜻함. 인스턴스 자신
+	- self는 인스턴스 자기 자신을 뜻함
 		- 인스턴스 : 클래스에 의해 만들어진 객체
 	- self가 있는 것이 인스턴스 변수
 	- 인자에 self를 받는 것은 인스턴스 메소드 : get_information 함수
@@ -246,17 +248,16 @@ print(Smartphone.smartphone_count)
 ---
 
 ### 메소드의 종류
-- 클래스 메소드(Python Class Method)
+- 1) 클래스 메소드(Python Class Method)
 	- @classmethod 데코레이터를 사용
 	- cls 인자를 받음
 	- cls는 Smartphone를 뜻함(인스턴스 말고 클래스)
 	- 클래스 변수 컨트롤할 때 사용
-- 인스턴스 메소드(Python Instance Method)
+- 2) 인스턴스 메소드(Python Instance Method)
 	- Self가 들어간 경우
 	- 객체의 고유한 속성 값을 사용
-- 스태틱 메소드(Python Static Method)
+- 3) 스태틱 메소드(Python Static Method)
 	- 아무것도 인자를 받지 않음(self, cls 등)
-	- 유연하게 사용함
 	- [Meaning of @classmethod and @staticmethod for beginner?](https://stackoverflow.com/questions/12179271/meaning-of-classmethod-and-staticmethod-for-beginner) 참고
 	
 	
@@ -557,9 +558,3 @@ class Smartphone:
 
 <br />
 <br />
-
----
-
-### Reference	
-- [인프런 파이썬 중급 프로그래밍](https://www.inflearn.com/course/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EC%A4%91%EA%B8%89-%EC%9D%B8%ED%94%84%EB%9F%B0-%EC%98%A4%EB%A6%AC%EC%A7%80%EB%84%90)
-- [Python Class Document](https://docs.python.org/ko/3/tutorial/classes.html)
