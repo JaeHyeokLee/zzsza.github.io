@@ -461,6 +461,7 @@ comments: true
 	- 자세한 코드는 아래의 공식 문서 예제 참고!
 - [Best Practices: Ray with PyTorch](https://docs.ray.io/en/master/using-ray-with-pytorch.html)
 - [Best Practices: Ray with Tensorflow](https://docs.ray.io/en/master/using-ray-with-tensorflow.html)
+- 우태강님의 [Ray로 내 파이썬 코드 10배 빠르게 만들기](https://medium.com/naver-shopping-dev/ray-%EB%A1%9C-pytorch-model-inference-%ED%95%98%EA%B8%B0-77ce11304604) 글도 읽어보시면 좋을 것 같아요 :)
 
 
 <br />
